@@ -6,17 +6,41 @@ $workspace_doc isa TypeDoc,
   has definition "A structural collection of repos, infrastructure, accounts, environments, and other resources allocated to ongoing work.",
   has usageNote "Use Workspace for the container of resources. It is not the project itself. Projects use a workspace while work is active.";
 
+$vibe_workspace_doc isa TypeDoc,
+  has typeLabel "VibeWorkspace",
+  has typeKind "entity",
+  has definition "The Vibe Machine-facing workspace type used for concrete workspaces in customer and operator flows.",
+  has usageNote "Use VibeWorkspace when creating workspace instances directly. It inherits the semantics of Workspace.";
+
+$vibe_project_doc isa TypeDoc,
+  has typeLabel "VibeProject",
+  has typeKind "entity",
+  has definition "The Vibe Machine-facing project type for goal-directed work over time.",
+  has usageNote "Use VibeProject for concrete project instances. It inherits the temporal semantics of gist Project.";
+
 $product_doc isa TypeDoc,
   has typeLabel "Product",
   has typeKind "entity",
   has definition "A delivered software system produced by project work and evaluated against an agreed specification.",
   has usageNote "Use Product for the thing a customer ships or operates. Products are produced by a Project and conform to ProductSpecification.";
 
+$vibe_product_doc isa TypeDoc,
+  has typeLabel "VibeProduct",
+  has typeKind "entity",
+  has definition "The Vibe Machine-facing product type for delivered software systems.",
+  has usageNote "Use VibeProduct when creating product instances directly. It inherits the semantics of Product.";
+
 $repository_doc isa TypeDoc,
   has typeLabel "Repository",
   has typeKind "entity",
   has definition "A source-code component that belongs to a workspace and contributes to a delivered product.",
   has usageNote "Repository is the resource-level model for git repos and related code containers inside a workspace.";
+
+$vibe_repository_doc isa TypeDoc,
+  has typeLabel "VibeRepository",
+  has typeKind "entity",
+  has definition "The Vibe Machine-facing repository type used for concrete code repositories.",
+  has usageNote "Use VibeRepository when creating repository instances directly. It inherits the semantics of Repository.";
 
 $product_spec_doc isa TypeDoc,
   has typeLabel "ProductSpecification",

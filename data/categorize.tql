@@ -8,13 +8,37 @@ insert
 
 match
   $dom isa Domain, has name "vibemachine";
+  $doc isa TypeDoc, has typeLabel "VibeWorkspace";
+insert
+  (categorized: $doc, category: $dom) isa isCategorizedBy;
+
+match
+  $dom isa Domain, has name "vibemachine";
+  $doc isa TypeDoc, has typeLabel "VibeProject";
+insert
+  (categorized: $doc, category: $dom) isa isCategorizedBy;
+
+match
+  $dom isa Domain, has name "vibemachine";
   $doc isa TypeDoc, has typeLabel "Product";
 insert
   (categorized: $doc, category: $dom) isa isCategorizedBy;
 
 match
   $dom isa Domain, has name "vibemachine";
+  $doc isa TypeDoc, has typeLabel "VibeProduct";
+insert
+  (categorized: $doc, category: $dom) isa isCategorizedBy;
+
+match
+  $dom isa Domain, has name "vibemachine";
   $doc isa TypeDoc, has typeLabel "Repository";
+insert
+  (categorized: $doc, category: $dom) isa isCategorizedBy;
+
+match
+  $dom isa Domain, has name "vibemachine";
+  $doc isa TypeDoc, has typeLabel "VibeRepository";
 insert
   (categorized: $doc, category: $dom) isa isCategorizedBy;
 

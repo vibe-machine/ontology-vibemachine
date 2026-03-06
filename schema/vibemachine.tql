@@ -14,15 +14,23 @@ entity Workspace sub Collection,
   owns workspaceName,
   plays usesWorkspace:workspace;
 
+entity VibeWorkspace sub Workspace;
+
 entity Product sub System,
   owns productName,
   plays isProducedBy:product,
   plays conformsTo:conformer;
 
+entity VibeProduct sub Product;
+
 entity Repository sub Component,
   owns repositoryName,
   plays isMemberOfCollection:member,
   plays contributesTo:contributor;
+
+entity VibeRepository sub Repository;
+
+entity VibeProject sub Project;
 
 Project plays usesWorkspace:project;
 Project plays isProducedBy:producer;
