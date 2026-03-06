@@ -1,7 +1,0 @@
-define
-
-# My Domain Schema
-# Replace this with your TypeQL schema definitions.
-
-MyEntity sub Entity,
-  owns name;

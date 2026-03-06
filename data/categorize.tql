@@ -1,8 +1,43 @@
-# Domain categorization: link TypeDoc entries to their domain.
-# Add one match-insert block per type.
+# vibemachine Domain Categorization
 
 match
-  $dom isa Domain, has name "mydomain";
-  $doc isa TypeDoc, has typeLabel "MyEntity";
+  $dom isa Domain, has name "vibemachine";
+  $doc isa TypeDoc, has typeLabel "Workspace";
+insert
+  (categorized: $doc, category: $dom) isa isCategorizedBy;
+
+match
+  $dom isa Domain, has name "vibemachine";
+  $doc isa TypeDoc, has typeLabel "Product";
+insert
+  (categorized: $doc, category: $dom) isa isCategorizedBy;
+
+match
+  $dom isa Domain, has name "vibemachine";
+  $doc isa TypeDoc, has typeLabel "Repository";
+insert
+  (categorized: $doc, category: $dom) isa isCategorizedBy;
+
+match
+  $dom isa Domain, has name "vibemachine";
+  $doc isa TypeDoc, has typeLabel "ProductSpecification";
+insert
+  (categorized: $doc, category: $dom) isa isCategorizedBy;
+
+match
+  $dom isa Domain, has name "vibemachine";
+  $doc isa TypeDoc, has typeLabel "usesWorkspace";
+insert
+  (categorized: $doc, category: $dom) isa isCategorizedBy;
+
+match
+  $dom isa Domain, has name "vibemachine";
+  $doc isa TypeDoc, has typeLabel "isProducedBy";
+insert
+  (categorized: $doc, category: $dom) isa isCategorizedBy;
+
+match
+  $dom isa Domain, has name "vibemachine";
+  $doc isa TypeDoc, has typeLabel "conformsTo";
 insert
   (categorized: $doc, category: $dom) isa isCategorizedBy;

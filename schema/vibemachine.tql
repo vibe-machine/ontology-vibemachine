@@ -1,0 +1,30 @@
+define
+
+# Vibe Machine workspace and product modeling layered on top of gist.
+
+attribute workspaceName value string;
+attribute productName value string;
+attribute repositoryName value string;
+
+relation usesWorkspace,
+  relates project,
+  relates workspace;
+
+entity Workspace sub Collection,
+  owns workspaceName,
+  plays usesWorkspace:workspace,
+  plays isMemberOfCollection:collection,
+  plays isMemberOfCollection:member;
+
+entity Product sub System,
+  owns productName,
+  plays isProducedBy:product,
+  plays conformsTo:conformer;
+
+entity Repository sub Component,
+  owns repositoryName,
+  plays isMemberOfCollection:member,
+  plays contributesTo:contributor;
+
+Project plays usesWorkspace:project;
+Project plays isProducedBy:producer;
