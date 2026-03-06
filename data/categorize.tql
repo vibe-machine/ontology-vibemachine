@@ -1,0 +1,8 @@
+# Domain categorization: link TypeDoc entries to their domain.
+# Add one match-insert block per type.
+
+match
+  $dom isa Domain, has name "mydomain";
+  $doc isa TypeDoc, has typeLabel "MyEntity";
+insert
+  (categorized: $doc, category: $dom) isa isCategorizedBy;

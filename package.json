@@ -1,0 +1,21 @@
+{
+  "name": "my-domain",
+  "displayName": "My Domain",
+  "version": "1.0.0",
+  "description": "Description of your ontology domain.",
+  "author": "your-name",
+  "license": "MIT",
+  "source": "https://github.com/your-org/ontology-my-domain",
+  "prefix": "mydomain",
+  "schemas": [
+    { "name": "myDomain", "file": "schema/myDomain.tql" }
+  ],
+  "data": [
+    "data/myDomain-typedoc.tql"
+  ],
+  "domains": "data/domains.tql",
+  "categorization": "data/categorize.tql",
+  "dependencies": [
+    { "name": "gist", "version": ">=14.0.0" }
+  ]
+}

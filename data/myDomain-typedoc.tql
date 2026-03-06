@@ -1,0 +1,6 @@
+insert
+
+$doc isa TypeDoc,
+  has typeLabel "MyEntity",
+  has typeKind "entity",
+  has definition "Description of MyEntity.";
