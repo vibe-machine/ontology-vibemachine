@@ -12,9 +12,7 @@ relation usesWorkspace,
 
 entity Workspace sub Collection,
   owns workspaceName,
-  plays usesWorkspace:workspace,
-  plays isMemberOfCollection:collection,
-  plays isMemberOfCollection:member;
+  plays usesWorkspace:workspace;
 
 entity Product sub System,
   owns productName,
