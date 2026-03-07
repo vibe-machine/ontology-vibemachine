@@ -1,0 +1,60 @@
+# Provenance bootstrap
+# upstream-repo: https://github.com/vibe-machine/ontology-vibemachine
+# upstream-tag: v0.2.0
+# upstream-commit: b17bf6a31cf0e131fe3b5a37e3d918daf34c8bd8
+# source-artifacts:
+# - package.json
+# - schema/vibemachine.tql
+# manifest: manifests/vibemachine-v0.2.0.package-manifest.json
+# generator: hand-authored-package-bootstrap/0.1.0
+define
+
+attribute buildKey, value string;
+attribute packageName, value string;
+attribute packageVersion, value string;
+attribute upstreamRepoUrl, value string;
+attribute upstreamTag, value string;
+attribute upstreamCommit, value string;
+attribute manifestPath, value string;
+attribute generatorName, value string;
+attribute generatorVersion, value string;
+attribute generatedAt, value string;
+attribute sourcePath, value string;
+attribute sourceSha256, value string;
+attribute artifactPath, value string;
+attribute artifactKind, value string;
+attribute artifactSha256, value string;
+
+entity OntologyPackageBuild,
+    owns buildKey @key,
+    owns packageName,
+    owns packageVersion,
+    owns upstreamRepoUrl,
+    owns upstreamTag,
+    owns upstreamCommit,
+    owns manifestPath,
+    owns generatorName,
+    owns generatorVersion,
+    owns generatedAt;
+
+entity SourceArtifactRecord,
+    owns sourcePath @key,
+    owns sourceSha256;
+
+entity GeneratedArtifactRecord,
+    owns artifactPath @key,
+    owns artifactKind,
+    owns artifactSha256;
+
+relation buildHasSourceArtifact,
+    relates build,
+    relates sourceArtifact;
+
+relation buildHasGeneratedArtifact,
+    relates build,
+    relates generatedArtifact;
+
+OntologyPackageBuild plays buildHasSourceArtifact:build;
+SourceArtifactRecord plays buildHasSourceArtifact:sourceArtifact;
+OntologyPackageBuild plays buildHasGeneratedArtifact:build;
+GeneratedArtifactRecord plays buildHasGeneratedArtifact:generatedArtifact;

@@ -8,15 +8,62 @@
   "source": "https://github.com/vibe-machine/ontology-vibemachine",
   "prefix": "vibemachine",
   "schemas": [
-    { "name": "vibemachine", "file": "schema/vibemachine.tql" }
+    {
+      "name": "self-describing-schema",
+      "file": "schema/self-describing-schema.tql"
+    },
+    {
+      "name": "package-provenance",
+      "file": "schema/package-provenance.tql"
+    },
+    {
+      "name": "vibemachine",
+      "file": "schema/vibemachine.tql"
+    }
   ],
   "data": [
-    "data/vibemachine-typedoc.tql"
+    "data/vibemachine-provenance.tql",
+    "data/vibemachine-schema-docs.tql"
   ],
-  "domains": "data/domains.tql",
-  "categorization": "data/categorize.tql",
   "dependencies": [
-    { "name": "gist", "version": ">=14.0.0" },
-    { "name": "typedoc", "version": ">=1.0.0" }
-  ]
+    {
+      "name": "gist",
+      "version": ">=14.0.0"
+    }
+  ],
+  "scripts": {
+    "validate:bootstrap": "node tools/package_contract/validate_bootstrap.mjs"
+  },
+  "manifests": [
+    "manifests/vibemachine-v0.2.0.package-manifest.json"
+  ],
+  "assembly": {
+    "loadOrder": [
+      "schema/self-describing-schema.tql",
+      "schema/package-provenance.tql",
+      "schema/vibemachine.tql",
+      "data/vibemachine-provenance.tql",
+      "data/vibemachine-schema-docs.tql"
+    ],
+    "generatedArtifacts": [
+      "schema/self-describing-schema.tql",
+      "schema/package-provenance.tql",
+      "data/vibemachine-schema-docs.tql",
+      "data/vibemachine-provenance.tql",
+      "manifests/package-manifest.schema.json",
+      "manifests/vibemachine-v0.2.0.package-manifest.json"
+    ]
+  },
+  "provenance": {
+    "manifest": "manifests/vibemachine-v0.2.0.package-manifest.json",
+    "status": "bootstrap"
+  },
+  "legacyDocumentation": {
+    "deprecatedFiles": [
+      "data/vibemachine-typedoc.tql",
+      "data/domains.tql",
+      "data/categorize.tql"
+    ],
+    "status": "superseded-by-schema-resource"
+  }
 }

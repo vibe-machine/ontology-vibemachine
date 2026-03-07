@@ -1,0 +1,126 @@
+# Provenance bootstrap
+# upstream-repo: https://github.com/vibe-machine/ontology-vibemachine
+# upstream-tag: v0.2.0
+# upstream-commit: b17bf6a31cf0e131fe3b5a37e3d918daf34c8bd8
+# source-artifacts:
+# - package.json
+# - schema/vibemachine.tql
+# manifest: manifests/vibemachine-v0.2.0.package-manifest.json
+# generator: hand-authored-package-bootstrap/0.1.0
+
+insert
+
+$module isa SchemaModule,
+  has moduleKey "vibemachine",
+  has moduleName "vibemachine",
+  has moduleKind "hand-authored-package";
+
+$r1 isa SchemaResource,
+  has docKey "https://github.com/vibe-machine/ontology-vibemachine#Workspace",
+  has iri "https://github.com/vibe-machine/ontology-vibemachine#Workspace",
+  has typeLabel "Workspace",
+  has kind "entity",
+  has prefLabel "Workspace",
+  has definition "A structural collection of repos, infrastructure, accounts, environments, and other resources allocated to ongoing work.", 
+  has scopeNote "Use Workspace for the container of resources. It is not the project itself. Projects use a workspace while work is active.";
+(resource: $r1, module: $module) isa inModule;
+
+$r2 isa SchemaResource,
+  has docKey "https://github.com/vibe-machine/ontology-vibemachine#VibeWorkspace",
+  has iri "https://github.com/vibe-machine/ontology-vibemachine#VibeWorkspace",
+  has typeLabel "VibeWorkspace",
+  has kind "entity",
+  has prefLabel "VibeWorkspace",
+  has definition "The Vibe Machine-facing workspace type used for concrete workspaces in customer and operator flows.", 
+  has scopeNote "Use VibeWorkspace when creating workspace instances directly. It inherits the semantics of Workspace.";
+(resource: $r2, module: $module) isa inModule;
+
+$r3 isa SchemaResource,
+  has docKey "https://github.com/vibe-machine/ontology-vibemachine#VibeProject",
+  has iri "https://github.com/vibe-machine/ontology-vibemachine#VibeProject",
+  has typeLabel "VibeProject",
+  has kind "entity",
+  has prefLabel "VibeProject",
+  has definition "The Vibe Machine-facing project type for goal-directed work over time.", 
+  has scopeNote "Use VibeProject for concrete project instances. It inherits the temporal semantics of gist Project.";
+(resource: $r3, module: $module) isa inModule;
+
+$r4 isa SchemaResource,
+  has docKey "https://github.com/vibe-machine/ontology-vibemachine#Product",
+  has iri "https://github.com/vibe-machine/ontology-vibemachine#Product",
+  has typeLabel "Product",
+  has kind "entity",
+  has prefLabel "Product",
+  has definition "A delivered software system produced by project work and evaluated against an agreed specification.", 
+  has scopeNote "Use Product for the thing a customer ships or operates. Products are produced by a Project and conform to ProductSpecification.";
+(resource: $r4, module: $module) isa inModule;
+
+$r5 isa SchemaResource,
+  has docKey "https://github.com/vibe-machine/ontology-vibemachine#VibeProduct",
+  has iri "https://github.com/vibe-machine/ontology-vibemachine#VibeProduct",
+  has typeLabel "VibeProduct",
+  has kind "entity",
+  has prefLabel "VibeProduct",
+  has definition "The Vibe Machine-facing product type for delivered software systems.", 
+  has scopeNote "Use VibeProduct when creating product instances directly. It inherits the semantics of Product.";
+(resource: $r5, module: $module) isa inModule;
+
+$r6 isa SchemaResource,
+  has docKey "https://github.com/vibe-machine/ontology-vibemachine#Repository",
+  has iri "https://github.com/vibe-machine/ontology-vibemachine#Repository",
+  has typeLabel "Repository",
+  has kind "entity",
+  has prefLabel "Repository",
+  has definition "A source-code component that belongs to a workspace and contributes to a delivered product.", 
+  has scopeNote "Repository is the resource-level model for git repos and related code containers inside a workspace.";
+(resource: $r6, module: $module) isa inModule;
+
+$r7 isa SchemaResource,
+  has docKey "https://github.com/vibe-machine/ontology-vibemachine#VibeRepository",
+  has iri "https://github.com/vibe-machine/ontology-vibemachine#VibeRepository",
+  has typeLabel "VibeRepository",
+  has kind "entity",
+  has prefLabel "VibeRepository",
+  has definition "The Vibe Machine-facing repository type used for concrete code repositories.", 
+  has scopeNote "Use VibeRepository when creating repository instances directly. It inherits the semantics of Repository.";
+(resource: $r7, module: $module) isa inModule;
+
+$r8 isa SchemaResource,
+  has docKey "https://github.com/vibe-machine/ontology-vibemachine#ProductSpecification",
+  has iri "https://github.com/vibe-machine/ontology-vibemachine#ProductSpecification",
+  has typeLabel "ProductSpecification",
+  has kind "entity",
+  has prefLabel "ProductSpecification",
+  has definition "The specification that describes what a delivered software product is expected to satisfy.", 
+  has scopeNote "Use ProductSpecification for the promised shape of delivery. Pair it with Product via conformsTo.";
+(resource: $r8, module: $module) isa inModule;
+
+$r9 isa SchemaResource,
+  has docKey "https://github.com/vibe-machine/ontology-vibemachine#usesWorkspace",
+  has iri "https://github.com/vibe-machine/ontology-vibemachine#usesWorkspace",
+  has typeLabel "usesWorkspace",
+  has kind "relation",
+  has prefLabel "usesWorkspace",
+  has definition "Associates a project with the workspace of resources allocated to that work.", 
+  has scopeNote "Roles: project (the gist Project doing the work), workspace (the resource collection supporting it).";
+(resource: $r9, module: $module) isa inModule;
+
+$r10 isa SchemaResource,
+  has docKey "https://github.com/vibe-machine/ontology-vibemachine#isProducedBy",
+  has iri "https://github.com/vibe-machine/ontology-vibemachine#isProducedBy",
+  has typeLabel "isProducedBy",
+  has kind "relation",
+  has prefLabel "isProducedBy",
+  has definition "Associates a delivered product with the project that produced it.", 
+  has scopeNote "Read this as Product isProducedBy Project. It keeps the project/product distinction explicit in the graph.";
+(resource: $r10, module: $module) isa inModule;
+
+$r11 isa SchemaResource,
+  has docKey "https://github.com/vibe-machine/ontology-vibemachine#conformsTo",
+  has iri "https://github.com/vibe-machine/ontology-vibemachine#conformsTo",
+  has typeLabel "conformsTo",
+  has kind "relation",
+  has prefLabel "conformsTo",
+  has definition "Associates a delivered product with the specification it is expected to satisfy.", 
+  has scopeNote "Use this to link Product to ProductSpecification without collapsing the deliverable and the promise into one type.";
+(resource: $r11, module: $module) isa inModule;

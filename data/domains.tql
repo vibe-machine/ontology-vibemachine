@@ -1,5 +1,0 @@
-insert
-
-$vibemachine isa Domain,
-  has name "vibemachine",
-  has description "Workspace and delivery modeling for Vibe Machine. Clarifies the split between a project as work over time, a workspace as the structural allocation of resources, and a product as the delivered software system.";

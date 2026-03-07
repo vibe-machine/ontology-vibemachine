@@ -1,0 +1,59 @@
+# Provenance bootstrap
+# upstream-repo: https://github.com/vibe-machine/ontology-vibemachine
+# upstream-tag: v0.2.0
+# upstream-commit: b17bf6a31cf0e131fe3b5a37e3d918daf34c8bd8
+# source-artifacts:
+# - package.json
+# - schema/vibemachine.tql
+# manifest: manifests/vibemachine-v0.2.0.package-manifest.json
+# generator: hand-authored-package-bootstrap/0.1.0
+define
+
+attribute docKey, value string;
+attribute iri, value string;
+attribute typeLabel, value string;
+attribute kind, value string;
+
+attribute prefLabel, value string;
+attribute definition, value string;
+attribute scopeNote, value string;
+attribute example, value string;
+
+attribute editorialNote, value string;
+attribute altLabel, value string;
+attribute historyNote, value string;
+attribute seeAlso, value string;
+attribute domainIncludes, value string;
+attribute deprecated, value boolean;
+
+attribute moduleKey, value string;
+attribute moduleName, value string;
+attribute moduleKind, value string;
+
+entity SchemaModule,
+    owns moduleKey @key,
+    owns moduleName,
+    owns moduleKind;
+
+entity SchemaResource,
+    owns docKey @key,
+    owns iri,
+    owns typeLabel,
+    owns kind,
+    owns prefLabel,
+    owns definition,
+    owns scopeNote,
+    owns example,
+    owns editorialNote,
+    owns altLabel,
+    owns historyNote,
+    owns seeAlso,
+    owns domainIncludes,
+    owns deprecated @card(0..1);
+
+relation inModule,
+    relates resource,
+    relates module;
+
+SchemaResource plays inModule:resource;
+SchemaModule plays inModule:module;
