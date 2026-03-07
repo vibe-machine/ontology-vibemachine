@@ -18,19 +18,19 @@ entity VibeWorkspace sub Workspace;
 
 entity Product sub System,
   owns productName,
-  plays isProducedBy:product,
-  plays conformsTo:conformer;
+  plays isProducedBy:isProducedBySubject,
+  plays conformsTo:conformsToSubject;
 
 entity VibeProduct sub Product;
 
 entity Repository sub Component,
   owns repositoryName,
-  plays isMemberOfCollection:member,
-  plays contributesTo:contributor;
+  plays isMemberOf:isMemberOfSubject,
+  plays contributesTo:contributesToSubject;
 
 entity VibeRepository sub Repository;
 
 entity VibeProject sub Project;
 
 Project plays usesWorkspace:project;
-Project plays isProducedBy:producer;
+Project plays isProducedBy:isProducedByObject;

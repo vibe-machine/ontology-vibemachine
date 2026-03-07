@@ -10,13 +10,13 @@
     "tag": "v0.2.0",
     "commit": "b17bf6a31cf0e131fe3b5a37e3d918daf34c8bd8",
     "sourceArtifacts": [
-      {
-        "path": "package.json",
-        "sha256": "c37627245a59f5dd983d3e3f9ccdd78fa4ae1de10df5d1b19cf5ecace2520e1b"
-      },
+    {
+      "path": "package.json",
+      "sha256": "63ed5ab0d663204072f1be5c336a39b32b1b42dcbff7b90cc909247937ba80de"
+    },
       {
         "path": "schema/vibemachine.tql",
-        "sha256": "cbc42d8d8ef088bf59ff8ba934cd77d91a311737147a86e84a05ffa52d654750"
+        "sha256": "b91714c1a5a680495794912ca766c9a267acddac20935b91560fde8de87460a4"
       }
     ]
   },
@@ -34,7 +34,7 @@
     {
       "kind": "provenance-schema",
       "path": "schema/package-provenance.tql",
-      "sha256": "7319ddfb14c59f215337b767953cf3b51f1799b2cfbff6a9ffbf4d5a196f20f6"
+      "sha256": "3ed44e7ed53f349f31be2cc5243ab3a3fb27fed26c39032f93f123093227b8ec"
     },
     {
       "kind": "documentation",
