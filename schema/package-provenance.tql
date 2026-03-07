@@ -38,11 +38,11 @@ entity OntologyPackageBuild,
     owns generatedAt;
 
 entity SourceArtifactRecord,
-    owns sourcePath @key,
+    owns sourcePath,
     owns sourceSha256;
 
 entity GeneratedArtifactRecord,
-    owns artifactPath @key,
+    owns artifactPath,
     owns artifactKind,
     owns artifactSha256;
 
