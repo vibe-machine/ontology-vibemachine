@@ -26,6 +26,6 @@ Design references:
 Canonical contract reference:
 
 - `ontology-gist`
-  - https://github.com/vibe-machine/ontology-gist
+  - https://github.com/vibe-machine/ontology-vibemachine
 
 This package is hand-authored, so it does not vendor upstream ontology source files or ship OWL translation tooling. It still follows the same documentation/provenance contract so downstream loaders and tooling can treat ontology packages consistently.
