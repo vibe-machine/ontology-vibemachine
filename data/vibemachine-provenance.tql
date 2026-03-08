@@ -1,55 +1,57 @@
 # Provenance bootstrap
 # upstream-repo: https://github.com/vibe-machine/ontology-vibemachine
-# upstream-tag: v0.2.1
-# upstream-commit: 3487aaa3ef09088d1b52c5c60f19504e9b21a840
+# upstream-tag: v0.2.2
+# upstream-commit: 8461ef781040b0a0a359b1f6cfcf71bd161754af
 # source-artifacts:
 # - package.json
 # - schema/vibemachine.tql
-# manifest: manifests/vibemachine-v0.2.1.package-manifest.json
+# manifest: manifests/vibemachine-v0.2.2.package-manifest.json
 # generator: hand-authored-package-bootstrap/0.1.0
 
-put $build isa OntologyPackageBuild,
-  has buildKey "vibemachine@0.2.1:3487aaa3ef09088d1b52c5c60f19504e9b21a840",
+insert
+
+$build isa OntologyPackageBuild,
+  has buildKey "vibemachine@0.2.2:8461ef781040b0a0a359b1f6cfcf71bd161754af",
   has packageName "vibemachine",
-  has packageVersion "0.2.1",
+  has packageVersion "0.2.2",
   has upstreamRepoUrl "https://github.com/vibe-machine/ontology-vibemachine",
-  has upstreamTag "v0.2.1",
-  has upstreamCommit "3487aaa3ef09088d1b52c5c60f19504e9b21a840",
-  has manifestPath "manifests/vibemachine-v0.2.1.package-manifest.json",
+  has upstreamTag "v0.2.2",
+  has upstreamCommit "8461ef781040b0a0a359b1f6cfcf71bd161754af",
+  has manifestPath "manifests/vibemachine-v0.2.2.package-manifest.json",
   has generatorName "hand-authored-package-bootstrap",
   has generatorVersion "0.1.0",
-  has generatedAt "2026-03-08T22:41:36Z";
+  has generatedAt "2026-03-08T23:43:43Z";
 
-put $s1 isa SourceArtifactRecord,
+$s1 isa SourceArtifactRecord,
   has sourcePath "package.json",
-  has sourceSha256 "8225213e160fe8882108bb44cdb853d64f2c1987c60f8ef49aa52ef37c80dda3";
-put (build: $build, sourceArtifact: $s1) isa buildHasSourceArtifact;
+  has sourceSha256 "1d690c282328c80f13171c64261203710aa9b07a671a29adf71a01a5fb88e819";
+(build: $build, sourceArtifact: $s1) isa buildHasSourceArtifact;
 
-put $s2 isa SourceArtifactRecord,
+$s2 isa SourceArtifactRecord,
   has sourcePath "schema/vibemachine.tql",
   has sourceSha256 "b91714c1a5a680495794912ca766c9a267acddac20935b91560fde8de87460a4";
-put (build: $build, sourceArtifact: $s2) isa buildHasSourceArtifact;
+(build: $build, sourceArtifact: $s2) isa buildHasSourceArtifact;
 
-put $g1 isa GeneratedArtifactRecord,
+$g1 isa GeneratedArtifactRecord,
   has artifactPath "schema/self-describing-schema.tql",
   has artifactKind "meta-schema",
-  has artifactSha256 "086d9498eaf8d0a1667d9d551af64970c593ae5e7adb64220cda9da511e1acea";
-put (build: $build, generatedArtifact: $g1) isa buildHasGeneratedArtifact;
+  has artifactSha256 "d7d37c9996ddccfe27827eefb0113528c23ededb008e292e50614258223a55e4";
+(build: $build, generatedArtifact: $g1) isa buildHasGeneratedArtifact;
 
-put $g2 isa GeneratedArtifactRecord,
+$g2 isa GeneratedArtifactRecord,
   has artifactPath "schema/package-provenance.tql",
   has artifactKind "provenance-schema",
-  has artifactSha256 "ef5eb74d2666cdf168e1895c6737b96a08c8082189dfb5752130a73bb62bd655";
-put (build: $build, generatedArtifact: $g2) isa buildHasGeneratedArtifact;
+  has artifactSha256 "3eb408b2728cd1467c00e8bc3cb6c5c1b7dcb76eca975ccbf7cd579780733eff";
+(build: $build, generatedArtifact: $g2) isa buildHasGeneratedArtifact;
 
-put $g3 isa GeneratedArtifactRecord,
+$g3 isa GeneratedArtifactRecord,
   has artifactPath "data/vibemachine-schema-docs.tql",
   has artifactKind "documentation",
-  has artifactSha256 "186ffb49a51dba7cb6078f5195244b97bb9d7d422f95a0fce405f1b71d4c6073";
-put (build: $build, generatedArtifact: $g3) isa buildHasGeneratedArtifact;
+  has artifactSha256 "60e8009dd2dab7f3101e9b48018b0521ca5af63b5a3a675bc8ce2c01eb5c5bc8";
+(build: $build, generatedArtifact: $g3) isa buildHasGeneratedArtifact;
 
-put $g4 isa GeneratedArtifactRecord,
+$g4 isa GeneratedArtifactRecord,
   has artifactPath "manifests/package-manifest.schema.json",
   has artifactKind "manifest-schema",
   has artifactSha256 "07599fe20623f3304bec0987320050f12efc1faf04fad7c12176ffe88e0b6a48";
-put (build: $build, generatedArtifact: $g4) isa buildHasGeneratedArtifact;
+(build: $build, generatedArtifact: $g4) isa buildHasGeneratedArtifact;

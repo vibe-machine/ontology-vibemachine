@@ -3,16 +3,16 @@
   "manifestVersion": "1.0.0",
   "package": {
     "name": "vibemachine",
-    "version": "0.2.1"
+    "version": "0.2.2"
   },
   "upstream": {
     "repoUrl": "https://github.com/vibe-machine/ontology-vibemachine",
-    "tag": "v0.2.1",
-    "commit": "3487aaa3ef09088d1b52c5c60f19504e9b21a840",
+    "tag": "v0.2.2",
+    "commit": "8461ef781040b0a0a359b1f6cfcf71bd161754af",
     "sourceArtifacts": [
       {
         "path": "package.json",
-        "sha256": "8225213e160fe8882108bb44cdb853d64f2c1987c60f8ef49aa52ef37c80dda3"
+        "sha256": "1d690c282328c80f13171c64261203710aa9b07a671a29adf71a01a5fb88e819"
       },
       {
         "path": "schema/vibemachine.tql",
@@ -23,23 +23,23 @@
   "generator": {
     "name": "hand-authored-package-bootstrap",
     "version": "0.1.0",
-    "generatedAt": "2026-03-08T22:41:36Z"
+    "generatedAt": "2026-03-08T23:43:43Z"
   },
   "artifacts": [
     {
       "kind": "meta-schema",
       "path": "schema/self-describing-schema.tql",
-      "sha256": "086d9498eaf8d0a1667d9d551af64970c593ae5e7adb64220cda9da511e1acea"
+      "sha256": "d7d37c9996ddccfe27827eefb0113528c23ededb008e292e50614258223a55e4"
     },
     {
       "kind": "provenance-schema",
       "path": "schema/package-provenance.tql",
-      "sha256": "ef5eb74d2666cdf168e1895c6737b96a08c8082189dfb5752130a73bb62bd655"
+      "sha256": "3eb408b2728cd1467c00e8bc3cb6c5c1b7dcb76eca975ccbf7cd579780733eff"
     },
     {
       "kind": "documentation",
       "path": "data/vibemachine-schema-docs.tql",
-      "sha256": "186ffb49a51dba7cb6078f5195244b97bb9d7d422f95a0fce405f1b71d4c6073"
+      "sha256": "60e8009dd2dab7f3101e9b48018b0521ca5af63b5a3a675bc8ce2c01eb5c5bc8"
     },
     {
       "kind": "manifest-schema",
@@ -49,7 +49,7 @@
     {
       "kind": "provenance-seeds",
       "path": "data/vibemachine-provenance.tql",
-      "sha256": "a95523a806933f18766962c3da65887d2d93f885f2d840f3ba6b0da29f3b5521"
+      "sha256": "a6b9104a65acb2c0a415ce7ab436c7f91bab009a7c8e7e79a39bf8e50a5ab538"
     }
   ]
 }
