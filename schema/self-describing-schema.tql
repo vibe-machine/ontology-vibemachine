@@ -1,11 +1,11 @@
 # Provenance bootstrap
 # upstream-repo: https://github.com/vibe-machine/ontology-vibemachine
-# upstream-tag: v0.2.3
-# upstream-commit: 62caf42d111f25c94e8672d081aef27f05baa87b
+# upstream-tag: v0.2.4
+# upstream-commit: 024f38025ead770d5098ff71ea6153373ac2f825
 # source-artifacts:
 # - package.json
 # - schema/vibemachine.tql
-# manifest: manifests/vibemachine-v0.2.3.package-manifest.json
+# manifest: manifests/vibemachine-v0.2.4.package-manifest.json
 # generator: hand-authored-package-bootstrap/0.1.0
 define
 
