@@ -1,7 +1,7 @@
 {
   "name": "vibemachine",
   "displayName": "vibemachine",
-  "version": "0.2.2",
+  "version": "0.2.3",
   "description": "Workspace and product modeling package for Vibe Machine planning and delivery.",
   "author": "Vibe Machine",
   "license": "Apache-2.0",
@@ -40,7 +40,7 @@
     "release:check": "../ontology-tooling/bin/ontology-release --repo . --validate-only"
   },
   "manifests": [
-    "manifests/vibemachine-v0.2.2.package-manifest.json"
+    "manifests/vibemachine-v0.2.3.package-manifest.json"
   ],
   "assembly": {
     "loadOrder": [
@@ -56,11 +56,11 @@
       "data/vibemachine-schema-docs.tql",
       "data/vibemachine-provenance.tql",
       "manifests/package-manifest.schema.json",
-      "manifests/vibemachine-v0.2.2.package-manifest.json"
+      "manifests/vibemachine-v0.2.3.package-manifest.json"
     ]
   },
   "provenance": {
-    "manifest": "manifests/vibemachine-v0.2.2.package-manifest.json",
+    "manifest": "manifests/vibemachine-v0.2.3.package-manifest.json",
     "status": "bootstrap"
   },
   "legacyDocumentation": {
