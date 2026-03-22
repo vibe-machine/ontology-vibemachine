@@ -1,126 +1,123 @@
 define
 
-# Vibe Machine workspace and product modeling layered on top of gist.
+# Vibe Machine workspace, product, and specification modeling
+# layered on top of gist.
+#
+# v0.3.0: Flattened intermediate types. Specification vocabulary.
+# Category-based lifecycle via SpecificationStatus.
 
-attribute workspaceName value string;
-attribute productName value string;
-attribute repositoryName value string;
+# ── Attributes ──────────────────────────────────────────
+
+attribute workspaceName, value string;
+attribute productName, value string;
+attribute repositoryName, value string;
+attribute block_id, value string;
+attribute document_id, value string;
+attribute priority_level, value string;
+attribute status_label, value string;
+
+# ── Organizational ──────────────────────────────────────
 
 relation usesWorkspace,
   relates project,
   relates workspace;
 
-entity Workspace sub Collection,
+entity VibeWorkspace sub Collection,
   owns workspaceName,
   plays usesWorkspace:workspace;
 
-entity VibeWorkspace sub Workspace;
-
-entity Product sub System,
+entity VibeProduct sub System,
   owns productName,
   plays isProducedBy:isProducedBySubject,
   plays conformsTo:conformsToSubject;
 
-entity VibeProduct sub Product;
-
-entity Repository sub Component,
+entity VibeRepository sub Component,
   owns repositoryName,
   plays isMemberOf:isMemberOfSubject,
   plays contributesTo:contributesToSubject;
-
-entity VibeRepository sub Repository;
 
 entity VibeProject sub Project;
 
 Project plays usesWorkspace:project;
 Project plays isProducedBy:isProducedByObject;
 
-# ── Design & Spec Attributes ────────────────────────────
+# ── Lifecycle ───────────────────────────────────────────
+# Follows gist's Category pattern (cf. DegreeOfCommitment,
+# ProductCategory). Status instances are seed data.
 
-attribute block_id, value string;
-attribute document_id, value string;
-attribute priority_level, value string;
-attribute design_status, value string;
+entity SpecificationStatus sub Category,
+  owns status_label @key,
+  owns name,
+  plays isCategorizedBy:isCategorizedByObject;
 
-# ── Design Document ─────────────────────────────────────
-# A structured prose document containing typed design blocks.
-# Content lives in the authoring surface (JSON block tree);
-# TypeDB stores the identity node with metadata.
+# ── Containment ─────────────────────────────────────────
 
-entity VibeDesignDocument sub FormattedContent,
-  owns block_id @key,
-  owns document_id;
+relation containsBlock,
+  relates container,
+  relates block;
 
-# ── Design Block Types ──────────────────────────────────
-# Typed blocks within a design document. Each block gets a
-# stable UUID from the editor and becomes an identity node
-# in the graph.
+# ── Feature Specification ───────────────────────────────
+# Product-level: what does this feature do?
+# Contains requirement, decision, constraint, and question blocks.
+# Inherits isAbout and isCategorizedBy from ContentExpression.
+
+entity VibeFeatureSpecification sub FormattedContent,
+  owns document_id @key,
+  plays containsBlock:container,
+  plays isDirectPartOf:isDirectPartOfSubject,
+  plays isBasedOn:isBasedOnObject;
+
+ProductSpecification plays isDirectPartOf:isDirectPartOfObject;
 
 entity VibeRequirement sub Requirement,
   owns block_id @key,
   owns document_id,
   owns priority_level,
-  owns design_status;
+  plays containsBlock:block,
+  plays isCategorizedBy:isCategorizedBySubject;
 
 entity VibeDecision sub Determination,
   owns block_id @key,
   owns document_id,
-  owns design_status;
+  plays containsBlock:block,
+  plays isCategorizedBy:isCategorizedBySubject;
 
 entity VibeConstraint sub Restriction,
   owns block_id @key,
   owns document_id,
-  owns design_status;
+  plays containsBlock:block,
+  plays isCategorizedBy:isCategorizedBySubject;
 
 entity VibeQuestion sub Intention,
   owns block_id @key,
   owns document_id,
-  owns design_status;
+  plays containsBlock:block,
+  plays isCategorizedBy:isCategorizedBySubject;
 
-# ── Implementation Spec ─────────────────────────────────
-# A structured document containing typed implementation blocks.
-# Downstream of a design document — tasks are derived from
-# requirements, verifications confirm tasks, dependencies
-# express prerequisites.
+# ── Implementation Specification ────────────────────────
+# Engineering-level: how do we build it?
+# Contains task, verification, and dependency blocks.
+# Derived from a feature specification via isBasedOn.
 
 entity VibeImplementationSpec sub FormattedContent,
-  owns block_id @key,
-  owns document_id;
+  owns document_id @key,
+  plays containsBlock:container,
+  plays isBasedOn:isBasedOnSubject;
 
-entity VibeTask sub Task,
+entity VibeEngineeringTask sub Task,
   owns block_id @key,
   owns document_id,
-  owns design_status;
+  plays containsBlock:block,
+  plays isCategorizedBy:isCategorizedBySubject;
 
 entity VibeVerification sub Specification,
   owns block_id @key,
   owns document_id,
-  owns design_status;
+  plays containsBlock:block,
+  plays isCategorizedBy:isCategorizedBySubject;
 
-entity VibeDependency sub Requirement,
+entity VibeDependency sub Intention,
   owns block_id @key,
   owns document_id,
-  owns design_status;
-
-# ── Containment Relations ───────────────────────────────
-
-relation containsDesignBlock,
-  relates design,
-  relates designBlock;
-
-VibeDesignDocument plays containsDesignBlock:design;
-VibeRequirement plays containsDesignBlock:designBlock;
-VibeDecision plays containsDesignBlock:designBlock;
-VibeConstraint plays containsDesignBlock:designBlock;
-VibeQuestion plays containsDesignBlock:designBlock;
-
-relation containsSpecBlock,
-  relates spec,
-  relates specBlock;
-
-VibeImplementationSpec plays containsSpecBlock:spec;
-VibeTask plays containsSpecBlock:specBlock;
-VibeVerification plays containsSpecBlock:specBlock;
-VibeDependency plays containsSpecBlock:specBlock;
-VibeConstraint plays containsSpecBlock:specBlock;
-VibeQuestion plays containsSpecBlock:specBlock;
+  plays containsBlock:block,
+  plays isCategorizedBy:isCategorizedBySubject;

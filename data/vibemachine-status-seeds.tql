@@ -1,0 +1,15 @@
+put $draft isa SpecificationStatus,
+  has status_label "draft",
+  has name "Draft";
+
+put $review isa SpecificationStatus,
+  has status_label "review",
+  has name "Review";
+
+put $accepted isa SpecificationStatus,
+  has status_label "accepted",
+  has name "Accepted";
+
+put $implemented isa SpecificationStatus,
+  has status_label "implemented",
+  has name "Implemented";
