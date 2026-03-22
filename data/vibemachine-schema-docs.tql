@@ -121,3 +121,161 @@ put $r11 isa SchemaResource,
   has definition "Associates a delivered product with the specification it is expected to satisfy.",
   has scopeNote "Use this to link Product to ProductSpecification without collapsing the deliverable and the promise into one type.";
 put (resource: $r11, module: $module) isa inModule;
+
+# ── Design & Spec Attributes ────────────────────────────
+
+put $r12 isa SchemaResource,
+  has docKey "https://github.com/vibe-machine/ontology-vibemachine#block_id",
+  has iri "https://github.com/vibe-machine/ontology-vibemachine#block_id",
+  has typeLabel "block_id",
+  has kind "attribute",
+  has prefLabel "block_id",
+  has definition "A stable UUID assigned by the block editor. Serves as the identity key linking a TypeDB entity to its source block in the authoring surface.",
+  has scopeNote "Every typed block in a design document or implementation spec gets a block_id. It is the @key for all design and spec entity types.";
+put (resource: $r12, module: $module) isa inModule;
+
+put $r13 isa SchemaResource,
+  has docKey "https://github.com/vibe-machine/ontology-vibemachine#document_id",
+  has iri "https://github.com/vibe-machine/ontology-vibemachine#document_id",
+  has typeLabel "document_id",
+  has kind "attribute",
+  has prefLabel "document_id",
+  has definition "The UUID of the document containing this block or serving as this document's own identifier.",
+  has scopeNote "Used for provenance — traces a block back to its source document in the authoring surface.";
+put (resource: $r13, module: $module) isa inModule;
+
+put $r14 isa SchemaResource,
+  has docKey "https://github.com/vibe-machine/ontology-vibemachine#priority_level",
+  has iri "https://github.com/vibe-machine/ontology-vibemachine#priority_level",
+  has typeLabel "priority_level",
+  has kind "attribute",
+  has prefLabel "priority_level",
+  has definition "The priority assigned to a design block, typically low, medium, high, or critical.",
+  has scopeNote "Currently used on VibeRequirement. Other block types may adopt it in the future.";
+put (resource: $r14, module: $module) isa inModule;
+
+put $r15 isa SchemaResource,
+  has docKey "https://github.com/vibe-machine/ontology-vibemachine#design_status",
+  has iri "https://github.com/vibe-machine/ontology-vibemachine#design_status",
+  has typeLabel "design_status",
+  has kind "attribute",
+  has prefLabel "design_status",
+  has definition "The lifecycle status of a design or spec block, typically draft, review, approved, or implemented.",
+  has scopeNote "Shared across all typed block types in both design documents and implementation specs.";
+put (resource: $r15, module: $module) isa inModule;
+
+# ── Design Document ─────────────────────────────────────
+
+put $r16 isa SchemaResource,
+  has docKey "https://github.com/vibe-machine/ontology-vibemachine#VibeDesignDocument",
+  has iri "https://github.com/vibe-machine/ontology-vibemachine#VibeDesignDocument",
+  has typeLabel "VibeDesignDocument",
+  has kind "entity",
+  has prefLabel "VibeDesignDocument",
+  has definition "A structured prose document containing typed design blocks such as requirements, decisions, constraints, and open questions.",
+  has scopeNote "The product-level authoring artifact. Content lives in the editor as a JSON block tree; TypeDB stores the identity node and metadata. Blocks within are linked via the containsDesignBlock relation.";
+put (resource: $r16, module: $module) isa inModule;
+
+put $r17 isa SchemaResource,
+  has docKey "https://github.com/vibe-machine/ontology-vibemachine#VibeRequirement",
+  has iri "https://github.com/vibe-machine/ontology-vibemachine#VibeRequirement",
+  has typeLabel "VibeRequirement",
+  has kind "entity",
+  has prefLabel "VibeRequirement",
+  has definition "A product requirement expressed as a typed block in a design document. Represents an obligation the system must satisfy.",
+  has scopeNote "Extends gist Requirement. Carries priority_level and design_status. The block_id links it back to the source block in the editor.";
+put (resource: $r17, module: $module) isa inModule;
+
+put $r18 isa SchemaResource,
+  has docKey "https://github.com/vibe-machine/ontology-vibemachine#VibeDecision",
+  has iri "https://github.com/vibe-machine/ontology-vibemachine#VibeDecision",
+  has typeLabel "VibeDecision",
+  has kind "entity",
+  has prefLabel "VibeDecision",
+  has definition "A design decision expressed as a typed block. Represents a choice made to establish a specific outcome, often in response to a requirement or constraint.",
+  has scopeNote "Extends gist Determination. Captures the what and why of a design choice. Future iterations will link decisions to the requirements and constraints that motivated them.";
+put (resource: $r18, module: $module) isa inModule;
+
+put $r19 isa SchemaResource,
+  has docKey "https://github.com/vibe-machine/ontology-vibemachine#VibeConstraint",
+  has iri "https://github.com/vibe-machine/ontology-vibemachine#VibeConstraint",
+  has typeLabel "VibeConstraint",
+  has kind "entity",
+  has prefLabel "VibeConstraint",
+  has definition "A constraint expressed as a typed block. Represents a boundary or limitation that restricts design or implementation choices.",
+  has scopeNote "Extends gist Restriction. Shared between design documents and implementation specs — constraints apply at both the product and engineering level.";
+put (resource: $r19, module: $module) isa inModule;
+
+put $r20 isa SchemaResource,
+  has docKey "https://github.com/vibe-machine/ontology-vibemachine#VibeQuestion",
+  has iri "https://github.com/vibe-machine/ontology-vibemachine#VibeQuestion",
+  has typeLabel "VibeQuestion",
+  has kind "entity",
+  has prefLabel "VibeQuestion",
+  has definition "An open question expressed as a typed block. Represents an unresolved point that needs resolution before or during implementation.",
+  has scopeNote "Extends gist Intention — an open question is an intention to resolve uncertainty. Shared between design documents and implementation specs.";
+put (resource: $r20, module: $module) isa inModule;
+
+# ── Implementation Spec ─────────────────────────────────
+
+put $r21 isa SchemaResource,
+  has docKey "https://github.com/vibe-machine/ontology-vibemachine#VibeImplementationSpec",
+  has iri "https://github.com/vibe-machine/ontology-vibemachine#VibeImplementationSpec",
+  has typeLabel "VibeImplementationSpec",
+  has kind "entity",
+  has prefLabel "VibeImplementationSpec",
+  has definition "A structured document containing typed implementation blocks such as tasks, verifications, and dependencies. Downstream of a design document.",
+  has scopeNote "The engineering-level authoring artifact. Tasks within an implementation spec are derived from requirements in a design document. Blocks are linked via the containsSpecBlock relation.";
+put (resource: $r21, module: $module) isa inModule;
+
+put $r22 isa SchemaResource,
+  has docKey "https://github.com/vibe-machine/ontology-vibemachine#VibeTask",
+  has iri "https://github.com/vibe-machine/ontology-vibemachine#VibeTask",
+  has typeLabel "VibeTask",
+  has kind "entity",
+  has prefLabel "VibeTask",
+  has definition "A concrete implementation work item expressed as a typed block. Represents a unit of engineering work derived from a design requirement.",
+  has scopeNote "Extends gist Task. Inherits temporal attributes (plannedStartDate, actualEndDate, etc.). The bridge between design documents and beads — a VibeTask may become a bead in an engineering repo.";
+put (resource: $r22, module: $module) isa inModule;
+
+put $r23 isa SchemaResource,
+  has docKey "https://github.com/vibe-machine/ontology-vibemachine#VibeVerification",
+  has iri "https://github.com/vibe-machine/ontology-vibemachine#VibeVerification",
+  has typeLabel "VibeVerification",
+  has kind "entity",
+  has prefLabel "VibeVerification",
+  has definition "A verification step expressed as a typed block. Specifies what must be true to confirm that a task or requirement is correctly implemented.",
+  has scopeNote "Extends gist Specification — a verification is a specification of correctness. May be manual (human checks) or automated (test cases).";
+put (resource: $r23, module: $module) isa inModule;
+
+put $r24 isa SchemaResource,
+  has docKey "https://github.com/vibe-machine/ontology-vibemachine#VibeDependency",
+  has iri "https://github.com/vibe-machine/ontology-vibemachine#VibeDependency",
+  has typeLabel "VibeDependency",
+  has kind "entity",
+  has prefLabel "VibeDependency",
+  has definition "A dependency expressed as a typed block. Represents a prerequisite that must be met before implementation work can proceed.",
+  has scopeNote "Extends gist Requirement — a dependency is an obligation that must be satisfied, but in the context of implementation ordering rather than product requirements.";
+put (resource: $r24, module: $module) isa inModule;
+
+# ── Containment Relations ───────────────────────────────
+
+put $r25 isa SchemaResource,
+  has docKey "https://github.com/vibe-machine/ontology-vibemachine#containsDesignBlock",
+  has iri "https://github.com/vibe-machine/ontology-vibemachine#containsDesignBlock",
+  has typeLabel "containsDesignBlock",
+  has kind "relation",
+  has prefLabel "containsDesignBlock",
+  has definition "Links a design document to the typed blocks it contains.",
+  has scopeNote "Roles: design (the VibeDesignDocument), designBlock (a VibeRequirement, VibeDecision, VibeConstraint, or VibeQuestion).";
+put (resource: $r25, module: $module) isa inModule;
+
+put $r26 isa SchemaResource,
+  has docKey "https://github.com/vibe-machine/ontology-vibemachine#containsSpecBlock",
+  has iri "https://github.com/vibe-machine/ontology-vibemachine#containsSpecBlock",
+  has typeLabel "containsSpecBlock",
+  has kind "relation",
+  has prefLabel "containsSpecBlock",
+  has definition "Links an implementation spec to the typed blocks it contains.",
+  has scopeNote "Roles: spec (the VibeImplementationSpec), specBlock (a VibeTask, VibeVerification, VibeDependency, VibeConstraint, or VibeQuestion).";
+put (resource: $r26, module: $module) isa inModule;

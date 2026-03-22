@@ -34,3 +34,93 @@ entity VibeProject sub Project;
 
 Project plays usesWorkspace:project;
 Project plays isProducedBy:isProducedByObject;
+
+# ── Design & Spec Attributes ────────────────────────────
+
+attribute block_id, value string;
+attribute document_id, value string;
+attribute priority_level, value string;
+attribute design_status, value string;
+
+# ── Design Document ─────────────────────────────────────
+# A structured prose document containing typed design blocks.
+# Content lives in the authoring surface (JSON block tree);
+# TypeDB stores the identity node with metadata.
+
+entity VibeDesignDocument sub FormattedContent,
+  owns block_id @key,
+  owns document_id;
+
+# ── Design Block Types ──────────────────────────────────
+# Typed blocks within a design document. Each block gets a
+# stable UUID from the editor and becomes an identity node
+# in the graph.
+
+entity VibeRequirement sub Requirement,
+  owns block_id @key,
+  owns document_id,
+  owns priority_level,
+  owns design_status;
+
+entity VibeDecision sub Determination,
+  owns block_id @key,
+  owns document_id,
+  owns design_status;
+
+entity VibeConstraint sub Restriction,
+  owns block_id @key,
+  owns document_id,
+  owns design_status;
+
+entity VibeQuestion sub Intention,
+  owns block_id @key,
+  owns document_id,
+  owns design_status;
+
+# ── Implementation Spec ─────────────────────────────────
+# A structured document containing typed implementation blocks.
+# Downstream of a design document — tasks are derived from
+# requirements, verifications confirm tasks, dependencies
+# express prerequisites.
+
+entity VibeImplementationSpec sub FormattedContent,
+  owns block_id @key,
+  owns document_id;
+
+entity VibeTask sub Task,
+  owns block_id @key,
+  owns document_id,
+  owns design_status;
+
+entity VibeVerification sub Specification,
+  owns block_id @key,
+  owns document_id,
+  owns design_status;
+
+entity VibeDependency sub Requirement,
+  owns block_id @key,
+  owns document_id,
+  owns design_status;
+
+# ── Containment Relations ───────────────────────────────
+
+relation containsDesignBlock,
+  relates design,
+  relates designBlock;
+
+VibeDesignDocument plays containsDesignBlock:design;
+VibeRequirement plays containsDesignBlock:designBlock;
+VibeDecision plays containsDesignBlock:designBlock;
+VibeConstraint plays containsDesignBlock:designBlock;
+VibeQuestion plays containsDesignBlock:designBlock;
+
+relation containsSpecBlock,
+  relates spec,
+  relates specBlock;
+
+VibeImplementationSpec plays containsSpecBlock:spec;
+VibeTask plays containsSpecBlock:specBlock;
+VibeVerification plays containsSpecBlock:specBlock;
+VibeDependency plays containsSpecBlock:specBlock;
+VibeConstraint plays containsSpecBlock:specBlock;
+VibeQuestion plays containsSpecBlock:specBlock;
