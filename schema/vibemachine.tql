@@ -3,78 +3,159 @@ define
 # Vibe Machine workspace, product, and specification modeling
 # layered on top of gist.
 #
-# v0.3.0: Flattened intermediate types. Specification vocabulary.
-# Category-based lifecycle via SpecificationStatus.
+# v0.4.0: Domain-specific relation specializations. Business objectives.
+# Repository typing. Full brownfield-first product model.
+#
+# Design principle: every gist relation used is specialized with
+# natural-language role names so the model reads like English.
 
 # ── Attributes ──────────────────────────────────────────
 
 attribute workspaceName, value string;
 attribute productName, value string;
 attribute repositoryName, value string;
+attribute remoteUrl, value string;
+attribute defaultBranch, value string;
 attribute block_id, value string;
 attribute document_id, value string;
 attribute priority_level, value string;
 attribute status_label, value string;
+attribute externalTaskRef, value string;
 
-# ── Organizational ──────────────────────────────────────
+# ── Specialized Relations ───────────────────────────────
+# Each specializes a gist relation with domain-specific role names.
+# Generic gist queries still work via polymorphism.
 
+# "this feature is motivated by this business objective"
+relation motivatedBy sub isBasedOn,
+  relates featureSpec as isBasedOnSubject,
+  relates objective as isBasedOnObject;
+
+# "this implementation spec implements this feature spec"
+relation implementsFeature sub isBasedOn,
+  relates implementationSpec as isBasedOnSubject,
+  relates featureSpec as isBasedOnObject;
+
+# "this engineering task fulfills this requirement"
+relation fulfillsRequirement sub isBasedOn,
+  relates engineeringTask as isBasedOnSubject,
+  relates requirement as isBasedOnObject;
+
+# "this feature spec is for this project"
+relation specifiesFeatureFor sub isAbout,
+  relates featureSpec as isAboutSubject,
+  relates project as isAboutObject;
+
+# "this engineering task targets this repository"
+relation targetsRepository sub isAbout,
+  relates engineeringTask as isAboutSubject,
+  relates repository as isAboutObject;
+
+# "this feature is part of this product specification"
+relation featureOfProduct sub isDirectPartOf,
+  relates featureSpec as isDirectPartOfSubject,
+  relates productSpec as isDirectPartOfObject;
+
+# "this product is produced by this project"
+relation producesProduct sub isProducedBy,
+  relates product as isProducedBySubject,
+  relates project as isProducedByObject;
+
+# "this product conforms to this product specification"
+relation productConformsTo sub conformsTo,
+  relates product as conformsToSubject,
+  relates productSpec as conformsToObject;
+
+# "this repository belongs to this workspace"
+relation belongsToWorkspace sub isMemberOf,
+  relates repository as isMemberOfSubject,
+  relates workspace as isMemberOfObject;
+
+# ── Original Relations ──────────────────────────────────
+
+# "this project uses this workspace"
 relation usesWorkspace,
   relates project,
   relates workspace;
 
-entity VibeWorkspace sub Collection,
-  owns workspaceName,
-  plays usesWorkspace:workspace;
+# "this specification document contains this typed block"
+relation containsBlock,
+  relates container,
+  relates block;
 
-entity VibeProduct sub System,
-  owns productName,
-  plays isProducedBy:isProducedBySubject,
-  plays conformsTo:conformsToSubject;
-
-entity VibeRepository sub Component,
-  owns repositoryName,
-  plays isMemberOf:isMemberOfSubject,
-  plays contributesTo:contributesToSubject;
-
-entity VibeProject sub Project;
-
-Project plays usesWorkspace:project;
-Project plays isProducedBy:isProducedByObject;
-
-# ── Lifecycle ───────────────────────────────────────────
-# Follows gist's Category pattern (cf. DegreeOfCommitment,
-# ProductCategory). Status instances are seed data.
+# ── Categories ──────────────────────────────────────────
 
 entity SpecificationStatus sub Category,
   owns status_label @key,
   owns name,
   plays isCategorizedBy:isCategorizedByObject;
 
-# ── Containment ─────────────────────────────────────────
+entity RepositoryHostingPlatform sub Category,
+  owns name,
+  plays isCategorizedBy:isCategorizedByObject;
 
-relation containsBlock,
-  relates container,
-  relates block;
+entity TaskManagementSystem sub Category,
+  owns name,
+  plays isCategorizedBy:isCategorizedByObject;
+
+# ── Business Intent ─────────────────────────────────────
+# Why: the aspiration that drives product work.
+
+entity VibeBusinessObjective sub Intention,
+  owns name,
+  plays motivatedBy:objective;
+
+# ── Organizational ──────────────────────────────────────
+
+entity VibeWorkspace sub Collection,
+  owns workspaceName,
+  plays usesWorkspace:workspace,
+  plays belongsToWorkspace:workspace;
+
+entity VibeProject sub Project,
+  plays usesWorkspace:project,
+  plays producesProduct:project,
+  plays specifiesFeatureFor:project;
+
+entity VibeProduct sub System,
+  owns productName,
+  plays producesProduct:product,
+  plays productConformsTo:product;
+
+entity VibeProductSpecification sub ProductSpecification,
+  plays productConformsTo:productSpec,
+  plays featureOfProduct:productSpec;
+
+entity VibeRepository sub Component,
+  owns repositoryName,
+  plays belongsToWorkspace:repository,
+  plays contributesTo:contributesToSubject;
+
+entity VibeGitRepository sub VibeRepository,
+  owns remoteUrl,
+  owns defaultBranch,
+  plays targetsRepository:repository,
+  plays isCategorizedBy:isCategorizedBySubject;
 
 # ── Feature Specification ───────────────────────────────
-# Product-level: what does this feature do?
+# What: product-level, what does this feature do?
 # Contains requirement, decision, constraint, and question blocks.
-# Inherits isAbout and isCategorizedBy from ContentExpression.
 
 entity VibeFeatureSpecification sub FormattedContent,
   owns document_id @key,
   plays containsBlock:container,
-  plays isDirectPartOf:isDirectPartOfSubject,
-  plays isBasedOn:isBasedOnObject;
-
-ProductSpecification plays isDirectPartOf:isDirectPartOfObject;
+  plays featureOfProduct:featureSpec,
+  plays motivatedBy:featureSpec,
+  plays specifiesFeatureFor:featureSpec,
+  plays implementsFeature:featureSpec;
 
 entity VibeRequirement sub Requirement,
   owns block_id @key,
   owns document_id,
   owns priority_level,
   plays containsBlock:block,
-  plays isCategorizedBy:isCategorizedBySubject;
+  plays isCategorizedBy:isCategorizedBySubject,
+  plays fulfillsRequirement:requirement;
 
 entity VibeDecision sub Determination,
   owns block_id @key,
@@ -95,20 +176,22 @@ entity VibeQuestion sub Intention,
   plays isCategorizedBy:isCategorizedBySubject;
 
 # ── Implementation Specification ────────────────────────
-# Engineering-level: how do we build it?
+# How: engineering-level, how do we build it?
 # Contains task, verification, and dependency blocks.
-# Derived from a feature specification via isBasedOn.
 
-entity VibeImplementationSpec sub FormattedContent,
+entity VibeImplementationSpecification sub FormattedContent,
   owns document_id @key,
   plays containsBlock:container,
-  plays isBasedOn:isBasedOnSubject;
+  plays implementsFeature:implementationSpec;
 
 entity VibeEngineeringTask sub Task,
   owns block_id @key,
   owns document_id,
+  owns externalTaskRef,
   plays containsBlock:block,
-  plays isCategorizedBy:isCategorizedBySubject;
+  plays isCategorizedBy:isCategorizedBySubject,
+  plays fulfillsRequirement:engineeringTask,
+  plays targetsRepository:engineeringTask;
 
 entity VibeVerification sub Specification,
   owns block_id @key,

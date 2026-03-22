@@ -1,3 +1,5 @@
+# ── Specification Status ─────────────────────────────────
+
 put $draft isa SpecificationStatus,
   has status_label "draft",
   has name "Draft";
@@ -13,3 +15,31 @@ put $accepted isa SpecificationStatus,
 put $implemented isa SpecificationStatus,
   has status_label "implemented",
   has name "Implemented";
+
+# ── Repository Hosting Platforms ─────────────────────────
+
+put $github isa RepositoryHostingPlatform,
+  has name "GitHub";
+
+put $gitlab isa RepositoryHostingPlatform,
+  has name "GitLab";
+
+put $bitbucket isa RepositoryHostingPlatform,
+  has name "Bitbucket";
+
+put $selfhosted isa RepositoryHostingPlatform,
+  has name "Self-Hosted";
+
+# ── Task Management Systems ─────────────────────────────
+
+put $beads isa TaskManagementSystem,
+  has name "Beads";
+
+put $linear isa TaskManagementSystem,
+  has name "Linear";
+
+put $jira isa TaskManagementSystem,
+  has name "Jira";
+
+put $ghissues isa TaskManagementSystem,
+  has name "GitHub Issues";
