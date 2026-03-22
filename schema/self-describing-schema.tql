@@ -1,11 +1,11 @@
 # Provenance bootstrap
 # upstream-repo: https://github.com/vibe-machine/ontology-vibemachine
-# upstream-tag: v0.2.4
-# upstream-commit: 024f38025ead770d5098ff71ea6153373ac2f825
+# upstream-tag: v0.2.5
+# upstream-commit: 674426d536c87daf3619095d572e702a8a943d62
 # source-artifacts:
 # - package.json
 # - schema/vibemachine.tql
-# manifest: manifests/vibemachine-v0.2.4.package-manifest.json
+# manifest: manifests/vibemachine-v0.2.5.package-manifest.json
 # generator: hand-authored-package-bootstrap/0.1.0
 define
 
@@ -42,13 +42,13 @@ entity SchemaResource,
     owns kind,
     owns prefLabel,
     owns definition,
-    owns scopeNote,
-    owns example,
-    owns editorialNote,
-    owns altLabel,
-    owns historyNote,
-    owns seeAlso,
-    owns domainIncludes,
+    owns scopeNote @card(0..),
+    owns example @card(0..),
+    owns editorialNote @card(0..),
+    owns altLabel @card(0..),
+    owns historyNote @card(0..),
+    owns seeAlso @card(0..),
+    owns domainIncludes @card(0..),
     owns deprecated @card(0..1);
 
 relation inModule,
