@@ -106,12 +106,14 @@ entity TaskManagementSystem sub Category,
 
 entity VibeBusinessObjective sub Intention,
   owns name,
+  owns description,
   plays motivatedBy:objective;
 
 # ── Organizational ──────────────────────────────────────
 
 entity VibeWorkspace sub Collection,
   owns workspaceName,
+  owns description,
   plays usesWorkspace:workspace,
   plays belongsToWorkspace:workspace;
 
@@ -123,6 +125,7 @@ entity VibeProject sub Project,
 
 entity VibeProduct sub System,
   owns productName,
+  owns description,
   plays producesProduct:product,
   plays productConformsTo:product;
 

@@ -22,7 +22,7 @@ put $r1 isa SchemaResource,
   has kind "entity",
   has prefLabel "VibeBusinessObjective",
   has definition "A business aspiration that drives product work. Represents the why behind feature development.",
-  has scopeNote "Extends gist Intention. Connected to features via the motivatedBy relation. Examples: increase revenue, reduce churn, expand to new market.";
+  has scopeNote "Extends gist Intention. Owns name and description. Connected to features via the motivatedBy relation. Examples: increase revenue, reduce churn, expand to new market.";
 put (resource: $r1, module: $module) isa inModule;
 
 # ── Organizational ──────────────────────────────────────
@@ -34,7 +34,7 @@ put $r2 isa SchemaResource,
   has kind "entity",
   has prefLabel "VibeWorkspace",
   has definition "A structural collection of repositories, infrastructure, and resources allocated to ongoing work.",
-  has scopeNote "Extends gist Collection. Projects use workspaces (usesWorkspace). Repositories belong to workspaces (belongsToWorkspace).";
+  has scopeNote "Extends gist Collection. Owns description. Projects use workspaces (usesWorkspace). Repositories belong to workspaces (belongsToWorkspace).";
 put (resource: $r2, module: $module) isa inModule;
 
 put $r3 isa SchemaResource,
@@ -54,7 +54,7 @@ put $r4 isa SchemaResource,
   has kind "entity",
   has prefLabel "VibeProduct",
   has definition "A delivered software system produced by project work.",
-  has scopeNote "Extends gist System. Linked to its specification via productConformsTo. Linked to the project that builds it via producesProduct.";
+  has scopeNote "Extends gist System. Owns description. Linked to its specification via productConformsTo. Linked to the project that builds it via producesProduct.";
 put (resource: $r4, module: $module) isa inModule;
 
 put $r5 isa SchemaResource,
