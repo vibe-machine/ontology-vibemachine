@@ -3,6 +3,9 @@ define
 # Vibe Machine workspace, product, and specification modeling
 # layered on top of gist.
 #
+# v0.4.1: Add owns name / owns description to document and block types
+# so the Producer publish pipeline can store text content.
+#
 # v0.4.0: Domain-specific relation specializations. Business objectives.
 # Repository typing. Full brownfield-first product model.
 #
@@ -113,6 +116,7 @@ entity VibeWorkspace sub Collection,
   plays belongsToWorkspace:workspace;
 
 entity VibeProject sub Project,
+  owns name,
   plays usesWorkspace:project,
   plays producesProduct:project,
   plays specifiesFeatureFor:project;
@@ -123,6 +127,7 @@ entity VibeProduct sub System,
   plays productConformsTo:product;
 
 entity VibeProductSpecification sub ProductSpecification,
+  owns name,
   plays productConformsTo:productSpec,
   plays featureOfProduct:productSpec;
 
@@ -142,6 +147,8 @@ entity VibeGitRepository sub VibeRepository,
 # Contains requirement, decision, constraint, and question blocks.
 
 entity VibeFeatureSpecification sub FormattedContent,
+  owns name,
+  owns description,
   owns document_id @key,
   plays containsBlock:container,
   plays featureOfProduct:featureSpec,
@@ -150,6 +157,8 @@ entity VibeFeatureSpecification sub FormattedContent,
   plays implementsFeature:featureSpec;
 
 entity VibeRequirement sub Requirement,
+  owns name,
+  owns description,
   owns block_id @key,
   owns document_id,
   owns priority_level,
@@ -158,18 +167,24 @@ entity VibeRequirement sub Requirement,
   plays fulfillsRequirement:requirement;
 
 entity VibeDecision sub Determination,
+  owns name,
+  owns description,
   owns block_id @key,
   owns document_id,
   plays containsBlock:block,
   plays isCategorizedBy:isCategorizedBySubject;
 
 entity VibeConstraint sub Restriction,
+  owns name,
+  owns description,
   owns block_id @key,
   owns document_id,
   plays containsBlock:block,
   plays isCategorizedBy:isCategorizedBySubject;
 
 entity VibeQuestion sub Intention,
+  owns name,
+  owns description,
   owns block_id @key,
   owns document_id,
   plays containsBlock:block,
@@ -180,11 +195,15 @@ entity VibeQuestion sub Intention,
 # Contains task, verification, and dependency blocks.
 
 entity VibeImplementationSpecification sub FormattedContent,
+  owns name,
+  owns description,
   owns document_id @key,
   plays containsBlock:container,
   plays implementsFeature:implementationSpec;
 
 entity VibeEngineeringTask sub Task,
+  owns name,
+  owns description,
   owns block_id @key,
   owns document_id,
   owns externalTaskRef,
@@ -194,12 +213,16 @@ entity VibeEngineeringTask sub Task,
   plays targetsRepository:engineeringTask;
 
 entity VibeVerification sub Specification,
+  owns name,
+  owns description,
   owns block_id @key,
   owns document_id,
   plays containsBlock:block,
   plays isCategorizedBy:isCategorizedBySubject;
 
 entity VibeDependency sub Intention,
+  owns name,
+  owns description,
   owns block_id @key,
   owns document_id,
   plays containsBlock:block,

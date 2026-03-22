@@ -44,7 +44,7 @@ put $r3 isa SchemaResource,
   has kind "entity",
   has prefLabel "VibeProject",
   has definition "Goal-directed work over time, pursuing a business objective and producing a product.",
-  has scopeNote "Extends gist Project. hasGoal links to VibeBusinessObjective. usesWorkspace links to VibeWorkspace. Feature specifications are about a project (specifiesFeatureFor).";
+  has scopeNote "Extends gist Project. Owns name. hasGoal links to VibeBusinessObjective. usesWorkspace links to VibeWorkspace. Feature specifications are about a project (specifiesFeatureFor).";
 put (resource: $r3, module: $module) isa inModule;
 
 put $r4 isa SchemaResource,
@@ -64,7 +64,7 @@ put $r5 isa SchemaResource,
   has kind "entity",
   has prefLabel "VibeProductSpecification",
   has definition "The living registry of what a product must satisfy. Accumulates feature specifications over time as features ship.",
-  has scopeNote "Extends gist ProductSpecification (sub CatalogItem sub Specification). Features link via featureOfProduct. Products link via productConformsTo.";
+  has scopeNote "Extends gist ProductSpecification (sub CatalogItem sub Specification). Owns name. Features link via featureOfProduct. Products link via productConformsTo.";
 put (resource: $r5, module: $module) isa inModule;
 
 put $r6 isa SchemaResource,
@@ -96,7 +96,7 @@ put $r8 isa SchemaResource,
   has kind "entity",
   has prefLabel "VibeFeatureSpecification",
   has definition "A structured prose document specifying a product feature. Contains typed blocks that become identity nodes in the knowledge graph.",
-  has scopeNote "Extends gist FormattedContent. Motivated by a VibeBusinessObjective (motivatedBy). Part of a VibeProductSpecification (featureOfProduct). About a VibeProject (specifiesFeatureFor). Contains blocks via containsBlock.";
+  has scopeNote "Extends gist FormattedContent. Owns name and description. Motivated by a VibeBusinessObjective (motivatedBy). Part of a VibeProductSpecification (featureOfProduct). About a VibeProject (specifiesFeatureFor). Contains blocks via containsBlock.";
 put (resource: $r8, module: $module) isa inModule;
 
 put $r9 isa SchemaResource,
@@ -106,7 +106,7 @@ put $r9 isa SchemaResource,
   has kind "entity",
   has prefLabel "VibeRequirement",
   has definition "A product requirement expressed as a typed block. Represents an obligation the system must satisfy.",
-  has scopeNote "Extends gist Requirement. Carries priority_level. Engineering tasks fulfill requirements via fulfillsRequirement. Lifecycle tracked via isCategorizedBy SpecificationStatus.";
+  has scopeNote "Extends gist Requirement. Owns name and description. Carries priority_level. Engineering tasks fulfill requirements via fulfillsRequirement. Lifecycle tracked via isCategorizedBy SpecificationStatus.";
 put (resource: $r9, module: $module) isa inModule;
 
 put $r10 isa SchemaResource,
@@ -116,7 +116,7 @@ put $r10 isa SchemaResource,
   has kind "entity",
   has prefLabel "VibeDecision",
   has definition "A decision expressed as a typed block. Represents a choice made to establish a specific outcome.",
-  has scopeNote "Extends gist Determination.";
+  has scopeNote "Extends gist Determination. Owns name and description.";
 put (resource: $r10, module: $module) isa inModule;
 
 put $r11 isa SchemaResource,
@@ -126,7 +126,7 @@ put $r11 isa SchemaResource,
   has kind "entity",
   has prefLabel "VibeConstraint",
   has definition "A constraint expressed as a typed block. Represents a boundary or limitation.",
-  has scopeNote "Extends gist Restriction. Shared across feature and implementation specifications.";
+  has scopeNote "Extends gist Restriction. Owns name and description. Shared across feature and implementation specifications.";
 put (resource: $r11, module: $module) isa inModule;
 
 put $r12 isa SchemaResource,
@@ -136,7 +136,7 @@ put $r12 isa SchemaResource,
   has kind "entity",
   has prefLabel "VibeQuestion",
   has definition "An open question expressed as a typed block. Represents an unresolved point needing resolution.",
-  has scopeNote "Extends gist Intention. Shared across feature and implementation specifications.";
+  has scopeNote "Extends gist Intention. Owns name and description. Shared across feature and implementation specifications.";
 put (resource: $r12, module: $module) isa inModule;
 
 # ── Implementation Specification ────────────────────────
@@ -148,7 +148,7 @@ put $r13 isa SchemaResource,
   has kind "entity",
   has prefLabel "VibeImplementationSpecification",
   has definition "A structured document specifying how to build a feature. Contains engineering tasks, verifications, and dependencies.",
-  has scopeNote "Extends gist FormattedContent. Derived from a feature specification via implementsFeature.";
+  has scopeNote "Extends gist FormattedContent. Owns name and description. Derived from a feature specification via implementsFeature.";
 put (resource: $r13, module: $module) isa inModule;
 
 put $r14 isa SchemaResource,
@@ -158,7 +158,7 @@ put $r14 isa SchemaResource,
   has kind "entity",
   has prefLabel "VibeEngineeringTask",
   has definition "A concrete implementation work item. Represents a unit of engineering work that fulfills a requirement.",
-  has scopeNote "Extends gist Task. Targets a repository (targetsRepository). Fulfills a requirement (fulfillsRequirement). Loosely coupled to external task systems via externalTaskRef and TaskManagementSystem category.";
+  has scopeNote "Extends gist Task. Owns name and description. Targets a repository (targetsRepository). Fulfills a requirement (fulfillsRequirement). Loosely coupled to external task systems via externalTaskRef and TaskManagementSystem category.";
 put (resource: $r14, module: $module) isa inModule;
 
 put $r15 isa SchemaResource,
@@ -168,7 +168,7 @@ put $r15 isa SchemaResource,
   has kind "entity",
   has prefLabel "VibeVerification",
   has definition "A verification step specifying what must be true to confirm correct implementation.",
-  has scopeNote "Extends gist Specification. May be manual or automated.";
+  has scopeNote "Extends gist Specification. Owns name and description. May be manual or automated.";
 put (resource: $r15, module: $module) isa inModule;
 
 put $r16 isa SchemaResource,
@@ -178,7 +178,7 @@ put $r16 isa SchemaResource,
   has kind "entity",
   has prefLabel "VibeDependency",
   has definition "A dependency expressed as a typed block. Represents a prerequisite that must be satisfied before work can proceed.",
-  has scopeNote "Extends gist Intention. Used in implementation specifications for ordering constraints.";
+  has scopeNote "Extends gist Intention. Owns name and description. Used in implementation specifications for ordering constraints.";
 put (resource: $r16, module: $module) isa inModule;
 
 # ── Specialized Relations ───────────────────────────────
