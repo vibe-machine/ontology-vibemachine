@@ -119,6 +119,7 @@ entity VibeWorkspace sub Collection,
 
 entity VibeProject sub Project,
   owns name,
+  owns description,
   plays usesWorkspace:project,
   plays producesProduct:project,
   plays specifiesFeatureFor:project;
@@ -136,6 +137,7 @@ entity VibeProductSpecification sub ProductSpecification,
 
 entity VibeRepository sub Component,
   owns repositoryName,
+  owns description,
   plays belongsToWorkspace:repository,
   plays contributesTo:contributesToSubject;
 

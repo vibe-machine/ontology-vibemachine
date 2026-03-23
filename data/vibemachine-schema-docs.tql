@@ -44,7 +44,7 @@ put $r3 isa SchemaResource,
   has kind "entity",
   has prefLabel "VibeProject",
   has definition "Goal-directed work over time, pursuing a business objective and producing a product.",
-  has scopeNote "Extends gist Project. Owns name. hasGoal links to VibeBusinessObjective. usesWorkspace links to VibeWorkspace. Feature specifications are about a project (specifiesFeatureFor).";
+  has scopeNote "Extends gist Project. Owns name and description. hasGoal links to VibeBusinessObjective. usesWorkspace links to VibeWorkspace. Feature specifications are about a project (specifiesFeatureFor).";
 put (resource: $r3, module: $module) isa inModule;
 
 put $r4 isa SchemaResource,
@@ -74,7 +74,7 @@ put $r6 isa SchemaResource,
   has kind "entity",
   has prefLabel "VibeRepository",
   has definition "An abstract source-code component that belongs to a workspace and contributes to a product.",
-  has scopeNote "Extends gist Component. Abstract — use VibeGitRepository for concrete instances. Linked to workspace via belongsToWorkspace.";
+  has scopeNote "Extends gist Component. Owns description. Abstract — use VibeGitRepository for concrete instances. Linked to workspace via belongsToWorkspace.";
 put (resource: $r6, module: $module) isa inModule;
 
 put $r7 isa SchemaResource,
