@@ -1,0 +1,10 @@
+match
+  $build isa OntologyPackageBuild,
+    has packageName "vibemachine",
+    has packageVersion "0.5.0";
+  not {
+    $current isa OntologyPackageBuild,
+      has packageName "vibemachine",
+      has packageVersion "0.6.0";
+  };
+limit 1;

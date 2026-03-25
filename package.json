@@ -78,11 +78,29 @@
         },
         "phases": [
           {
+            "id": "preflight",
+            "units": [
+              {
+                "kind": "assert-data",
+                "path": "migrations/preflight/assert-v0.5.0-build.tql"
+              }
+            ]
+          },
+          {
             "id": "migrate",
             "units": [
               {
                 "kind": "write",
                 "path": "migrations/v0.5.0-to-v0.6.0.tql"
+              }
+            ]
+          },
+          {
+            "id": "verify",
+            "units": [
+              {
+                "kind": "assert-data",
+                "path": "migrations/verify/assert-v0.6.0-build.tql"
               }
             ]
           }
