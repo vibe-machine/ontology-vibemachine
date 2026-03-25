@@ -1,7 +1,7 @@
 # Provenance bootstrap
 # upstream-repo: https://github.com/vibe-machine/ontology-vibemachine
 # upstream-tag: v0.5.0
-# upstream-commit: 5d38557e368b8fe469770e69185d17c06841a5af
+# upstream-commit: 171aaf2980168f0a77e57cd96ef3b2460bff8f9a
 # source-artifacts:
 # - package.json
 # - schema/vibemachine.tql
@@ -47,6 +47,26 @@ put $r3 isa SchemaResource,
   has scopeNote "Extends gist Project. Owns name and description. hasGoal links to VibeBusinessObjective. usesWorkspace links to VibeWorkspace. Feature specifications are about a project (specifiesFeatureFor).";
 put (resource: $r3, module: $module) isa inModule;
 
+put $r3a isa SchemaResource,
+  has docKey "https://github.com/vibe-machine/ontology-vibemachine#VibeSoftwareSystem",
+  has iri "https://github.com/vibe-machine/ontology-vibemachine#VibeSoftwareSystem",
+  has typeLabel "VibeSoftwareSystem",
+  has kind "entity",
+  has prefLabel "VibeSoftwareSystem",
+  has definition "An enduring software system tracked as a first-class system in the ontology, independent of any one released version.",
+  has scopeNote "Extends gist System. Owns name and description. This is the stable software thing that can have many released versions over time. VibeProduct and VibeAgent are both specializations of VibeSoftwareSystem. Released versions link through softwareSystemConformsToVersion.";
+put (resource: $r3a, module: $module) isa inModule;
+
+put $r3b isa SchemaResource,
+  has docKey "https://github.com/vibe-machine/ontology-vibemachine#VibeSoftwareSystemVersion",
+  has iri "https://github.com/vibe-machine/ontology-vibemachine#VibeSoftwareSystemVersion",
+  has typeLabel "VibeSoftwareSystemVersion",
+  has kind "entity",
+  has prefLabel "VibeSoftwareSystemVersion",
+  has definition "A released version specification of a software system.",
+  has scopeNote "Extends gist Specification. Owns name, description, and versionName. Represents a released product version, not the long-lived software system itself. Software systems conform to these version specifications via softwareSystemConformsToVersion. Agent profiles can also be tied to a specific released version via agentProfileForVersion.";
+put (resource: $r3b, module: $module) isa inModule;
+
 put $r4 isa SchemaResource,
   has docKey "https://github.com/vibe-machine/ontology-vibemachine#VibeProduct",
   has iri "https://github.com/vibe-machine/ontology-vibemachine#VibeProduct",
@@ -54,8 +74,38 @@ put $r4 isa SchemaResource,
   has kind "entity",
   has prefLabel "VibeProduct",
   has definition "A delivered software system produced by project work.",
-  has scopeNote "Extends gist System. Owns description. Linked to its specification via productConformsTo. Linked to the project that builds it via producesProduct.";
+  has scopeNote "Extends VibeSoftwareSystem. Owns productName in addition to inherited descriptive fields. Linked to its product specification via productConformsTo. Linked to the project that builds it via producesProduct. A VibeProduct may also conform to a released software version via softwareSystemConformsToVersion.";
 put (resource: $r4, module: $module) isa inModule;
+
+put $r4a isa SchemaResource,
+  has docKey "https://github.com/vibe-machine/ontology-vibemachine#VibeAgent",
+  has iri "https://github.com/vibe-machine/ontology-vibemachine#VibeAgent",
+  has typeLabel "VibeAgent",
+  has kind "entity",
+  has prefLabel "VibeAgent",
+  has definition "A software agent that can be assigned to perform engineering work.",
+  has scopeNote "Extends VibeSoftwareSystem. Participates in the task-assignment pattern both as a performer (assignsPerformer) and as a possible assigner (assignmentAllocatedBy). This is the software-system identity of the agent, separate from any one profile or assignment context.";
+put (resource: $r4a, module: $module) isa inModule;
+
+put $r4b isa SchemaResource,
+  has docKey "https://github.com/vibe-machine/ontology-vibemachine#VibeAgentProfile",
+  has iri "https://github.com/vibe-machine/ontology-vibemachine#VibeAgentProfile",
+  has typeLabel "VibeAgentProfile",
+  has kind "entity",
+  has prefLabel "VibeAgentProfile",
+  has definition "A specification describing how an agent should be configured for work.",
+  has scopeNote "Extends gist Specification. Owns name and description. Used to capture the execution profile for an assigned agent, such as tool/runtime configuration, skills, constraints, or other execution-shaping settings. Profiles can be linked to a released software version via agentProfileForVersion and attached to a concrete task assignment via assignmentUsesProfile.";
+put (resource: $r4b, module: $module) isa inModule;
+
+put $r4c isa SchemaResource,
+  has docKey "https://github.com/vibe-machine/ontology-vibemachine#VibeTaskAssignment",
+  has iri "https://github.com/vibe-machine/ontology-vibemachine#VibeTaskAssignment",
+  has typeLabel "VibeTaskAssignment",
+  has kind "entity",
+  has prefLabel "VibeTaskAssignment",
+  has definition "A temporal assignment that binds a performer to an engineering task, optionally under an agent profile and with an explicit assigner.",
+  has scopeNote "Extends gist Assignment. Owns description. Links to the assigned performer via assignsPerformer, to the task via assignmentForTask, optionally to an agent profile via assignmentUsesProfile, and to the assigning actor via assignmentAllocatedBy. This keeps assignment history separate from the task itself.";
+put (resource: $r4c, module: $module) isa inModule;
 
 put $r5 isa SchemaResource,
   has docKey "https://github.com/vibe-machine/ontology-vibemachine#VibeProductSpecification",
@@ -158,7 +208,7 @@ put $r14 isa SchemaResource,
   has kind "entity",
   has prefLabel "VibeEngineeringTask",
   has definition "A concrete implementation work item. Represents a unit of engineering work that fulfills a requirement.",
-  has scopeNote "Extends gist Task. Owns name and description. Targets a repository (targetsRepository). Fulfills a requirement (fulfillsRequirement). Loosely coupled to external task systems via externalTaskRef and TaskManagementSystem category.";
+  has scopeNote "Extends gist Task. Owns name and description. Targets a repository (targetsRepository). Fulfills a requirement (fulfillsRequirement). May be the target of a task assignment via assignmentForTask. Loosely coupled to external task systems via externalTaskRef and TaskManagementSystem category.";
 put (resource: $r14, module: $module) isa inModule;
 
 put $r15 isa SchemaResource,
@@ -273,6 +323,16 @@ put $r24 isa SchemaResource,
   has scopeNote "Specializes gist conformsTo. Roles: product, productSpec.";
 put (resource: $r24, module: $module) isa inModule;
 
+put $r24a isa SchemaResource,
+  has docKey "https://github.com/vibe-machine/ontology-vibemachine#softwareSystemConformsToVersion",
+  has iri "https://github.com/vibe-machine/ontology-vibemachine#softwareSystemConformsToVersion",
+  has typeLabel "softwareSystemConformsToVersion",
+  has kind "relation",
+  has prefLabel "softwareSystemConformsToVersion",
+  has definition "Links a software system to a released software-version specification that it conforms to.",
+  has scopeNote "Specializes gist conformsTo. Roles: softwareSystem, softwareVersion. Use this for released versions of products and agents, not for product requirements or product specifications.";
+put (resource: $r24a, module: $module) isa inModule;
+
 put $r25 isa SchemaResource,
   has docKey "https://github.com/vibe-machine/ontology-vibemachine#belongsToWorkspace",
   has iri "https://github.com/vibe-machine/ontology-vibemachine#belongsToWorkspace",
@@ -282,6 +342,56 @@ put $r25 isa SchemaResource,
   has definition "Links a repository to the workspace it belongs to.",
   has scopeNote "Specializes gist isMemberOf. Roles: repository, workspace.";
 put (resource: $r25, module: $module) isa inModule;
+
+put $r25a isa SchemaResource,
+  has docKey "https://github.com/vibe-machine/ontology-vibemachine#agentProfileForVersion",
+  has iri "https://github.com/vibe-machine/ontology-vibemachine#agentProfileForVersion",
+  has typeLabel "agentProfileForVersion",
+  has kind "relation",
+  has prefLabel "agentProfileForVersion",
+  has definition "Links an agent profile to the released software version it is intended to configure or constrain.",
+  has scopeNote "Specializes gist isAbout. Roles: agentProfile, softwareVersion. Reads: this profile is for this released software version.";
+put (resource: $r25a, module: $module) isa inModule;
+
+put $r25b isa SchemaResource,
+  has docKey "https://github.com/vibe-machine/ontology-vibemachine#assignsPerformer",
+  has iri "https://github.com/vibe-machine/ontology-vibemachine#assignsPerformer",
+  has typeLabel "assignsPerformer",
+  has kind "relation",
+  has prefLabel "assignsPerformer",
+  has definition "Links a task assignment to the performer who is being assigned.",
+  has scopeNote "Specializes gist isAssignmentOf. Roles: assignment, performer. The performer may be a VibeAgent, Person, or Organization.";
+put (resource: $r25b, module: $module) isa inModule;
+
+put $r25c isa SchemaResource,
+  has docKey "https://github.com/vibe-machine/ontology-vibemachine#assignmentForTask",
+  has iri "https://github.com/vibe-machine/ontology-vibemachine#assignmentForTask",
+  has typeLabel "assignmentForTask",
+  has kind "relation",
+  has prefLabel "assignmentForTask",
+  has definition "Links a task assignment to the engineering task it is for.",
+  has scopeNote "Specializes gist isAssignmentTo. Roles: assignment, task. Reads: this assignment is to this task.";
+put (resource: $r25c, module: $module) isa inModule;
+
+put $r25d isa SchemaResource,
+  has docKey "https://github.com/vibe-machine/ontology-vibemachine#assignmentUsesProfile",
+  has iri "https://github.com/vibe-machine/ontology-vibemachine#assignmentUsesProfile",
+  has typeLabel "assignmentUsesProfile",
+  has kind "relation",
+  has prefLabel "assignmentUsesProfile",
+  has definition "Links a task assignment to the agent profile under which the assigned work should be carried out.",
+  has scopeNote "Specializes gist isBasedOn. Roles: assignment, agentProfile. This relation is optional in general, but expected when the assigned performer is a VibeAgent.";
+put (resource: $r25d, module: $module) isa inModule;
+
+put $r25e isa SchemaResource,
+  has docKey "https://github.com/vibe-machine/ontology-vibemachine#assignmentAllocatedBy",
+  has iri "https://github.com/vibe-machine/ontology-vibemachine#assignmentAllocatedBy",
+  has typeLabel "assignmentAllocatedBy",
+  has kind "relation",
+  has prefLabel "assignmentAllocatedBy",
+  has definition "Links a task assignment to the actor that made the assignment.",
+  has scopeNote "Specializes gist isAllocatedBy. Roles: assignment, assigner. The assigner may be a VibeAgent, Person, or Organization.";
+put (resource: $r25e, module: $module) isa inModule;
 
 # ── Original Relations ──────────────────────────────────
 
@@ -408,3 +518,13 @@ put $r37 isa SchemaResource,
   has definition "The default branch name of a git repository (e.g., main, master).",
   has scopeNote "Used on VibeGitRepository.";
 put (resource: $r37, module: $module) isa inModule;
+
+put $r37a isa SchemaResource,
+  has docKey "https://github.com/vibe-machine/ontology-vibemachine#versionName",
+  has iri "https://github.com/vibe-machine/ontology-vibemachine#versionName",
+  has typeLabel "versionName",
+  has kind "attribute",
+  has prefLabel "versionName",
+  has definition "A released version label for a software-system version, such as 1.2.3 or 2026.03.",
+  has scopeNote "Used on VibeSoftwareSystemVersion to distinguish the released version specification from the long-lived software system.";
+put (resource: $r37a, module: $module) isa inModule;

@@ -13,6 +13,9 @@ define
 # v0.4.0: Domain-specific relation specializations. Business objectives.
 # Repository typing. Full brownfield-first product model.
 #
+# v0.5.1-next: Add software system, released version, agent profile,
+# and task assignment concepts for software-delivery execution targeting.
+#
 # Design principle: every gist relation used is specialized with
 # natural-language role names so the model reads like English.
 
@@ -20,6 +23,7 @@ define
 
 attribute workspaceName, value string;
 attribute productName, value string;
+attribute versionName, value string;
 attribute repositoryName, value string;
 attribute remoteUrl, value string;
 attribute defaultBranch, value string;
@@ -73,10 +77,40 @@ relation productConformsTo sub conformsTo,
   relates product as conformsToSubject,
   relates productSpec as conformsToObject;
 
+# "this software system conforms to this released version"
+relation softwareSystemConformsToVersion sub conformsTo,
+  relates softwareSystem as conformsToSubject,
+  relates softwareVersion as conformsToObject;
+
 # "this repository belongs to this workspace"
 relation belongsToWorkspace sub isMemberOf,
   relates repository as isMemberOfSubject,
   relates workspace as isMemberOfObject;
+
+# "this agent profile is for this released software version"
+relation agentProfileForVersion sub isAbout,
+  relates agentProfile as isAboutSubject,
+  relates softwareVersion as isAboutObject;
+
+# "this assignment assigns this performer"
+relation assignsPerformer sub isAssignmentOf,
+  relates assignment as isAssignmentOfSubject,
+  relates performer as isAssignmentOfObject;
+
+# "this assignment is to this task"
+relation assignmentForTask sub isAssignmentTo,
+  relates assignment as isAssignmentToSubject,
+  relates task as isAssignmentToObject;
+
+# "this assignment uses this agent profile"
+relation assignmentUsesProfile sub isBasedOn,
+  relates assignment as isBasedOnSubject,
+  relates agentProfile as isBasedOnObject;
+
+# "this assignment was allocated by this assigner"
+relation assignmentAllocatedBy sub isAllocatedBy,
+  relates assignment as isAllocatedBySubject,
+  relates assigner as isAllocatedByObject;
 
 # ── Original Relations ──────────────────────────────────
 
@@ -128,11 +162,39 @@ entity VibeProject sub Project,
   plays producesProduct:project,
   plays specifiesFeatureFor:project;
 
-entity VibeProduct sub System,
-  owns productName,
+entity VibeSoftwareSystem sub System,
+  owns name,
   owns description,
+  plays softwareSystemConformsToVersion:softwareSystem;
+
+entity VibeSoftwareSystemVersion sub Specification,
+  owns name,
+  owns description,
+  owns versionName,
+  plays softwareSystemConformsToVersion:softwareVersion,
+  plays agentProfileForVersion:softwareVersion;
+
+entity VibeProduct sub VibeSoftwareSystem,
+  owns productName,
   plays producesProduct:product,
   plays productConformsTo:product;
+
+entity VibeAgent sub VibeSoftwareSystem,
+  plays assignsPerformer:performer,
+  plays assignmentAllocatedBy:assigner;
+
+entity VibeAgentProfile sub Specification,
+  owns name,
+  owns description,
+  plays agentProfileForVersion:agentProfile,
+  plays assignmentUsesProfile:agentProfile;
+
+entity VibeTaskAssignment sub Assignment,
+  owns description,
+  plays assignsPerformer:assignment,
+  plays assignmentForTask:assignment,
+  plays assignmentUsesProfile:assignment,
+  plays assignmentAllocatedBy:assignment;
 
 entity VibeProductSpecification sub ProductSpecification,
   owns name,
@@ -217,6 +279,7 @@ entity VibeEngineeringTask sub Task,
   owns document_id,
   owns externalTaskRef,
   plays containsItem:item,
+  plays assignmentForTask:task,
   plays isCategorizedBy:isCategorizedBySubject,
   plays fulfillsRequirement:engineeringTask,
   plays targetsRepository:engineeringTask;
@@ -244,3 +307,15 @@ entity VibeDependency sub Intention,
   owns document_id,
   plays containsItem:item,
   plays isCategorizedBy:isCategorizedBySubject;
+
+# ── External Actor Extensions ───────────────────────────
+# Allow human and organizational performers/assigners to participate
+# in the same task-assignment pattern as software agents.
+
+entity Person,
+  plays assignsPerformer:performer,
+  plays assignmentAllocatedBy:assigner;
+
+entity Organization,
+  plays assignsPerformer:performer,
+  plays assignmentAllocatedBy:assigner;
