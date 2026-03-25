@@ -3,16 +3,16 @@
   "manifestVersion": "1.0.0",
   "package": {
     "name": "vibemachine",
-    "version": "0.7.0"
+    "version": "0.8.0"
   },
   "upstream": {
     "repoUrl": "https://github.com/vibe-machine/ontology-vibemachine",
-    "tag": "v0.7.0",
-    "commit": "4a40c4a20ffb5aefad62f68edf503f9b52bf0225",
+    "tag": "v0.8.0",
+    "commit": "9eb3ecfa3a7027d7d6826b662a661e316d38d11c",
     "sourceArtifacts": [
       {
         "path": "package.json",
-        "sha256": "64813eeda975da7d4617b98405020103873a849bbfaf7f5e572d6b26f75f6bc6"
+        "sha256": "aa4d3c68d2cc1d43a5bf0e72aa70ca1945a03bb9b38ba0955d8458d54103b9dc"
       },
       {
         "path": "schema/vibemachine.tql",
@@ -27,23 +27,23 @@
   "generator": {
     "name": "hand-authored-package-bootstrap",
     "version": "0.1.0",
-    "generatedAt": "2026-03-25T05:04:06Z"
+    "generatedAt": "2026-03-25T05:04:34Z"
   },
   "artifacts": [
     {
       "kind": "meta-schema",
       "path": "schema/self-describing-schema.tql",
-      "sha256": "e80f801d7a1f4956a4a99fcf581184c4daa931bcbff135284839c533373caa8b"
+      "sha256": "15d8eb13de7ad4c2a6efe860064fe0b4c15956ecce0753f713f8064d3e6e1627"
     },
     {
       "kind": "provenance-schema",
       "path": "schema/package-provenance.tql",
-      "sha256": "81c9447f57b134591e6d9ccb921796e693c0800398b315f151fb309aa5303114"
+      "sha256": "3f4c962c2044e14d16e4af57eba2bf21f4e637691ccb03ad4a74ff271052ee16"
     },
     {
       "kind": "documentation",
       "path": "data/vibemachine-schema-docs.tql",
-      "sha256": "bd409e761291eff564c031908f4fc54a9b7acad8aa02a06f0a293f8d45286c3e"
+      "sha256": "22f0cbc530bffc5ab5505bb5b8a7ee343bf59910931566b727b5b882c3cdcd75"
     },
     {
       "kind": "manifest-schema",
@@ -53,7 +53,12 @@
     {
       "kind": "provenance-seeds",
       "path": "data/vibemachine-provenance.tql",
-      "sha256": "78ba2bccda292c4a66ff624762015a2d543e977348bd5ead807773d2586e24c1"
+      "sha256": "8e64566ed5ad2235811ad56cb8884c6b7b115706870d9bad458fa23ef9277730"
+    },
+    {
+      "kind": "migration",
+      "path": "migrations/v0.7.0-to-v0.8.0.tql",
+      "sha256": "925d7161510aca2ad90bc736ff58630dae7d6aba2a8b6647804318c72db82bc2"
     }
   ]
 }
