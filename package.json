@@ -61,6 +61,35 @@
       "manifests/vibemachine-v0.6.0.package-manifest.json"
     ]
   },
+  "migration": {
+    "format": 1,
+    "supportsUpgradeFrom": [
+      "0.5.x"
+    ],
+    "plans": [
+      {
+        "id": "vibemachine-0.5.0-to-0.6.0",
+        "from": "0.5.0",
+        "to": "0.6.0",
+        "mode": "replace",
+        "snapshot": {
+          "required": true,
+          "label": "pre-vibemachine-0.6.0-migration"
+        },
+        "phases": [
+          {
+            "id": "migrate",
+            "units": [
+              {
+                "kind": "write",
+                "path": "migrations/v0.5.0-to-v0.6.0.tql"
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  },
   "provenance": {
     "manifest": "manifests/vibemachine-v0.6.0.package-manifest.json",
     "status": "bootstrap"
