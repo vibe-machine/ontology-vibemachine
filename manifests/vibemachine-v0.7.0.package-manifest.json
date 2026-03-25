@@ -8,11 +8,11 @@
   "upstream": {
     "repoUrl": "https://github.com/vibe-machine/ontology-vibemachine",
     "tag": "v0.7.0",
-    "commit": "9fb1a03ab265890fd9ec14839633c7d177982c7d",
+    "commit": "4a40c4a20ffb5aefad62f68edf503f9b52bf0225",
     "sourceArtifacts": [
       {
         "path": "package.json",
-        "sha256": "1ac55d2ac10717e32d96c275de2267e7c14b82c1e8c74169c8e8090bd5aba498"
+        "sha256": "64813eeda975da7d4617b98405020103873a849bbfaf7f5e572d6b26f75f6bc6"
       },
       {
         "path": "schema/vibemachine.tql",
@@ -27,23 +27,23 @@
   "generator": {
     "name": "hand-authored-package-bootstrap",
     "version": "0.1.0",
-    "generatedAt": "2026-03-25T03:59:13Z"
+    "generatedAt": "2026-03-25T05:04:06Z"
   },
   "artifacts": [
     {
       "kind": "meta-schema",
       "path": "schema/self-describing-schema.tql",
-      "sha256": "ca83a0c665ef4cbc406366502d69d4f71f1e1db44e01a551a15fc6521fdfeedc"
+      "sha256": "e80f801d7a1f4956a4a99fcf581184c4daa931bcbff135284839c533373caa8b"
     },
     {
       "kind": "provenance-schema",
       "path": "schema/package-provenance.tql",
-      "sha256": "80cd8041b4cdb3fa032a63aa7dc712317b2926ea1c74a046e5e767fefbb7dff1"
+      "sha256": "81c9447f57b134591e6d9ccb921796e693c0800398b315f151fb309aa5303114"
     },
     {
       "kind": "documentation",
       "path": "data/vibemachine-schema-docs.tql",
-      "sha256": "fb29c42dfbe38fb62f67ea9f0c983289991131738c107073585d90ea67c8c38f"
+      "sha256": "bd409e761291eff564c031908f4fc54a9b7acad8aa02a06f0a293f8d45286c3e"
     },
     {
       "kind": "manifest-schema",
@@ -53,7 +53,7 @@
     {
       "kind": "provenance-seeds",
       "path": "data/vibemachine-provenance.tql",
-      "sha256": "3114d03b41d8cae2a21839a4a0a23ff3ba3134151b371b50e3db207776e3536e"
+      "sha256": "78ba2bccda292c4a66ff624762015a2d543e977348bd5ead807773d2586e24c1"
     }
   ]
 }
