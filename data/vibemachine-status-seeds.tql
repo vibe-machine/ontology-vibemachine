@@ -1,45 +1,136 @@
 # ── Specification Status ─────────────────────────────────
 
-put $draft isa SpecificationStatus,
+put $draft isa VibeSpecificationStatus,
   has status_label "draft",
   has name "Draft";
 
-put $review isa SpecificationStatus,
+put $review isa VibeSpecificationStatus,
   has status_label "review",
   has name "Review";
 
-put $accepted isa SpecificationStatus,
+put $accepted isa VibeSpecificationStatus,
   has status_label "accepted",
   has name "Accepted";
 
-put $implemented isa SpecificationStatus,
+put $implemented isa VibeSpecificationStatus,
   has status_label "implemented",
   has name "Implemented";
 
 # ── Repository Hosting Platforms ─────────────────────────
 
-put $github isa RepositoryHostingPlatform,
+put $github isa VibeRepositoryHostingPlatform,
   has name "GitHub";
 
-put $gitlab isa RepositoryHostingPlatform,
+put $gitlab isa VibeRepositoryHostingPlatform,
   has name "GitLab";
 
-put $bitbucket isa RepositoryHostingPlatform,
+put $bitbucket isa VibeRepositoryHostingPlatform,
   has name "Bitbucket";
 
-put $selfhosted isa RepositoryHostingPlatform,
+put $selfhosted isa VibeRepositoryHostingPlatform,
   has name "Self-Hosted";
 
 # ── Task Management Systems ─────────────────────────────
 
-put $beads isa TaskManagementSystem,
+put $beads isa VibeTaskManagementSystem,
   has name "Beads";
 
-put $linear isa TaskManagementSystem,
+put $linear isa VibeTaskManagementSystem,
   has name "Linear";
 
-put $jira isa TaskManagementSystem,
+put $jira isa VibeTaskManagementSystem,
   has name "Jira";
 
-put $ghissues isa TaskManagementSystem,
+put $ghissues isa VibeTaskManagementSystem,
   has name "GitHub Issues";
+
+# ── Issue Kinds ─────────────────────────────────────────
+
+put $defect isa VibeIssueKind,
+  has name "defect";
+
+put $featureRequest isa VibeIssueKind,
+  has name "feature-request";
+
+put $supportRequest isa VibeIssueKind,
+  has name "support-request";
+
+put $question isa VibeIssueKind,
+  has name "question";
+
+put $improvement isa VibeIssueKind,
+  has name "improvement";
+
+put $incident isa VibeIssueKind,
+  has name "incident";
+
+# ── Issue Statuses ──────────────────────────────────────
+
+put $triaged isa VibeIssueStatus,
+  has name "triaged";
+
+put $planned isa VibeIssueStatus,
+  has name "planned";
+
+put $inProgress isa VibeIssueStatus,
+  has name "in-progress";
+
+put $resolved isa VibeIssueStatus,
+  has name "resolved";
+
+put $closed isa VibeIssueStatus,
+  has name "closed";
+
+# ── Issue Priorities ────────────────────────────────────
+
+put $criticalPriority isa VibeIssuePriority,
+  has name "critical";
+
+put $highPriority isa VibeIssuePriority,
+  has name "high";
+
+put $mediumPriority isa VibeIssuePriority,
+  has name "medium";
+
+put $lowPriority isa VibeIssuePriority,
+  has name "low";
+
+put $backlogPriority isa VibeIssuePriority,
+  has name "backlog";
+
+# ── Issue Severity ──────────────────────────────────────
+
+put $blockerSeverity isa VibeIssueSeverity,
+  has name "blocker";
+
+put $criticalSeverity isa VibeIssueSeverity,
+  has name "critical";
+
+put $majorSeverity isa VibeIssueSeverity,
+  has name "major";
+
+put $minorSeverity isa VibeIssueSeverity,
+  has name "minor";
+
+put $trivialSeverity isa VibeIssueSeverity,
+  has name "trivial";
+
+# ── Issue Resolution ────────────────────────────────────
+
+put $fixedResolution isa VibeIssueResolution,
+  has name "fixed";
+
+put $duplicateResolution isa VibeIssueResolution,
+  has name "duplicate";
+
+put $wontFixResolution isa VibeIssueResolution,
+  has name "won't-fix";
+
+put $notPlannedResolution isa VibeIssueResolution,
+  has name "not-planned";
+
+put $cannotReproduceResolution isa VibeIssueResolution,
+  has name "cannot-reproduce";
+
+put $invalidResolution isa VibeIssueResolution,
+  has name "invalid";

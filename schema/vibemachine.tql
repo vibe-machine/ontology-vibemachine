@@ -16,6 +16,9 @@ define
 # v0.5.1-next: Add software system, released version, agent profile,
 # and task assignment concepts for software-delivery execution targeting.
 #
+# v0.6.1-next: Add Vibe-prefixed issue/submission lifecycle entities,
+# release-planning entities, and customer-facing category entities.
+#
 # Design principle: every gist relation used is specialized with
 # natural-language role names so the model reads like English.
 
@@ -112,6 +115,96 @@ relation assignmentAllocatedBy sub isAllocatedBy,
   relates assignment as isAllocatedBySubject,
   relates assigner as isAllocatedByObject;
 
+# "this issue is derived from this submission"
+relation issueDerivedFromSubmission sub isBasedOn,
+  relates issue as isBasedOnSubject,
+  relates submission as isBasedOnObject;
+
+# "this triage decision is based on this submission"
+relation triageBasedOnSubmission sub isBasedOn,
+  relates triageDecision as isBasedOnSubject,
+  relates submission as isBasedOnObject;
+
+# "this issue was produced by this triage decision"
+relation issueProducedByTriage sub isProducedBy,
+  relates issue as isProducedBySubject,
+  relates triageDecision as isProducedByObject;
+
+# "this engineering task addresses this issue"
+relation taskAddressesIssue sub isAbout,
+  relates engineeringTask as isAboutSubject,
+  relates issue as isAboutObject;
+
+# "this issue is about this project"
+relation issueAboutProject sub isAbout,
+  relates issue as isAboutSubject,
+  relates project as isAboutObject;
+
+# "this issue is about this repository"
+relation issueAboutRepository sub isAbout,
+  relates issue as isAboutSubject,
+  relates repository as isAboutObject;
+
+# "this milestone is in this release plan"
+relation milestoneInReleasePlan sub isDirectPartOf,
+  relates milestone as isDirectPartOfSubject,
+  relates releasePlan as isDirectPartOfObject;
+
+# "this issue is committed to this release plan"
+relation issueCommittedToRelease,
+  relates issue,
+  relates releasePlan;
+
+# "this issue targets this milestone"
+relation issueTargetsMilestone,
+  relates issue,
+  relates milestone;
+
+# "this issue is a duplicate of this canonical issue"
+relation duplicateOfIssue,
+  relates duplicateIssue,
+  relates canonicalIssue;
+
+# "this planning decision is about this issue"
+relation planningDecisionAboutIssue sub isAbout,
+  relates planningDecision as isAboutSubject,
+  relates issue as isAboutObject;
+
+# "this resolution decision is about this issue"
+relation resolutionDecisionAboutIssue sub isAbout,
+  relates resolutionDecision as isAboutSubject,
+  relates issue as isAboutObject;
+
+# "this closure decision is about this issue"
+relation closureDecisionAboutIssue sub isAbout,
+  relates closureDecision as isAboutSubject,
+  relates issue as isAboutObject;
+
+# "this submission comes from this submitter"
+relation submissionProvidedBy sub comesFromAgent,
+  relates submission as comesFromAgentSubject,
+  relates submitter as comesFromAgentObject;
+
+# "this triage decision was performed by this triager"
+relation triagePerformedBy sub hasParticipant,
+  relates triageDecision as hasParticipantSubject,
+  relates triager as hasParticipantObject;
+
+# "this planning decision was performed by this planner"
+relation planningPerformedBy sub hasParticipant,
+  relates planningDecision as hasParticipantSubject,
+  relates planner as hasParticipantObject;
+
+# "this resolution decision was performed by this resolver"
+relation resolutionPerformedBy sub hasParticipant,
+  relates resolutionDecision as hasParticipantSubject,
+  relates resolver as hasParticipantObject;
+
+# "this closure decision was performed by this closer"
+relation closurePerformedBy sub hasParticipant,
+  relates closureDecision as hasParticipantSubject,
+  relates closer as hasParticipantObject;
+
 # ── Original Relations ──────────────────────────────────
 
 # "this project uses this workspace"
@@ -126,17 +219,37 @@ relation containsItem,
 
 # ── Categories ──────────────────────────────────────────
 
-entity SpecificationStatus sub Category,
+entity VibeSpecificationStatus sub Category,
   owns status_label @key,
   owns name,
   plays isCategorizedBy:isCategorizedByObject;
 
-entity RepositoryHostingPlatform sub Category,
-  owns name,
+entity VibeRepositoryHostingPlatform sub Category,
+  owns name @key,
   plays isCategorizedBy:isCategorizedByObject;
 
-entity TaskManagementSystem sub Category,
-  owns name,
+entity VibeTaskManagementSystem sub Category,
+  owns name @key,
+  plays isCategorizedBy:isCategorizedByObject;
+
+entity VibeIssueKind sub Category,
+  owns name @key,
+  plays isCategorizedBy:isCategorizedByObject;
+
+entity VibeIssueStatus sub Category,
+  owns name @key,
+  plays isCategorizedBy:isCategorizedByObject;
+
+entity VibeIssuePriority sub Category,
+  owns name @key,
+  plays isCategorizedBy:isCategorizedByObject;
+
+entity VibeIssueSeverity sub Category,
+  owns name @key,
+  plays isCategorizedBy:isCategorizedByObject;
+
+entity VibeIssueResolution sub Category,
+  owns name @key,
   plays isCategorizedBy:isCategorizedByObject;
 
 # ── Business Intent ─────────────────────────────────────
@@ -181,7 +294,12 @@ entity VibeProduct sub VibeSoftwareSystem,
 
 entity VibeAgent sub VibeSoftwareSystem,
   plays assignsPerformer:performer,
-  plays assignmentAllocatedBy:assigner;
+  plays assignmentAllocatedBy:assigner,
+  plays triagePerformedBy:triager,
+  plays planningPerformedBy:planner,
+  plays resolutionPerformedBy:resolver,
+  plays closurePerformedBy:closer,
+  plays submissionProvidedBy:submitter;
 
 entity VibeAgentProfile sub Specification,
   owns name,
@@ -212,6 +330,66 @@ entity VibeGitRepository sub VibeRepository,
   owns defaultBranch,
   plays targetsRepository:repository,
   plays isCategorizedBy:isCategorizedBySubject;
+
+entity VibeSubmission sub Message,
+  owns name,
+  owns description,
+  plays submissionProvidedBy:submission,
+  plays issueDerivedFromSubmission:submission,
+  plays triageBasedOnSubmission:submission;
+
+entity VibeIssue sub ContentExpression,
+  owns name,
+  owns description,
+  plays issueDerivedFromSubmission:issue,
+  plays issueProducedByTriage:issue,
+  plays taskAddressesIssue:issue,
+  plays issueAboutProject:issue,
+  plays issueAboutRepository:issue,
+  plays issueCommittedToRelease:issue,
+  plays issueTargetsMilestone:issue,
+  plays duplicateOfIssue:duplicateIssue,
+  plays duplicateOfIssue:canonicalIssue,
+  plays planningDecisionAboutIssue:issue,
+  plays resolutionDecisionAboutIssue:issue,
+  plays closureDecisionAboutIssue:issue;
+
+entity VibeIssueTriageDecision sub Determination,
+  owns name,
+  owns description,
+  plays triageBasedOnSubmission:triageDecision,
+  plays issueProducedByTriage:triageDecision,
+  plays triagePerformedBy:triageDecision;
+
+entity VibeIssuePlanningDecision sub Determination,
+  owns name,
+  owns description,
+  plays planningDecisionAboutIssue:planningDecision,
+  plays planningPerformedBy:planningDecision;
+
+entity VibeIssueResolutionDecision sub Determination,
+  owns name,
+  owns description,
+  plays resolutionDecisionAboutIssue:resolutionDecision,
+  plays resolutionPerformedBy:resolutionDecision;
+
+entity VibeIssueClosureDecision sub Determination,
+  owns name,
+  owns description,
+  plays closureDecisionAboutIssue:closureDecision,
+  plays closurePerformedBy:closureDecision;
+
+entity VibeReleasePlan sub ScheduledEvent,
+  owns name,
+  owns description,
+  plays milestoneInReleasePlan:releasePlan,
+  plays issueCommittedToRelease:releasePlan;
+
+entity VibeMilestone sub ScheduledEvent,
+  owns name,
+  owns description,
+  plays milestoneInReleasePlan:milestone,
+  plays issueTargetsMilestone:milestone;
 
 # ── Feature Specification ───────────────────────────────
 # What: product-level, what does this feature do?
@@ -282,7 +460,8 @@ entity VibeEngineeringTask sub Task,
   plays assignmentForTask:task,
   plays isCategorizedBy:isCategorizedBySubject,
   plays fulfillsRequirement:engineeringTask,
-  plays targetsRepository:engineeringTask;
+  plays targetsRepository:engineeringTask,
+  plays taskAddressesIssue:engineeringTask;
 
 entity VibeVerification sub Specification,
   owns name,
@@ -314,8 +493,18 @@ entity VibeDependency sub Intention,
 
 entity Person,
   plays assignsPerformer:performer,
-  plays assignmentAllocatedBy:assigner;
+  plays assignmentAllocatedBy:assigner,
+  plays triagePerformedBy:triager,
+  plays planningPerformedBy:planner,
+  plays resolutionPerformedBy:resolver,
+  plays closurePerformedBy:closer,
+  plays submissionProvidedBy:submitter;
 
 entity Organization,
   plays assignsPerformer:performer,
-  plays assignmentAllocatedBy:assigner;
+  plays assignmentAllocatedBy:assigner,
+  plays triagePerformedBy:triager,
+  plays planningPerformedBy:planner,
+  plays resolutionPerformedBy:resolver,
+  plays closurePerformedBy:closer,
+  plays submissionProvidedBy:submitter;
