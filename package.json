@@ -1,7 +1,7 @@
 {
   "name": "vibemachine",
   "displayName": "vibemachine",
-  "version": "0.6.0",
+  "version": "0.7.0",
   "description": "Workspace and product modeling package for Vibe Machine planning and delivery.",
   "author": "Vibe Machine",
   "license": "Apache-2.0",
@@ -41,7 +41,7 @@
     "release:check": "../ontology-tooling/bin/ontology-release --repo . --validate-only"
   },
   "manifests": [
-    "manifests/vibemachine-v0.6.0.package-manifest.json"
+    "manifests/vibemachine-v0.7.0.package-manifest.json"
   ],
   "assembly": {
     "loadOrder": [
@@ -58,23 +58,23 @@
       "data/vibemachine-schema-docs.tql",
       "data/vibemachine-provenance.tql",
       "manifests/package-manifest.schema.json",
-      "manifests/vibemachine-v0.6.0.package-manifest.json"
+      "manifests/vibemachine-v0.7.0.package-manifest.json"
     ]
   },
   "migration": {
     "format": 1,
     "supportsUpgradeFrom": [
-      "0.5.x"
+      "0.6.x"
     ],
     "plans": [
       {
-        "id": "vibemachine-0.5.0-to-0.6.0",
-        "from": "0.5.0",
-        "to": "0.6.0",
+        "id": "vibemachine-0.6.0-to-0.7.0",
+        "from": "0.6.0",
+        "to": "0.7.0",
         "mode": "replace",
         "snapshot": {
           "required": true,
-          "label": "pre-vibemachine-0.6.0-migration"
+          "label": "pre-vibemachine-0.7.0-migration"
         },
         "phases": [
           {
@@ -82,7 +82,7 @@
             "units": [
               {
                 "kind": "assert-data",
-                "path": "migrations/preflight/assert-v0.5.0-build.tql"
+                "path": "migrations/preflight/assert-v0.6.0-build.tql"
               }
             ]
           },
@@ -91,7 +91,7 @@
             "units": [
               {
                 "kind": "write",
-                "path": "migrations/v0.5.0-to-v0.6.0.tql"
+                "path": "migrations/v0.6.0-to-v0.7.0.tql"
               }
             ]
           },
@@ -100,7 +100,7 @@
             "units": [
               {
                 "kind": "assert-data",
-                "path": "migrations/verify/assert-v0.6.0-build.tql"
+                "path": "migrations/verify/assert-v0.7.0-build.tql"
               }
             ]
           }
@@ -109,7 +109,7 @@
     ]
   },
   "provenance": {
-    "manifest": "manifests/vibemachine-v0.6.0.package-manifest.json",
+    "manifest": "manifests/vibemachine-v0.7.0.package-manifest.json",
     "status": "bootstrap"
   },
   "legacyDocumentation": {
