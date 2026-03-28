@@ -1,0 +1,25 @@
+# Provenance bootstrap
+# upstream-repo: https://github.com/vibe-machine/ontology-vibemachine
+# upstream-tag: v1.0.0
+# upstream-commit: a134b4ccc1f08c4783e6699caf27271eeaf5e5a9
+# source-artifacts:
+# - package.json
+# - schema/vibemachine.tql
+# - data/vibemachine-status-seeds.tql
+# manifest: manifests/vibemachine-v1.0.0.package-manifest.json
+# generator: hand-authored-package-bootstrap/0.1.0
+define
+
+attribute installationKey, value string;
+attribute installedAt, value string;
+
+entity OntologyModuleInstallation sub Event,
+    owns installationKey @key,
+    owns installedAt,
+    plays installationOfOntologyModuleVersion:installation;
+
+relation installationOfOntologyModuleVersion sub isBasedOn,
+    relates installation as isBasedOnSubject,
+    relates version as isBasedOnObject;
+
+OntologyModuleVersion plays installationOfOntologyModuleVersion:version;

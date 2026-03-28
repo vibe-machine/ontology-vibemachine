@@ -54,6 +54,7 @@ async function main() {
   const headerFiles = [
     "schema/self-describing-schema.tql",
     "schema/package-provenance.tql",
+    "schema/administrative-operations.tql",
     ...manifest.artifacts.filter((artifact) => artifact.path.endsWith(".tql")).map((artifact) => artifact.path),
   ];
 

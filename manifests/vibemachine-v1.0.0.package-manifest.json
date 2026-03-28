@@ -3,16 +3,16 @@
   "manifestVersion": "1.0.0",
   "package": {
     "name": "vibemachine",
-    "version": "0.9.2"
+    "version": "1.0.0"
   },
   "upstream": {
     "repoUrl": "https://github.com/vibe-machine/ontology-vibemachine",
-    "tag": "v0.9.2",
-    "commit": "d3bfaf8161824c3bc4c7f49b2f3bd7d33025cc6d",
+    "tag": "v1.0.0",
+    "commit": "a134b4ccc1f08c4783e6699caf27271eeaf5e5a9",
     "sourceArtifacts": [
       {
         "path": "package.json",
-        "sha256": "9a002c5eb3eb1547d846a44a525cd776d8cb80918a92bb02bd44edb5562996ea"
+        "sha256": "763a3c854a10468612f4da26755f6528419fb2a53e61cf4a6b2357f5879d1bf5"
       },
       {
         "path": "schema/vibemachine.tql",
@@ -27,23 +27,28 @@
   "generator": {
     "name": "hand-authored-package-bootstrap",
     "version": "0.1.0",
-    "generatedAt": "2026-03-28T11:53:18Z"
+    "generatedAt": "2026-03-28T14:03:46Z"
   },
   "artifacts": [
     {
       "kind": "meta-schema",
       "path": "schema/self-describing-schema.tql",
-      "sha256": "eda0ea51c1bdd7bdf69f9902f548e7049b9f41b3dc397eb70acf3963b48fcc65"
+      "sha256": "f270956b262497291b61fe50ae0655994bd10bef37fe74b7786f5efee67f6ae8"
     },
     {
       "kind": "provenance-schema",
       "path": "schema/package-provenance.tql",
-      "sha256": "a77e874ce41b1c8fba468599d7d948a205a7bf85d6eec1fc2b713d90dbc568bd"
+      "sha256": "d04eaa72ec8bb552c5d4a2a7d9c78c2b3ed0dc5126e89c8b31f869d1537617e5"
+    },
+    {
+      "kind": "administrative-schema",
+      "path": "schema/administrative-operations.tql",
+      "sha256": "06c66415537dd909e3bb051f55dfb316ac12bcc8a2e15557bf7b398650076ef1"
     },
     {
       "kind": "documentation",
       "path": "data/vibemachine-schema-docs.tql",
-      "sha256": "9807c52a64fa42fbecfb6325e9ea80e4656ce5351e48a808258671b79cfd62b2"
+      "sha256": "b1387524602227badb1d1d9675479754c0b3698b965c0ff694f151c85a6df802"
     },
     {
       "kind": "manifest-schema",
@@ -53,7 +58,7 @@
     {
       "kind": "provenance-seeds",
       "path": "data/vibemachine-provenance.tql",
-      "sha256": "9813fc4d40f1399bf8da7bd4559e82206ee43b00d41da0f4474bcede92c60270"
+      "sha256": "8046dd8fc6673684104b2c69f0a75ef1138ad06be25e860264578bb6fa1f20aa"
     }
   ]
 }

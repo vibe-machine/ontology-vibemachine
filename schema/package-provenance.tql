@@ -1,20 +1,19 @@
 # Provenance bootstrap
 # upstream-repo: https://github.com/vibe-machine/ontology-vibemachine
-# upstream-tag: v0.9.2
-# upstream-commit: d3bfaf8161824c3bc4c7f49b2f3bd7d33025cc6d
+# upstream-tag: v1.0.0
+# upstream-commit: a134b4ccc1f08c4783e6699caf27271eeaf5e5a9
 # source-artifacts:
 # - package.json
 # - schema/vibemachine.tql
 # - data/vibemachine-status-seeds.tql
-# manifest: manifests/vibemachine-v0.9.2.package-manifest.json
+# manifest: manifests/vibemachine-v1.0.0.package-manifest.json
 # generator: hand-authored-package-bootstrap/0.1.0
 define
 
-attribute buildKey, value string;
-attribute packageName, value string;
-attribute packageVersion, value string;
-attribute upstreamRepoUrl, value string;
-attribute upstreamTag, value string;
+attribute moduleName, value string;
+attribute moduleRepoUrl, value string;
+attribute moduleVersionKey, value string;
+attribute moduleVersion, value string;
 attribute upstreamCommit, value string;
 attribute manifestPath, value string;
 attribute generatorName, value string;
@@ -26,36 +25,42 @@ attribute artifactPath, value string;
 attribute artifactKind, value string;
 attribute artifactSha256, value string;
 
-entity OntologyPackageBuild,
-    owns buildKey @key,
-    owns packageName,
-    owns packageVersion,
-    owns upstreamRepoUrl,
-    owns upstreamTag,
+entity OntologyModule sub SchemaMetaData,
+    owns moduleName,
+    owns moduleRepoUrl @key,
+    plays ontologyModuleVersionOf:module;
+
+entity OntologyModuleVersion sub SchemaMetaData,
+    owns moduleVersionKey @key,
+    owns moduleVersion,
     owns upstreamCommit,
     owns manifestPath,
     owns generatorName,
     owns generatorVersion,
-    owns generatedAt;
+    owns generatedAt,
+    plays ontologyModuleVersionOf:version,
+    plays ontologyModuleVersionBasedOnSourceArtifact:version,
+    plays generatedArtifactForOntologyModuleVersion:version;
 
-entity SourceArtifactRecord,
+entity SourceArtifactRecord sub SchemaMetaData,
     owns sourcePath,
-    owns sourceSha256;
+    owns sourceSha256,
+    plays ontologyModuleVersionBasedOnSourceArtifact:sourceArtifact;
 
-entity GeneratedArtifactRecord,
+entity GeneratedArtifactRecord sub SchemaMetaData,
     owns artifactPath,
     owns artifactKind,
-    owns artifactSha256;
+    owns artifactSha256,
+    plays generatedArtifactForOntologyModuleVersion:generatedArtifact;
 
-relation buildHasSourceArtifact,
-    relates build,
-    relates sourceArtifact;
+relation ontologyModuleVersionOf sub isBasedOn,
+    relates version as isBasedOnSubject,
+    relates module as isBasedOnObject;
 
-relation buildHasGeneratedArtifact,
-    relates build,
-    relates generatedArtifact;
+relation ontologyModuleVersionBasedOnSourceArtifact sub isBasedOn,
+    relates version as isBasedOnSubject,
+    relates sourceArtifact as isBasedOnObject;
 
-OntologyPackageBuild plays buildHasSourceArtifact:build;
-SourceArtifactRecord plays buildHasSourceArtifact:sourceArtifact;
-OntologyPackageBuild plays buildHasGeneratedArtifact:build;
-GeneratedArtifactRecord plays buildHasGeneratedArtifact:generatedArtifact;
+relation generatedArtifactForOntologyModuleVersion sub isAbout,
+    relates generatedArtifact as isAboutSubject,
+    relates version as isAboutObject;

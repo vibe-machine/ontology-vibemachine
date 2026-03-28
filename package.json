@@ -1,7 +1,7 @@
 {
   "name": "vibemachine",
   "displayName": "vibemachine",
-  "version": "0.9.2",
+  "version": "1.0.0",
   "description": "Workspace and product modeling package for Vibe Machine planning and delivery.",
   "author": "Vibe Machine",
   "license": "Apache-2.0",
@@ -17,6 +17,10 @@
       "file": "schema/package-provenance.tql"
     },
     {
+      "name": "administrative-operations",
+      "file": "schema/administrative-operations.tql"
+    },
+    {
       "name": "vibemachine",
       "file": "schema/vibemachine.tql"
     }
@@ -29,7 +33,7 @@
   "dependencies": [
     {
       "name": "gist",
-      "version": ">=1.1.0"
+      "version": ">=2.0.0"
     }
   ],
   "scripts": {
@@ -42,12 +46,13 @@
     "release:check": "../ontology-tooling/bin/ontology-release --repo . --validate-only"
   },
   "manifests": [
-    "manifests/vibemachine-v0.9.2.package-manifest.json"
+    "manifests/vibemachine-v1.0.0.package-manifest.json"
   ],
   "assembly": {
     "loadOrder": [
       "schema/self-describing-schema.tql",
       "schema/package-provenance.tql",
+      "schema/administrative-operations.tql",
       "schema/vibemachine.tql",
       "data/vibemachine-status-seeds.tql",
       "data/vibemachine-provenance.tql",
@@ -56,14 +61,15 @@
     "generatedArtifacts": [
       "schema/self-describing-schema.tql",
       "schema/package-provenance.tql",
+      "schema/administrative-operations.tql",
       "data/vibemachine-schema-docs.tql",
       "data/vibemachine-provenance.tql",
       "manifests/package-manifest.schema.json",
-      "manifests/vibemachine-v0.9.2.package-manifest.json"
+      "manifests/vibemachine-v1.0.0.package-manifest.json"
     ]
   },
   "provenance": {
-    "manifest": "manifests/vibemachine-v0.9.2.package-manifest.json",
+    "manifest": "manifests/vibemachine-v1.0.0.package-manifest.json",
     "status": "bootstrap"
   },
   "legacyDocumentation": {
