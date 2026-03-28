@@ -1,7 +1,7 @@
 # Provenance bootstrap
 # upstream-repo: https://github.com/vibe-machine/ontology-vibemachine
 # upstream-tag: v0.8.0
-# upstream-commit: 9eb3ecfa3a7027d7d6826b662a661e316d38d11c
+# upstream-commit: f7a9a3cee40f13a26fdd5b38e4715c6e803b2797
 # source-artifacts:
 # - package.json
 # - schema/vibemachine.tql
@@ -20,33 +20,33 @@ put $view_domain isa SchemaView,
   has viewOrder 10;
 
 put $group_delivery isa SchemaGroup,
-  has groupKey "delivery-context",
-  has groupName "Delivery Context",
-  has groupDescription "Workspace, project, product, and repository structures that define the delivery environment.",
+  has groupKey "delivery",
+  has groupName "Delivery",
+  has groupDescription "Workspace, control booth, project, product, software systems, release plans, and milestones that define the delivery environment.",
   has groupOrder 10;
-
-put $group_systems isa SchemaGroup,
-  has groupKey "software-systems",
-  has groupName "Software Systems",
-  has groupDescription "Software systems, released versions, agents, and agent execution profiles.",
-  has groupOrder 20;
 
 put $group_issues isa SchemaGroup,
   has groupKey "issue-tracking",
   has groupName "Issue Tracking",
-  has groupDescription "Submission, issue, planning, resolution, closure, release, and milestone concepts.",
-  has groupOrder 30;
+  has groupDescription "Submission, issue, triage, planning, resolution, and closure concepts.",
+  has groupOrder 20;
 
 put $group_product isa SchemaGroup,
-  has groupKey "product-definition",
-  has groupName "Product Definition",
-  has groupDescription "Business, product, feature, requirement, and design intent concepts.",
+  has groupKey "product",
+  has groupName "Product",
+  has groupDescription "Business objectives, product and feature specifications, requirements, decisions, constraints, and questions.",
+  has groupOrder 30;
+
+put $group_engineering isa SchemaGroup,
+  has groupKey "engineering",
+  has groupName "Engineering",
+  has groupDescription "Implementation specifications, engineering tasks, verification, evaluation, dependencies, agents, repositories, and task assignments.",
   has groupOrder 40;
 
-put $group_implementation isa SchemaGroup,
-  has groupKey "implementation",
-  has groupName "Implementation",
-  has groupDescription "Implementation specifications, engineering tasks, verification, evaluation, and dependency tracking.",
+put $group_people isa SchemaGroup,
+  has groupKey "people",
+  has groupName "People",
+  has groupDescription "Human and organizational actors that participate in delivery work.",
   has groupOrder 50;
 
 put $group_reference isa SchemaGroup,
@@ -56,10 +56,10 @@ put $group_reference isa SchemaGroup,
   has groupOrder 60;
 
 put (group: $group_delivery, view: $view_domain) isa groupInView;
-put (group: $group_systems, view: $view_domain) isa groupInView;
 put (group: $group_issues, view: $view_domain) isa groupInView;
 put (group: $group_product, view: $view_domain) isa groupInView;
-put (group: $group_implementation, view: $view_domain) isa groupInView;
+put (group: $group_engineering, view: $view_domain) isa groupInView;
+put (group: $group_people, view: $view_domain) isa groupInView;
 put (group: $group_reference, view: $view_domain) isa groupInView;
 
 # ── Business Intent ─────────────────────────────────────
@@ -71,7 +71,7 @@ put $r1 isa SchemaResource,
   has kind "entity",
   has prefLabel "VibeBusinessObjective",
   has definition "A business aspiration that drives product work. Represents the why behind feature development.",
-  has scopeNote "Extends gist Intention. Owns name and description. Connected to features via the motivatedBy relation. Examples: increase revenue, reduce churn, expand to new market.";
+  has scopeNote "Extends gist Intention. Owns name, objective_id, and description. Connected to features via the motivatedBy relation. Examples: increase revenue, reduce churn, expand to new market.";
 put (resource: $r1, module: $module) isa inModule;
 put (resource: $r1, group: $group_product) isa resourceInGroup;
 
@@ -84,9 +84,20 @@ put $r2 isa SchemaResource,
   has kind "entity",
   has prefLabel "VibeWorkspace",
   has definition "A structural collection of repositories, infrastructure, and resources allocated to ongoing work.",
-  has scopeNote "Extends gist Collection. Owns description. Projects use workspaces (usesWorkspace). Repositories belong to workspaces (belongsToWorkspace).";
+  has scopeNote "Extends gist Collection. Owns workspaceName, workspace_id, and description. Projects use workspaces (usesWorkspace). Repositories belong to workspaces (belongsToWorkspace).";
 put (resource: $r2, module: $module) isa inModule;
 put (resource: $r2, group: $group_delivery) isa resourceInGroup;
+
+put $r2a isa SchemaResource,
+  has docKey "https://github.com/vibe-machine/ontology-vibemachine#VibeControlBooth",
+  has iri "https://github.com/vibe-machine/ontology-vibemachine#VibeControlBooth",
+  has typeLabel "VibeControlBooth",
+  has kind "entity",
+  has prefLabel "VibeControlBooth",
+  has definition "A user-configurable control booth that groups direct focus entities as the starting point for application-driven traversal.",
+  has scopeNote "Extends gist Collection. Owns control_booth_id, boothName, and description. Members link through controlBoothIncludes. Ownership and collaboration are modeled through controlBoothOwnedBy and controlBoothHasCollaborator.";
+put (resource: $r2a, module: $module) isa inModule;
+put (resource: $r2a, group: $group_delivery) isa resourceInGroup;
 
 put $r3 isa SchemaResource,
   has docKey "https://github.com/vibe-machine/ontology-vibemachine#VibeProject",
@@ -95,7 +106,7 @@ put $r3 isa SchemaResource,
   has kind "entity",
   has prefLabel "VibeProject",
   has definition "Goal-directed work over time, pursuing a business objective and producing a product.",
-  has scopeNote "Extends gist Project. Owns name and description. hasGoal links to VibeBusinessObjective. usesWorkspace links to VibeWorkspace. Feature specifications are about a project (specifiesFeatureFor).";
+  has scopeNote "Extends gist Project. Owns name, project_id, and description. hasGoal links to VibeBusinessObjective. usesWorkspace links to VibeWorkspace. Feature specifications are about a project (specifiesFeatureFor).";
 put (resource: $r3, module: $module) isa inModule;
 put (resource: $r3, group: $group_delivery) isa resourceInGroup;
 
@@ -108,7 +119,7 @@ put $r3a isa SchemaResource,
   has definition "An enduring software system tracked as a first-class system in the ontology, independent of any one released version.",
   has scopeNote "Extends gist System. Owns name and description. This is the stable software thing that can have many released versions over time. VibeProduct and VibeAgent are both specializations of VibeSoftwareSystem. Released versions link through softwareSystemConformsToVersion.";
 put (resource: $r3a, module: $module) isa inModule;
-put (resource: $r3a, group: $group_systems) isa resourceInGroup;
+put (resource: $r3a, group: $group_delivery) isa resourceInGroup;
 
 put $r3b isa SchemaResource,
   has docKey "https://github.com/vibe-machine/ontology-vibemachine#VibeSoftwareSystemVersion",
@@ -119,7 +130,7 @@ put $r3b isa SchemaResource,
   has definition "A released version specification of a software system.",
   has scopeNote "Extends gist Specification. Owns name, description, and versionName. Represents a released product version, not the long-lived software system itself. Software systems conform to these version specifications via softwareSystemConformsToVersion. Agent profiles can also be tied to a specific released version via agentProfileForVersion.";
 put (resource: $r3b, module: $module) isa inModule;
-put (resource: $r3b, group: $group_systems) isa resourceInGroup;
+put (resource: $r3b, group: $group_delivery) isa resourceInGroup;
 
 put $r4 isa SchemaResource,
   has docKey "https://github.com/vibe-machine/ontology-vibemachine#VibeProduct",
@@ -141,7 +152,7 @@ put $r4a isa SchemaResource,
   has definition "A software agent that can be assigned to perform engineering work.",
   has scopeNote "Extends VibeSoftwareSystem. Participates in the task-assignment pattern both as a performer (assignsPerformer) and as a possible assigner (assignmentAllocatedBy). This is the software-system identity of the agent, separate from any one profile or assignment context.";
 put (resource: $r4a, module: $module) isa inModule;
-put (resource: $r4a, group: $group_systems) isa resourceInGroup;
+put (resource: $r4a, group: $group_engineering) isa resourceInGroup;
 
 put $r4b isa SchemaResource,
   has docKey "https://github.com/vibe-machine/ontology-vibemachine#VibeAgentProfile",
@@ -152,7 +163,7 @@ put $r4b isa SchemaResource,
   has definition "A specification describing how an agent should be configured for work.",
   has scopeNote "Extends gist Specification. Owns name and description. Used to capture the execution profile for an assigned agent, such as tool/runtime configuration, skills, constraints, or other execution-shaping settings. Profiles can be linked to a released software version via agentProfileForVersion and attached to a concrete task assignment via assignmentUsesProfile.";
 put (resource: $r4b, module: $module) isa inModule;
-put (resource: $r4b, group: $group_systems) isa resourceInGroup;
+put (resource: $r4b, group: $group_engineering) isa resourceInGroup;
 
 put $r4c isa SchemaResource,
   has docKey "https://github.com/vibe-machine/ontology-vibemachine#VibeTaskAssignment",
@@ -163,7 +174,7 @@ put $r4c isa SchemaResource,
   has definition "A temporal assignment that binds a performer to an engineering task, optionally under an agent profile and with an explicit assigner.",
   has scopeNote "Extends gist Assignment. Owns description. Links to the assigned performer via assignsPerformer, to the task via assignmentForTask, optionally to an agent profile via assignmentUsesProfile, and to the assigning actor via assignmentAllocatedBy. This keeps assignment history separate from the task itself.";
 put (resource: $r4c, module: $module) isa inModule;
-put (resource: $r4c, group: $group_implementation) isa resourceInGroup;
+put (resource: $r4c, group: $group_engineering) isa resourceInGroup;
 
 put $r5 isa SchemaResource,
   has docKey "https://github.com/vibe-machine/ontology-vibemachine#VibeProductSpecification",
@@ -185,7 +196,7 @@ put $r6 isa SchemaResource,
   has definition "An abstract source-code component that belongs to a workspace and contributes to a product.",
   has scopeNote "Extends gist Component. Owns description. Abstract — use VibeGitRepository for concrete instances. Linked to workspace via belongsToWorkspace.";
 put (resource: $r6, module: $module) isa inModule;
-put (resource: $r6, group: $group_delivery) isa resourceInGroup;
+put (resource: $r6, group: $group_engineering) isa resourceInGroup;
 
 put $r7 isa SchemaResource,
   has docKey "https://github.com/vibe-machine/ontology-vibemachine#VibeGitRepository",
@@ -194,9 +205,9 @@ put $r7 isa SchemaResource,
   has kind "entity",
   has prefLabel "VibeGitRepository",
   has definition "A Git-based source code repository with a remote URL and default branch.",
-  has scopeNote "Extends VibeRepository. Categorized by VibeRepositoryHostingPlatform (GitHub, GitLab, etc.). Engineering tasks and issues can target repositories via targetsRepository and issueAboutRepository.";
+  has scopeNote "Extends VibeRepository. Owns remoteUrl as the identity key and defaultBranch. Categorized by VibeRepositoryHostingPlatform (GitHub, GitLab, etc.). Engineering tasks and issues can target repositories via targetsRepository and issueAboutRepository.";
 put (resource: $r7, module: $module) isa inModule;
-put (resource: $r7, group: $group_delivery) isa resourceInGroup;
+put (resource: $r7, group: $group_engineering) isa resourceInGroup;
 
 # ── Issue Tracking ──────────────────────────────────────
 
@@ -218,7 +229,7 @@ put $r7b isa SchemaResource,
   has kind "entity",
   has prefLabel "VibeIssue",
   has definition "A normalized, tracked expression of a matter of concern in the software-delivery domain.",
-  has scopeNote "Extends gist ContentExpression. Owns name and description. The issue is the stabilized tracked record that results from interpreting submissions. It can be categorized by kind, status, priority, severity, and resolution. It can be linked to projects, repositories, releases, milestones, submissions, and engineering tasks. It is not itself a task.";
+  has scopeNote "Extends gist ContentExpression. Owns name, issue_id, and description. The issue is the stabilized tracked record that results from interpreting submissions. It can be categorized by kind, status, priority, severity, and resolution. It can be linked to projects, repositories, releases, milestones, submissions, and engineering tasks. It is not itself a task.";
 put (resource: $r7b, module: $module) isa inModule;
 put (resource: $r7b, group: $group_issues) isa resourceInGroup;
 
@@ -273,9 +284,9 @@ put $r7g isa SchemaResource,
   has kind "entity",
   has prefLabel "VibeReleasePlan",
   has definition "A scheduled delivery window representing a planned release.",
-  has scopeNote "Extends gist ScheduledEvent. Owns name and description. A release plan is the scheduled delivery container that issues may be committed to. Milestones can be part of one or more release plans.";
+  has scopeNote "Extends gist ScheduledEvent. Owns name, release_plan_id, and description. A release plan is the scheduled delivery container that issues may be committed to. Milestones can be part of one or more release plans.";
 put (resource: $r7g, module: $module) isa inModule;
-put (resource: $r7g, group: $group_issues) isa resourceInGroup;
+put (resource: $r7g, group: $group_delivery) isa resourceInGroup;
 
 put $r7h isa SchemaResource,
   has docKey "https://github.com/vibe-machine/ontology-vibemachine#VibeMilestone",
@@ -284,9 +295,9 @@ put $r7h isa SchemaResource,
   has kind "entity",
   has prefLabel "VibeMilestone",
   has definition "A scheduled milestone point within one or more release plans.",
-  has scopeNote "Extends gist ScheduledEvent. Owns name and description. Milestones are point-in-time planning markers. Issues can target a milestone, and the same milestone may participate in multiple release plans when convergence across schedules is needed.";
+  has scopeNote "Extends gist ScheduledEvent. Owns name, milestone_id, and description. Milestones are point-in-time planning markers. Issues can target a milestone, and the same milestone may participate in multiple release plans when convergence across schedules is needed.";
 put (resource: $r7h, module: $module) isa inModule;
-put (resource: $r7h, group: $group_issues) isa resourceInGroup;
+put (resource: $r7h, group: $group_delivery) isa resourceInGroup;
 
 # ── Feature Specification ───────────────────────────────
 
@@ -297,7 +308,7 @@ put $r8 isa SchemaResource,
   has kind "entity",
   has prefLabel "VibeFeatureSpecification",
   has definition "A structured prose document specifying a product feature. Contains content items that become identity nodes in the knowledge graph.",
-  has scopeNote "Extends gist FormattedContent. Owns name and description. Motivated by a VibeBusinessObjective (motivatedBy). Part of a VibeProductSpecification (featureOfProduct). About a VibeProject (specifiesFeatureFor). Contains items via containsItem.";
+  has scopeNote "Extends gist FormattedContent. Owns name, description, and document_id. Motivated by a VibeBusinessObjective (motivatedBy). Part of a VibeProductSpecification (featureOfProduct). About a VibeProject (specifiesFeatureFor). Contains items via containsItem.";
 put (resource: $r8, module: $module) isa inModule;
 put (resource: $r8, group: $group_product) isa resourceInGroup;
 
@@ -356,7 +367,7 @@ put $r13 isa SchemaResource,
   has definition "A structured document specifying how to build a feature. Contains engineering tasks, verifications, evals, and dependencies.",
   has scopeNote "Extends gist FormattedContent. Owns name and description. Derived from a feature specification via implementsFeature.";
 put (resource: $r13, module: $module) isa inModule;
-put (resource: $r13, group: $group_implementation) isa resourceInGroup;
+put (resource: $r13, group: $group_engineering) isa resourceInGroup;
 
 put $r14 isa SchemaResource,
   has docKey "https://github.com/vibe-machine/ontology-vibemachine#VibeEngineeringTask",
@@ -367,7 +378,7 @@ put $r14 isa SchemaResource,
   has definition "A concrete implementation work item. Represents a unit of engineering work that fulfills a requirement.",
   has scopeNote "Extends gist Task. Owns name and description. Targets a repository (targetsRepository). Fulfills a requirement (fulfillsRequirement). May address one or more issues via taskAddressesIssue. May be the target of a task assignment via assignmentForTask. Loosely coupled to external task systems via externalTaskRef and VibeTaskManagementSystem category.";
 put (resource: $r14, module: $module) isa inModule;
-put (resource: $r14, group: $group_implementation) isa resourceInGroup;
+put (resource: $r14, group: $group_engineering) isa resourceInGroup;
 
 put $r15 isa SchemaResource,
   has docKey "https://github.com/vibe-machine/ontology-vibemachine#VibeVerification",
@@ -378,7 +389,7 @@ put $r15 isa SchemaResource,
   has definition "A verification step specifying what must be true to confirm correct implementation.",
   has scopeNote "Extends gist Specification. Owns name and description. May be manual or automated.";
 put (resource: $r15, module: $module) isa inModule;
-put (resource: $r15, group: $group_implementation) isa resourceInGroup;
+put (resource: $r15, group: $group_engineering) isa resourceInGroup;
 
 put $r16a isa SchemaResource,
   has docKey "https://github.com/vibe-machine/ontology-vibemachine#VibeEval",
@@ -389,7 +400,7 @@ put $r16a isa SchemaResource,
   has definition "An evaluation criterion expressed as a content item. Specifies a measurable check for assessing implementation quality.",
   has scopeNote "Extends gist Specification. Owns name and description. Used in implementation specifications for quality gates.";
 put (resource: $r16a, module: $module) isa inModule;
-put (resource: $r16a, group: $group_implementation) isa resourceInGroup;
+put (resource: $r16a, group: $group_engineering) isa resourceInGroup;
 
 put $r16 isa SchemaResource,
   has docKey "https://github.com/vibe-machine/ontology-vibemachine#VibeDependency",
@@ -400,7 +411,7 @@ put $r16 isa SchemaResource,
   has definition "A dependency expressed as a content item. Represents a prerequisite that must be satisfied before work can proceed.",
   has scopeNote "Extends gist Intention. Owns name and description. Used in implementation specifications for ordering constraints.";
 put (resource: $r16, module: $module) isa inModule;
-put (resource: $r16, group: $group_implementation) isa resourceInGroup;
+put (resource: $r16, group: $group_engineering) isa resourceInGroup;
 
 # ── Specialized Relations ───────────────────────────────
 
@@ -503,6 +514,16 @@ put $r25 isa SchemaResource,
   has definition "Links a repository to the workspace it belongs to.",
   has scopeNote "Specializes gist isMemberOf. Roles: repository, workspace.";
 put (resource: $r25, module: $module) isa inModule;
+
+put $r25_cb isa SchemaResource,
+  has docKey "https://github.com/vibe-machine/ontology-vibemachine#controlBoothIncludes",
+  has iri "https://github.com/vibe-machine/ontology-vibemachine#controlBoothIncludes",
+  has typeLabel "controlBoothIncludes",
+  has kind "relation",
+  has prefLabel "controlBoothIncludes",
+  has definition "Links a control booth to a directly included member entity.",
+  has scopeNote "Specializes gist isMemberOf. Roles: member, controlBooth. The application uses this relation to record direct control-booth membership.";
+put (resource: $r25_cb, module: $module) isa inModule;
 
 put $r25a isa SchemaResource,
   has docKey "https://github.com/vibe-machine/ontology-vibemachine#agentProfileForVersion",
@@ -734,6 +755,26 @@ put $r25w isa SchemaResource,
   has scopeNote "Specializes gist hasParticipant. Roles: closureDecision, closer.";
 put (resource: $r25w, module: $module) isa inModule;
 
+put $r25x isa SchemaResource,
+  has docKey "https://github.com/vibe-machine/ontology-vibemachine#controlBoothOwnedBy",
+  has iri "https://github.com/vibe-machine/ontology-vibemachine#controlBoothOwnedBy",
+  has typeLabel "controlBoothOwnedBy",
+  has kind "relation",
+  has prefLabel "controlBoothOwnedBy",
+  has definition "Links a control booth to an owner that governs and curates it.",
+  has scopeNote "Specializes gist isGovernedBy. Roles: controlBooth, owner. Owners are the primary stewards of the control booth.";
+put (resource: $r25x, module: $module) isa inModule;
+
+put $r25y isa SchemaResource,
+  has docKey "https://github.com/vibe-machine/ontology-vibemachine#controlBoothHasCollaborator",
+  has iri "https://github.com/vibe-machine/ontology-vibemachine#controlBoothHasCollaborator",
+  has typeLabel "controlBoothHasCollaborator",
+  has kind "relation",
+  has prefLabel "controlBoothHasCollaborator",
+  has definition "Links a control booth to a collaborator that participates in curating or using it.",
+  has scopeNote "Specializes gist hasParticipant. Roles: controlBooth, collaborator. Collaborators are distinct from owners.";
+put (resource: $r25y, module: $module) isa inModule;
+
 # ── Original Relations ──────────────────────────────────
 
 put $r26 isa SchemaResource,
@@ -755,6 +796,30 @@ put $r27 isa SchemaResource,
   has definition "Links a specification document to the content items it contains.",
   has scopeNote "Roles: container (VibeFeatureSpecification or VibeImplementationSpecification), item (any content item entity).";
 put (resource: $r27, module: $module) isa inModule;
+
+# ── People ─────────────────────────────────────────────
+
+put $r_person isa SchemaResource,
+  has docKey "https://github.com/vibe-machine/ontology-vibemachine#Person",
+  has iri "https://github.com/vibe-machine/ontology-vibemachine#Person",
+  has typeLabel "Person",
+  has kind "entity",
+  has prefLabel "Person",
+  has definition "A human actor who can participate in delivery work.",
+  has scopeNote "Inherited from gist. Can serve as a performer (assignsPerformer), assigner (assignmentAllocatedBy), submitter (submissionProvidedBy), or decision actor in triage, planning, resolution, and closure relations.";
+put (resource: $r_person, module: $module) isa inModule;
+put (resource: $r_person, group: $group_people) isa resourceInGroup;
+
+put $r_org isa SchemaResource,
+  has docKey "https://github.com/vibe-machine/ontology-vibemachine#Organization",
+  has iri "https://github.com/vibe-machine/ontology-vibemachine#Organization",
+  has typeLabel "Organization",
+  has kind "entity",
+  has prefLabel "Organization",
+  has definition "An organizational actor that can participate in delivery work.",
+  has scopeNote "Inherited from gist. Can serve as a performer (assignsPerformer), assigner (assignmentAllocatedBy), or submitter (submissionProvidedBy).";
+put (resource: $r_org, module: $module) isa inModule;
+put (resource: $r_org, group: $group_people) isa resourceInGroup;
 
 # ── Categories ──────────────────────────────────────────
 
@@ -905,7 +970,7 @@ put $r36 isa SchemaResource,
   has kind "attribute",
   has prefLabel "remoteUrl",
   has definition "The remote URL of a git repository (e.g., the origin).",
-  has scopeNote "Used on VibeGitRepository.";
+  has scopeNote "Used as the identity key on VibeGitRepository.";
 put (resource: $r36, module: $module) isa inModule;
 
 put $r37 isa SchemaResource,
@@ -927,3 +992,83 @@ put $r37a isa SchemaResource,
   has definition "A released version label for a software-system version, such as 1.2.3 or 2026.03.",
   has scopeNote "Used on VibeSoftwareSystemVersion to distinguish the released version specification from the long-lived software system.";
 put (resource: $r37a, module: $module) isa inModule;
+
+put $r37b isa SchemaResource,
+  has docKey "https://github.com/vibe-machine/ontology-vibemachine#control_booth_id",
+  has iri "https://github.com/vibe-machine/ontology-vibemachine#control_booth_id",
+  has typeLabel "control_booth_id",
+  has kind "attribute",
+  has prefLabel "control_booth_id",
+  has definition "A stable identifier for a VibeControlBooth.",
+  has scopeNote "Used as @key on VibeControlBooth.";
+put (resource: $r37b, module: $module) isa inModule;
+
+put $r37c isa SchemaResource,
+  has docKey "https://github.com/vibe-machine/ontology-vibemachine#boothName",
+  has iri "https://github.com/vibe-machine/ontology-vibemachine#boothName",
+  has typeLabel "boothName",
+  has kind "attribute",
+  has prefLabel "boothName",
+  has definition "A human-readable name for a VibeControlBooth.",
+  has scopeNote "Used on VibeControlBooth.";
+put (resource: $r37c, module: $module) isa inModule;
+
+put $r37d isa SchemaResource,
+  has docKey "https://github.com/vibe-machine/ontology-vibemachine#workspace_id",
+  has iri "https://github.com/vibe-machine/ontology-vibemachine#workspace_id",
+  has typeLabel "workspace_id",
+  has kind "attribute",
+  has prefLabel "workspace_id",
+  has definition "A stable identifier for a VibeWorkspace.",
+  has scopeNote "Used as @key on VibeWorkspace.";
+put (resource: $r37d, module: $module) isa inModule;
+
+put $r37e isa SchemaResource,
+  has docKey "https://github.com/vibe-machine/ontology-vibemachine#project_id",
+  has iri "https://github.com/vibe-machine/ontology-vibemachine#project_id",
+  has typeLabel "project_id",
+  has kind "attribute",
+  has prefLabel "project_id",
+  has definition "A stable identifier for a VibeProject.",
+  has scopeNote "Used as @key on VibeProject.";
+put (resource: $r37e, module: $module) isa inModule;
+
+put $r37f isa SchemaResource,
+  has docKey "https://github.com/vibe-machine/ontology-vibemachine#objective_id",
+  has iri "https://github.com/vibe-machine/ontology-vibemachine#objective_id",
+  has typeLabel "objective_id",
+  has kind "attribute",
+  has prefLabel "objective_id",
+  has definition "A stable identifier for a VibeBusinessObjective.",
+  has scopeNote "Used as @key on VibeBusinessObjective.";
+put (resource: $r37f, module: $module) isa inModule;
+
+put $r37g isa SchemaResource,
+  has docKey "https://github.com/vibe-machine/ontology-vibemachine#issue_id",
+  has iri "https://github.com/vibe-machine/ontology-vibemachine#issue_id",
+  has typeLabel "issue_id",
+  has kind "attribute",
+  has prefLabel "issue_id",
+  has definition "A graph-native stable identifier for a VibeIssue.",
+  has scopeNote "Used as @key on VibeIssue.";
+put (resource: $r37g, module: $module) isa inModule;
+
+put $r37h isa SchemaResource,
+  has docKey "https://github.com/vibe-machine/ontology-vibemachine#release_plan_id",
+  has iri "https://github.com/vibe-machine/ontology-vibemachine#release_plan_id",
+  has typeLabel "release_plan_id",
+  has kind "attribute",
+  has prefLabel "release_plan_id",
+  has definition "A stable identifier for a VibeReleasePlan.",
+  has scopeNote "Used as @key on VibeReleasePlan.";
+put (resource: $r37h, module: $module) isa inModule;
+
+put $r37i isa SchemaResource,
+  has docKey "https://github.com/vibe-machine/ontology-vibemachine#milestone_id",
+  has iri "https://github.com/vibe-machine/ontology-vibemachine#milestone_id",
+  has typeLabel "milestone_id",
+  has kind "attribute",
+  has prefLabel "milestone_id",
+  has definition "A stable identifier for a VibeMilestone.",
+  has scopeNote "Used as @key on VibeMilestone.";
+put (resource: $r37i, module: $module) isa inModule;

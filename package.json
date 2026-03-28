@@ -36,6 +36,7 @@
     "refresh:package-contract": "node ../ontology-gist/tools/package_contract/bootstrap_hand_authored_package.mjs .",
     "validate:bootstrap": "node tools/package_contract/validate_bootstrap.mjs",
     "test:typedb-bootstrap": "node tools/package_contract/validate_typedb_bootstrap.mjs",
+    "test:control-booth": "node tools/package_contract/validate_control_booth.mjs",
     "test": "npm run validate:bootstrap && npm run test:typedb-bootstrap",
     "release": "../ontology-tooling/bin/ontology-release --repo .",
     "release:check": "../ontology-tooling/bin/ontology-release --repo . --validate-only"

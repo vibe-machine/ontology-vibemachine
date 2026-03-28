@@ -30,6 +30,14 @@ attribute versionName, value string;
 attribute repositoryName, value string;
 attribute remoteUrl, value string;
 attribute defaultBranch, value string;
+attribute control_booth_id, value string;
+attribute boothName, value string;
+attribute workspace_id, value string;
+attribute project_id, value string;
+attribute objective_id, value string;
+attribute issue_id, value string;
+attribute release_plan_id, value string;
+attribute milestone_id, value string;
 attribute item_id, value string;
 attribute document_id, value string;
 attribute priority_level, value string;
@@ -89,6 +97,11 @@ relation softwareSystemConformsToVersion sub conformsTo,
 relation belongsToWorkspace sub isMemberOf,
   relates repository as isMemberOfSubject,
   relates workspace as isMemberOfObject;
+
+# "this control booth includes this member"
+relation controlBoothIncludes sub isMemberOf,
+  relates member as isMemberOfSubject,
+  relates controlBooth as isMemberOfObject;
 
 # "this agent profile is for this released software version"
 relation agentProfileForVersion sub isAbout,
@@ -205,6 +218,16 @@ relation closurePerformedBy sub hasParticipant,
   relates closureDecision as hasParticipantSubject,
   relates closer as hasParticipantObject;
 
+# "this control booth is governed by this owner"
+relation controlBoothOwnedBy sub isGovernedBy,
+  relates controlBooth as isGovernedBySubject,
+  relates owner as isGovernedByObject;
+
+# "this control booth has this collaborator"
+relation controlBoothHasCollaborator sub hasParticipant,
+  relates controlBooth as hasParticipantSubject,
+  relates collaborator as hasParticipantObject;
+
 # ── Original Relations ──────────────────────────────────
 
 # "this project uses this workspace"
@@ -216,6 +239,14 @@ relation usesWorkspace,
 relation containsItem,
   relates container,
   relates item;
+
+# Broad supertypes allowed as direct control booth members.
+Collection plays controlBoothIncludes:member;
+Component plays controlBoothIncludes:member;
+Task plays controlBoothIncludes:member;
+Intention plays controlBoothIncludes:member;
+ContentExpression plays controlBoothIncludes:member;
+ScheduledEvent plays controlBoothIncludes:member;
 
 # ── Categories ──────────────────────────────────────────
 
@@ -257,19 +288,30 @@ entity VibeIssueResolution sub Category,
 
 entity VibeBusinessObjective sub Intention,
   owns name,
+  owns objective_id @key,
   owns description,
   plays motivatedBy:objective;
 
 # ── Organizational ──────────────────────────────────────
 
+entity VibeControlBooth sub Collection,
+  owns control_booth_id @key,
+  owns boothName,
+  owns description,
+  plays controlBoothIncludes:controlBooth,
+  plays controlBoothOwnedBy:controlBooth,
+  plays controlBoothHasCollaborator:controlBooth;
+
 entity VibeWorkspace sub Collection,
   owns workspaceName,
+  owns workspace_id @key,
   owns description,
   plays usesWorkspace:workspace,
   plays belongsToWorkspace:workspace;
 
 entity VibeProject sub Project,
   owns name,
+  owns project_id @key,
   owns description,
   plays usesWorkspace:project,
   plays producesProduct:project,
@@ -299,7 +341,9 @@ entity VibeAgent sub VibeSoftwareSystem,
   plays planningPerformedBy:planner,
   plays resolutionPerformedBy:resolver,
   plays closurePerformedBy:closer,
-  plays submissionProvidedBy:submitter;
+  plays submissionProvidedBy:submitter,
+  plays controlBoothOwnedBy:owner,
+  plays controlBoothHasCollaborator:collaborator;
 
 entity VibeAgentProfile sub Specification,
   owns name,
@@ -326,7 +370,7 @@ entity VibeRepository sub Component,
   plays contributesTo:contributesToSubject;
 
 entity VibeGitRepository sub VibeRepository,
-  owns remoteUrl,
+  owns remoteUrl @key,
   owns defaultBranch,
   plays targetsRepository:repository,
   plays isCategorizedBy:isCategorizedBySubject;
@@ -340,6 +384,7 @@ entity VibeSubmission sub Message,
 
 entity VibeIssue sub ContentExpression,
   owns name,
+  owns issue_id @key,
   owns description,
   plays issueDerivedFromSubmission:issue,
   plays issueProducedByTriage:issue,
@@ -381,12 +426,14 @@ entity VibeIssueClosureDecision sub Determination,
 
 entity VibeReleasePlan sub ScheduledEvent,
   owns name,
+  owns release_plan_id @key,
   owns description,
   plays milestoneInReleasePlan:releasePlan,
   plays issueCommittedToRelease:releasePlan;
 
 entity VibeMilestone sub ScheduledEvent,
   owns name,
+  owns milestone_id @key,
   owns description,
   plays milestoneInReleasePlan:milestone,
   plays issueTargetsMilestone:milestone;
@@ -498,7 +545,9 @@ entity Person,
   plays planningPerformedBy:planner,
   plays resolutionPerformedBy:resolver,
   plays closurePerformedBy:closer,
-  plays submissionProvidedBy:submitter;
+  plays submissionProvidedBy:submitter,
+  plays controlBoothOwnedBy:owner,
+  plays controlBoothHasCollaborator:collaborator;
 
 entity Organization,
   plays assignsPerformer:performer,
