@@ -1,7 +1,7 @@
 {
   "name": "vibemachine",
   "displayName": "vibemachine",
-  "version": "0.9.1",
+  "version": "0.9.2",
   "description": "Workspace and product modeling package for Vibe Machine planning and delivery.",
   "author": "Vibe Machine",
   "license": "Apache-2.0",
@@ -42,7 +42,7 @@
     "release:check": "../ontology-tooling/bin/ontology-release --repo . --validate-only"
   },
   "manifests": [
-    "manifests/vibemachine-v0.9.1.package-manifest.json"
+    "manifests/vibemachine-v0.9.2.package-manifest.json"
   ],
   "assembly": {
     "loadOrder": [
@@ -59,58 +59,11 @@
       "data/vibemachine-schema-docs.tql",
       "data/vibemachine-provenance.tql",
       "manifests/package-manifest.schema.json",
-      "manifests/vibemachine-v0.9.1.package-manifest.json"
-    ]
-  },
-  "migration": {
-    "format": 1,
-    "supportsUpgradeFrom": [
-      "0.9.x"
-    ],
-    "plans": [
-      {
-        "id": "vibemachine-0.9.0-to-0.9.1",
-        "from": "0.9.0",
-        "to": "0.9.1",
-        "mode": "replace",
-        "snapshot": {
-          "required": true,
-          "label": "pre-vibemachine-0.9.1-migration"
-        },
-        "phases": [
-          {
-            "id": "preflight",
-            "units": [
-              {
-                "kind": "assert-data",
-                "path": "migrations/preflight/assert-v0.9.0-build.tql"
-              }
-            ]
-          },
-          {
-            "id": "migrate",
-            "units": [
-              {
-                "kind": "write",
-                "path": "migrations/v0.9.0-to-v0.9.1.tql"
-              }
-            ]
-          },
-          {
-            "id": "verify",
-            "units": [
-              {
-                "kind": "assert-data",
-                "path": "migrations/verify/assert-v0.9.1-build.tql"
-              }
-            ]
-          }
-        ]
-      }
+      "manifests/vibemachine-v0.9.2.package-manifest.json"
     ]
   },
   "provenance": {
-    "manifest": "manifests/vibemachine-v0.9.1.package-manifest.json",
+    "manifest": "manifests/vibemachine-v0.9.2.package-manifest.json",
     "status": "bootstrap"
   },
   "legacyDocumentation": {
