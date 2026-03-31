@@ -1,0 +1,5 @@
+#!/usr/bin/env bash
+#MISE description="Validate release readiness without committing or tagging"
+set -euo pipefail
+
+exec node ../ontology-tooling/src/cli/ontology-release.mjs --repo . --validate-only

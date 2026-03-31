@@ -267,6 +267,8 @@ entity VibeIssueKind sub Category,
   owns name @key,
   plays isCategorizedBy:isCategorizedByObject;
 
+# DEPRECATED: replaced by currentlyAtStage process stages in v1.1.0.
+# Retained for backward compatibility during migration.
 entity VibeIssueStatus sub Category,
   owns name @key,
   plays isCategorizedBy:isCategorizedByObject;
@@ -399,28 +401,34 @@ entity VibeIssue sub ContentExpression,
   plays resolutionDecisionAboutIssue:issue,
   plays closureDecisionAboutIssue:issue;
 
-entity VibeIssueTriageDecision sub Determination,
+# ── Gate Decision Base Type ─────────────────────────────
+# Defined here because decision subtypes below reference it.
+# Process-specific relations and extensions are in vibemachine-process.tql.
+
+attribute gate_id, value string;
+attribute rationale, value string;
+
+entity VibeGateDecision sub Determination,
   owns name,
   owns description,
+  owns gate_id @key,
+  owns rationale,
+  owns actualStartDateTime;
+
+entity VibeIssueTriageDecision sub VibeGateDecision,
   plays triageBasedOnSubmission:triageDecision,
   plays issueProducedByTriage:triageDecision,
   plays triagePerformedBy:triageDecision;
 
-entity VibeIssuePlanningDecision sub Determination,
-  owns name,
-  owns description,
+entity VibeIssuePlanningDecision sub VibeGateDecision,
   plays planningDecisionAboutIssue:planningDecision,
   plays planningPerformedBy:planningDecision;
 
-entity VibeIssueResolutionDecision sub Determination,
-  owns name,
-  owns description,
+entity VibeIssueResolutionDecision sub VibeGateDecision,
   plays resolutionDecisionAboutIssue:resolutionDecision,
   plays resolutionPerformedBy:resolutionDecision;
 
-entity VibeIssueClosureDecision sub Determination,
-  owns name,
-  owns description,
+entity VibeIssueClosureDecision sub VibeGateDecision,
   plays closureDecisionAboutIssue:closureDecision,
   plays closurePerformedBy:closureDecision;
 

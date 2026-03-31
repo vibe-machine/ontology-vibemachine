@@ -1,0 +1,5 @@
+#!/usr/bin/env bash
+#MISE description="Load schema and data into a TypeDB container and verify provenance"
+set -euo pipefail
+
+node tools/package_contract/validate_typedb_bootstrap.mjs

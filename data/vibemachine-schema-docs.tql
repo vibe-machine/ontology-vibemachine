@@ -1,12 +1,15 @@
 # Provenance bootstrap
 # upstream-repo: https://github.com/vibe-machine/ontology-vibemachine
-# upstream-tag: v1.0.0
-# upstream-commit: a134b4ccc1f08c4783e6699caf27271eeaf5e5a9
+# upstream-tag: v1.1.0
+# upstream-commit: aa64b7ae0e663a90fa0186666393d375ec78e3e0
 # source-artifacts:
 # - package.json
 # - schema/vibemachine.tql
+# - schema/vibemachine-process.tql
+# - schema/vibemachine-blocks.tql
 # - data/vibemachine-status-seeds.tql
-# manifest: manifests/vibemachine-v1.0.0.package-manifest.json
+# - data/vibemachine-process-seeds.tql
+# manifest: manifests/vibemachine-v1.1.0.package-manifest.json
 # generator: hand-authored-package-bootstrap/0.1.0
 put $module isa SchemaModule,
   has moduleKey "vibemachine",
@@ -1072,3 +1075,417 @@ put $r37i isa SchemaResource,
   has definition "A stable identifier for a VibeMilestone.",
   has scopeNote "Used as @key on VibeMilestone.";
 put (resource: $r37i, module: $module) isa inModule;
+
+# ══════════════════════════════════════════════════════════
+# v1.1.0: Process Modeling & Blocks Layer
+# ══════════════════════════════════════════════════════════
+
+# ── New Groups ─────────────────────────────────────────
+
+put $group_process isa SchemaGroup,
+  has groupKey "process-modeling",
+  has groupName "Process Modeling",
+  has groupDescription "Staged processes, gate criteria, gate decisions, and stage tracking. Includes the Design Funnel and Bug Triage process instantiations.",
+  has groupOrder 70;
+
+put $group_blocks isa SchemaGroup,
+  has groupKey "blocks-layer",
+  has groupName "Blocks Layer",
+  has groupDescription "Companion entities for the blocks editor: appearance specifications and collaborative document state.",
+  has groupOrder 80;
+
+put (group: $group_process, view: $view_domain) isa groupInView;
+put (group: $group_blocks, view: $view_domain) isa groupInView;
+
+# ── Process Modeling Entities ──────────────────────────
+
+put $r40 isa SchemaResource,
+  has docKey "https://github.com/vibe-machine/ontology-vibemachine#VibeProcess",
+  has iri "https://github.com/vibe-machine/ontology-vibemachine#VibeProcess",
+  has typeLabel "VibeProcess",
+  has kind "entity",
+  has prefLabel "VibeProcess",
+  has definition "A reusable template that defines how a class of work moves from inception to completion through an ordered sequence of stages.",
+  has scopeNote "Extends gist TaskTemplate. Owns process_id (@key), name, description. Contains stages via processContainsStage. Seed instances: design-funnel, bug-triage.";
+put (resource: $r40, module: $module) isa inModule;
+put (resource: $r40, group: $group_process) isa resourceInGroup;
+
+put $r41 isa SchemaResource,
+  has docKey "https://github.com/vibe-machine/ontology-vibemachine#VibeProcessStage",
+  has iri "https://github.com/vibe-machine/ontology-vibemachine#VibeProcessStage",
+  has typeLabel "VibeProcessStage",
+  has kind "entity",
+  has prefLabel "VibeProcessStage",
+  has definition "A named stage within a process, ordered by stage_sequence and linked to adjacent stages via precedesDirectly.",
+  has scopeNote "Extends gist Category. Owns stage_id (@key), name, description, stage_sequence. Gate criteria attach via stageHasCriterion. Entities track position via currentlyAtStage.";
+put (resource: $r41, module: $module) isa inModule;
+put (resource: $r41, group: $group_process) isa resourceInGroup;
+
+put $r42 isa SchemaResource,
+  has docKey "https://github.com/vibe-machine/ontology-vibemachine#VibeGateCriterion",
+  has iri "https://github.com/vibe-machine/ontology-vibemachine#VibeGateCriterion",
+  has typeLabel "VibeGateCriterion",
+  has kind "entity",
+  has prefLabel "VibeGateCriterion",
+  has definition "A criterion that must be satisfied to exit a stage. Criteria are exit conditions attached to the source stage.",
+  has scopeNote "Extends gist Specification. Owns criteria_id (@key), name, description. Linked to a stage via stageHasCriterion (sub conformsTo).";
+put (resource: $r42, module: $module) isa inModule;
+put (resource: $r42, group: $group_process) isa resourceInGroup;
+
+put $r43 isa SchemaResource,
+  has docKey "https://github.com/vibe-machine/ontology-vibemachine#VibeGateDecision",
+  has iri "https://github.com/vibe-machine/ontology-vibemachine#VibeGateDecision",
+  has typeLabel "VibeGateDecision",
+  has kind "entity",
+  has prefLabel "VibeGateDecision",
+  has definition "The event of an entity passing through a gate. Records who decided, when, which stage boundary was crossed, and what rationale was given. All process-participating decision types subtype this for polymorphic querying.",
+  has scopeNote "Extends gist Determination. Owns gate_id (@key), name, description, rationale, actualStartDateTime. Plays gateAdvancesEntity, gateTransitionsToStage, gateWithinProcess.";
+put (resource: $r43, module: $module) isa inModule;
+put (resource: $r43, group: $group_process) isa resourceInGroup;
+
+put $r44 isa SchemaResource,
+  has docKey "https://github.com/vibe-machine/ontology-vibemachine#VibeIssueAssignmentDecision",
+  has iri "https://github.com/vibe-machine/ontology-vibemachine#VibeIssueAssignmentDecision",
+  has typeLabel "VibeIssueAssignmentDecision",
+  has kind "entity",
+  has prefLabel "VibeIssueAssignmentDecision",
+  has definition "The decision to assign a specific agent or engineer to an issue.",
+  has scopeNote "Extends VibeGateDecision. Owns assignment_decision_id (@key). Participation via assignmentPerformedBy. May link an agent profile via assignmentDecisionUsesProfile.";
+put (resource: $r44, module: $module) isa inModule;
+put (resource: $r44, group: $group_process) isa resourceInGroup;
+
+put $r45 isa SchemaResource,
+  has docKey "https://github.com/vibe-machine/ontology-vibemachine#VibeIssueWorkStartedDecision",
+  has iri "https://github.com/vibe-machine/ontology-vibemachine#VibeIssueWorkStartedDecision",
+  has typeLabel "VibeIssueWorkStartedDecision",
+  has kind "entity",
+  has prefLabel "VibeIssueWorkStartedDecision",
+  has definition "The decision that active work has begun on an issue. Distinct from assignment: assignment is commitment, work-started is confirmation of execution.",
+  has scopeNote "Extends VibeGateDecision. Owns work_started_decision_id (@key). Participation via workStartedPerformedBy.";
+put (resource: $r45, module: $module) isa inModule;
+put (resource: $r45, group: $group_process) isa resourceInGroup;
+
+put $r46 isa SchemaResource,
+  has docKey "https://github.com/vibe-machine/ontology-vibemachine#VibeIssueVerificationDecision",
+  has iri "https://github.com/vibe-machine/ontology-vibemachine#VibeIssueVerificationDecision",
+  has typeLabel "VibeIssueVerificationDecision",
+  has kind "entity",
+  has prefLabel "VibeIssueVerificationDecision",
+  has definition "The decision that a fix has been verified against the original reproduction path or acceptance criteria.",
+  has scopeNote "Extends VibeGateDecision. Owns verification_decision_id (@key). Participation via verificationPerformedBy.";
+put (resource: $r46, module: $module) isa inModule;
+put (resource: $r46, group: $group_process) isa resourceInGroup;
+
+put $r47 isa SchemaResource,
+  has docKey "https://github.com/vibe-machine/ontology-vibemachine#VibeSpecificationScope",
+  has iri "https://github.com/vibe-machine/ontology-vibemachine#VibeSpecificationScope",
+  has typeLabel "VibeSpecificationScope",
+  has kind "entity",
+  has prefLabel "VibeSpecificationScope",
+  has definition "A category distinguishing top-level features (TLFs) from sub-TLFs.",
+  has scopeNote "Extends gist Category. Owns name (@key). Seed instances: tlf, sub-tlf. Used via isCategorizedBy.";
+put (resource: $r47, module: $module) isa inModule;
+put (resource: $r47, group: $group_process) isa resourceInGroup;
+
+# ── Process Modeling Relations ─────────────────────────
+
+put $r50 isa SchemaResource,
+  has docKey "https://github.com/vibe-machine/ontology-vibemachine#processContainsStage",
+  has iri "https://github.com/vibe-machine/ontology-vibemachine#processContainsStage",
+  has typeLabel "processContainsStage",
+  has kind "relation",
+  has prefLabel "processContainsStage",
+  has definition "Links a process to the stages it contains.",
+  has scopeNote "Sub isMemberOf. Roles: stage (isMemberOfSubject), process (isMemberOfObject).";
+put (resource: $r50, module: $module) isa inModule;
+put (resource: $r50, group: $group_process) isa resourceInGroup;
+
+put $r51 isa SchemaResource,
+  has docKey "https://github.com/vibe-machine/ontology-vibemachine#stageHasCriterion",
+  has iri "https://github.com/vibe-machine/ontology-vibemachine#stageHasCriterion",
+  has typeLabel "stageHasCriterion",
+  has kind "relation",
+  has prefLabel "stageHasCriterion",
+  has definition "Links a stage to the gate criteria that must be satisfied to exit it.",
+  has scopeNote "Sub conformsTo. Roles: criterion (conformsToObject), stage (conformsToSubject).";
+put (resource: $r51, module: $module) isa inModule;
+put (resource: $r51, group: $group_process) isa resourceInGroup;
+
+put $r52 isa SchemaResource,
+  has docKey "https://github.com/vibe-machine/ontology-vibemachine#gateAdvancesEntity",
+  has iri "https://github.com/vibe-machine/ontology-vibemachine#gateAdvancesEntity",
+  has typeLabel "gateAdvancesEntity",
+  has kind "relation",
+  has prefLabel "gateAdvancesEntity",
+  has definition "Links a gate decision to the entity it advances through a process.",
+  has scopeNote "Sub isBasedOn. Roles: gateDecision (isBasedOnSubject), advancedEntity (isBasedOnObject).";
+put (resource: $r52, module: $module) isa inModule;
+put (resource: $r52, group: $group_process) isa resourceInGroup;
+
+put $r53 isa SchemaResource,
+  has docKey "https://github.com/vibe-machine/ontology-vibemachine#gateTransitionsToStage",
+  has iri "https://github.com/vibe-machine/ontology-vibemachine#gateTransitionsToStage",
+  has typeLabel "gateTransitionsToStage",
+  has kind "relation",
+  has prefLabel "gateTransitionsToStage",
+  has definition "Links a gate decision to the target stage it transitions the entity to.",
+  has scopeNote "Sub isAbout. Roles: gateDecision (isAboutSubject), targetStage (isAboutObject). May point to an earlier stage for backward transitions.";
+put (resource: $r53, module: $module) isa inModule;
+put (resource: $r53, group: $group_process) isa resourceInGroup;
+
+put $r54 isa SchemaResource,
+  has docKey "https://github.com/vibe-machine/ontology-vibemachine#gateWithinProcess",
+  has iri "https://github.com/vibe-machine/ontology-vibemachine#gateWithinProcess",
+  has typeLabel "gateWithinProcess",
+  has kind "relation",
+  has prefLabel "gateWithinProcess",
+  has definition "Links a gate decision to the process it occurs within.",
+  has scopeNote "Sub isAbout. Roles: gateDecision (isAboutSubject), process (isAboutObject).";
+put (resource: $r54, module: $module) isa inModule;
+put (resource: $r54, group: $group_process) isa resourceInGroup;
+
+put $r55 isa SchemaResource,
+  has docKey "https://github.com/vibe-machine/ontology-vibemachine#currentlyAtStage",
+  has iri "https://github.com/vibe-machine/ontology-vibemachine#currentlyAtStage",
+  has typeLabel "currentlyAtStage",
+  has kind "relation",
+  has prefLabel "currentlyAtStage",
+  has definition "Tracks an entity's current position in a process. The application layer retracts and reinserts when a gate decision advances the entity.",
+  has scopeNote "Sub isCategorizedBy. Roles: trackedEntity (isCategorizedBySubject), stage (isCategorizedByObject). Replaces VibeIssueStatus for process-managed entities.";
+put (resource: $r55, module: $module) isa inModule;
+put (resource: $r55, group: $group_process) isa resourceInGroup;
+
+put $r56 isa SchemaResource,
+  has docKey "https://github.com/vibe-machine/ontology-vibemachine#decomposesFeature",
+  has iri "https://github.com/vibe-machine/ontology-vibemachine#decomposesFeature",
+  has typeLabel "decomposesFeature",
+  has kind "relation",
+  has prefLabel "decomposesFeature",
+  has definition "Links a child feature specification to its parent, modeling TLF to sub-TLF decomposition.",
+  has scopeNote "Sub isBasedOn. Roles: childFeature (isBasedOnSubject), parentFeature (isBasedOnObject).";
+put (resource: $r56, module: $module) isa inModule;
+put (resource: $r56, group: $group_process) isa resourceInGroup;
+
+put $r57 isa SchemaResource,
+  has docKey "https://github.com/vibe-machine/ontology-vibemachine#assignmentPerformedBy",
+  has iri "https://github.com/vibe-machine/ontology-vibemachine#assignmentPerformedBy",
+  has typeLabel "assignmentPerformedBy",
+  has kind "relation",
+  has prefLabel "assignmentPerformedBy",
+  has definition "Links an assignment decision to the person or agent who made it.",
+  has scopeNote "Sub hasParticipant. Roles: assignmentDecision (hasParticipantSubject), assigner (hasParticipantObject).";
+put (resource: $r57, module: $module) isa inModule;
+put (resource: $r57, group: $group_process) isa resourceInGroup;
+
+put $r58 isa SchemaResource,
+  has docKey "https://github.com/vibe-machine/ontology-vibemachine#workStartedPerformedBy",
+  has iri "https://github.com/vibe-machine/ontology-vibemachine#workStartedPerformedBy",
+  has typeLabel "workStartedPerformedBy",
+  has kind "relation",
+  has prefLabel "workStartedPerformedBy",
+  has definition "Links a work-started decision to the person or agent who confirmed execution began.",
+  has scopeNote "Sub hasParticipant. Roles: workStartedDecision (hasParticipantSubject), starter (hasParticipantObject).";
+put (resource: $r58, module: $module) isa inModule;
+put (resource: $r58, group: $group_process) isa resourceInGroup;
+
+put $r59 isa SchemaResource,
+  has docKey "https://github.com/vibe-machine/ontology-vibemachine#verificationPerformedBy",
+  has iri "https://github.com/vibe-machine/ontology-vibemachine#verificationPerformedBy",
+  has typeLabel "verificationPerformedBy",
+  has kind "relation",
+  has prefLabel "verificationPerformedBy",
+  has definition "Links a verification decision to the person or agent who verified the fix.",
+  has scopeNote "Sub hasParticipant. Roles: verificationDecision (hasParticipantSubject), verifier (hasParticipantObject).";
+put (resource: $r59, module: $module) isa inModule;
+put (resource: $r59, group: $group_process) isa resourceInGroup;
+
+put $r59a isa SchemaResource,
+  has docKey "https://github.com/vibe-machine/ontology-vibemachine#assignmentDecisionUsesProfile",
+  has iri "https://github.com/vibe-machine/ontology-vibemachine#assignmentDecisionUsesProfile",
+  has typeLabel "assignmentDecisionUsesProfile",
+  has kind "relation",
+  has prefLabel "assignmentDecisionUsesProfile",
+  has definition "Links an assignment decision to the agent profile used for the assignment.",
+  has scopeNote "Sub isBasedOn. Roles: assignmentDecision (isBasedOnSubject), agentProfile (isBasedOnObject).";
+put (resource: $r59a, module: $module) isa inModule;
+put (resource: $r59a, group: $group_process) isa resourceInGroup;
+
+# ── Blocks Layer Entities ──────────────────────────────
+
+put $r60 isa SchemaResource,
+  has docKey "https://github.com/vibe-machine/ontology-vibemachine#VibeBlocksAppearanceSpecification",
+  has iri "https://github.com/vibe-machine/ontology-vibemachine#VibeBlocksAppearanceSpecification",
+  has typeLabel "VibeBlocksAppearanceSpecification",
+  has kind "entity",
+  has prefLabel "VibeBlocksAppearanceSpecification",
+  has definition "Visual presentation metadata for a specification in the blocks editor. Stores icon, cover image, and accent color independently of specification content.",
+  has scopeNote "Extends gist Specification. Owns document_id (@key), icon_name, cover_image, accent_color. Linked via blocksAppearanceForSpecification. Blocks-layer infrastructure, separable into its own ontology.";
+put (resource: $r60, module: $module) isa inModule;
+put (resource: $r60, group: $group_blocks) isa resourceInGroup;
+
+put $r61 isa SchemaResource,
+  has docKey "https://github.com/vibe-machine/ontology-vibemachine#BlocksDocumentState",
+  has iri "https://github.com/vibe-machine/ontology-vibemachine#BlocksDocumentState",
+  has typeLabel "BlocksDocumentState",
+  has kind "entity",
+  has prefLabel "BlocksDocumentState",
+  has definition "Serialized Yjs CRDT state for collaborative editing. The editor reconstitutes its block tree from this state on load.",
+  has scopeNote "Owns document_id (@key), yjs_state. Linked via blocksDocumentStateForSpecification. Blocks-layer infrastructure, separable into its own ontology.";
+put (resource: $r61, module: $module) isa inModule;
+put (resource: $r61, group: $group_blocks) isa resourceInGroup;
+
+# ── Blocks Layer Relations ─────────────────────────────
+
+put $r62 isa SchemaResource,
+  has docKey "https://github.com/vibe-machine/ontology-vibemachine#blocksAppearanceForSpecification",
+  has iri "https://github.com/vibe-machine/ontology-vibemachine#blocksAppearanceForSpecification",
+  has typeLabel "blocksAppearanceForSpecification",
+  has kind "relation",
+  has prefLabel "blocksAppearanceForSpecification",
+  has definition "Links a blocks appearance specification to the specification it describes.",
+  has scopeNote "Sub isAbout. Roles: appearance (isAboutSubject), specification (isAboutObject). Both VibeFeatureSpecification and VibeProductSpecification play the specification role.";
+put (resource: $r62, module: $module) isa inModule;
+put (resource: $r62, group: $group_blocks) isa resourceInGroup;
+
+put $r63 isa SchemaResource,
+  has docKey "https://github.com/vibe-machine/ontology-vibemachine#blocksDocumentStateForSpecification",
+  has iri "https://github.com/vibe-machine/ontology-vibemachine#blocksDocumentStateForSpecification",
+  has typeLabel "blocksDocumentStateForSpecification",
+  has kind "relation",
+  has prefLabel "blocksDocumentStateForSpecification",
+  has definition "Links a blocks document state to the feature specification it stores editor state for.",
+  has scopeNote "Sub isAbout. Roles: documentState (isAboutSubject), specification (isAboutObject).";
+put (resource: $r63, module: $module) isa inModule;
+put (resource: $r63, group: $group_blocks) isa resourceInGroup;
+
+# ── New Attributes (v1.1.0) ───────────────────────────
+
+put $r70 isa SchemaResource,
+  has docKey "https://github.com/vibe-machine/ontology-vibemachine#process_id",
+  has iri "https://github.com/vibe-machine/ontology-vibemachine#process_id",
+  has typeLabel "process_id",
+  has kind "attribute",
+  has prefLabel "process_id",
+  has definition "A stable identifier for a VibeProcess.",
+  has scopeNote "Used as @key on VibeProcess.";
+put (resource: $r70, module: $module) isa inModule;
+
+put $r71 isa SchemaResource,
+  has docKey "https://github.com/vibe-machine/ontology-vibemachine#stage_id",
+  has iri "https://github.com/vibe-machine/ontology-vibemachine#stage_id",
+  has typeLabel "stage_id",
+  has kind "attribute",
+  has prefLabel "stage_id",
+  has definition "A stable identifier for a VibeProcessStage.",
+  has scopeNote "Used as @key on VibeProcessStage.";
+put (resource: $r71, module: $module) isa inModule;
+
+put $r72 isa SchemaResource,
+  has docKey "https://github.com/vibe-machine/ontology-vibemachine#gate_id",
+  has iri "https://github.com/vibe-machine/ontology-vibemachine#gate_id",
+  has typeLabel "gate_id",
+  has kind "attribute",
+  has prefLabel "gate_id",
+  has definition "A stable identifier for a VibeGateDecision.",
+  has scopeNote "Used as @key on VibeGateDecision.";
+put (resource: $r72, module: $module) isa inModule;
+
+put $r73 isa SchemaResource,
+  has docKey "https://github.com/vibe-machine/ontology-vibemachine#criteria_id",
+  has iri "https://github.com/vibe-machine/ontology-vibemachine#criteria_id",
+  has typeLabel "criteria_id",
+  has kind "attribute",
+  has prefLabel "criteria_id",
+  has definition "A stable identifier for a VibeGateCriterion.",
+  has scopeNote "Used as @key on VibeGateCriterion.";
+put (resource: $r73, module: $module) isa inModule;
+
+put $r74 isa SchemaResource,
+  has docKey "https://github.com/vibe-machine/ontology-vibemachine#stage_sequence",
+  has iri "https://github.com/vibe-machine/ontology-vibemachine#stage_sequence",
+  has typeLabel "stage_sequence",
+  has kind "attribute",
+  has prefLabel "stage_sequence",
+  has definition "An integer ordering value for stages within a process. Convention: multiples of 10.",
+  has scopeNote "Used on VibeProcessStage for deterministic sort order.";
+put (resource: $r74, module: $module) isa inModule;
+
+put $r75 isa SchemaResource,
+  has docKey "https://github.com/vibe-machine/ontology-vibemachine#rationale",
+  has iri "https://github.com/vibe-machine/ontology-vibemachine#rationale",
+  has typeLabel "rationale",
+  has kind "attribute",
+  has prefLabel "rationale",
+  has definition "A free-text explanation of why a gate decision was made.",
+  has scopeNote "Used on VibeGateDecision.";
+put (resource: $r75, module: $module) isa inModule;
+
+put $r76 isa SchemaResource,
+  has docKey "https://github.com/vibe-machine/ontology-vibemachine#assignment_decision_id",
+  has iri "https://github.com/vibe-machine/ontology-vibemachine#assignment_decision_id",
+  has typeLabel "assignment_decision_id",
+  has kind "attribute",
+  has prefLabel "assignment_decision_id",
+  has definition "A stable identifier for a VibeIssueAssignmentDecision.",
+  has scopeNote "Used as @key on VibeIssueAssignmentDecision.";
+put (resource: $r76, module: $module) isa inModule;
+
+put $r77 isa SchemaResource,
+  has docKey "https://github.com/vibe-machine/ontology-vibemachine#work_started_decision_id",
+  has iri "https://github.com/vibe-machine/ontology-vibemachine#work_started_decision_id",
+  has typeLabel "work_started_decision_id",
+  has kind "attribute",
+  has prefLabel "work_started_decision_id",
+  has definition "A stable identifier for a VibeIssueWorkStartedDecision.",
+  has scopeNote "Used as @key on VibeIssueWorkStartedDecision.";
+put (resource: $r77, module: $module) isa inModule;
+
+put $r78 isa SchemaResource,
+  has docKey "https://github.com/vibe-machine/ontology-vibemachine#verification_decision_id",
+  has iri "https://github.com/vibe-machine/ontology-vibemachine#verification_decision_id",
+  has typeLabel "verification_decision_id",
+  has kind "attribute",
+  has prefLabel "verification_decision_id",
+  has definition "A stable identifier for a VibeIssueVerificationDecision.",
+  has scopeNote "Used as @key on VibeIssueVerificationDecision.";
+put (resource: $r78, module: $module) isa inModule;
+
+put $r79 isa SchemaResource,
+  has docKey "https://github.com/vibe-machine/ontology-vibemachine#icon_name",
+  has iri "https://github.com/vibe-machine/ontology-vibemachine#icon_name",
+  has typeLabel "icon_name",
+  has kind "attribute",
+  has prefLabel "icon_name",
+  has definition "The icon identifier for a specification's visual identity in the blocks editor.",
+  has scopeNote "Used on VibeBlocksAppearanceSpecification.";
+put (resource: $r79, module: $module) isa inModule;
+
+put $r80 isa SchemaResource,
+  has docKey "https://github.com/vibe-machine/ontology-vibemachine#cover_image",
+  has iri "https://github.com/vibe-machine/ontology-vibemachine#cover_image",
+  has typeLabel "cover_image",
+  has kind "attribute",
+  has prefLabel "cover_image",
+  has definition "The cover image reference (URL, gradient, or asset name) for a specification's visual identity.",
+  has scopeNote "Used on VibeBlocksAppearanceSpecification.";
+put (resource: $r80, module: $module) isa inModule;
+
+put $r81 isa SchemaResource,
+  has docKey "https://github.com/vibe-machine/ontology-vibemachine#accent_color",
+  has iri "https://github.com/vibe-machine/ontology-vibemachine#accent_color",
+  has typeLabel "accent_color",
+  has kind "attribute",
+  has prefLabel "accent_color",
+  has definition "The accent color (hex or named) for a specification's visual identity.",
+  has scopeNote "Used on VibeBlocksAppearanceSpecification.";
+put (resource: $r81, module: $module) isa inModule;
+
+put $r82 isa SchemaResource,
+  has docKey "https://github.com/vibe-machine/ontology-vibemachine#yjs_state",
+  has iri "https://github.com/vibe-machine/ontology-vibemachine#yjs_state",
+  has typeLabel "yjs_state",
+  has kind "attribute",
+  has prefLabel "yjs_state",
+  has definition "Serialized Yjs CRDT state for collaborative editing, stored as a base64-encoded string.",
+  has scopeNote "Used on BlocksDocumentState. The editor reconstitutes its block tree from this state on load.";
+put (resource: $r82, module: $module) isa inModule;

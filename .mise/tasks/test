@@ -1,0 +1,6 @@
+#!/usr/bin/env bash
+#MISE description="Run all validations: bootstrap + TypeDB load"
+#MISE depends=["validate", "test-typedb"]
+set -euo pipefail
+
+echo "all tests ok"

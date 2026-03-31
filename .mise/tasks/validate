@@ -1,0 +1,5 @@
+#!/usr/bin/env bash
+#MISE description="Validate package manifest, checksums, and structural consistency"
+set -euo pipefail
+
+node tools/package_contract/validate_bootstrap.mjs

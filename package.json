@@ -23,10 +23,19 @@
     {
       "name": "vibemachine",
       "file": "schema/vibemachine.tql"
+    },
+    {
+      "name": "vibemachine-process",
+      "file": "schema/vibemachine-process.tql"
+    },
+    {
+      "name": "vibemachine-blocks",
+      "file": "schema/vibemachine-blocks.tql"
     }
   ],
   "data": [
     "data/vibemachine-status-seeds.tql",
+    "data/vibemachine-process-seeds.tql",
     "data/vibemachine-provenance.tql",
     "data/vibemachine-schema-docs.tql"
   ],
@@ -54,7 +63,10 @@
       "schema/package-provenance.tql",
       "schema/administrative-operations.tql",
       "schema/vibemachine.tql",
+      "schema/vibemachine-process.tql",
+      "schema/vibemachine-blocks.tql",
       "data/vibemachine-status-seeds.tql",
+      "data/vibemachine-process-seeds.tql",
       "data/vibemachine-provenance.tql",
       "data/vibemachine-schema-docs.tql"
     ],

@@ -1,0 +1,6 @@
+#!/usr/bin/env bash
+#MISE description="Execute a release (commit, tag, push)"
+#USAGE arg "<bump>" help="Version bump: patch, minor, or major"
+set -euo pipefail
+
+exec node ../ontology-tooling/src/cli/ontology-release.mjs --repo . --bump "${usage_bump?}"

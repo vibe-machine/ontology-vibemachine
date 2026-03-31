@@ -1,0 +1,6 @@
+#!/usr/bin/env bash
+#MISE description="Regenerate package manifest and generated artifacts"
+set -euo pipefail
+
+node ../ontology-gist/tools/package_contract/bootstrap_hand_authored_package.mjs .
+echo "refresh ok"

@@ -1,0 +1,57 @@
+# ── Blocks Layer ────────────────────────────────────────
+# Companion entities for the blocks editor. These types exist
+# to support visualization and persistence in one specific
+# rendering tool. If the blocks layer is later extracted into
+# its own ontology, these types move together.
+#
+# v1.1.0: Blocks appearance specification and document state.
+
+define
+
+# ── Blocks Attributes ──────────────────────────────────
+
+attribute icon_name, value string;
+attribute cover_image, value string;
+attribute accent_color, value string;
+attribute yjs_state, value string;
+
+# ── Blocks Relations ───────────────────────────────────
+
+# "this appearance specification is for this specification"
+relation blocksAppearanceForSpecification sub isAbout,
+  relates appearance as isAboutSubject,
+  relates specification as isAboutObject;
+
+# "this document state is for this specification"
+relation blocksDocumentStateForSpecification sub isAbout,
+  relates documentState as isAboutSubject,
+  relates specification as isAboutObject;
+
+# ── Blocks Entities ────────────────────────────────────
+
+# Visual presentation metadata for a specification in the
+# blocks editor. Stores icon, cover image, and accent color.
+# Keyed by document_id for natural 1:1 pairing with the spec.
+entity VibeBlocksAppearanceSpecification sub Specification,
+  owns document_id @key,
+  owns icon_name,
+  owns cover_image,
+  owns accent_color,
+  plays blocksAppearanceForSpecification:appearance;
+
+# Serialized Yjs CRDT state for collaborative editing.
+# The editor reconstitutes its block tree from this state
+# on load. Keyed by document_id.
+entity BlocksDocumentState,
+  owns document_id @key,
+  owns yjs_state,
+  plays blocksDocumentStateForSpecification:documentState;
+
+# ── Specification role extensions ──────────────────────
+
+VibeFeatureSpecification
+  plays blocksAppearanceForSpecification:specification,
+  plays blocksDocumentStateForSpecification:specification;
+
+VibeProductSpecification
+  plays blocksAppearanceForSpecification:specification;
