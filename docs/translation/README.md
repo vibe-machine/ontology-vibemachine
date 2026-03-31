@@ -13,7 +13,7 @@ Current status:
 
 - `data/vibemachine-schema-docs.tql` is the authoritative documentation path for package-local schema resources.
 - `data/vibemachine-provenance.tql` records the ontology module version, source artifacts, and generated artifact checksums.
-- `manifests/vibemachine-v1.1.2.package-manifest.json` is the filesystem source of truth for the package contract.
+- `manifests/vibemachine-v1.1.3.package-manifest.json` is the filesystem source of truth for the package contract.
 - Legacy TypeDoc files are retired and are no longer part of active package assembly.
 
 Design references:
