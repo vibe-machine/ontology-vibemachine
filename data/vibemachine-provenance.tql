@@ -1,7 +1,7 @@
 # Provenance bootstrap
 # upstream-repo: https://github.com/vibe-machine/ontology-vibemachine
-# upstream-tag: v1.1.1
-# upstream-commit: 5054cd2139ceb9a58d4463684464b74c6ab801a1
+# upstream-tag: v1.1.2
+# upstream-commit: bb41bee087dbbe5a5a4ec5c2fcbe9b1b782d9009
 # source-artifacts:
 # - package.json
 # - schema/vibemachine.tql
@@ -9,7 +9,7 @@
 # - schema/vibemachine-blocks.tql
 # - data/vibemachine-status-seeds.tql
 # - data/vibemachine-process-seeds.tql
-# manifest: manifests/vibemachine-v1.1.1.package-manifest.json
+# manifest: manifests/vibemachine-v1.1.2.package-manifest.json
 # generator: hand-authored-package-bootstrap/0.1.0
 
 
@@ -18,19 +18,19 @@ put $module isa OntologyModule,
   has moduleRepoUrl "https://github.com/vibe-machine/ontology-vibemachine";
 
 put $version isa OntologyModuleVersion,
-  has moduleVersionKey "https://github.com/vibe-machine/ontology-vibemachine@1.1.1",
-  has moduleVersion "1.1.1",
-  has upstreamCommit "5054cd2139ceb9a58d4463684464b74c6ab801a1",
-  has manifestPath "manifests/vibemachine-v1.1.1.package-manifest.json",
+  has moduleVersionKey "https://github.com/vibe-machine/ontology-vibemachine@1.1.2",
+  has moduleVersion "1.1.2",
+  has upstreamCommit "bb41bee087dbbe5a5a4ec5c2fcbe9b1b782d9009",
+  has manifestPath "manifests/vibemachine-v1.1.2.package-manifest.json",
   has generatorName "hand-authored-package-bootstrap",
   has generatorVersion "0.1.0",
-  has generatedAt "2026-03-31T21:42:25Z";
+  has generatedAt "2026-03-31T21:52:44Z";
 
 put (version: $version, module: $module) isa ontologyModuleVersionOf;
 
 put $s1 isa SourceArtifactRecord,
   has sourcePath "package.json",
-  has sourceSha256 "a4aaaa662bde5e3f9d289a6afa76a959796d0af44709e314647c9e28f91bebdc";
+  has sourceSha256 "de7afd6167ed5d42e89c9c9e629f367d2a9f48cfcdf098e1cf7556d198378022";
 put (version: $version, sourceArtifact: $s1) isa ontologyModuleVersionBasedOnSourceArtifact;
 
 put $s2 isa SourceArtifactRecord,
@@ -61,25 +61,25 @@ put (version: $version, sourceArtifact: $s6) isa ontologyModuleVersionBasedOnSou
 put $g1 isa GeneratedArtifactRecord,
   has artifactPath "schema/self-describing-schema.tql",
   has artifactKind "meta-schema",
-  has artifactSha256 "b35571440aefd5f210794f68236537b258a7ab8a52dd644ac1d0a32a45c99576";
+  has artifactSha256 "602592890301037f28c1d503db91923ae5cae6220562f82b90c609944e80d743";
 put (generatedArtifact: $g1, version: $version) isa generatedArtifactForOntologyModuleVersion;
 
 put $g2 isa GeneratedArtifactRecord,
   has artifactPath "schema/package-provenance.tql",
   has artifactKind "provenance-schema",
-  has artifactSha256 "49fcad45240945b63d565fc21ca274b7b46a01e5053b8bcb5f6163185f8d68f7";
+  has artifactSha256 "b952b2b85881a0093a888abad1e9027e9247a73a5a9b8a95413c3e81c427cf74";
 put (generatedArtifact: $g2, version: $version) isa generatedArtifactForOntologyModuleVersion;
 
 put $g3 isa GeneratedArtifactRecord,
   has artifactPath "schema/administrative-operations.tql",
   has artifactKind "administrative-schema",
-  has artifactSha256 "593036d4ff1f4aed441c41ce5099fde4b9de1f957665e547274f43abc13e458b";
+  has artifactSha256 "d4ea853a842f43cfcaab698f9540f183092bc84bc0903fe37c7e6ae1c494a199";
 put (generatedArtifact: $g3, version: $version) isa generatedArtifactForOntologyModuleVersion;
 
 put $g4 isa GeneratedArtifactRecord,
   has artifactPath "data/vibemachine-schema-docs.tql",
   has artifactKind "documentation",
-  has artifactSha256 "d0e1bf81c098f261295b32a4d191c41fd425202604988bd3d6de894aa58f72e9";
+  has artifactSha256 "56a1a1797871d592c9289b65af2646d9ad05039d4742ea710888dcfa3033c118";
 put (generatedArtifact: $g4, version: $version) isa generatedArtifactForOntologyModuleVersion;
 
 put $g5 isa GeneratedArtifactRecord,
