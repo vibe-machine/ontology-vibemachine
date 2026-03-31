@@ -1,0 +1,3 @@
+undefine
+owns name from VibeIssueTriageDecision;
+owns description from VibeIssueTriageDecision;

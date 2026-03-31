@@ -1,0 +1,2 @@
+redefine
+entity VibeIssueResolutionDecision sub VibeGateDecision;

@@ -1,0 +1,5 @@
+#!/usr/bin/env bash
+#MISE description="Load base version schema, apply migration, then apply current version and verify"
+set -euo pipefail
+
+node tools/package_contract/validate_typedb_migration.mjs
