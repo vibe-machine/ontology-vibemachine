@@ -1,7 +1,7 @@
 # Provenance bootstrap
 # upstream-repo: https://github.com/vibe-machine/ontology-vibemachine
 # upstream-tag: v1.1.0
-# upstream-commit: aa64b7ae0e663a90fa0186666393d375ec78e3e0
+# upstream-commit: 82dc085d990d7a0ba402bf765dad07c95f5771f7
 # source-artifacts:
 # - package.json
 # - schema/vibemachine.tql

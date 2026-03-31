@@ -8,7 +8,7 @@
   "upstream": {
     "repoUrl": "https://github.com/vibe-machine/ontology-vibemachine",
     "tag": "v1.1.0",
-    "commit": "aa64b7ae0e663a90fa0186666393d375ec78e3e0",
+    "commit": "82dc085d990d7a0ba402bf765dad07c95f5771f7",
     "sourceArtifacts": [
       {
         "path": "package.json",
@@ -39,28 +39,28 @@
   "generator": {
     "name": "hand-authored-package-bootstrap",
     "version": "0.1.0",
-    "generatedAt": "2026-03-31T21:22:27Z"
+    "generatedAt": "2026-03-31T21:26:28Z"
   },
   "artifacts": [
     {
       "kind": "meta-schema",
       "path": "schema/self-describing-schema.tql",
-      "sha256": "6da3ef212299d1af0246cef0a95b18013e251afd1956676b10e279d16f272be5"
+      "sha256": "3d4d76a91dfb566ad61a94c1e7d3e7ca769fae35839d2318a9a8c7234a7b8a67"
     },
     {
       "kind": "provenance-schema",
       "path": "schema/package-provenance.tql",
-      "sha256": "2af74cc074f63febdd210670ab6e694d4ac3444cd8bdcae93cfd108736b24921"
+      "sha256": "8f34812c01b0c5b03eb3489b9ae3c548f64896bdcb50f4b4ba5217903e32315e"
     },
     {
       "kind": "administrative-schema",
       "path": "schema/administrative-operations.tql",
-      "sha256": "61723416aa90d068e9418ae632dd86b47d0c6bf29f3a6b3292da8322a744b783"
+      "sha256": "101b94852c4faac7e17f8c1c6808b00a00b2f31b401b6fc83fdcdf6d81395618"
     },
     {
       "kind": "documentation",
       "path": "data/vibemachine-schema-docs.tql",
-      "sha256": "22d550ad2169b83cca0f155b94ec18b953b92c9dc222b5e47b9ecbf698355f03"
+      "sha256": "599c4b83b83629880bc2bb188f8ed6636bb2dc70d89e00556eea62519c1c77dd"
     },
     {
       "kind": "manifest-schema",
@@ -70,7 +70,12 @@
     {
       "kind": "provenance-seeds",
       "path": "data/vibemachine-provenance.tql",
-      "sha256": "f1d84d22e58a61af69719933d9372319085c7e38364c3ddfa0e3fad3f525774c"
+      "sha256": "b99520b4f474b2cb8c440c5f0453955e70b6286a93008a83935a925980e25948"
+    },
+    {
+      "kind": "migration",
+      "path": "migrations/v1.0.0-to-v1.1.0.tql",
+      "sha256": "a817515d1226a0e6435be708e8285fa706350fe813810fecacaa05e2690d3ca9"
     }
   ]
 }
