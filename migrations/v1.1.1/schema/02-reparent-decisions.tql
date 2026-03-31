@@ -1,0 +1,6 @@
+redefine
+
+entity VibeIssueTriageDecision sub VibeGateDecision;
+entity VibeIssuePlanningDecision sub VibeGateDecision;
+entity VibeIssueResolutionDecision sub VibeGateDecision;
+entity VibeIssueClosureDecision sub VibeGateDecision;

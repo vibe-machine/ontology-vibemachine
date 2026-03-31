@@ -105,7 +105,11 @@
             "units": [
               {
                 "kind": "schema",
-                "path": "migrations/v1.1.1/schema/reparent-decisions.tql"
+                "path": "migrations/v1.1.1/schema/01-define-gate-decision.tql"
+              },
+              {
+                "kind": "schema",
+                "path": "migrations/v1.1.1/schema/02-reparent-decisions.tql"
               }
             ]
           }
