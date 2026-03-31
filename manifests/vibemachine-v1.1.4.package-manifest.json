@@ -3,16 +3,16 @@
   "manifestVersion": "1.0.0",
   "package": {
     "name": "vibemachine",
-    "version": "1.1.3"
+    "version": "1.1.4"
   },
   "upstream": {
     "repoUrl": "https://github.com/vibe-machine/ontology-vibemachine",
-    "tag": "v1.1.3",
-    "commit": "bae8904c3e4754a0cde055e31f53cedacd07ac20",
+    "tag": "v1.1.4",
+    "commit": "2a52d3d4012717c29b31468879427db2fcf1b84d",
     "sourceArtifacts": [
       {
         "path": "package.json",
-        "sha256": "5776fdf195c2c4ca551fd633b100b432627ae3d12f310e86dc4942634d1d60f4"
+        "sha256": "c902472d4232f6036673a9ff35fd6a0988049d1913830ac434c644b2ab11bb49"
       },
       {
         "path": "schema/vibemachine.tql",
@@ -39,28 +39,28 @@
   "generator": {
     "name": "hand-authored-package-bootstrap",
     "version": "0.1.0",
-    "generatedAt": "2026-03-31T23:35:10Z"
+    "generatedAt": "2026-03-31T23:36:05Z"
   },
   "artifacts": [
     {
       "kind": "meta-schema",
       "path": "schema/self-describing-schema.tql",
-      "sha256": "37e3876aad7d4faae0d3e9523194d49bac91d82004ad2561b43d823859a2ded3"
+      "sha256": "29462bc4c23d8c391b37b212c9b5b4ae6487baa6fd59b2b4e8f0a09da2912646"
     },
     {
       "kind": "provenance-schema",
       "path": "schema/package-provenance.tql",
-      "sha256": "460e357c913eafe3e9547dde0e7d3c60fe37c13d5d539eb1883543cb558ffed6"
+      "sha256": "69fc65bbdfe8619bc0f648f26d8e19c40229ef107e9b5f2d979e57f39022922e"
     },
     {
       "kind": "administrative-schema",
       "path": "schema/administrative-operations.tql",
-      "sha256": "d1d36f815a962a6b9e1fc2e4793b5ba085a850cb47dfbdb5e9bd3f5d6e408539"
+      "sha256": "1eb79299bab7a33588eec7f117b2f1cfc125d1e0566737499057e45cc9bdaeda"
     },
     {
       "kind": "documentation",
       "path": "data/vibemachine-schema-docs.tql",
-      "sha256": "a55672f73efc9fcea9d434b0fcdb30851a412b6d0a80c8ebb568d5c36595dd7a"
+      "sha256": "aac450d5769b95d7f1d4713e3e9753099934847de47f30ba7e5c2081fd0da33e"
     },
     {
       "kind": "manifest-schema",
@@ -70,7 +70,7 @@
     {
       "kind": "provenance-seeds",
       "path": "data/vibemachine-provenance.tql",
-      "sha256": "6f3f6140a674358fa0d65d2fa0ee88a92f8234a44e02dd2df94a3349bd2d674e"
+      "sha256": "21f1288a73fd969d7271ccc11947f5b0c496e9cc078cdc4c3e5ae9733cd1dbd5"
     }
   ]
 }
