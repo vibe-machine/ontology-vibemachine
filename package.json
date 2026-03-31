@@ -1,7 +1,7 @@
 {
   "name": "vibemachine",
   "displayName": "vibemachine",
-  "version": "1.1.0",
+  "version": "1.1.1",
   "description": "Workspace and product modeling package for Vibe Machine planning and delivery.",
   "author": "Vibe Machine",
   "license": "Apache-2.0",
@@ -55,7 +55,7 @@
     "release:check": "../ontology-tooling/bin/ontology-release --repo . --validate-only"
   },
   "manifests": [
-    "manifests/vibemachine-v1.1.0.package-manifest.json"
+    "manifests/vibemachine-v1.1.1.package-manifest.json"
   ],
   "assembly": {
     "loadOrder": [
@@ -77,33 +77,12 @@
       "data/vibemachine-schema-docs.tql",
       "data/vibemachine-provenance.tql",
       "manifests/package-manifest.schema.json",
-      "manifests/vibemachine-v1.1.0.package-manifest.json"
+      "manifests/vibemachine-v1.1.1.package-manifest.json"
     ]
   },
   "provenance": {
-    "manifest": "manifests/vibemachine-v1.1.0.package-manifest.json",
+    "manifest": "manifests/vibemachine-v1.1.1.package-manifest.json",
     "status": "bootstrap"
-  },
-  "migration": {
-    "format": 1,
-    "supportsUpgradeFrom": ["1.0.x"],
-    "plans": [
-      {
-        "id": "vibemachine-1.0-to-1.1",
-        "from": ">=1.0.0 <1.1.0",
-        "to": "1.1.1",
-        "mode": "replace",
-        "snapshot": { "required": true, "label": "pre-v1.1-migration" },
-        "phases": [
-          {
-            "id": "schema",
-            "units": [
-              { "kind": "schema", "path": "migrations/v1.1.1/schema/reparent-decisions.tql" }
-            ]
-          }
-        ]
-      }
-    ]
   },
   "legacyDocumentation": {
     "deprecatedFiles": [
