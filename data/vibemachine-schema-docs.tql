@@ -1,7 +1,7 @@
 # Provenance bootstrap
 # upstream-repo: https://github.com/vibe-machine/ontology-vibemachine
-# upstream-tag: v1.3.0
-# upstream-commit: 91bc121c0669152e51dae355a6ca2ffb19be0b1d
+# upstream-tag: v1.3.1
+# upstream-commit: bb5d993d1ee5d54b0dc9f6442789f15c0d3d34ae
 # source-artifacts:
 # - package.json
 # - schema/vibemachine.tql
@@ -11,7 +11,7 @@
 # - data/vibemachine-status-seeds.tql
 # - data/vibemachine-process-seeds.tql
 # - data/vibemachine-notes-seeds.tql
-# manifest: manifests/vibemachine-v1.3.0.package-manifest.json
+# manifest: manifests/vibemachine-v1.3.1.package-manifest.json
 # generator: hand-authored-package-bootstrap/0.1.0
 put $module isa SchemaModule,
   has moduleKey "vibemachine",
