@@ -31,11 +31,16 @@
     {
       "name": "vibemachine-blocks",
       "file": "schema/vibemachine-blocks.tql"
+    },
+    {
+      "name": "vibemachine-notes",
+      "file": "schema/vibemachine-notes.tql"
     }
   ],
   "data": [
     "data/vibemachine-status-seeds.tql",
     "data/vibemachine-process-seeds.tql",
+    "data/vibemachine-notes-seeds.tql",
     "data/vibemachine-provenance.tql",
     "data/vibemachine-schema-docs.tql"
   ],
@@ -66,8 +71,10 @@
       "schema/vibemachine.tql",
       "schema/vibemachine-process.tql",
       "schema/vibemachine-blocks.tql",
+      "schema/vibemachine-notes.tql",
       "data/vibemachine-status-seeds.tql",
       "data/vibemachine-process-seeds.tql",
+      "data/vibemachine-notes-seeds.tql",
       "data/vibemachine-provenance.tql",
       "data/vibemachine-schema-docs.tql"
     ],
@@ -139,6 +146,10 @@
               {
                 "kind": "schema",
                 "path": "migrations/v1.1.1/schema/09-reparent-closure.tql"
+              },
+              {
+                "kind": "schema",
+                "path": "migrations/v1.1.4/schema/01-define-notes.tql"
               }
             ]
           }

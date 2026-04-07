@@ -1,0 +1,61 @@
+# ── Notes & Todo Items ──────────────────────────────────
+# A lightweight note-taking layer for personal reminders
+# and to-do tracking. Notes are rich block-editor documents;
+# todo items are individual completable entities within them.
+#
+# v1.2.0: Initial notes and todo item types.
+#
+# Design principle: VibeNote follows the same FormattedContent
+# pattern as VibeFeatureSpecification — it gets block editor
+# support (Yjs CRDT state, appearance metadata) via document_id.
+# VibeTodoItem follows the same containsItem pattern as
+# VibeRequirement — individual entities keyed by item_id,
+# linked back to their parent note by document_id.
+
+define
+
+# ── Attributes ──────────────────────────────────────────
+
+attribute due_date, value datetime;
+attribute url, value string;
+
+# ── Categories ──────────────────────────────────────────
+
+entity VibeTodoStatus sub Category,
+  owns name @key,
+  plays isCategorizedBy:isCategorizedByObject;
+
+entity VibeTodoPriority sub Category,
+  owns name @key,
+  plays isCategorizedBy:isCategorizedByObject;
+
+entity VibeTag sub Category,
+  owns name @key,
+  plays isCategorizedBy:isCategorizedByObject;
+
+# ── Note ────────────────────────────────────────────────
+# A rich-text document authored in the block editor.
+# Contains todo items and free-form content.
+
+entity VibeNote sub FormattedContent,
+  owns name,
+  owns description,
+  owns document_id @key,
+  plays containsItem:container,
+  plays blocksAppearanceForSpecification:specification,
+  plays blocksDocumentStateForSpecification:specification;
+
+# ── Todo Item ───────────────────────────────────────────
+# An individual completable item within a note.
+# Categorized by status (open/done), priority, and tags.
+
+entity VibeTodoItem sub Intention,
+  owns name,
+  owns description,
+  owns item_id @key,
+  owns document_id,
+  owns due_date,
+  owns url,
+  owns priority_level,
+  plays containsItem:item,
+  plays isCategorizedBy:isCategorizedBySubject;

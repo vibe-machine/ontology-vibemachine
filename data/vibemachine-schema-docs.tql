@@ -1,14 +1,16 @@
 # Provenance bootstrap
 # upstream-repo: https://github.com/vibe-machine/ontology-vibemachine
 # upstream-tag: v1.1.4
-# upstream-commit: 2a52d3d4012717c29b31468879427db2fcf1b84d
+# upstream-commit: cb720981b429601f6cab226d857be5151095c4d5
 # source-artifacts:
 # - package.json
 # - schema/vibemachine.tql
 # - schema/vibemachine-process.tql
 # - schema/vibemachine-blocks.tql
+# - schema/vibemachine-notes.tql
 # - data/vibemachine-status-seeds.tql
 # - data/vibemachine-process-seeds.tql
+# - data/vibemachine-notes-seeds.tql
 # manifest: manifests/vibemachine-v1.1.4.package-manifest.json
 # generator: hand-authored-package-bootstrap/0.1.0
 put $module isa SchemaModule,
@@ -1489,3 +1491,89 @@ put $r82 isa SchemaResource,
   has definition "Serialized Yjs CRDT state for collaborative editing, stored as a base64-encoded string.",
   has scopeNote "Used on BlocksDocumentState. The editor reconstitutes its block tree from this state on load.";
 put (resource: $r82, module: $module) isa inModule;
+
+# ── Notes & Todo ───────────────────────────────────────
+
+put $group_notes isa SchemaGroup,
+  has groupKey "notes",
+  has groupName "Notes & Todo",
+  has groupDescription "Personal notes and to-do item tracking with rich block-editor documents.",
+  has groupOrder 70;
+put (group: $group_notes, view: $view_domain) isa groupInView;
+
+put $r83 isa SchemaResource,
+  has docKey "https://github.com/vibe-machine/ontology-vibemachine#VibeNote",
+  has iri "https://github.com/vibe-machine/ontology-vibemachine#VibeNote",
+  has typeLabel "VibeNote",
+  has kind "entity",
+  has prefLabel "VibeNote",
+  has definition "A rich-text document for personal notes, reminders, and to-do tracking.",
+  has scopeNote "Extends gist FormattedContent. Owns name, description, and document_id. Supports block editor authoring via BlocksDocumentState and VibeBlocksAppearanceSpecification paired by document_id. Contains VibeTodoItem instances via the containsItem relation.";
+put (resource: $r83, module: $module) isa inModule;
+put (resource: $r83, group: $group_notes) isa resourceInGroup;
+
+put $r84 isa SchemaResource,
+  has docKey "https://github.com/vibe-machine/ontology-vibemachine#VibeTodoItem",
+  has iri "https://github.com/vibe-machine/ontology-vibemachine#VibeTodoItem",
+  has typeLabel "VibeTodoItem",
+  has kind "entity",
+  has prefLabel "VibeTodoItem",
+  has definition "An individual completable to-do item within a note.",
+  has scopeNote "Extends gist Intention. Owns name, description, item_id, document_id, due_date, url, and priority_level. Contained within a VibeNote via containsItem. Categorized by VibeTodoStatus, VibeTodoPriority, and VibeTag via isCategorizedBy.";
+put (resource: $r84, module: $module) isa inModule;
+put (resource: $r84, group: $group_notes) isa resourceInGroup;
+
+put $r85 isa SchemaResource,
+  has docKey "https://github.com/vibe-machine/ontology-vibemachine#VibeTodoStatus",
+  has iri "https://github.com/vibe-machine/ontology-vibemachine#VibeTodoStatus",
+  has typeLabel "VibeTodoStatus",
+  has kind "entity",
+  has prefLabel "VibeTodoStatus",
+  has definition "Completion status for a to-do item: open, done, or cancelled.",
+  has scopeNote "Extends gist Category. Owns name. Classifies VibeTodoItem via isCategorizedBy.";
+put (resource: $r85, module: $module) isa inModule;
+put (resource: $r85, group: $group_notes) isa resourceInGroup;
+
+put $r86 isa SchemaResource,
+  has docKey "https://github.com/vibe-machine/ontology-vibemachine#VibeTodoPriority",
+  has iri "https://github.com/vibe-machine/ontology-vibemachine#VibeTodoPriority",
+  has typeLabel "VibeTodoPriority",
+  has kind "entity",
+  has prefLabel "VibeTodoPriority",
+  has definition "Priority level for a to-do item: Low, Medium, or High.",
+  has scopeNote "Extends gist Category. Owns name. Classifies VibeTodoItem via isCategorizedBy.";
+put (resource: $r86, module: $module) isa inModule;
+put (resource: $r86, group: $group_notes) isa resourceInGroup;
+
+put $r87 isa SchemaResource,
+  has docKey "https://github.com/vibe-machine/ontology-vibemachine#VibeTag",
+  has iri "https://github.com/vibe-machine/ontology-vibemachine#VibeTag",
+  has typeLabel "VibeTag",
+  has kind "entity",
+  has prefLabel "VibeTag",
+  has definition "A user-defined tag for free-form classification of to-do items and other entities.",
+  has scopeNote "Extends gist Category. Owns name. Tags are created freely with no fixed set. Classifies entities via isCategorizedBy.";
+put (resource: $r87, module: $module) isa inModule;
+put (resource: $r87, group: $group_notes) isa resourceInGroup;
+
+put $r88 isa SchemaResource,
+  has docKey "https://github.com/vibe-machine/ontology-vibemachine#due_date",
+  has iri "https://github.com/vibe-machine/ontology-vibemachine#due_date",
+  has typeLabel "due_date",
+  has kind "attribute",
+  has prefLabel "due_date",
+  has definition "The date and time by which a to-do item should be completed.",
+  has scopeNote "Datetime attribute owned by VibeTodoItem.";
+put (resource: $r88, module: $module) isa inModule;
+put (resource: $r88, group: $group_notes) isa resourceInGroup;
+
+put $r89 isa SchemaResource,
+  has docKey "https://github.com/vibe-machine/ontology-vibemachine#url",
+  has iri "https://github.com/vibe-machine/ontology-vibemachine#url",
+  has typeLabel "url",
+  has kind "attribute",
+  has prefLabel "url",
+  has definition "A URL linking a to-do item to an external resource.",
+  has scopeNote "String attribute owned by VibeTodoItem. Used for referencing external pages, documents, or issues.";
+put (resource: $r89, module: $module) isa inModule;
+put (resource: $r89, group: $group_notes) isa resourceInGroup;

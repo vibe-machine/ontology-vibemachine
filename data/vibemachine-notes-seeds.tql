@@ -1,0 +1,21 @@
+# ── Todo Status ─────────────────────────────────────────
+
+put $open isa VibeTodoStatus,
+  has name "open";
+
+put $done isa VibeTodoStatus,
+  has name "done";
+
+put $cancelled isa VibeTodoStatus,
+  has name "cancelled";
+
+# ── Todo Priority ──────────────────────────────────────
+
+put $lowTodo isa VibeTodoPriority,
+  has name "Low";
+
+put $mediumTodo isa VibeTodoPriority,
+  has name "Medium";
+
+put $highTodo isa VibeTodoPriority,
+  has name "High";
