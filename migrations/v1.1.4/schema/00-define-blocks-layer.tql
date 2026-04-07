@@ -1,0 +1,33 @@
+define
+
+attribute icon_name, value string;
+attribute cover_image, value string;
+attribute accent_color, value string;
+attribute yjs_state, value string;
+
+relation blocksAppearanceForSpecification sub isAbout,
+  relates appearance as isAboutSubject,
+  relates specification as isAboutObject;
+
+relation blocksDocumentStateForSpecification sub isAbout,
+  relates documentState as isAboutSubject,
+  relates specification as isAboutObject;
+
+entity VibeBlocksAppearanceSpecification sub Specification,
+  owns document_id @key,
+  owns icon_name,
+  owns cover_image,
+  owns accent_color,
+  plays blocksAppearanceForSpecification:appearance;
+
+entity BlocksDocumentState,
+  owns document_id @key,
+  owns yjs_state,
+  plays blocksDocumentStateForSpecification:documentState;
+
+VibeFeatureSpecification
+  plays blocksAppearanceForSpecification:specification,
+  plays blocksDocumentStateForSpecification:specification;
+
+VibeProductSpecification
+  plays blocksAppearanceForSpecification:specification;
