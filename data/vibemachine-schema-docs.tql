@@ -1507,8 +1507,8 @@ put $r83 isa SchemaResource,
   has typeLabel "VibeNote",
   has kind "entity",
   has prefLabel "VibeNote",
-  has definition "A rich-text document for personal notes, reminders, and to-do tracking.",
-  has scopeNote "Extends gist FormattedContent. Owns name, description, and document_id. Supports block editor authoring via BlocksDocumentState and VibeBlocksAppearanceSpecification paired by document_id. Contains VibeTodoItem instances via the containsItem relation.";
+  has definition "A rich-text document for personal notes, reminders, and free-form content.",
+  has scopeNote "Extends gist FormattedContent. Owns name, description, and document_id. Supports block editor authoring via BlocksDocumentState and VibeBlocksAppearanceSpecification paired by document_id. Can reference VibeTodoItem instances via the noteReferencesTodo relation. Also supports structured content items via containsItem.";
 put (resource: $r83, module: $module) isa inModule;
 put (resource: $r83, group: $group_notes) isa resourceInGroup;
 
@@ -1518,8 +1518,30 @@ put $r84 isa SchemaResource,
   has typeLabel "VibeTodoItem",
   has kind "entity",
   has prefLabel "VibeTodoItem",
-  has definition "An individual completable to-do item within a note.",
-  has scopeNote "Extends gist Intention. Owns name, description, item_id, document_id, due_date, url, and priority_level. Contained within a VibeNote via containsItem. Categorized by VibeTodoStatus, VibeTodoPriority, and VibeTag via isCategorizedBy.";
+  has definition "A standalone completable to-do item with priority, due date, and status tracking.",
+  has scopeNote "Extends gist Intention. Owns name, description, todo_id, due_date, url, and priority_level. Exists independently — not contained within any document. Can be referenced from a VibeNote via noteReferencesTodo. Categorized by VibeTodoStatus, VibeTodoPriority, and VibeTag via isCategorizedBy.";
+
+put $r90 isa SchemaResource,
+  has docKey "https://github.com/vibe-machine/ontology-vibemachine#noteReferencesTodo",
+  has iri "https://github.com/vibe-machine/ontology-vibemachine#noteReferencesTodo",
+  has typeLabel "noteReferencesTodo",
+  has kind "relation",
+  has prefLabel "noteReferencesTodo",
+  has definition "An optional link from a note to a to-do item it references.",
+  has scopeNote "Specializes gist isAbout. Roles: note (VibeNote) and todoItem (VibeTodoItem). A to-do item can exist without being referenced by any note.";
+put (resource: $r90, module: $module) isa inModule;
+put (resource: $r90, group: $group_notes) isa resourceInGroup;
+
+put $r91 isa SchemaResource,
+  has docKey "https://github.com/vibe-machine/ontology-vibemachine#todo_id",
+  has iri "https://github.com/vibe-machine/ontology-vibemachine#todo_id",
+  has typeLabel "todo_id",
+  has kind "attribute",
+  has prefLabel "todo_id",
+  has definition "Unique identifier for a standalone to-do item.",
+  has scopeNote "String attribute used as the identity key for VibeTodoItem.";
+put (resource: $r91, module: $module) isa inModule;
+put (resource: $r91, group: $group_notes) isa resourceInGroup;
 put (resource: $r84, module: $module) isa inModule;
 put (resource: $r84, group: $group_notes) isa resourceInGroup;
 

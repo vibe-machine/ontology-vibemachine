@@ -1,16 +1,17 @@
 # ── Notes & Todo Items ──────────────────────────────────
 # A lightweight note-taking layer for personal reminders
 # and to-do tracking. Notes are rich block-editor documents;
-# todo items are individual completable entities within them.
+# todo items are standalone completable entities.
 #
 # v1.2.0: Initial notes and todo item types.
+# v1.3.0: Make VibeTodoItem standalone. Notes can reference
+# todo items via noteReferencesTodo, but todo items exist
+# independently.
 #
 # Design principle: VibeNote follows the same FormattedContent
 # pattern as VibeFeatureSpecification — it gets block editor
 # support (Yjs CRDT state, appearance metadata) via document_id.
-# VibeTodoItem follows the same containsItem pattern as
-# VibeRequirement — individual entities keyed by item_id,
-# linked back to their parent note by document_id.
+# VibeTodoItem is a standalone entity keyed by item_id.
 
 define
 
@@ -18,6 +19,14 @@ define
 
 attribute due_date, value datetime;
 attribute url, value string;
+attribute todo_id, value string;
+
+# ── Specialized Relations ───────────────────────────────
+
+# "this note references this todo item"
+relation noteReferencesTodo sub isAbout,
+  relates note as isAboutSubject,
+  relates todoItem as isAboutObject;
 
 # ── Categories ──────────────────────────────────────────
 
@@ -35,7 +44,6 @@ entity VibeTag sub Category,
 
 # ── Note ────────────────────────────────────────────────
 # A rich-text document authored in the block editor.
-# Contains todo items and free-form content.
 
 entity VibeNote sub FormattedContent,
   owns name,
@@ -43,19 +51,19 @@ entity VibeNote sub FormattedContent,
   owns document_id @key,
   plays containsItem:container,
   plays blocksAppearanceForSpecification:specification,
-  plays blocksDocumentStateForSpecification:specification;
+  plays blocksDocumentStateForSpecification:specification,
+  plays noteReferencesTodo:note;
 
 # ── Todo Item ───────────────────────────────────────────
-# An individual completable item within a note.
-# Categorized by status (open/done), priority, and tags.
+# A standalone completable item. Can optionally be
+# referenced from a note, but exists independently.
 
 entity VibeTodoItem sub Intention,
   owns name,
   owns description,
-  owns item_id @key,
-  owns document_id,
+  owns todo_id @key,
   owns due_date,
   owns url,
   owns priority_level,
-  plays containsItem:item,
+  plays noteReferencesTodo:todoItem,
   plays isCategorizedBy:isCategorizedBySubject;

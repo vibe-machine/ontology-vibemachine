@@ -1,0 +1,4 @@
+undefine
+owns document_id from VibeTodoItem;
+plays containsItem:item from VibeTodoItem;
+owns item_id from VibeTodoItem;
