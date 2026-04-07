@@ -60,12 +60,19 @@ put $group_reference isa SchemaGroup,
   has groupDescription "Controlled vocabulary and category entities used to classify other resources.",
   has groupOrder 60;
 
+put $group_notes isa SchemaGroup,
+  has groupKey "notes",
+  has groupName "Notes & Todo",
+  has groupDescription "Personal notes and to-do item tracking with rich block-editor documents.",
+  has groupOrder 70;
+
 put (group: $group_delivery, view: $view_domain) isa groupInView;
 put (group: $group_issues, view: $view_domain) isa groupInView;
 put (group: $group_product, view: $view_domain) isa groupInView;
 put (group: $group_engineering, view: $view_domain) isa groupInView;
 put (group: $group_people, view: $view_domain) isa groupInView;
 put (group: $group_reference, view: $view_domain) isa groupInView;
+put (group: $group_notes, view: $view_domain) isa groupInView;
 
 # ── Business Intent ─────────────────────────────────────
 
@@ -1493,13 +1500,6 @@ put $r82 isa SchemaResource,
 put (resource: $r82, module: $module) isa inModule;
 
 # ── Notes & Todo ───────────────────────────────────────
-
-put $group_notes isa SchemaGroup,
-  has groupKey "notes",
-  has groupName "Notes & Todo",
-  has groupDescription "Personal notes and to-do item tracking with rich block-editor documents.",
-  has groupOrder 70;
-put (group: $group_notes, view: $view_domain) isa groupInView;
 
 put $r83 isa SchemaResource,
   has docKey "https://github.com/vibe-machine/ontology-vibemachine#VibeNote",
