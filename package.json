@@ -1,7 +1,7 @@
 {
   "name": "vibemachine",
   "displayName": "vibemachine",
-  "version": "1.2.0",
+  "version": "1.2.1",
   "description": "Workspace and product modeling package for Vibe Machine planning and delivery.",
   "author": "Vibe Machine",
   "license": "Apache-2.0",
@@ -61,7 +61,7 @@
     "release:check": "../ontology-tooling/bin/ontology-release --repo . --validate-only"
   },
   "manifests": [
-    "manifests/vibemachine-v1.2.0.package-manifest.json"
+    "manifests/vibemachine-v1.2.1.package-manifest.json"
   ],
   "assembly": {
     "loadOrder": [
@@ -85,27 +85,27 @@
       "data/vibemachine-schema-docs.tql",
       "data/vibemachine-provenance.tql",
       "manifests/package-manifest.schema.json",
-      "manifests/vibemachine-v1.2.0.package-manifest.json"
+      "manifests/vibemachine-v1.2.1.package-manifest.json"
     ]
   },
   "provenance": {
-    "manifest": "manifests/vibemachine-v1.2.0.package-manifest.json",
+    "manifest": "manifests/vibemachine-v1.2.1.package-manifest.json",
     "status": "bootstrap"
   },
   "migration": {
     "format": 1,
     "supportsUpgradeFrom": [
-      "1.1.x"
+      "1.2.x"
     ],
     "plans": [
       {
         "id": "vibemachine-1.0.x-to-1.2.0",
         "from": ">=1.0.0 <1.1.0",
-        "to": "1.2.0",
+        "to": "1.2.1",
         "mode": "compatible",
         "snapshot": {
           "required": true,
-          "label": "pre-vibemachine-1.2.0-migration"
+          "label": "pre-vibemachine-1.2.1-migration"
         },
         "phases": [
           {
@@ -162,11 +162,11 @@
       {
         "id": "vibemachine-1.1.x-to-1.2.0",
         "from": ">=1.1.0 <1.2.0",
-        "to": "1.2.0",
+        "to": "1.2.1",
         "mode": "compatible",
         "snapshot": {
           "required": true,
-          "label": "pre-vibemachine-1.2.0-migration"
+          "label": "pre-vibemachine-1.2.1-migration"
         },
         "phases": [
           {
