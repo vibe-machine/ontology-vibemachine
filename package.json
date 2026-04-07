@@ -99,7 +99,7 @@
     ],
     "plans": [
       {
-        "id": "vibemachine-1.1.4-to-1.2.0",
+        "id": "vibemachine-1.0.x-to-1.2.0",
         "from": ">=1.0.0 <1.1.0",
         "to": "1.2.0",
         "mode": "compatible",
@@ -147,6 +147,31 @@
                 "kind": "schema",
                 "path": "migrations/v1.1.1/schema/09-reparent-closure.tql"
               },
+              {
+                "kind": "schema",
+                "path": "migrations/v1.1.4/schema/00-define-blocks-layer.tql"
+              },
+              {
+                "kind": "schema",
+                "path": "migrations/v1.1.4/schema/01-define-notes.tql"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "vibemachine-1.1.x-to-1.2.0",
+        "from": ">=1.1.0 <1.2.0",
+        "to": "1.2.0",
+        "mode": "compatible",
+        "snapshot": {
+          "required": true,
+          "label": "pre-vibemachine-1.2.0-migration"
+        },
+        "phases": [
+          {
+            "id": "schema",
+            "units": [
               {
                 "kind": "schema",
                 "path": "migrations/v1.1.4/schema/00-define-blocks-layer.tql"
