@@ -140,10 +140,209 @@ function classifyAssemblyAssets(manifest) {
 }
 
 function rewriteChunk(text, keyword, variablePrefix) {
+  const sanitizedPrefix = variablePrefix.replace(/[^A-Za-z0-9_]+/g, "_");
   let chunk = text.replace(/^#.*\n/gm, "");
   chunk = chunk.replace(new RegExp(`^\\s*${keyword}\\s*\\n`, "i"), "");
-  chunk = chunk.replace(/\$([A-Za-z][A-Za-z0-9_]*)/g, `\$${variablePrefix}_$1`);
+  chunk = chunk.replace(/\$([A-Za-z][A-Za-z0-9_]*)/g, `\$${sanitizedPrefix}_$1`);
   return chunk.trim();
+}
+
+function declaredVariablesForBlock(block) {
+  return [...block.matchAll(/\$([A-Za-z][A-Za-z0-9_]*)\s+isa\b/g)].map((match) => match[1]);
+}
+
+function referencedVariablesForBlock(block) {
+  return [...block.matchAll(/\$([A-Za-z][A-Za-z0-9_]*)/g)].map((match) => match[1]);
+}
+
+function atomicWriteBlocks(trimmed) {
+  const blocks = trimmed
+    .split(/\n\s*\n+/)
+    .map((block) => block.trim())
+    .filter(Boolean);
+
+  if (blocks.length > 1) {
+    return blocks;
+  }
+
+  const statements = trimmed.match(/[\s\S]*?;/g) ?? [];
+  if (statements.length === 0) {
+    return [trimmed];
+  }
+
+  const statementBlocks = [];
+  for (let index = 0; index < statements.length; index++) {
+    const current = statements[index].trim();
+    const referencedVariables = referencedVariablesForBlock(current);
+    const blockStatements = [current];
+    const next = statements[index + 1]?.trim();
+    if (
+      next &&
+      (next.startsWith("put (") || next.startsWith("match")) &&
+      referencedVariables.some((name) => next.includes(`$${name}`))
+    ) {
+      blockStatements.push(next);
+      index += 1;
+    }
+    statementBlocks.push(blockStatements.join("\n"));
+  }
+
+  return statementBlocks;
+}
+
+function dependencyClosedGroups(blocks) {
+  const declarationIndexByVariable = new Map();
+  const lastUseByVariable = new Map();
+
+  blocks.forEach((block, index) => {
+    for (const variable of declaredVariablesForBlock(block)) {
+      if (!declarationIndexByVariable.has(variable)) {
+        declarationIndexByVariable.set(variable, index);
+      }
+      lastUseByVariable.set(variable, Math.max(lastUseByVariable.get(variable) ?? index, index));
+    }
+
+    for (const variable of referencedVariablesForBlock(block)) {
+      if (declarationIndexByVariable.has(variable)) {
+        lastUseByVariable.set(variable, Math.max(lastUseByVariable.get(variable) ?? index, index));
+      }
+    }
+  });
+
+  const groups = [];
+  let start = 0;
+  let requiredEnd = -1;
+
+  blocks.forEach((block, index) => {
+    for (const variable of declaredVariablesForBlock(block)) {
+      requiredEnd = Math.max(requiredEnd, lastUseByVariable.get(variable) ?? index);
+    }
+    requiredEnd = Math.max(requiredEnd, index);
+    if (index >= requiredEnd) {
+      groups.push(blocks.slice(start, index + 1).join("\n\n").trim());
+      start = index + 1;
+      requiredEnd = -1;
+    }
+  });
+
+  if (start < blocks.length) {
+    groups.push(blocks.slice(start).join("\n\n").trim());
+  }
+
+  return groups.filter(Boolean);
+}
+
+function contextualBlockChunks(blocks, maxBlocks = 5) {
+  if (blocks.length <= maxBlocks) {
+    return [blocks.join("\n\n").trim()].filter(Boolean);
+  }
+
+  const declarationIndexByVariable = new Map();
+  blocks.forEach((block, index) => {
+    for (const variable of declaredVariablesForBlock(block)) {
+      if (!declarationIndexByVariable.has(variable)) {
+        declarationIndexByVariable.set(variable, index);
+      }
+    }
+  });
+
+  const chunks = [];
+  for (let start = 0; start < blocks.length; start += maxBlocks) {
+    const end = Math.min(start + maxBlocks, blocks.length);
+    const selectedIndexes = new Set();
+    for (let index = start; index < end; index += 1) {
+      selectedIndexes.add(index);
+    }
+
+    const contextIndexes = new Set();
+    const pending = [];
+    for (let index = start; index < end; index += 1) {
+      for (const variable of referencedVariablesForBlock(blocks[index])) {
+        const declarationIndex = declarationIndexByVariable.get(variable);
+        if (declarationIndex !== undefined && declarationIndex < start) {
+          pending.push(declarationIndex);
+        }
+      }
+    }
+
+    while (pending.length > 0) {
+      const declarationIndex = pending.pop();
+      if (declarationIndex === undefined || selectedIndexes.has(declarationIndex) || contextIndexes.has(declarationIndex)) {
+        continue;
+      }
+      contextIndexes.add(declarationIndex);
+      for (const variable of referencedVariablesForBlock(blocks[declarationIndex])) {
+        const dependencyIndex = declarationIndexByVariable.get(variable);
+        if (
+          dependencyIndex !== undefined
+          && dependencyIndex < start
+          && !selectedIndexes.has(dependencyIndex)
+          && !contextIndexes.has(dependencyIndex)
+        ) {
+          pending.push(dependencyIndex);
+        }
+      }
+    }
+
+    const orderedIndexes = [...contextIndexes, ...selectedIndexes].sort((lhs, rhs) => lhs - rhs);
+    chunks.push(orderedIndexes.map((index) => blocks[index]).join("\n\n").trim());
+  }
+
+  return chunks.filter(Boolean);
+}
+
+function splitWriteChunk(chunk, maxBlocks = 10) {
+  const trimmed = chunk.trim();
+  if (!/^put\b/m.test(trimmed) && !/^match\b/m.test(trimmed)) {
+    return [trimmed];
+  }
+
+  const blocks = atomicWriteBlocks(trimmed);
+  const contextualChunks = contextualBlockChunks(blocks, maxBlocks);
+  if (contextualChunks.length > 1) {
+    return contextualChunks;
+  }
+
+  const groups = dependencyClosedGroups(blocks);
+  const chunks = [];
+  for (let index = 0; index < groups.length; index += maxBlocks) {
+    chunks.push(groups.slice(index, index + maxBlocks).join("\n\n").trim());
+  }
+  return chunks.filter(Boolean);
+}
+
+function chunkingError(output) {
+  return output.includes("broken pipe")
+    || output.includes("stream closed")
+    || output.includes("h2 protocol error");
+}
+
+async function applyWriteChunk(hostGrpcPort, tempDir, databaseName, chunk, context, maxBlocks = 5) {
+  const chunks = splitWriteChunk(chunk, maxBlocks);
+
+  for (const [index, writeChunk] of chunks.entries()) {
+    const dataFile = path.join(tempDir, `${context.replaceAll(/[^A-Za-z0-9_-]+/g, "_")}-${maxBlocks}-${index + 1}.tql`);
+    await fs.writeFile(dataFile, `${writeChunk}\n`, "utf8");
+    const loadScript = path.join(tempDir, `${context.replaceAll(/[^A-Za-z0-9_-]+/g, "_")}-${maxBlocks}-${index + 1}-load.tql`);
+    await fs.writeFile(
+      loadScript,
+      `transaction write ${databaseName}\n\nsource ${dataFile}\n\ncommit\n\nexit\n`,
+      "utf8"
+    );
+
+    const load = runTypedbScript(hostGrpcPort, loadScript, tempDir);
+    if (load.status === 0) {
+      continue;
+    }
+
+    const output = `${load.stdout}\n${load.stderr}`;
+    if (maxBlocks > 1 && chunkingError(output)) {
+      await applyWriteChunk(hostGrpcPort, tempDir, databaseName, writeChunk, `${context}-retry-${index + 1}`, Math.max(1, Math.floor(maxBlocks / 2)));
+      continue;
+    }
+
+    assertCondition(false, `${context} failed at batch size ${maxBlocks} chunk ${index + 1}:\n${output}`);
+  }
 }
 
 async function writeMergedQueryFile(keyword, assets, outPath) {
@@ -265,16 +464,8 @@ async function loadSchemaAndData(hostGrpcPort, databaseName, packages, tempDir, 
     const text = await fs.readFile(path.join(asset.packageRoot, asset.relativePath), "utf8");
     const chunk = rewriteChunk(text, "insert", `${label}_write${index + 1}`);
     if (!chunk) continue;
-    const dataFile = path.join(tempDir, `${label}-data-${index + 1}.tql`);
-    await fs.writeFile(dataFile, `${chunk}\n`, "utf8");
-    const loadScript = path.join(tempDir, `${label}-load-${index + 1}.tql`);
-    await fs.writeFile(
-      loadScript,
-      `transaction write ${databaseName}\n\nsource ${dataFile}\n\ncommit\n\nexit\n`,
-      "utf8"
-    );
-    const load = runTypedbScript(hostGrpcPort, loadScript, tempDir);
-    assertCondition(load.status === 0, `${label} data load failed for asset ${index + 1}:\n${load.stdout}\n${load.stderr}`);
+    console.log(`${label}: loading write asset ${index + 1}/${writeAssets.length} (${asset.relativePath})`);
+    await applyWriteChunk(hostGrpcPort, tempDir, databaseName, chunk, `${label}-asset-${index + 1}`);
   }
   console.log(`${label}: data loaded`);
 }
@@ -350,20 +541,24 @@ async function main() {
           const unitPath = path.join(root, unit.path);
           const unitContent = await fs.readFile(unitPath, "utf8");
           const unitFile = path.join(typedbTemp, `migration-${path.basename(unit.path)}`);
-          await fs.writeFile(unitFile, unitContent, "utf8");
-
-          const transactionType = unit.kind === "schema" ? "schema" : "write";
-          const migrationScript = path.join(typedbTemp, `run-migration-${path.basename(unit.path)}.tql`);
-          await fs.writeFile(
-            migrationScript,
-            `transaction ${transactionType} ${databaseName}\n\nsource ${unitFile}\n\ncommit\n\nexit\n`,
-            "utf8"
-          );
-          const result = runTypedbScript(hostGrpcPort, migrationScript, typedbTemp);
-          assertCondition(
-            result.status === 0,
-            `Migration plan '${plan.id}' unit '${unit.path}' (${unit.kind}) failed:\n${result.stdout}\n${result.stderr}`
-          );
+          if (unit.kind === "schema") {
+            await fs.writeFile(unitFile, unitContent, "utf8");
+            const migrationScript = path.join(typedbTemp, `run-migration-${path.basename(unit.path)}.tql`);
+            await fs.writeFile(
+              migrationScript,
+              `transaction schema ${databaseName}\n\nsource ${unitFile}\n\ncommit\n\nexit\n`,
+              "utf8"
+            );
+            const result = runTypedbScript(hostGrpcPort, migrationScript, typedbTemp);
+            assertCondition(
+              result.status === 0,
+              `Migration plan '${plan.id}' unit '${unit.path}' (${unit.kind}) failed:\n${result.stdout}\n${result.stderr}`
+            );
+          } else {
+            const rewritten = rewriteChunk(unitContent, "insert", `migration_${phase.id}_${path.basename(unit.path, ".tql")}`);
+            console.log(`  Applying ${unit.kind} unit with adaptive batching: ${unit.path}`);
+            await applyWriteChunk(hostGrpcPort, typedbTemp, databaseName, rewritten, `migration-${phase.id}-${path.basename(unit.path, ".tql")}`);
+          }
           console.log(`  Applied ${unit.kind} unit: ${path.basename(unit.path)}`);
         }
       }

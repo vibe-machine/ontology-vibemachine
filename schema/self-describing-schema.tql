@@ -1,7 +1,7 @@
 # Provenance bootstrap
 # upstream-repo: https://github.com/vibe-machine/ontology-vibemachine
-# upstream-tag: v1.3.2
-# upstream-commit: 130bf07ab42d1ffb3cf12ec3e0db3f8cb04cc5c6
+# upstream-tag: v1.3.3
+# upstream-commit: d7a4660bb6981953cb01cf9cff38a59823c1deef
 # source-artifacts:
 # - package.json
 # - schema/vibemachine.tql
@@ -11,7 +11,7 @@
 # - data/vibemachine-status-seeds.tql
 # - data/vibemachine-process-seeds.tql
 # - data/vibemachine-notes-seeds.tql
-# manifest: manifests/vibemachine-v1.3.2.package-manifest.json
+# manifest: manifests/vibemachine-v1.3.3.package-manifest.json
 # generator: hand-authored-package-bootstrap/0.1.0
 define
 
@@ -19,6 +19,8 @@ attribute docKey, value string;
 attribute iri, value string;
 attribute typeLabel, value string;
 attribute kind, value string;
+attribute roleName, value string;
+attribute valueTypeName, value string;
 
 attribute prefLabel, value string;
 attribute definition, value string;
@@ -66,6 +68,8 @@ entity SchemaResource,
     owns iri,
     owns typeLabel,
     owns kind,
+    owns roleName @card(0..1),
+    owns valueTypeName @card(0..1),
     owns prefLabel,
     owns definition,
     owns scopeNote @card(0..),
@@ -89,9 +93,33 @@ relation resourceInGroup,
     relates resource,
     relates group;
 
+relation schemaSubTypeOf,
+    relates subtypeResource,
+    relates supertypeResource;
+
+relation schemaOwns,
+    relates ownerResource,
+    relates attributeResource;
+
+relation schemaPlays,
+    relates playerResource,
+    relates roleResource;
+
+relation schemaRelates,
+    relates relationResource,
+    relates roleResource;
+
 SchemaResource plays inModule:resource;
 SchemaModule plays inModule:module;
 SchemaGroup plays groupInView:group;
 SchemaView plays groupInView:view;
 SchemaResource plays resourceInGroup:resource;
 SchemaGroup plays resourceInGroup:group;
+SchemaResource plays schemaSubTypeOf:subtypeResource;
+SchemaResource plays schemaSubTypeOf:supertypeResource;
+SchemaResource plays schemaOwns:ownerResource;
+SchemaResource plays schemaOwns:attributeResource;
+SchemaResource plays schemaPlays:playerResource;
+SchemaResource plays schemaPlays:roleResource;
+SchemaResource plays schemaRelates:relationResource;
+SchemaResource plays schemaRelates:roleResource;
