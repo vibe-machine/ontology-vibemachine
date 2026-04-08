@@ -8,21 +8,18 @@ put $module isa SchemaModule,
   has moduleName "vibemachine",
   has moduleKind "hand-authored-package";
 
+put $view_domain isa SchemaView,
+  has viewKey "domain",
+  has viewName "Domain View",
+  has viewDescription "Groups schema resources by their user-facing role in the software delivery domain.",
+  has viewOrder 10;
+
 put $group_notes isa SchemaGroup,
   has groupKey "notes",
   has groupName "Notes & Todo",
   has groupDescription "Personal notes and to-do item tracking with rich block-editor documents.",
   has groupOrder 70;
 put (group: $group_notes, view: $view_domain) isa groupInView;
-
-put $r84 isa SchemaResource,
-  has docKey "https://github.com/vibe-machine/ontology-vibemachine#VibeTodoItem",
-  has iri "https://github.com/vibe-machine/ontology-vibemachine#VibeTodoItem",
-  has typeLabel "VibeTodoItem",
-  has kind "entity",
-  has prefLabel "VibeTodoItem",
-  has definition "A standalone completable to-do item with priority, due date, and status tracking.",
-  has scopeNote "Extends gist Intention. Owns name, description, todo_id, due_date, url, and priority_level. Exists independently — not contained within any document. Can be referenced from a VibeNote via noteReferencesTodo. Categorized by VibeTodoStatus, VibeTodoPriority, and VibeTag via isCategorizedBy.";
 
 put $r90 isa SchemaResource,
   has docKey "https://github.com/vibe-machine/ontology-vibemachine#noteReferencesTodo",
@@ -45,10 +42,6 @@ put $r91 isa SchemaResource,
   has scopeNote "String attribute used as the identity key for VibeTodoItem.";
 put (resource: $r91, module: $module) isa inModule;
 put (resource: $r91, group: $group_notes) isa resourceInGroup;
-
-put (resource: $r84, module: $module) isa inModule;
-
-put (resource: $r84, group: $group_notes) isa resourceInGroup;
 
 match
   $r83 isa SchemaResource,

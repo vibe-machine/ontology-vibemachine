@@ -13,6 +13,8 @@ const workspaceRoot = path.resolve(root, "..");
 const TYPEDB_IMAGE = process.env.TYPEDB_IMAGE ?? "typedb/typedb:3.8.0";
 const CONTAINER_BIN = process.env.CONTAINER_BIN ?? "container";
 const TYPEDB_CONSOLE = process.env.TYPEDB_BIN ?? path.join(os.homedir(), ".typedb", "typedb");
+const MIGRATION_PLAN_ID = process.env.MIGRATION_PLAN_ID ?? null;
+const MIGRATION_PLAN_ALL = process.env.MIGRATION_PLAN_ALL === "1";
 
 function assertCondition(condition, message) {
   if (!condition) {
@@ -288,104 +290,120 @@ async function main() {
     return;
   }
 
-  const plan = migration.plans[0];
-  console.log(`Migration plan: ${plan.id} (from: ${plan.from}, to: ${plan.to})`);
+  const plans = MIGRATION_PLAN_ID
+    ? migration.plans.filter((plan) => plan.id === MIGRATION_PLAN_ID)
+    : MIGRATION_PLAN_ALL
+      ? migration.plans
+      : [migration.plans.at(-1)];
+  assertCondition(
+    plans.length > 0,
+    MIGRATION_PLAN_ID
+      ? `No migration plan matches MIGRATION_PLAN_ID='${MIGRATION_PLAN_ID}'`
+      : "No migration plans selected."
+  );
 
-  // Find the base version tag that matches the from-range
-  const base = findBaseVersionTag(root, plan.from);
-  console.log(`Base version: ${base.tag} (${semverString(base.version)})`);
+  for (const plan of plans) {
+    console.log(`Migration plan: ${plan.id} (from: ${plan.from}, to: ${plan.to})`);
 
-  // Check out base version into a temporary worktree
-  let baseWorktree;
-  let containerName;
-  const typedbTemp = await fs.mkdtemp(path.join(os.tmpdir(), "ontology-migration-test-"));
-  const databaseName = `ontology_migration_${process.pid}`;
+    // Find the base version tag that matches the from-range
+    const base = findBaseVersionTag(root, plan.from);
+    console.log(`Base version: ${base.tag} (${semverString(base.version)})`);
 
-  try {
-    baseWorktree = checkoutToTemp(root, base.tag);
-    console.log(`Checked out ${base.tag} to ${baseWorktree}`);
+    // Check out base version into a temporary worktree
+    let baseWorktree;
+    let containerName;
+    const typedbTemp = await fs.mkdtemp(path.join(os.tmpdir(), "ontology-migration-test-"));
+    const databaseName = `ontology_migration_${process.pid}`;
 
-    // Resolve base version package order (using base worktree for this package, live workspace for deps)
-    const baseManifest = await readJson(baseWorktree, "package.json");
-    const basePackages = [];
-    for (const dep of baseManifest.dependencies ?? []) {
-      const depRoot = packageRepoPath(dep.name);
-      const depPackages = await resolvePackageOrder(depRoot);
-      basePackages.push(...depPackages);
-    }
-    basePackages.push({ root: baseWorktree, manifest: baseManifest });
+    try {
+      baseWorktree = checkoutToTemp(root, base.tag);
+      console.log(`Checked out ${base.tag} to ${baseWorktree}`);
 
-    // Start TypeDB
-    const container = await startTypedbContainer(typedbTemp);
-    containerName = container.containerName;
-    const { hostGrpcPort } = container;
+      // Resolve base version package order (using base worktree for this package, live workspace for deps)
+      const baseManifest = await readJson(baseWorktree, "package.json");
+      const basePackages = [];
+      for (const dep of baseManifest.dependencies ?? []) {
+        const depRoot = packageRepoPath(dep.name);
+        const depPackages = await resolvePackageOrder(depRoot);
+        basePackages.push(...depPackages);
+      }
+      basePackages.push({ root: baseWorktree, manifest: baseManifest });
 
-    // Step 1: Create database and load base version
-    const createScript = path.join(typedbTemp, "create-db.tql");
-    await fs.writeFile(createScript, `database create ${databaseName}\n\nexit\n`, "utf8");
-    const createResult = runTypedbScript(hostGrpcPort, createScript, typedbTemp);
-    assertCondition(createResult.status === 0, `Database creation failed:\n${createResult.stdout}\n${createResult.stderr}`);
+      // Start TypeDB
+      const container = await startTypedbContainer(typedbTemp);
+      containerName = container.containerName;
+      const { hostGrpcPort } = container;
 
-    await loadSchemaAndData(hostGrpcPort, databaseName, basePackages, typedbTemp, "base");
-    console.log(`Base version ${base.tag} loaded successfully`);
+      // Step 1: Create database and load base version
+      const createScript = path.join(typedbTemp, "create-db.tql");
+      await fs.writeFile(createScript, `database create ${databaseName}\n\nexit\n`, "utf8");
+      const createResult = runTypedbScript(hostGrpcPort, createScript, typedbTemp);
+      assertCondition(createResult.status === 0, `Database creation failed:\n${createResult.stdout}\n${createResult.stderr}`);
 
-    // Step 2: Apply migration phases
-    for (const phase of plan.phases) {
-      console.log(`Running migration phase '${phase.id}' (${phase.units.length} units)`);
-      for (const unit of phase.units) {
-        const unitPath = path.join(root, unit.path);
-        const unitContent = await fs.readFile(unitPath, "utf8");
-        const unitFile = path.join(typedbTemp, `migration-${path.basename(unit.path)}`);
-        await fs.writeFile(unitFile, unitContent, "utf8");
+      await loadSchemaAndData(hostGrpcPort, databaseName, basePackages, typedbTemp, "base");
+      console.log(`Base version ${base.tag} loaded successfully`);
 
-        const transactionType = unit.kind === "schema" ? "schema" : "write";
-        const migrationScript = path.join(typedbTemp, `run-migration-${path.basename(unit.path)}.tql`);
+      // Step 2: Apply migration phases
+      for (const phase of plan.phases) {
+        console.log(`Running migration phase '${phase.id}' (${phase.units.length} units)`);
+        for (const unit of phase.units) {
+          const unitPath = path.join(root, unit.path);
+          const unitContent = await fs.readFile(unitPath, "utf8");
+          const unitFile = path.join(typedbTemp, `migration-${path.basename(unit.path)}`);
+          await fs.writeFile(unitFile, unitContent, "utf8");
+
+          const transactionType = unit.kind === "schema" ? "schema" : "write";
+          const migrationScript = path.join(typedbTemp, `run-migration-${path.basename(unit.path)}.tql`);
+          await fs.writeFile(
+            migrationScript,
+            `transaction ${transactionType} ${databaseName}\n\nsource ${unitFile}\n\ncommit\n\nexit\n`,
+            "utf8"
+          );
+          const result = runTypedbScript(hostGrpcPort, migrationScript, typedbTemp);
+          assertCondition(
+            result.status === 0,
+            `Migration plan '${plan.id}' unit '${unit.path}' (${unit.kind}) failed:\n${result.stdout}\n${result.stderr}`
+          );
+          console.log(`  Applied ${unit.kind} unit: ${path.basename(unit.path)}`);
+        }
+      }
+      console.log(`Migration phases completed for ${plan.id}`);
+
+      // Step 3: Apply current version schema and data (simulates post-migration bootstrap)
+      const currentPackages = await resolvePackageOrder(root);
+      await loadSchemaAndData(hostGrpcPort, databaseName, currentPackages, typedbTemp, "current");
+      console.log("Current version schema and data applied successfully");
+
+      // Step 4: Verify provenance
+      for (const pkg of currentPackages) {
+        const packageName = pkg.manifest.name;
+        const moduleRepoUrl = pkg.manifest.source
+          ?? pkg.manifest.upstream?.repoUrl
+          ?? pkg.manifest.upstream?.repo;
+        assertCondition(typeof moduleRepoUrl === "string" && moduleRepoUrl.length > 0, `Missing module repo URL for ${packageName}`);
+        const queryScript = path.join(typedbTemp, `verify-${packageName}.tql`);
         await fs.writeFile(
-          migrationScript,
-          `transaction ${transactionType} ${databaseName}\n\nsource ${unitFile}\n\ncommit\n\nexit\n`,
+          queryScript,
+          `transaction read ${databaseName}\n\nmatch\n$module isa OntologyModule,\n  has moduleRepoUrl "${moduleRepoUrl}";\n$v isa OntologyModuleVersion;\n(version: $v, module: $module) isa ontologyModuleVersionOf;\nlimit 1;\n\nclose\n\nexit\n`,
           "utf8"
         );
-        const result = runTypedbScript(hostGrpcPort, migrationScript, typedbTemp);
+        const query = runTypedbScript(hostGrpcPort, queryScript, typedbTemp);
         assertCondition(
-          result.status === 0,
-          `Migration unit '${unit.path}' (${unit.kind}) failed:\n${result.stdout}\n${result.stderr}`
+          query.status === 0,
+          `Provenance query failed for ${packageName}:\n${query.stdout}\n${query.stderr}`
         );
-        console.log(`  Applied ${unit.kind} unit: ${path.basename(unit.path)}`);
+        assertCondition(
+          query.stdout.includes("Finished. Total answers: 1"),
+          `Expected OntologyModuleVersion row for ${packageName}:\n${query.stdout}`
+        );
       }
+      console.log(`Provenance verified for ${plan.id}`);
+
+    } finally {
+      await stopContainer(containerName);
+      if (baseWorktree) removeWorktree(root, baseWorktree);
+      await fs.rm(typedbTemp, { recursive: true, force: true });
     }
-    console.log("Migration phases completed");
-
-    // Step 3: Apply current version schema and data (simulates post-migration bootstrap)
-    const currentPackages = await resolvePackageOrder(root);
-    await loadSchemaAndData(hostGrpcPort, databaseName, currentPackages, typedbTemp, "current");
-    console.log("Current version schema and data applied successfully");
-
-    // Step 4: Verify provenance
-    for (const pkg of currentPackages) {
-      const packageName = pkg.manifest.name;
-      const moduleRepoUrl = pkg.manifest.source
-        ?? pkg.manifest.upstream?.repoUrl
-        ?? pkg.manifest.upstream?.repo;
-      assertCondition(typeof moduleRepoUrl === "string" && moduleRepoUrl.length > 0, `Missing module repo URL for ${packageName}`);
-      const queryScript = path.join(typedbTemp, `verify-${packageName}.tql`);
-      await fs.writeFile(
-        queryScript,
-        `transaction read ${databaseName}\n\nmatch\n$module isa OntologyModule,\n  has moduleRepoUrl "${moduleRepoUrl}";\n$v isa OntologyModuleVersion;\n(version: $v, module: $module) isa ontologyModuleVersionOf;\nlimit 1;\n\nclose\n\nexit\n`,
-        "utf8"
-      );
-      const query = runTypedbScript(hostGrpcPort, queryScript, typedbTemp);
-      assertCondition(query.status === 0, `Provenance query failed for ${packageName}:\n${query.stdout}\n${query.stderr}`);
-      assertCondition(
-        query.stdout.includes("Finished. Total answers: 1"),
-        `Expected OntologyModuleVersion row for ${packageName}:\n${query.stdout}`
-      );
-    }
-    console.log("Provenance verified");
-
-  } finally {
-    await stopContainer(containerName);
-    if (baseWorktree) removeWorktree(root, baseWorktree);
-    await fs.rm(typedbTemp, { recursive: true, force: true });
   }
 
   console.log("typedb migration validation ok");

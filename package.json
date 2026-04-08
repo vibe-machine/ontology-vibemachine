@@ -234,6 +234,19 @@
                 "path": "migrations/v1.2.1/schema/03-redefine-todo-item.tql"
               }
             ]
+          },
+          {
+            "id": "write",
+            "units": [
+              {
+                "kind": "write",
+                "path": "migrations/v1.2.1-to-v1.3.0.tql"
+              },
+              {
+                "kind": "write",
+                "path": "migrations/v1.3.0-to-v1.3.1.tql"
+              }
+            ]
           }
         ]
       }
