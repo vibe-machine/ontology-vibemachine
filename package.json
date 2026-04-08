@@ -1,7 +1,7 @@
 {
   "name": "vibemachine",
   "displayName": "vibemachine",
-  "version": "1.3.3",
+  "version": "1.3.4",
   "description": "Workspace and product modeling package for Vibe Machine planning and delivery.",
   "author": "Vibe Machine",
   "license": "Apache-2.0",
@@ -61,7 +61,7 @@
     "release:check": "../ontology-tooling/bin/ontology-release --repo . --validate-only"
   },
   "manifests": [
-    "manifests/vibemachine-v1.3.3.package-manifest.json"
+    "manifests/vibemachine-v1.3.4.package-manifest.json"
   ],
   "assembly": {
     "loadOrder": [
@@ -85,27 +85,30 @@
       "data/vibemachine-schema-docs.tql",
       "data/vibemachine-provenance.tql",
       "manifests/package-manifest.schema.json",
-      "manifests/vibemachine-v1.3.3.package-manifest.json"
+      "manifests/vibemachine-v1.3.4.package-manifest.json"
     ]
   },
   "provenance": {
-    "manifest": "manifests/vibemachine-v1.3.3.package-manifest.json",
+    "manifest": "manifests/vibemachine-v1.3.4.package-manifest.json",
     "status": "bootstrap"
   },
   "migration": {
     "format": 1,
     "supportsUpgradeFrom": [
+      "1.0.x",
+      "1.1.x",
+      "1.2.x",
       "1.3.x"
     ],
     "plans": [
       {
-        "id": "vibemachine-1.0.x-to-1.2.0",
+        "id": "vibemachine-1.0.x-to-1.3.4",
         "from": ">=1.0.0 <1.1.0",
-        "to": "1.3.3",
+        "to": "1.3.4",
         "mode": "compatible",
         "snapshot": {
           "required": true,
-          "label": "pre-vibemachine-1.3.3-migration"
+          "label": "pre-vibemachine-1.3.4-migration"
         },
         "phases": [
           {
@@ -172,13 +175,13 @@
         ]
       },
       {
-        "id": "vibemachine-1.1.x-to-1.3.0",
+        "id": "vibemachine-1.1.x-to-1.3.4",
         "from": ">=1.1.0 <1.2.0",
-        "to": "1.3.3",
+        "to": "1.3.4",
         "mode": "compatible",
         "snapshot": {
           "required": true,
-          "label": "pre-vibemachine-1.3.3-migration"
+          "label": "pre-vibemachine-1.3.4-migration"
         },
         "phases": [
           {
@@ -209,13 +212,13 @@
         ]
       },
       {
-        "id": "vibemachine-1.2.x-to-1.3.0",
-        "from": ">=1.2.0 <1.3.0",
-        "to": "1.3.3",
+        "id": "vibemachine-1.2.x-to-1.3.4",
+        "from": ">=1.2.0 <1.3.2",
+        "to": "1.3.4",
         "mode": "compatible",
         "snapshot": {
           "required": true,
-          "label": "pre-vibemachine-1.3.3-migration"
+          "label": "pre-vibemachine-1.3.4-migration"
         },
         "phases": [
           {
@@ -240,11 +243,57 @@
             "units": [
               {
                 "kind": "write",
-                "path": "migrations/v1.2.1-to-v1.3.0.tql"
+                "path": "data/vibemachine-notes-seeds.tql"
               },
               {
                 "kind": "write",
-                "path": "migrations/v1.3.0-to-v1.3.1.tql"
+                "path": "migrations/v1.3.4/delete-schema-docs.tql"
+              },
+              {
+                "kind": "write",
+                "path": "data/vibemachine-provenance.tql"
+              },
+              {
+                "kind": "write",
+                "path": "data/vibemachine-schema-docs.tql"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "vibemachine-1.3.x-to-1.3.4",
+        "from": ">=1.3.2 <1.3.4",
+        "to": "1.3.4",
+        "mode": "compatible",
+        "snapshot": {
+          "required": true,
+          "label": "pre-vibemachine-1.3.4-migration"
+        },
+        "phases": [
+          {
+            "id": "schema",
+            "units": [
+              {
+                "kind": "schema",
+                "path": "schema/self-describing-schema.tql"
+              }
+            ]
+          },
+          {
+            "id": "write",
+            "units": [
+              {
+                "kind": "write",
+                "path": "migrations/v1.3.4/delete-schema-docs.tql"
+              },
+              {
+                "kind": "write",
+                "path": "data/vibemachine-provenance.tql"
+              },
+              {
+                "kind": "write",
+                "path": "data/vibemachine-schema-docs.tql"
               }
             ]
           }

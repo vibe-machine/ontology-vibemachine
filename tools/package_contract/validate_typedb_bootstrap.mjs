@@ -77,9 +77,10 @@ function classifyAssemblyAssets(manifest) {
 }
 
 function rewriteChunk(text, keyword, variablePrefix) {
+  const sanitizedPrefix = variablePrefix.replace(/[^A-Za-z0-9_]+/g, "_");
   let chunk = text.replace(/^#.*\n/gm, "");
   chunk = chunk.replace(new RegExp(`^\\s*${keyword}\\s*\\n`, "i"), "");
-  chunk = chunk.replace(/\$([A-Za-z][A-Za-z0-9_]*)/g, `\$${variablePrefix}_$1`);
+  chunk = chunk.replace(/\$([A-Za-z][A-Za-z0-9_]*)/g, `\$${sanitizedPrefix}_$1`);
   return chunk.trim();
 }
 
@@ -97,6 +98,153 @@ async function writeMergedQueryFile(keyword, assets, outPath) {
     ? `${chunks.join("\n\n")}\n`
     : `${keyword}\n\n${chunks.join("\n\n")}\n`;
   await fs.writeFile(outPath, merged, "utf8");
+}
+
+function declaredVariablesForBlock(block) {
+  return [...block.matchAll(/\$([A-Za-z][A-Za-z0-9_]*)\s+isa\b/g)].map((match) => match[1]);
+}
+
+function referencedVariablesForBlock(block) {
+  return [...block.matchAll(/\$([A-Za-z][A-Za-z0-9_]*)/g)].map((match) => match[1]);
+}
+
+function atomicWriteBlocks(trimmed) {
+  const blocks = trimmed
+    .split(/\n\s*\n+/)
+    .map((block) => block.trim())
+    .filter(Boolean);
+
+  if (blocks.length > 1) {
+    return blocks;
+  }
+
+  const statements = trimmed.match(/[\s\S]*?;/g) ?? [];
+  if (statements.length === 0) {
+    return [trimmed];
+  }
+
+  const statementBlocks = [];
+  for (let index = 0; index < statements.length; index++) {
+    const current = statements[index].trim();
+    const referencedVariables = referencedVariablesForBlock(current);
+    const blockStatements = [current];
+    const next = statements[index + 1]?.trim();
+    if (
+      next &&
+      (next.startsWith("put (") || next.startsWith("match")) &&
+      referencedVariables.some((name) => next.includes(`$${name}`))
+    ) {
+      blockStatements.push(next);
+      index += 1;
+    }
+    statementBlocks.push(blockStatements.join("\n"));
+  }
+
+  return statementBlocks;
+}
+
+function contextualBlockChunks(blocks, maxBlocks = 5) {
+  if (blocks.length <= maxBlocks) {
+    return [blocks.join("\n\n").trim()].filter(Boolean);
+  }
+
+  const declarationIndexByVariable = new Map();
+  blocks.forEach((block, index) => {
+    for (const variable of declaredVariablesForBlock(block)) {
+      if (!declarationIndexByVariable.has(variable)) {
+        declarationIndexByVariable.set(variable, index);
+      }
+    }
+  });
+
+  const chunks = [];
+  for (let start = 0; start < blocks.length; start += maxBlocks) {
+    const end = Math.min(start + maxBlocks, blocks.length);
+    const selectedIndexes = new Set();
+    for (let index = start; index < end; index += 1) {
+      selectedIndexes.add(index);
+    }
+
+    const contextIndexes = new Set();
+    const pending = [];
+    for (let index = start; index < end; index += 1) {
+      for (const variable of referencedVariablesForBlock(blocks[index])) {
+        const declarationIndex = declarationIndexByVariable.get(variable);
+        if (declarationIndex !== undefined && declarationIndex < start) {
+          pending.push(declarationIndex);
+        }
+      }
+    }
+
+    while (pending.length > 0) {
+      const declarationIndex = pending.pop();
+      if (declarationIndex === undefined || selectedIndexes.has(declarationIndex) || contextIndexes.has(declarationIndex)) {
+        continue;
+      }
+      contextIndexes.add(declarationIndex);
+      for (const variable of referencedVariablesForBlock(blocks[declarationIndex])) {
+        const dependencyIndex = declarationIndexByVariable.get(variable);
+        if (
+          dependencyIndex !== undefined
+          && dependencyIndex < start
+          && !selectedIndexes.has(dependencyIndex)
+          && !contextIndexes.has(dependencyIndex)
+        ) {
+          pending.push(dependencyIndex);
+        }
+      }
+    }
+
+    const orderedIndexes = [...contextIndexes, ...selectedIndexes].sort((lhs, rhs) => lhs - rhs);
+    chunks.push(orderedIndexes.map((index) => blocks[index]).join("\n\n").trim());
+  }
+
+  return chunks.filter(Boolean);
+}
+
+function splitWriteChunk(chunk, maxBlocks = 5) {
+  const trimmed = chunk.trim();
+  if (!/^put\b/m.test(trimmed) && !/^match\b/m.test(trimmed)) {
+    return [trimmed];
+  }
+
+  const blocks = atomicWriteBlocks(trimmed);
+  return contextualBlockChunks(blocks, maxBlocks);
+}
+
+function chunkingError(output) {
+  return output.includes("broken pipe")
+    || output.includes("stream closed")
+    || output.includes("h2 protocol error");
+}
+
+async function applyWriteChunk(hostGrpcPort, tempDir, databaseName, chunk, context, maxBlocks = 5) {
+  const chunks = splitWriteChunk(chunk, maxBlocks);
+
+  for (const [index, writeChunk] of chunks.entries()) {
+    const stem = `${context.replaceAll(/[^A-Za-z0-9_-]+/g, "_")}-${maxBlocks}-${index + 1}`;
+    const dataFile = path.join(tempDir, `${stem}.tql`);
+    await fs.writeFile(dataFile, `${writeChunk}\n`, "utf8");
+    const loadScript = path.join(tempDir, `${stem}-load.tql`);
+    await fs.writeFile(
+      loadScript,
+      `transaction write ${databaseName}\n\nsource ${dataFile}\n\ncommit\n\nexit\n`,
+      "utf8"
+    );
+
+    const load = runTypedbScript(hostGrpcPort, loadScript, root);
+    if (load.status === 0) {
+      continue;
+    }
+
+    const output = `${load.stdout}\n${load.stderr}`;
+    if (maxBlocks > 1 && chunkingError(output)) {
+      await applyWriteChunk(hostGrpcPort, tempDir, databaseName, writeChunk, `${context}-retry-${index + 1}`, Math.max(1, Math.floor(maxBlocks / 2)));
+      continue;
+    }
+
+    assertCondition(false, `TypeDB data chunk load failed (${context} chunk ${index + 1}):\n${output}`);
+  }
 }
 
 // ── Container-based TypeDB server ──────────────────────────────────
@@ -208,17 +356,6 @@ async function main() {
   const mergedSchema = path.join(typedbTemp, "merged-schema.tql");
   await writeMergedQueryFile("define", schemaAssets, mergedSchema);
 
-  const dataFiles = [];
-  for (const [index, asset] of writeAssets.entries()) {
-    const text = await fs.readFile(path.join(asset.packageRoot, asset.relativePath), "utf8");
-    const chunk = rewriteChunk(text, "insert", `write${index + 1}`);
-    if (chunk) {
-      const dataFile = path.join(typedbTemp, `data-${index + 1}.tql`);
-      await fs.writeFile(dataFile, `${chunk}\n`, "utf8");
-      dataFiles.push(dataFile);
-    }
-  }
-
   let containerName;
   try {
     const container = await startTypedbContainer(typedbTemp);
@@ -237,15 +374,12 @@ async function main() {
     console.log("Schema loaded");
 
     // Load data files
-    for (const dataFile of dataFiles) {
-      const loadScript = path.join(typedbTemp, `load-${path.basename(dataFile)}.tql`);
-      await fs.writeFile(
-        loadScript,
-        `transaction write ${databaseName}\n\nsource ${dataFile}\n\ncommit\n\nexit\n`,
-        "utf8"
-      );
-      const load = runTypedbScript(hostGrpcPort, loadScript, root);
-      assertCondition(load.status === 0, `TypeDB data load failed for ${path.basename(dataFile)}:\n${load.stdout}\n${load.stderr}`);
+    for (const [index, asset] of writeAssets.entries()) {
+      const text = await fs.readFile(path.join(asset.packageRoot, asset.relativePath), "utf8");
+      const chunk = rewriteChunk(text, "insert", `write${index + 1}`);
+      if (!chunk) continue;
+      console.log(`Loading write asset ${index + 1}/${writeAssets.length} (${asset.relativePath})`);
+      await applyWriteChunk(hostGrpcPort, typedbTemp, databaseName, chunk, `asset-${index + 1}`);
     }
     console.log("Data loaded");
 
