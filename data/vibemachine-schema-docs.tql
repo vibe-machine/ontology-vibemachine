@@ -1,7 +1,7 @@
 # Provenance bootstrap
 # upstream-repo: https://github.com/vibe-machine/ontology-vibemachine
-# upstream-tag: v1.3.5
-# upstream-commit: aa3dc5276c03aa4653b79ae36049d7f2e999bb26
+# upstream-tag: v1.3.6
+# upstream-commit: 485840bf378a6461d993c1e32f429869a9581f01
 # source-artifacts:
 # - package.json
 # - schema/vibemachine.tql
@@ -9,9 +9,27 @@
 # - schema/vibemachine-blocks.tql
 # - schema/vibemachine-notes.tql
 # - data/vibemachine-status-seeds.tql
-# - data/vibemachine-process-seeds.tql
+# - generated/apply-units/data/vibemachine-process-seeds/0001.tql
+# - generated/apply-units/data/vibemachine-process-seeds/0002.tql
 # - data/vibemachine-notes-seeds.tql
-# manifest: manifests/vibemachine-v1.3.5.package-manifest.json
+# - generated/apply-units/data/vibemachine-schema-docs/0001.tql
+# - generated/apply-units/data/vibemachine-schema-docs/0002.tql
+# - generated/apply-units/data/vibemachine-schema-docs/0003.tql
+# - generated/apply-units/data/vibemachine-schema-docs/0004.tql
+# - generated/apply-units/data/vibemachine-schema-docs/0005.tql
+# - generated/apply-units/data/vibemachine-schema-docs/0006.tql
+# - generated/apply-units/data/vibemachine-schema-docs/0007.tql
+# - generated/apply-units/data/vibemachine-schema-docs/0008.tql
+# - generated/apply-units/data/vibemachine-schema-docs/0009.tql
+# - generated/apply-units/data/vibemachine-schema-docs/0010.tql
+# - generated/apply-units/data/vibemachine-schema-docs/0011.tql
+# - generated/apply-units/data/vibemachine-schema-docs/0012.tql
+# - generated/apply-units/data/vibemachine-schema-docs/0013.tql
+# - generated/apply-units/data/vibemachine-schema-docs/0014.tql
+# - generated/apply-units/data/vibemachine-schema-docs/0015.tql
+# - generated/apply-units/data/vibemachine-schema-docs/0016.tql
+# - generated/apply-units/data/vibemachine-schema-docs/0017.tql
+# manifest: manifests/vibemachine-v1.3.6.package-manifest.json
 # generator: hand-authored-package-bootstrap/0.1.0
 put $module isa SchemaModule,
   has moduleKey "vibemachine",

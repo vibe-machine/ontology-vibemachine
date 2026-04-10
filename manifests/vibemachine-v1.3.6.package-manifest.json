@@ -1,0 +1,246 @@
+{
+  "$schema": "./package-manifest.schema.json",
+  "manifestVersion": "1.0.0",
+  "package": {
+    "name": "vibemachine",
+    "version": "1.3.6"
+  },
+  "upstream": {
+    "repoUrl": "https://github.com/vibe-machine/ontology-vibemachine",
+    "tag": "v1.3.6",
+    "commit": "485840bf378a6461d993c1e32f429869a9581f01",
+    "sourceArtifacts": [
+      {
+        "path": "package.json",
+        "sha256": "88349dbe105cb842d8ee5b69d8d9b758747003dc513d5bf16e83b32483720e97"
+      },
+      {
+        "path": "schema/vibemachine.tql",
+        "sha256": "0ba920df6c4d73505adf21d1fbd3b263b92f4e96b0bfbdbf98138d4cb3b1860a"
+      },
+      {
+        "path": "schema/vibemachine-process.tql",
+        "sha256": "ba51bc983042074cbe620313f5e943fb405211093d36c7fe36721470a9baeec5"
+      },
+      {
+        "path": "schema/vibemachine-blocks.tql",
+        "sha256": "64c9b18a242c8be818663c25fb24ef5b73090fde947120e4f0029183f9ab738f"
+      },
+      {
+        "path": "schema/vibemachine-notes.tql",
+        "sha256": "c48b58031978dd96b74fd8e64fbacc549b12d38db0ba45a0f111503bce7c43c6"
+      },
+      {
+        "path": "data/vibemachine-status-seeds.tql",
+        "sha256": "6d7bba9a3f222ca8492f79390106bb1d489262edf9e56b28f7dbf06492868b84"
+      },
+      {
+        "path": "generated/apply-units/data/vibemachine-process-seeds/0001.tql",
+        "sha256": "8a83df10934196dd799c3a120e63e38decc697ca41f6179def0c36b4fc8e877f"
+      },
+      {
+        "path": "generated/apply-units/data/vibemachine-process-seeds/0002.tql",
+        "sha256": "10b29c896179786a369762ffad10fe95ccfeb77340c30c384cdc5dcbd3e9863e"
+      },
+      {
+        "path": "data/vibemachine-notes-seeds.tql",
+        "sha256": "8b5d30cdb8e2652e08b2f257342793ebd5a5b3652acf37915d036e29d19bc7dc"
+      },
+      {
+        "path": "generated/apply-units/data/vibemachine-schema-docs/0001.tql",
+        "sha256": "4c476c98f9916b38d090f32e7ed4ab2e10b0b82b8ce17b44be55f58658902a8c"
+      },
+      {
+        "path": "generated/apply-units/data/vibemachine-schema-docs/0002.tql",
+        "sha256": "6cc6a3e9c7b1c01f0d790a1f276b30b1cbd7e3b16fc95ea5da79a188cacc5dfe"
+      },
+      {
+        "path": "generated/apply-units/data/vibemachine-schema-docs/0003.tql",
+        "sha256": "6d0fa26c62ca1066cc8202c07e00c3c75488d104930763cb317b6d3c92dc9be1"
+      },
+      {
+        "path": "generated/apply-units/data/vibemachine-schema-docs/0004.tql",
+        "sha256": "e77fa45440aff5c1202562f8d2801d6a0df6f0498ef4938ff1946faa7a68ac19"
+      },
+      {
+        "path": "generated/apply-units/data/vibemachine-schema-docs/0005.tql",
+        "sha256": "2c0f7bfbce55cfc28948bc4292965883f8649704d0bc639e4100ad899ae90421"
+      },
+      {
+        "path": "generated/apply-units/data/vibemachine-schema-docs/0006.tql",
+        "sha256": "9e85aa5d8ca281f249381a7dedd6b0e9e3d5bbbf6dd6c4ce9e75871254c088aa"
+      },
+      {
+        "path": "generated/apply-units/data/vibemachine-schema-docs/0007.tql",
+        "sha256": "b8057592eb5458a631f24d37cab9a3d550902bf8dcf56df5088053202b08741a"
+      },
+      {
+        "path": "generated/apply-units/data/vibemachine-schema-docs/0008.tql",
+        "sha256": "badcca5d0244e524fb744ffcaadb4815d469a1d4f63cad72ba3b4b724efc26d2"
+      },
+      {
+        "path": "generated/apply-units/data/vibemachine-schema-docs/0009.tql",
+        "sha256": "0bd35f862eb2f3491a9c5998905b63a95497eb4e409e612c9bda30e58de36559"
+      },
+      {
+        "path": "generated/apply-units/data/vibemachine-schema-docs/0010.tql",
+        "sha256": "c26ffbd787f89c36ec5e3b94ded4b72916d862441fcfcb5ae814508eb8eb79af"
+      },
+      {
+        "path": "generated/apply-units/data/vibemachine-schema-docs/0011.tql",
+        "sha256": "793bc8a543fba9113527eadb1b6b32f7d0a31b723d4ba6725be14b00234e2fc2"
+      },
+      {
+        "path": "generated/apply-units/data/vibemachine-schema-docs/0012.tql",
+        "sha256": "4b25df3790112c1943834fc6c09765049907cb6a4e17531afb9c0466d11dc35c"
+      },
+      {
+        "path": "generated/apply-units/data/vibemachine-schema-docs/0013.tql",
+        "sha256": "7f2d15e99b6696c96612dd7ed9079ace85287c8eb7a572976dc8e75ec2b18688"
+      },
+      {
+        "path": "generated/apply-units/data/vibemachine-schema-docs/0014.tql",
+        "sha256": "8e46cfcd62400cd548e234f00bb0995ee6d0b21ace08301867986dc6fe4b2639"
+      },
+      {
+        "path": "generated/apply-units/data/vibemachine-schema-docs/0015.tql",
+        "sha256": "e0ba54dc54c52b21e9d5b390698ec0a0b0ff47282423c2d829008f985ae660fb"
+      },
+      {
+        "path": "generated/apply-units/data/vibemachine-schema-docs/0016.tql",
+        "sha256": "650131ecf53bb8d99dbc7dc7d4df0ccfd46eb23948359acd198581a217df3e45"
+      },
+      {
+        "path": "generated/apply-units/data/vibemachine-schema-docs/0017.tql",
+        "sha256": "ded9d9919a617b5a538497abd1f78803d7659bb62bf477e59d04e1c6739505f1"
+      }
+    ]
+  },
+  "generator": {
+    "name": "hand-authored-package-bootstrap",
+    "version": "0.1.0",
+    "generatedAt": "2026-04-10T14:57:08Z"
+  },
+  "artifacts": [
+    {
+      "kind": "meta-schema",
+      "path": "schema/self-describing-schema.tql",
+      "sha256": "78408294a6f35c137249d474013e683154ee41fa48157ce48ab9290f23a5c277"
+    },
+    {
+      "kind": "provenance-schema",
+      "path": "schema/package-provenance.tql",
+      "sha256": "214287e3042ed9712793853450aa91eff7de37b2af16afd8c39c586856699bd8"
+    },
+    {
+      "kind": "administrative-schema",
+      "path": "schema/administrative-operations.tql",
+      "sha256": "a6b4f30ef43cfa46145aa0eb8952c9de587a6799516909cc6503b726ad22b1b4"
+    },
+    {
+      "kind": "documentation",
+      "path": "data/vibemachine-schema-docs.tql",
+      "sha256": "f5f8c492c15aa9cb4c38ef0db5b6e384b6799f10d3b0ac39f6068c2b2810287a"
+    },
+    {
+      "kind": "manifest-schema",
+      "path": "manifests/package-manifest.schema.json",
+      "sha256": "07599fe20623f3304bec0987320050f12efc1faf04fad7c12176ffe88e0b6a48"
+    },
+    {
+      "kind": "provenance-seeds",
+      "path": "data/vibemachine-provenance.tql",
+      "sha256": "1213f0aff366e0116c5155bbcaef2654ecd1f37caf41d7b93b0dc4aca432e1af"
+    },
+    {
+      "kind": "migration",
+      "path": "migrations/v1.3.5-to-v1.3.6.tql",
+      "sha256": "20e69d41b7d8d95e396fb1949448c600711fb436b7196d52e627f9744024ced1"
+    },
+    {
+      "kind": "apply-unit",
+      "path": "generated/apply-units/data/vibemachine-schema-docs/0001.tql",
+      "sha256": "4c476c98f9916b38d090f32e7ed4ab2e10b0b82b8ce17b44be55f58658902a8c"
+    },
+    {
+      "kind": "apply-unit",
+      "path": "generated/apply-units/data/vibemachine-schema-docs/0002.tql",
+      "sha256": "6cc6a3e9c7b1c01f0d790a1f276b30b1cbd7e3b16fc95ea5da79a188cacc5dfe"
+    },
+    {
+      "kind": "apply-unit",
+      "path": "generated/apply-units/data/vibemachine-schema-docs/0003.tql",
+      "sha256": "6d0fa26c62ca1066cc8202c07e00c3c75488d104930763cb317b6d3c92dc9be1"
+    },
+    {
+      "kind": "apply-unit",
+      "path": "generated/apply-units/data/vibemachine-schema-docs/0004.tql",
+      "sha256": "e77fa45440aff5c1202562f8d2801d6a0df6f0498ef4938ff1946faa7a68ac19"
+    },
+    {
+      "kind": "apply-unit",
+      "path": "generated/apply-units/data/vibemachine-schema-docs/0005.tql",
+      "sha256": "2c0f7bfbce55cfc28948bc4292965883f8649704d0bc639e4100ad899ae90421"
+    },
+    {
+      "kind": "apply-unit",
+      "path": "generated/apply-units/data/vibemachine-schema-docs/0006.tql",
+      "sha256": "9e85aa5d8ca281f249381a7dedd6b0e9e3d5bbbf6dd6c4ce9e75871254c088aa"
+    },
+    {
+      "kind": "apply-unit",
+      "path": "generated/apply-units/data/vibemachine-schema-docs/0007.tql",
+      "sha256": "b8057592eb5458a631f24d37cab9a3d550902bf8dcf56df5088053202b08741a"
+    },
+    {
+      "kind": "apply-unit",
+      "path": "generated/apply-units/data/vibemachine-schema-docs/0008.tql",
+      "sha256": "badcca5d0244e524fb744ffcaadb4815d469a1d4f63cad72ba3b4b724efc26d2"
+    },
+    {
+      "kind": "apply-unit",
+      "path": "generated/apply-units/data/vibemachine-schema-docs/0009.tql",
+      "sha256": "0bd35f862eb2f3491a9c5998905b63a95497eb4e409e612c9bda30e58de36559"
+    },
+    {
+      "kind": "apply-unit",
+      "path": "generated/apply-units/data/vibemachine-schema-docs/0010.tql",
+      "sha256": "c26ffbd787f89c36ec5e3b94ded4b72916d862441fcfcb5ae814508eb8eb79af"
+    },
+    {
+      "kind": "apply-unit",
+      "path": "generated/apply-units/data/vibemachine-schema-docs/0011.tql",
+      "sha256": "793bc8a543fba9113527eadb1b6b32f7d0a31b723d4ba6725be14b00234e2fc2"
+    },
+    {
+      "kind": "apply-unit",
+      "path": "generated/apply-units/data/vibemachine-schema-docs/0012.tql",
+      "sha256": "4b25df3790112c1943834fc6c09765049907cb6a4e17531afb9c0466d11dc35c"
+    },
+    {
+      "kind": "apply-unit",
+      "path": "generated/apply-units/data/vibemachine-schema-docs/0013.tql",
+      "sha256": "7f2d15e99b6696c96612dd7ed9079ace85287c8eb7a572976dc8e75ec2b18688"
+    },
+    {
+      "kind": "apply-unit",
+      "path": "generated/apply-units/data/vibemachine-schema-docs/0014.tql",
+      "sha256": "8e46cfcd62400cd548e234f00bb0995ee6d0b21ace08301867986dc6fe4b2639"
+    },
+    {
+      "kind": "apply-unit",
+      "path": "generated/apply-units/data/vibemachine-schema-docs/0015.tql",
+      "sha256": "e0ba54dc54c52b21e9d5b390698ec0a0b0ff47282423c2d829008f985ae660fb"
+    },
+    {
+      "kind": "apply-unit",
+      "path": "generated/apply-units/data/vibemachine-schema-docs/0016.tql",
+      "sha256": "650131ecf53bb8d99dbc7dc7d4df0ccfd46eb23948359acd198581a217df3e45"
+    },
+    {
+      "kind": "apply-unit",
+      "path": "generated/apply-units/data/vibemachine-schema-docs/0017.tql",
+      "sha256": "ded9d9919a617b5a538497abd1f78803d7659bb62bf477e59d04e1c6739505f1"
+    }
+  ]
+}

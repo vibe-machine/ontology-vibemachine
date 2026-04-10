@@ -1,7 +1,7 @@
 {
   "name": "vibemachine",
   "displayName": "vibemachine",
-  "version": "1.3.5",
+  "version": "1.3.6",
   "description": "Workspace and product modeling package for Vibe Machine planning and delivery.",
   "author": "Vibe Machine",
   "license": "Apache-2.0",
@@ -42,7 +42,6 @@
     "generated/apply-units/data/vibemachine-process-seeds/0001.tql",
     "generated/apply-units/data/vibemachine-process-seeds/0002.tql",
     "data/vibemachine-notes-seeds.tql",
-    "data/vibemachine-provenance.tql",
     "generated/apply-units/data/vibemachine-schema-docs/0001.tql",
     "generated/apply-units/data/vibemachine-schema-docs/0002.tql",
     "generated/apply-units/data/vibemachine-schema-docs/0003.tql",
@@ -59,7 +58,8 @@
     "generated/apply-units/data/vibemachine-schema-docs/0014.tql",
     "generated/apply-units/data/vibemachine-schema-docs/0015.tql",
     "generated/apply-units/data/vibemachine-schema-docs/0016.tql",
-    "generated/apply-units/data/vibemachine-schema-docs/0017.tql"
+    "generated/apply-units/data/vibemachine-schema-docs/0017.tql",
+    "data/vibemachine-provenance.tql"
   ],
   "dependencies": [
     {
@@ -78,7 +78,7 @@
     "release:check": "../ontology-tooling/bin/ontology-release --repo . --validate-only"
   },
   "manifests": [
-    "manifests/vibemachine-v1.3.5.package-manifest.json"
+    "manifests/vibemachine-v1.3.6.package-manifest.json"
   ],
   "assembly": {
     "loadOrder": [
@@ -93,7 +93,6 @@
       "generated/apply-units/data/vibemachine-process-seeds/0001.tql",
       "generated/apply-units/data/vibemachine-process-seeds/0002.tql",
       "data/vibemachine-notes-seeds.tql",
-      "data/vibemachine-provenance.tql",
       "generated/apply-units/data/vibemachine-schema-docs/0001.tql",
       "generated/apply-units/data/vibemachine-schema-docs/0002.tql",
       "generated/apply-units/data/vibemachine-schema-docs/0003.tql",
@@ -110,7 +109,8 @@
       "generated/apply-units/data/vibemachine-schema-docs/0014.tql",
       "generated/apply-units/data/vibemachine-schema-docs/0015.tql",
       "generated/apply-units/data/vibemachine-schema-docs/0016.tql",
-      "generated/apply-units/data/vibemachine-schema-docs/0017.tql"
+      "generated/apply-units/data/vibemachine-schema-docs/0017.tql",
+      "data/vibemachine-provenance.tql"
     ],
     "generatedArtifacts": [
       "schema/self-describing-schema.tql",
@@ -119,9 +119,7 @@
       "data/vibemachine-schema-docs.tql",
       "data/vibemachine-provenance.tql",
       "manifests/package-manifest.schema.json",
-      "manifests/vibemachine-v1.3.5.package-manifest.json",
-      "generated/apply-units/data/vibemachine-process-seeds/0001.tql",
-      "generated/apply-units/data/vibemachine-process-seeds/0002.tql",
+      "manifests/vibemachine-v1.3.6.package-manifest.json",
       "generated/apply-units/data/vibemachine-schema-docs/0001.tql",
       "generated/apply-units/data/vibemachine-schema-docs/0002.tql",
       "generated/apply-units/data/vibemachine-schema-docs/0003.tql",
@@ -142,7 +140,7 @@
     ]
   },
   "provenance": {
-    "manifest": "manifests/vibemachine-v1.3.5.package-manifest.json",
+    "manifest": "manifests/vibemachine-v1.3.6.package-manifest.json",
     "status": "bootstrap"
   },
   "legacyDocumentation": {
