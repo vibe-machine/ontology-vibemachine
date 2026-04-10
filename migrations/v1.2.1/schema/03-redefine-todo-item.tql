@@ -1,4 +1,0 @@
-define
-
-VibeTodoItem owns todo_id @key,
-  plays noteReferencesTodo:todoItem;

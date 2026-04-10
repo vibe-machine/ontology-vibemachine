@@ -1,0 +1,177 @@
+# Generated executable apply unit from data/vibemachine-process-seeds.tql
+# manifest: manifests/vibemachine-v1.3.5.package-manifest.json
+
+put $bt_submitted isa VibeProcessStage,
+  has stage_id "bt-submitted",
+  has name "Submitted",
+  has description "A submission has arrived from a user, an agent, automated monitoring, or a crash report. No interpretation has been applied. The entity in the process is a VibeSubmission.",
+  has stage_sequence 10;
+
+put $bt_triaged isa VibeProcessStage,
+  has stage_id "bt-triaged",
+  has name "Triaged",
+  has description "The submission has been interpreted and a normalized VibeIssue created. Kind, severity, and priority are assigned. The issue is linked to the affected project and repository. The entity in the process is now a VibeIssue.",
+  has stage_sequence 20;
+
+put $bt_planned isa VibeProcessStage,
+  has stage_id "bt-planned",
+  has name "Planned",
+  has description "The issue has been committed to a release plan or milestone. Reproduction steps are documented. A responsible owner is identified. The issue is ready for assignment.",
+  has stage_sequence 30;
+
+put $bt_assigned isa VibeProcessStage,
+  has stage_id "bt-assigned",
+  has name "Assigned",
+  has description "A specific agent or engineer has been assigned to the issue. The performer has committed to the work. An engineering task exists that addresses the issue. Work has not yet begun.",
+  has stage_sequence 40;
+
+put $bt_inprogress isa VibeProcessStage,
+  has stage_id "bt-in-progress",
+  has name "In progress",
+  has description "Active engineering work is underway. The assigned performer has confirmed execution has started. The work may involve branching, coding, testing, and submitting changes.",
+  has stage_sequence 50;
+
+put $bt_resolved isa VibeProcessStage,
+  has stage_id "bt-resolved",
+  has name "Resolved",
+  has description "Engineering work is complete from the performer's perspective. A resolution decision records the outcome: fixed, duplicate, invalid, cannot reproduce, or won't fix. The fix has not yet been independently verified.",
+  has stage_sequence 60;
+
+put $bt_verified isa VibeProcessStage,
+  has stage_id "bt-verified",
+  has name "Verified",
+  has description "The fix has been independently verified against the original reproduction path or acceptance criteria. For non-fix resolutions (duplicate, invalid, won't fix), verification confirms the disposition is correct. The issue is ready for closure.",
+  has stage_sequence 70;
+
+put $btc2 isa VibeGateCriterion,
+  has criteria_id "bt-gc-triage-kind",
+  has name "Issue kind assigned",
+  has description "The issue has been categorized as bug, regression, crash, performance, or other recognized kind.";
+
+put (criterion: $btc2, stage: $bt_submitted) isa stageHasCriterion;
+
+put $btc3 isa VibeGateCriterion,
+  has criteria_id "bt-gc-triage-severity",
+  has name "Severity assessed",
+  has description "The issue has a severity rating reflecting its impact on users or the system.";
+
+put (criterion: $btc3, stage: $bt_submitted) isa stageHasCriterion;
+
+put $btc4 isa VibeGateCriterion,
+  has criteria_id "bt-gc-triage-priority",
+  has name "Priority assigned",
+  has description "The issue has an initial priority reflecting urgency relative to other work.";
+
+put (criterion: $btc4, stage: $bt_submitted) isa stageHasCriterion;
+
+put $btc5 isa VibeGateCriterion,
+  has criteria_id "bt-gc-triage-scope",
+  has name "Project and repository linked",
+  has description "The issue is linked to the affected project and, where identifiable, the relevant repository.";
+
+put (criterion: $btc5, stage: $bt_submitted) isa stageHasCriterion;
+
+put $btc6 isa VibeGateCriterion,
+  has criteria_id "bt-gc-triage-duplicate",
+  has name "Duplicate check completed",
+  has description "The triager has confirmed this is not a duplicate of an existing open issue, or has linked it to the canonical issue and terminated the process.";
+
+put (criterion: $btc6, stage: $bt_submitted) isa stageHasCriterion;
+
+put $btc7 isa VibeGateCriterion,
+  has criteria_id "bt-gc-plan-release",
+  has name "Release or milestone committed",
+  has description "The issue is committed to a release plan or targeted to a milestone.";
+
+put (criterion: $btc7, stage: $bt_triaged) isa stageHasCriterion;
+
+put $btc8 isa VibeGateCriterion,
+  has criteria_id "bt-gc-plan-owner",
+  has name "Owner identified",
+  has description "A person or agent is identified as responsible for shepherding the issue to resolution.";
+
+put (criterion: $btc8, stage: $bt_triaged) isa stageHasCriterion;
+
+put $btc9 isa VibeGateCriterion,
+  has criteria_id "bt-gc-plan-repro",
+  has name "Reproduction path documented",
+  has description "Steps to reproduce the issue are documented, or the issue is confirmed as intermittent with sufficient diagnostic context to begin investigation.";
+
+put (criterion: $btc9, stage: $bt_triaged) isa stageHasCriterion;
+
+put $btc10 isa VibeGateCriterion,
+  has criteria_id "bt-gc-assign-performer",
+  has name "Performer assigned",
+  has description "A specific agent or engineer has been assigned to the issue via a task assignment. The performer has the skills and access required.";
+
+put (criterion: $btc10, stage: $bt_planned) isa stageHasCriterion;
+
+put $btc11 isa VibeGateCriterion,
+  has criteria_id "bt-gc-assign-task",
+  has name "Engineering task exists",
+  has description "At least one engineering task addresses the issue and targets the appropriate repository.";
+
+put (criterion: $btc11, stage: $bt_planned) isa stageHasCriterion;
+
+put $btc12 isa VibeGateCriterion,
+  has criteria_id "bt-gc-assign-context",
+  has name "Sufficient context for execution",
+  has description "The assigned performer has access to the reproduction path, relevant code, and any prior investigation notes.";
+
+put (criterion: $btc12, stage: $bt_planned) isa stageHasCriterion;
+
+put $btc13 isa VibeGateCriterion,
+  has criteria_id "bt-gc-start-confirmed",
+  has name "Work started confirmed",
+  has description "The performer has confirmed that execution has begun. For agents, this means a session has been dispatched. For humans, this means active investigation or coding has started.";
+
+put (criterion: $btc13, stage: $bt_assigned) isa stageHasCriterion;
+
+put $btc14 isa VibeGateCriterion,
+  has criteria_id "bt-gc-resolve-outcome",
+  has name "Resolution outcome recorded",
+  has description "A resolution decision records the disposition: fixed, duplicate, invalid, cannot reproduce, or won't fix. The rationale is documented.";
+
+put (criterion: $btc14, stage: $bt_inprogress) isa stageHasCriterion;
+
+put $btc15 isa VibeGateCriterion,
+  has criteria_id "bt-gc-resolve-changes",
+  has name "Changes identified",
+  has description "For issues resolved as fixed, the code changes are identified and associated with the engineering task. For other dispositions, the justification is sufficient for independent review.";
+
+put (criterion: $btc15, stage: $bt_inprogress) isa stageHasCriterion;
+
+put $btc16 isa VibeGateCriterion,
+  has criteria_id "bt-gc-verify-repro",
+  has name "Fix verified against reproduction",
+  has description "For issues resolved as fixed, the fix has been independently verified against the original reproduction path. The issue no longer reproduces.";
+
+put (criterion: $btc16, stage: $bt_resolved) isa stageHasCriterion;
+
+put $btc17 isa VibeGateCriterion,
+  has criteria_id "bt-gc-verify-regression",
+  has name "No regressions introduced",
+  has description "The fix does not introduce new failures in related functionality. Relevant tests pass.";
+
+put (criterion: $btc17, stage: $bt_resolved) isa stageHasCriterion;
+
+put $btc18 isa VibeGateCriterion,
+  has criteria_id "bt-gc-verify-disposition",
+  has name "Disposition confirmed",
+  has description "For non-fix resolutions (duplicate, invalid, won't fix), the verifier confirms the disposition is correct and the rationale is sound.";
+
+put (criterion: $btc18, stage: $bt_resolved) isa stageHasCriterion;
+
+put $btc19 isa VibeGateCriterion,
+  has criteria_id "bt-gc-close-acceptance",
+  has name "Resolution and verification accepted",
+  has description "The closer has reviewed both the resolution and the verification and accepts that the issue is finished.";
+
+put (criterion: $btc19, stage: $bt_verified) isa stageHasCriterion;
+
+put $btc20 isa VibeGateCriterion,
+  has criteria_id "bt-gc-close-complete",
+  has name "Decision chain complete",
+  has description "The full chain of decisions from triage through closure is recorded in the graph. No intermediate decisions are missing.";
+
+put (criterion: $btc20, stage: $bt_verified) isa stageHasCriterion;

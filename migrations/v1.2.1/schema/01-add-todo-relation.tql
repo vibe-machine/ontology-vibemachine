@@ -1,9 +1,0 @@
-define
-
-attribute todo_id, value string;
-
-relation noteReferencesTodo sub isAbout,
-  relates note as isAboutSubject,
-  relates todoItem as isAboutObject;
-
-VibeNote plays noteReferencesTodo:note;

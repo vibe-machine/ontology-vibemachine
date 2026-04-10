@@ -1,0 +1,218 @@
+# Generated executable apply unit from data/vibemachine-process-seeds.tql
+# manifest: manifests/vibemachine-v1.3.5.package-manifest.json
+
+put $df isa VibeProcess,
+  has process_id "design-funnel",
+  has name "Design Funnel",
+  has description "The process that moves specifications from vision through architecture and specification to implementation. Each gate is a commitment to spend attention at the next level of detail.";
+
+put $s_vision isa VibeProcessStage,
+  has stage_id "df-vision",
+  has name "Vision",
+  has description "The idea exists. The experience is articulated, the scope is sketched, the value proposition is clear. Open questions outnumber decisions.",
+  has stage_sequence 10;
+
+put $s_arch isa VibeProcessStage,
+  has stage_id "df-architecture",
+  has name "Architecture",
+  has description "Major components are identified, key technical bets are made, the decomposition into sub-features is visible. This is the TLF level.",
+  has stage_sequence 20;
+
+put $s_spec isa VibeProcessStage,
+  has stage_id "df-specification",
+  has name "Specification",
+  has description "Requirements are precise, evals are verifiable, interfaces are pinned, open questions from the architecture level are resolved. This is the sub-TLF level.",
+  has stage_sequence 30;
+
+put $s_impl isa VibeProcessStage,
+  has stage_id "df-implementation",
+  has name "Implementation",
+  has description "Engineering tasks exist, an implementation spec is written, work is dispatchable to agents.",
+  has stage_sequence 40;
+
+put (stage: $s_vision, process: $df) isa processContainsStage;
+
+put (stage: $s_arch, process: $df) isa processContainsStage;
+
+put (stage: $s_spec, process: $df) isa processContainsStage;
+
+put (stage: $s_impl, process: $df) isa processContainsStage;
+
+put (precedesDirectlySubject: $s_vision, precedesDirectlyObject: $s_arch) isa precedesDirectly;
+
+put (precedesDirectlySubject: $s_arch, precedesDirectlyObject: $s_spec) isa precedesDirectly;
+
+put (precedesDirectlySubject: $s_spec, precedesDirectlyObject: $s_impl) isa precedesDirectly;
+
+put $gc1 isa VibeGateCriterion,
+  has criteria_id "df-gc-concept-experience",
+  has name "Experience summary approved",
+  has description "The experience summary clearly describes what the user can accomplish and the outcome they can produce.";
+
+put (criterion: $gc1, stage: $s_vision) isa stageHasCriterion;
+
+put $gc2 isa VibeGateCriterion,
+  has criteria_id "df-gc-concept-scope",
+  has name "Scope boundary defined",
+  has description "The specification clearly states what is in scope and what is out of scope for this work.";
+
+put (criterion: $gc2, stage: $s_vision) isa stageHasCriterion;
+
+put $gc3 isa VibeGateCriterion,
+  has criteria_id "df-gc-concept-objective",
+  has name "Business objective linked",
+  has description "The specification is motivated by at least one business objective.";
+
+put (criterion: $gc3, stage: $s_vision) isa stageHasCriterion;
+
+put $gc4 isa VibeGateCriterion,
+  has criteria_id "df-gc-arch-components",
+  has name "Component boundaries identified",
+  has description "The major subsystems and their responsibilities are named and described.";
+
+put (criterion: $gc4, stage: $s_arch) isa stageHasCriterion;
+
+put $gc5 isa VibeGateCriterion,
+  has criteria_id "df-gc-arch-decisions",
+  has name "Key technical decisions made",
+  has description "Technology selections, protocol choices, and architectural bets are recorded as decisions.";
+
+put (criterion: $gc5, stage: $s_arch) isa stageHasCriterion;
+
+put $gc6 isa VibeGateCriterion,
+  has criteria_id "df-gc-arch-decomposition",
+  has name "Decomposition plan visible",
+  has description "The TLF identifies which sub-TLFs will be needed and what scope each covers.";
+
+put (criterion: $gc6, stage: $s_arch) isa stageHasCriterion;
+
+put $gc7 isa VibeGateCriterion,
+  has criteria_id "df-gc-arch-risks",
+  has name "Open questions scoped to subsystems",
+  has description "Remaining open questions are attributable to specific sub-TLFs rather than cross-cutting.";
+
+put (criterion: $gc7, stage: $s_arch) isa stageHasCriterion;
+
+put $gc8 isa VibeGateCriterion,
+  has criteria_id "df-gc-spec-requirements",
+  has name "Requirements precise and testable",
+  has description "Every requirement is specific enough that an eval can verify it.";
+
+put (criterion: $gc8, stage: $s_spec) isa stageHasCriterion;
+
+put $gc9 isa VibeGateCriterion,
+  has criteria_id "df-gc-spec-evals",
+  has name "Evals defined for all requirements",
+  has description "Each requirement has at least one eval that a coding agent or engineer could verify.";
+
+put (criterion: $gc9, stage: $s_spec) isa stageHasCriterion;
+
+put $gc10 isa VibeGateCriterion,
+  has criteria_id "df-gc-spec-questions-resolved",
+  has name "Open questions resolved",
+  has description "All open questions inherited from the parent TLF that affect this sub-TLF are resolved as decisions or constraints.";
+
+put (criterion: $gc10, stage: $s_spec) isa stageHasCriterion;
+
+put $gc11 isa VibeGateCriterion,
+  has criteria_id "df-gc-spec-interfaces",
+  has name "Interfaces pinned",
+  has description "API contracts, data schemas, and protocol details are specified to the level needed for implementation.";
+
+put (criterion: $gc11, stage: $s_spec) isa stageHasCriterion;
+
+put $scope_tlf isa VibeSpecificationScope,
+  has name "tlf";
+
+put $scope_sub isa VibeSpecificationScope,
+  has name "sub-tlf";
+
+put $bt isa VibeProcess,
+  has process_id "bug-triage",
+  has name "Bug Triage",
+  has description "The process that moves bugs from raw submission through triage, planning, assignment, execution, resolution, verification, and closure. Every stage transition is a determination by a responsible actor. The process begins with a submission and produces a normalized issue at triage. No state change is implicit.";
+
+put $bt_submitted isa VibeProcessStage,
+  has stage_id "bt-submitted",
+  has name "Submitted",
+  has description "A submission has arrived from a user, an agent, automated monitoring, or a crash report. No interpretation has been applied. The entity in the process is a VibeSubmission.",
+  has stage_sequence 10;
+
+put $bt_triaged isa VibeProcessStage,
+  has stage_id "bt-triaged",
+  has name "Triaged",
+  has description "The submission has been interpreted and a normalized VibeIssue created. Kind, severity, and priority are assigned. The issue is linked to the affected project and repository. The entity in the process is now a VibeIssue.",
+  has stage_sequence 20;
+
+put $bt_planned isa VibeProcessStage,
+  has stage_id "bt-planned",
+  has name "Planned",
+  has description "The issue has been committed to a release plan or milestone. Reproduction steps are documented. A responsible owner is identified. The issue is ready for assignment.",
+  has stage_sequence 30;
+
+put $bt_assigned isa VibeProcessStage,
+  has stage_id "bt-assigned",
+  has name "Assigned",
+  has description "A specific agent or engineer has been assigned to the issue. The performer has committed to the work. An engineering task exists that addresses the issue. Work has not yet begun.",
+  has stage_sequence 40;
+
+put $bt_inprogress isa VibeProcessStage,
+  has stage_id "bt-in-progress",
+  has name "In progress",
+  has description "Active engineering work is underway. The assigned performer has confirmed execution has started. The work may involve branching, coding, testing, and submitting changes.",
+  has stage_sequence 50;
+
+put $bt_resolved isa VibeProcessStage,
+  has stage_id "bt-resolved",
+  has name "Resolved",
+  has description "Engineering work is complete from the performer's perspective. A resolution decision records the outcome: fixed, duplicate, invalid, cannot reproduce, or won't fix. The fix has not yet been independently verified.",
+  has stage_sequence 60;
+
+put $bt_verified isa VibeProcessStage,
+  has stage_id "bt-verified",
+  has name "Verified",
+  has description "The fix has been independently verified against the original reproduction path or acceptance criteria. For non-fix resolutions (duplicate, invalid, won't fix), verification confirms the disposition is correct. The issue is ready for closure.",
+  has stage_sequence 70;
+
+put $bt_closed isa VibeProcessStage,
+  has stage_id "bt-closed",
+  has name "Closed",
+  has description "The resolution and verification have been accepted by the closer. The issue is finished and available for historical inspection. The full decision chain is preserved in the graph.",
+  has stage_sequence 80;
+
+put (stage: $bt_submitted, process: $bt) isa processContainsStage;
+
+put (stage: $bt_triaged, process: $bt) isa processContainsStage;
+
+put (stage: $bt_planned, process: $bt) isa processContainsStage;
+
+put (stage: $bt_assigned, process: $bt) isa processContainsStage;
+
+put (stage: $bt_inprogress, process: $bt) isa processContainsStage;
+
+put (stage: $bt_resolved, process: $bt) isa processContainsStage;
+
+put (stage: $bt_verified, process: $bt) isa processContainsStage;
+
+put (stage: $bt_closed, process: $bt) isa processContainsStage;
+
+put (precedesDirectlySubject: $bt_submitted, precedesDirectlyObject: $bt_triaged) isa precedesDirectly;
+
+put (precedesDirectlySubject: $bt_triaged, precedesDirectlyObject: $bt_planned) isa precedesDirectly;
+
+put (precedesDirectlySubject: $bt_planned, precedesDirectlyObject: $bt_assigned) isa precedesDirectly;
+
+put (precedesDirectlySubject: $bt_assigned, precedesDirectlyObject: $bt_inprogress) isa precedesDirectly;
+
+put (precedesDirectlySubject: $bt_inprogress, precedesDirectlyObject: $bt_resolved) isa precedesDirectly;
+
+put (precedesDirectlySubject: $bt_resolved, precedesDirectlyObject: $bt_verified) isa precedesDirectly;
+
+put (precedesDirectlySubject: $bt_verified, precedesDirectlyObject: $bt_closed) isa precedesDirectly;
+
+put $btc1 isa VibeGateCriterion,
+  has criteria_id "bt-gc-triage-normalized",
+  has name "Normalized issue created",
+  has description "A VibeIssue entity has been created from the submission with a stable identity.";
+
+put (criterion: $btc1, stage: $bt_submitted) isa stageHasCriterion;

@@ -1,6 +1,0 @@
-match
-  $build isa OntologyPackageBuild,
-    has packageName "vibemachine",
-    has packageVersion "0.9.1",
-    has upstreamTag "v0.9.1";
-limit 1;

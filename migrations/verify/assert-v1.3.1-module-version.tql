@@ -1,7 +1,0 @@
-match
-  $module isa OntologyModule,
-    has moduleRepoUrl "https://github.com/vibe-machine/ontology-vibemachine";
-  $version isa OntologyModuleVersion,
-    has moduleVersion "1.3.1";
-  (version: $version, module: $module) isa ontologyModuleVersionOf;
-limit 1;
