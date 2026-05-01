@@ -11,251 +11,431 @@ insert
   (subtypeResource: $struct_left, supertypeResource: $struct_right) isa schemaSubTypeOf;
 
 match
-  $struct_left isa SchemaResource, has typeLabel "processContainsStage";
+  $struct_left isa SchemaResource, has typeLabel "VibeProcessStage";
+  $struct_right isa SchemaResource, has typeLabel "precedesDirectly:precedesDirectlySubject";
+  not {
+    (playerResource: $struct_left, roleResource: $struct_right) isa schemaPlays;
+  };
+insert
+  (playerResource: $struct_left, roleResource: $struct_right) isa schemaPlays;
+
+match
+  $struct_left isa SchemaResource, has typeLabel "VibeProcessStage";
   $struct_right isa SchemaResource, has typeLabel "processContainsStage:stage";
   not {
-    (relationResource: $struct_left, roleResource: $struct_right) isa schemaRelates;
+    (playerResource: $struct_left, roleResource: $struct_right) isa schemaPlays;
   };
 insert
-  (relationResource: $struct_left, roleResource: $struct_right) isa schemaRelates;
+  (playerResource: $struct_left, roleResource: $struct_right) isa schemaPlays;
 
 match
-  $struct_left isa SchemaResource, has typeLabel "producesProduct";
-  $struct_right isa SchemaResource, has typeLabel "producesProduct:product";
-  not {
-    (relationResource: $struct_left, roleResource: $struct_right) isa schemaRelates;
-  };
-insert
-  (relationResource: $struct_left, roleResource: $struct_right) isa schemaRelates;
-
-match
-  $struct_left isa SchemaResource, has typeLabel "producesProduct";
-  $struct_right isa SchemaResource, has typeLabel "producesProduct:project";
-  not {
-    (relationResource: $struct_left, roleResource: $struct_right) isa schemaRelates;
-  };
-insert
-  (relationResource: $struct_left, roleResource: $struct_right) isa schemaRelates;
-
-match
-  $struct_left isa SchemaResource, has typeLabel "productConformsTo";
-  $struct_right isa SchemaResource, has typeLabel "productConformsTo:product";
-  not {
-    (relationResource: $struct_left, roleResource: $struct_right) isa schemaRelates;
-  };
-insert
-  (relationResource: $struct_left, roleResource: $struct_right) isa schemaRelates;
-
-match
-  $struct_left isa SchemaResource, has typeLabel "productConformsTo";
-  $struct_right isa SchemaResource, has typeLabel "productConformsTo:productSpec";
-  not {
-    (relationResource: $struct_left, roleResource: $struct_right) isa schemaRelates;
-  };
-insert
-  (relationResource: $struct_left, roleResource: $struct_right) isa schemaRelates;
-
-match
-  $struct_left isa SchemaResource, has typeLabel "resolutionDecisionAboutIssue";
-  $struct_right isa SchemaResource, has typeLabel "resolutionDecisionAboutIssue:issue";
-  not {
-    (relationResource: $struct_left, roleResource: $struct_right) isa schemaRelates;
-  };
-insert
-  (relationResource: $struct_left, roleResource: $struct_right) isa schemaRelates;
-
-match
-  $struct_left isa SchemaResource, has typeLabel "resolutionDecisionAboutIssue";
-  $struct_right isa SchemaResource, has typeLabel "resolutionDecisionAboutIssue:resolutionDecision";
-  not {
-    (relationResource: $struct_left, roleResource: $struct_right) isa schemaRelates;
-  };
-insert
-  (relationResource: $struct_left, roleResource: $struct_right) isa schemaRelates;
-
-match
-  $struct_left isa SchemaResource, has typeLabel "resolutionPerformedBy";
-  $struct_right isa SchemaResource, has typeLabel "resolutionPerformedBy:resolutionDecision";
-  not {
-    (relationResource: $struct_left, roleResource: $struct_right) isa schemaRelates;
-  };
-insert
-  (relationResource: $struct_left, roleResource: $struct_right) isa schemaRelates;
-
-match
-  $struct_left isa SchemaResource, has typeLabel "resolutionPerformedBy";
-  $struct_right isa SchemaResource, has typeLabel "resolutionPerformedBy:resolver";
-  not {
-    (relationResource: $struct_left, roleResource: $struct_right) isa schemaRelates;
-  };
-insert
-  (relationResource: $struct_left, roleResource: $struct_right) isa schemaRelates;
-
-match
-  $struct_left isa SchemaResource, has typeLabel "softwareSystemConformsToVersion";
-  $struct_right isa SchemaResource, has typeLabel "softwareSystemConformsToVersion:softwareSystem";
-  not {
-    (relationResource: $struct_left, roleResource: $struct_right) isa schemaRelates;
-  };
-insert
-  (relationResource: $struct_left, roleResource: $struct_right) isa schemaRelates;
-
-match
-  $struct_left isa SchemaResource, has typeLabel "softwareSystemConformsToVersion";
-  $struct_right isa SchemaResource, has typeLabel "softwareSystemConformsToVersion:softwareVersion";
-  not {
-    (relationResource: $struct_left, roleResource: $struct_right) isa schemaRelates;
-  };
-insert
-  (relationResource: $struct_left, roleResource: $struct_right) isa schemaRelates;
-
-match
-  $struct_left isa SchemaResource, has typeLabel "specifiesFeatureFor";
-  $struct_right isa SchemaResource, has typeLabel "specifiesFeatureFor:featureSpec";
-  not {
-    (relationResource: $struct_left, roleResource: $struct_right) isa schemaRelates;
-  };
-insert
-  (relationResource: $struct_left, roleResource: $struct_right) isa schemaRelates;
-
-match
-  $struct_left isa SchemaResource, has typeLabel "specifiesFeatureFor";
-  $struct_right isa SchemaResource, has typeLabel "specifiesFeatureFor:project";
-  not {
-    (relationResource: $struct_left, roleResource: $struct_right) isa schemaRelates;
-  };
-insert
-  (relationResource: $struct_left, roleResource: $struct_right) isa schemaRelates;
-
-match
-  $struct_left isa SchemaResource, has typeLabel "stageHasCriterion";
-  $struct_right isa SchemaResource, has typeLabel "stageHasCriterion:criterion";
-  not {
-    (relationResource: $struct_left, roleResource: $struct_right) isa schemaRelates;
-  };
-insert
-  (relationResource: $struct_left, roleResource: $struct_right) isa schemaRelates;
-
-match
-  $struct_left isa SchemaResource, has typeLabel "stageHasCriterion";
+  $struct_left isa SchemaResource, has typeLabel "VibeProcessStage";
   $struct_right isa SchemaResource, has typeLabel "stageHasCriterion:stage";
   not {
-    (relationResource: $struct_left, roleResource: $struct_right) isa schemaRelates;
+    (playerResource: $struct_left, roleResource: $struct_right) isa schemaPlays;
   };
 insert
-  (relationResource: $struct_left, roleResource: $struct_right) isa schemaRelates;
+  (playerResource: $struct_left, roleResource: $struct_right) isa schemaPlays;
 
 match
-  $struct_left isa SchemaResource, has typeLabel "submissionProvidedBy";
-  $struct_right isa SchemaResource, has typeLabel "submissionProvidedBy:submission";
+  $struct_left isa SchemaResource, has typeLabel "VibeProduct";
+  $struct_right isa SchemaResource, has typeLabel "producesProduct:product";
   not {
-    (relationResource: $struct_left, roleResource: $struct_right) isa schemaRelates;
+    (playerResource: $struct_left, roleResource: $struct_right) isa schemaPlays;
   };
 insert
-  (relationResource: $struct_left, roleResource: $struct_right) isa schemaRelates;
+  (playerResource: $struct_left, roleResource: $struct_right) isa schemaPlays;
 
 match
-  $struct_left isa SchemaResource, has typeLabel "submissionProvidedBy";
-  $struct_right isa SchemaResource, has typeLabel "submissionProvidedBy:submitter";
+  $struct_left isa SchemaResource, has typeLabel "VibeProduct";
+  $struct_right isa SchemaResource, has typeLabel "productConformsTo:product";
   not {
-    (relationResource: $struct_left, roleResource: $struct_right) isa schemaRelates;
+    (playerResource: $struct_left, roleResource: $struct_right) isa schemaPlays;
   };
 insert
-  (relationResource: $struct_left, roleResource: $struct_right) isa schemaRelates;
+  (playerResource: $struct_left, roleResource: $struct_right) isa schemaPlays;
 
 match
-  $struct_left isa SchemaResource, has typeLabel "targetsRepository";
-  $struct_right isa SchemaResource, has typeLabel "targetsRepository:engineeringTask";
+  $struct_left isa SchemaResource, has typeLabel "VibeProductSpecification";
+  $struct_right isa SchemaResource, has typeLabel "blocksAppearanceForSpecification:specification";
   not {
-    (relationResource: $struct_left, roleResource: $struct_right) isa schemaRelates;
+    (playerResource: $struct_left, roleResource: $struct_right) isa schemaPlays;
   };
 insert
-  (relationResource: $struct_left, roleResource: $struct_right) isa schemaRelates;
+  (playerResource: $struct_left, roleResource: $struct_right) isa schemaPlays;
 
 match
-  $struct_left isa SchemaResource, has typeLabel "targetsRepository";
-  $struct_right isa SchemaResource, has typeLabel "targetsRepository:repository";
+  $struct_left isa SchemaResource, has typeLabel "VibeProductSpecification";
+  $struct_right isa SchemaResource, has typeLabel "currentlyAtStage:trackedEntity";
   not {
-    (relationResource: $struct_left, roleResource: $struct_right) isa schemaRelates;
+    (playerResource: $struct_left, roleResource: $struct_right) isa schemaPlays;
   };
 insert
-  (relationResource: $struct_left, roleResource: $struct_right) isa schemaRelates;
+  (playerResource: $struct_left, roleResource: $struct_right) isa schemaPlays;
 
 match
-  $struct_left isa SchemaResource, has typeLabel "taskAddressesIssue";
-  $struct_right isa SchemaResource, has typeLabel "taskAddressesIssue:engineeringTask";
+  $struct_left isa SchemaResource, has typeLabel "VibeProductSpecification";
+  $struct_right isa SchemaResource, has typeLabel "featureOfProduct:productSpec";
   not {
-    (relationResource: $struct_left, roleResource: $struct_right) isa schemaRelates;
+    (playerResource: $struct_left, roleResource: $struct_right) isa schemaPlays;
   };
 insert
-  (relationResource: $struct_left, roleResource: $struct_right) isa schemaRelates;
+  (playerResource: $struct_left, roleResource: $struct_right) isa schemaPlays;
 
 match
-  $struct_left isa SchemaResource, has typeLabel "taskAddressesIssue";
-  $struct_right isa SchemaResource, has typeLabel "taskAddressesIssue:issue";
+  $struct_left isa SchemaResource, has typeLabel "VibeProductSpecification";
+  $struct_right isa SchemaResource, has typeLabel "gateAdvancesEntity:advancedEntity";
   not {
-    (relationResource: $struct_left, roleResource: $struct_right) isa schemaRelates;
+    (playerResource: $struct_left, roleResource: $struct_right) isa schemaPlays;
   };
 insert
-  (relationResource: $struct_left, roleResource: $struct_right) isa schemaRelates;
+  (playerResource: $struct_left, roleResource: $struct_right) isa schemaPlays;
 
 match
-  $struct_left isa SchemaResource, has typeLabel "triageBasedOnSubmission";
-  $struct_right isa SchemaResource, has typeLabel "triageBasedOnSubmission:submission";
+  $struct_left isa SchemaResource, has typeLabel "VibeProductSpecification";
+  $struct_right isa SchemaResource, has typeLabel "productConformsTo:productSpec";
   not {
-    (relationResource: $struct_left, roleResource: $struct_right) isa schemaRelates;
+    (playerResource: $struct_left, roleResource: $struct_right) isa schemaPlays;
   };
 insert
-  (relationResource: $struct_left, roleResource: $struct_right) isa schemaRelates;
+  (playerResource: $struct_left, roleResource: $struct_right) isa schemaPlays;
 
 match
-  $struct_left isa SchemaResource, has typeLabel "triageBasedOnSubmission";
-  $struct_right isa SchemaResource, has typeLabel "triageBasedOnSubmission:triageDecision";
+  $struct_left isa SchemaResource, has typeLabel "VibeProject";
+  $struct_right isa SchemaResource, has typeLabel "producesProduct:project";
   not {
-    (relationResource: $struct_left, roleResource: $struct_right) isa schemaRelates;
+    (playerResource: $struct_left, roleResource: $struct_right) isa schemaPlays;
   };
 insert
-  (relationResource: $struct_left, roleResource: $struct_right) isa schemaRelates;
+  (playerResource: $struct_left, roleResource: $struct_right) isa schemaPlays;
 
 match
-  $struct_left isa SchemaResource, has typeLabel "triagePerformedBy";
-  $struct_right isa SchemaResource, has typeLabel "triagePerformedBy:triageDecision";
+  $struct_left isa SchemaResource, has typeLabel "VibeProject";
+  $struct_right isa SchemaResource, has typeLabel "specifiesFeatureFor:project";
   not {
-    (relationResource: $struct_left, roleResource: $struct_right) isa schemaRelates;
+    (playerResource: $struct_left, roleResource: $struct_right) isa schemaPlays;
   };
 insert
-  (relationResource: $struct_left, roleResource: $struct_right) isa schemaRelates;
+  (playerResource: $struct_left, roleResource: $struct_right) isa schemaPlays;
 
 match
-  $struct_left isa SchemaResource, has typeLabel "triagePerformedBy";
-  $struct_right isa SchemaResource, has typeLabel "triagePerformedBy:triager";
-  not {
-    (relationResource: $struct_left, roleResource: $struct_right) isa schemaRelates;
-  };
-insert
-  (relationResource: $struct_left, roleResource: $struct_right) isa schemaRelates;
-
-match
-  $struct_left isa SchemaResource, has typeLabel "usesWorkspace";
+  $struct_left isa SchemaResource, has typeLabel "VibeProject";
   $struct_right isa SchemaResource, has typeLabel "usesWorkspace:project";
   not {
-    (relationResource: $struct_left, roleResource: $struct_right) isa schemaRelates;
+    (playerResource: $struct_left, roleResource: $struct_right) isa schemaPlays;
   };
 insert
-  (relationResource: $struct_left, roleResource: $struct_right) isa schemaRelates;
+  (playerResource: $struct_left, roleResource: $struct_right) isa schemaPlays;
 
 match
-  $struct_left isa SchemaResource, has typeLabel "usesWorkspace";
+  $struct_left isa SchemaResource, has typeLabel "VibeQuestion";
+  $struct_right isa SchemaResource, has typeLabel "containsItem:item";
+  not {
+    (playerResource: $struct_left, roleResource: $struct_right) isa schemaPlays;
+  };
+insert
+  (playerResource: $struct_left, roleResource: $struct_right) isa schemaPlays;
+
+match
+  $struct_left isa SchemaResource, has typeLabel "VibeQuestion";
+  $struct_right isa SchemaResource, has typeLabel "isCategorizedBy:isCategorizedBySubject";
+  not {
+    (playerResource: $struct_left, roleResource: $struct_right) isa schemaPlays;
+  };
+insert
+  (playerResource: $struct_left, roleResource: $struct_right) isa schemaPlays;
+
+match
+  $struct_left isa SchemaResource, has typeLabel "VibeReleasePlan";
+  $struct_right isa SchemaResource, has typeLabel "issueCommittedToRelease:releasePlan";
+  not {
+    (playerResource: $struct_left, roleResource: $struct_right) isa schemaPlays;
+  };
+insert
+  (playerResource: $struct_left, roleResource: $struct_right) isa schemaPlays;
+
+match
+  $struct_left isa SchemaResource, has typeLabel "VibeReleasePlan";
+  $struct_right isa SchemaResource, has typeLabel "milestoneInReleasePlan:releasePlan";
+  not {
+    (playerResource: $struct_left, roleResource: $struct_right) isa schemaPlays;
+  };
+insert
+  (playerResource: $struct_left, roleResource: $struct_right) isa schemaPlays;
+
+match
+  $struct_left isa SchemaResource, has typeLabel "VibeRepository";
+  $struct_right isa SchemaResource, has typeLabel "belongsToWorkspace:repository";
+  not {
+    (playerResource: $struct_left, roleResource: $struct_right) isa schemaPlays;
+  };
+insert
+  (playerResource: $struct_left, roleResource: $struct_right) isa schemaPlays;
+
+match
+  $struct_left isa SchemaResource, has typeLabel "VibeRepository";
+  $struct_right isa SchemaResource, has typeLabel "contributesTo:contributesToSubject";
+  not {
+    (playerResource: $struct_left, roleResource: $struct_right) isa schemaPlays;
+  };
+insert
+  (playerResource: $struct_left, roleResource: $struct_right) isa schemaPlays;
+
+match
+  $struct_left isa SchemaResource, has typeLabel "VibeRepositoryHostingPlatform";
+  $struct_right isa SchemaResource, has typeLabel "isCategorizedBy:isCategorizedByObject";
+  not {
+    (playerResource: $struct_left, roleResource: $struct_right) isa schemaPlays;
+  };
+insert
+  (playerResource: $struct_left, roleResource: $struct_right) isa schemaPlays;
+
+match
+  $struct_left isa SchemaResource, has typeLabel "VibeRequirement";
+  $struct_right isa SchemaResource, has typeLabel "containsItem:item";
+  not {
+    (playerResource: $struct_left, roleResource: $struct_right) isa schemaPlays;
+  };
+insert
+  (playerResource: $struct_left, roleResource: $struct_right) isa schemaPlays;
+
+match
+  $struct_left isa SchemaResource, has typeLabel "VibeRequirement";
+  $struct_right isa SchemaResource, has typeLabel "fulfillsRequirement:requirement";
+  not {
+    (playerResource: $struct_left, roleResource: $struct_right) isa schemaPlays;
+  };
+insert
+  (playerResource: $struct_left, roleResource: $struct_right) isa schemaPlays;
+
+match
+  $struct_left isa SchemaResource, has typeLabel "VibeRequirement";
+  $struct_right isa SchemaResource, has typeLabel "isCategorizedBy:isCategorizedBySubject";
+  not {
+    (playerResource: $struct_left, roleResource: $struct_right) isa schemaPlays;
+  };
+insert
+  (playerResource: $struct_left, roleResource: $struct_right) isa schemaPlays;
+
+match
+  $struct_left isa SchemaResource, has typeLabel "VibeSoftwareSystem";
+  $struct_right isa SchemaResource, has typeLabel "softwareSystemConformsToVersion:softwareSystem";
+  not {
+    (playerResource: $struct_left, roleResource: $struct_right) isa schemaPlays;
+  };
+insert
+  (playerResource: $struct_left, roleResource: $struct_right) isa schemaPlays;
+
+match
+  $struct_left isa SchemaResource, has typeLabel "VibeSoftwareSystemVersion";
+  $struct_right isa SchemaResource, has typeLabel "agentProfileForVersion:softwareVersion";
+  not {
+    (playerResource: $struct_left, roleResource: $struct_right) isa schemaPlays;
+  };
+insert
+  (playerResource: $struct_left, roleResource: $struct_right) isa schemaPlays;
+
+match
+  $struct_left isa SchemaResource, has typeLabel "VibeSoftwareSystemVersion";
+  $struct_right isa SchemaResource, has typeLabel "softwareSystemConformsToVersion:softwareVersion";
+  not {
+    (playerResource: $struct_left, roleResource: $struct_right) isa schemaPlays;
+  };
+insert
+  (playerResource: $struct_left, roleResource: $struct_right) isa schemaPlays;
+
+match
+  $struct_left isa SchemaResource, has typeLabel "VibeSpecificationScope";
+  $struct_right isa SchemaResource, has typeLabel "isCategorizedBy:isCategorizedByObject";
+  not {
+    (playerResource: $struct_left, roleResource: $struct_right) isa schemaPlays;
+  };
+insert
+  (playerResource: $struct_left, roleResource: $struct_right) isa schemaPlays;
+
+match
+  $struct_left isa SchemaResource, has typeLabel "VibeSpecificationStatus";
+  $struct_right isa SchemaResource, has typeLabel "isCategorizedBy:isCategorizedByObject";
+  not {
+    (playerResource: $struct_left, roleResource: $struct_right) isa schemaPlays;
+  };
+insert
+  (playerResource: $struct_left, roleResource: $struct_right) isa schemaPlays;
+
+match
+  $struct_left isa SchemaResource, has typeLabel "VibeSubmission";
+  $struct_right isa SchemaResource, has typeLabel "currentlyAtStage:trackedEntity";
+  not {
+    (playerResource: $struct_left, roleResource: $struct_right) isa schemaPlays;
+  };
+insert
+  (playerResource: $struct_left, roleResource: $struct_right) isa schemaPlays;
+
+match
+  $struct_left isa SchemaResource, has typeLabel "VibeSubmission";
+  $struct_right isa SchemaResource, has typeLabel "gateAdvancesEntity:advancedEntity";
+  not {
+    (playerResource: $struct_left, roleResource: $struct_right) isa schemaPlays;
+  };
+insert
+  (playerResource: $struct_left, roleResource: $struct_right) isa schemaPlays;
+
+match
+  $struct_left isa SchemaResource, has typeLabel "VibeSubmission";
+  $struct_right isa SchemaResource, has typeLabel "issueDerivedFromSubmission:submission";
+  not {
+    (playerResource: $struct_left, roleResource: $struct_right) isa schemaPlays;
+  };
+insert
+  (playerResource: $struct_left, roleResource: $struct_right) isa schemaPlays;
+
+match
+  $struct_left isa SchemaResource, has typeLabel "VibeSubmission";
+  $struct_right isa SchemaResource, has typeLabel "submissionProvidedBy:submission";
+  not {
+    (playerResource: $struct_left, roleResource: $struct_right) isa schemaPlays;
+  };
+insert
+  (playerResource: $struct_left, roleResource: $struct_right) isa schemaPlays;
+
+match
+  $struct_left isa SchemaResource, has typeLabel "VibeSubmission";
+  $struct_right isa SchemaResource, has typeLabel "triageBasedOnSubmission:submission";
+  not {
+    (playerResource: $struct_left, roleResource: $struct_right) isa schemaPlays;
+  };
+insert
+  (playerResource: $struct_left, roleResource: $struct_right) isa schemaPlays;
+
+match
+  $struct_left isa SchemaResource, has typeLabel "VibeTag";
+  $struct_right isa SchemaResource, has typeLabel "isCategorizedBy:isCategorizedByObject";
+  not {
+    (playerResource: $struct_left, roleResource: $struct_right) isa schemaPlays;
+  };
+insert
+  (playerResource: $struct_left, roleResource: $struct_right) isa schemaPlays;
+
+match
+  $struct_left isa SchemaResource, has typeLabel "VibeTaskAssignment";
+  $struct_right isa SchemaResource, has typeLabel "assignmentAllocatedBy:assignment";
+  not {
+    (playerResource: $struct_left, roleResource: $struct_right) isa schemaPlays;
+  };
+insert
+  (playerResource: $struct_left, roleResource: $struct_right) isa schemaPlays;
+
+match
+  $struct_left isa SchemaResource, has typeLabel "VibeTaskAssignment";
+  $struct_right isa SchemaResource, has typeLabel "assignmentForTask:assignment";
+  not {
+    (playerResource: $struct_left, roleResource: $struct_right) isa schemaPlays;
+  };
+insert
+  (playerResource: $struct_left, roleResource: $struct_right) isa schemaPlays;
+
+match
+  $struct_left isa SchemaResource, has typeLabel "VibeTaskAssignment";
+  $struct_right isa SchemaResource, has typeLabel "assignmentUsesProfile:assignment";
+  not {
+    (playerResource: $struct_left, roleResource: $struct_right) isa schemaPlays;
+  };
+insert
+  (playerResource: $struct_left, roleResource: $struct_right) isa schemaPlays;
+
+match
+  $struct_left isa SchemaResource, has typeLabel "VibeTaskAssignment";
+  $struct_right isa SchemaResource, has typeLabel "assignsPerformer:assignment";
+  not {
+    (playerResource: $struct_left, roleResource: $struct_right) isa schemaPlays;
+  };
+insert
+  (playerResource: $struct_left, roleResource: $struct_right) isa schemaPlays;
+
+match
+  $struct_left isa SchemaResource, has typeLabel "VibeTaskManagementSystem";
+  $struct_right isa SchemaResource, has typeLabel "isCategorizedBy:isCategorizedByObject";
+  not {
+    (playerResource: $struct_left, roleResource: $struct_right) isa schemaPlays;
+  };
+insert
+  (playerResource: $struct_left, roleResource: $struct_right) isa schemaPlays;
+
+match
+  $struct_left isa SchemaResource, has typeLabel "VibeTodoItem";
+  $struct_right isa SchemaResource, has typeLabel "isCategorizedBy:isCategorizedBySubject";
+  not {
+    (playerResource: $struct_left, roleResource: $struct_right) isa schemaPlays;
+  };
+insert
+  (playerResource: $struct_left, roleResource: $struct_right) isa schemaPlays;
+
+match
+  $struct_left isa SchemaResource, has typeLabel "VibeTodoItem";
+  $struct_right isa SchemaResource, has typeLabel "noteReferencesTodo:todoItem";
+  not {
+    (playerResource: $struct_left, roleResource: $struct_right) isa schemaPlays;
+  };
+insert
+  (playerResource: $struct_left, roleResource: $struct_right) isa schemaPlays;
+
+match
+  $struct_left isa SchemaResource, has typeLabel "VibeTodoPriority";
+  $struct_right isa SchemaResource, has typeLabel "isCategorizedBy:isCategorizedByObject";
+  not {
+    (playerResource: $struct_left, roleResource: $struct_right) isa schemaPlays;
+  };
+insert
+  (playerResource: $struct_left, roleResource: $struct_right) isa schemaPlays;
+
+match
+  $struct_left isa SchemaResource, has typeLabel "VibeTodoStatus";
+  $struct_right isa SchemaResource, has typeLabel "isCategorizedBy:isCategorizedByObject";
+  not {
+    (playerResource: $struct_left, roleResource: $struct_right) isa schemaPlays;
+  };
+insert
+  (playerResource: $struct_left, roleResource: $struct_right) isa schemaPlays;
+
+match
+  $struct_left isa SchemaResource, has typeLabel "VibeVerification";
+  $struct_right isa SchemaResource, has typeLabel "containsItem:item";
+  not {
+    (playerResource: $struct_left, roleResource: $struct_right) isa schemaPlays;
+  };
+insert
+  (playerResource: $struct_left, roleResource: $struct_right) isa schemaPlays;
+
+match
+  $struct_left isa SchemaResource, has typeLabel "VibeVerification";
+  $struct_right isa SchemaResource, has typeLabel "isCategorizedBy:isCategorizedBySubject";
+  not {
+    (playerResource: $struct_left, roleResource: $struct_right) isa schemaPlays;
+  };
+insert
+  (playerResource: $struct_left, roleResource: $struct_right) isa schemaPlays;
+
+match
+  $struct_left isa SchemaResource, has typeLabel "VibeWorkspace";
+  $struct_right isa SchemaResource, has typeLabel "belongsToWorkspace:workspace";
+  not {
+    (playerResource: $struct_left, roleResource: $struct_right) isa schemaPlays;
+  };
+insert
+  (playerResource: $struct_left, roleResource: $struct_right) isa schemaPlays;
+
+match
+  $struct_left isa SchemaResource, has typeLabel "VibeWorkspace";
   $struct_right isa SchemaResource, has typeLabel "usesWorkspace:workspace";
   not {
-    (relationResource: $struct_left, roleResource: $struct_right) isa schemaRelates;
+    (playerResource: $struct_left, roleResource: $struct_right) isa schemaPlays;
   };
 insert
-  (relationResource: $struct_left, roleResource: $struct_right) isa schemaRelates;
+  (playerResource: $struct_left, roleResource: $struct_right) isa schemaPlays;
 
 match
-  $struct_left isa SchemaResource, has typeLabel "verificationPerformedBy";
-  $struct_right isa SchemaResource, has typeLabel "verificationPerformedBy:verificationDecision";
+  $struct_left isa SchemaResource, has typeLabel "agentProfileForVersion";
+  $struct_right isa SchemaResource, has typeLabel "agentProfileForVersion:agentProfile";
   not {
     (relationResource: $struct_left, roleResource: $struct_right) isa schemaRelates;
   };
@@ -263,30 +443,10 @@ insert
   (relationResource: $struct_left, roleResource: $struct_right) isa schemaRelates;
 
 match
-  $struct_left isa SchemaResource, has typeLabel "verificationPerformedBy";
-  $struct_right isa SchemaResource, has typeLabel "verificationPerformedBy:verifier";
+  $struct_left isa SchemaResource, has typeLabel "agentProfileForVersion";
+  $struct_right isa SchemaResource, has typeLabel "agentProfileForVersion:softwareVersion";
   not {
     (relationResource: $struct_left, roleResource: $struct_right) isa schemaRelates;
   };
 insert
   (relationResource: $struct_left, roleResource: $struct_right) isa schemaRelates;
-
-match
-  $struct_left isa SchemaResource, has typeLabel "workStartedPerformedBy";
-  $struct_right isa SchemaResource, has typeLabel "workStartedPerformedBy:starter";
-  not {
-    (relationResource: $struct_left, roleResource: $struct_right) isa schemaRelates;
-  };
-insert
-  (relationResource: $struct_left, roleResource: $struct_right) isa schemaRelates;
-
-match
-  $struct_left isa SchemaResource, has typeLabel "workStartedPerformedBy";
-  $struct_right isa SchemaResource, has typeLabel "workStartedPerformedBy:workStartedDecision";
-  not {
-    (relationResource: $struct_left, roleResource: $struct_right) isa schemaRelates;
-  };
-insert
-  (relationResource: $struct_left, roleResource: $struct_right) isa schemaRelates;
-
-# -- END GENERATED STRUCTURAL METADATA --

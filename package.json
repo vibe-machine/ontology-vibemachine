@@ -59,7 +59,10 @@
     "generated/apply-units/data/vibemachine-schema-docs/0015.tql",
     "generated/apply-units/data/vibemachine-schema-docs/0016.tql",
     "generated/apply-units/data/vibemachine-schema-docs/0017.tql",
-    "data/vibemachine-provenance.tql"
+    "data/vibemachine-provenance.tql",
+    "generated/apply-units/data/vibemachine-schema-docs/0018.tql",
+    "generated/apply-units/data/vibemachine-schema-docs/0019.tql",
+    "generated/apply-units/data/vibemachine-schema-docs/0020.tql"
   ],
   "dependencies": [
     {
@@ -110,7 +113,10 @@
       "generated/apply-units/data/vibemachine-schema-docs/0015.tql",
       "generated/apply-units/data/vibemachine-schema-docs/0016.tql",
       "generated/apply-units/data/vibemachine-schema-docs/0017.tql",
-      "data/vibemachine-provenance.tql"
+      "data/vibemachine-provenance.tql",
+      "generated/apply-units/data/vibemachine-schema-docs/0018.tql",
+      "generated/apply-units/data/vibemachine-schema-docs/0019.tql",
+      "generated/apply-units/data/vibemachine-schema-docs/0020.tql"
     ],
     "generatedArtifacts": [
       "schema/self-describing-schema.tql",
@@ -136,7 +142,10 @@
       "generated/apply-units/data/vibemachine-schema-docs/0014.tql",
       "generated/apply-units/data/vibemachine-schema-docs/0015.tql",
       "generated/apply-units/data/vibemachine-schema-docs/0016.tql",
-      "generated/apply-units/data/vibemachine-schema-docs/0017.tql"
+      "generated/apply-units/data/vibemachine-schema-docs/0017.tql",
+      "generated/apply-units/data/vibemachine-schema-docs/0018.tql",
+      "generated/apply-units/data/vibemachine-schema-docs/0019.tql",
+      "generated/apply-units/data/vibemachine-schema-docs/0020.tql"
     ]
   },
   "provenance": {

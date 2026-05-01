@@ -1,7 +1,7 @@
 # Provenance bootstrap
 # upstream-repo: https://github.com/vibe-machine/ontology-vibemachine
 # upstream-tag: v1.3.6
-# upstream-commit: 485840bf378a6461d993c1e32f429869a9581f01
+# upstream-commit: 4264f83e480170bbdd976e70a376662ea75af14a
 # source-artifacts:
 # - package.json
 # - schema/vibemachine.tql
@@ -2030,6 +2030,74 @@ insert
   (resource: $schema_resource, module: $schema_module) isa inModule;
 
 put $generated_role_25 isa SchemaResource,
+  has docKey "https://github.com/vibe-machine/ontology-vibemachine#comesFromAgent:comesFromAgentObject",
+  has iri "https://github.com/vibe-machine/ontology-vibemachine#comesFromAgent:comesFromAgentObject",
+  has typeLabel "comesFromAgent:comesFromAgentObject",
+  has kind "role",
+  has roleName "comesFromAgentObject",
+  has prefLabel "comesFromAgentObject",
+  has definition "Role 'comesFromAgentObject' in relation 'comesFromAgent'.";
+match
+  $schema_module isa SchemaModule, has moduleKey "vibemachine";
+  $schema_resource isa SchemaResource, has docKey "https://github.com/vibe-machine/ontology-vibemachine#comesFromAgent:comesFromAgentObject";
+  not {
+    (resource: $schema_resource, module: $schema_module) isa inModule;
+  };
+insert
+  (resource: $schema_resource, module: $schema_module) isa inModule;
+
+put $generated_role_26 isa SchemaResource,
+  has docKey "https://github.com/vibe-machine/ontology-vibemachine#comesFromAgent:comesFromAgentSubject",
+  has iri "https://github.com/vibe-machine/ontology-vibemachine#comesFromAgent:comesFromAgentSubject",
+  has typeLabel "comesFromAgent:comesFromAgentSubject",
+  has kind "role",
+  has roleName "comesFromAgentSubject",
+  has prefLabel "comesFromAgentSubject",
+  has definition "Role 'comesFromAgentSubject' in relation 'comesFromAgent'.";
+match
+  $schema_module isa SchemaModule, has moduleKey "vibemachine";
+  $schema_resource isa SchemaResource, has docKey "https://github.com/vibe-machine/ontology-vibemachine#comesFromAgent:comesFromAgentSubject";
+  not {
+    (resource: $schema_resource, module: $schema_module) isa inModule;
+  };
+insert
+  (resource: $schema_resource, module: $schema_module) isa inModule;
+
+put $generated_role_27 isa SchemaResource,
+  has docKey "https://github.com/vibe-machine/ontology-vibemachine#conformsTo:conformsToObject",
+  has iri "https://github.com/vibe-machine/ontology-vibemachine#conformsTo:conformsToObject",
+  has typeLabel "conformsTo:conformsToObject",
+  has kind "role",
+  has roleName "conformsToObject",
+  has prefLabel "conformsToObject",
+  has definition "Role 'conformsToObject' in relation 'conformsTo'.";
+match
+  $schema_module isa SchemaModule, has moduleKey "vibemachine";
+  $schema_resource isa SchemaResource, has docKey "https://github.com/vibe-machine/ontology-vibemachine#conformsTo:conformsToObject";
+  not {
+    (resource: $schema_resource, module: $schema_module) isa inModule;
+  };
+insert
+  (resource: $schema_resource, module: $schema_module) isa inModule;
+
+put $generated_role_28 isa SchemaResource,
+  has docKey "https://github.com/vibe-machine/ontology-vibemachine#conformsTo:conformsToSubject",
+  has iri "https://github.com/vibe-machine/ontology-vibemachine#conformsTo:conformsToSubject",
+  has typeLabel "conformsTo:conformsToSubject",
+  has kind "role",
+  has roleName "conformsToSubject",
+  has prefLabel "conformsToSubject",
+  has definition "Role 'conformsToSubject' in relation 'conformsTo'.";
+match
+  $schema_module isa SchemaModule, has moduleKey "vibemachine";
+  $schema_resource isa SchemaResource, has docKey "https://github.com/vibe-machine/ontology-vibemachine#conformsTo:conformsToSubject";
+  not {
+    (resource: $schema_resource, module: $schema_module) isa inModule;
+  };
+insert
+  (resource: $schema_resource, module: $schema_module) isa inModule;
+
+put $generated_role_29 isa SchemaResource,
   has docKey "https://github.com/vibe-machine/ontology-vibemachine#containsItem:container",
   has iri "https://github.com/vibe-machine/ontology-vibemachine#containsItem:container",
   has typeLabel "containsItem:container",
@@ -2046,7 +2114,7 @@ match
 insert
   (resource: $schema_resource, module: $schema_module) isa inModule;
 
-put $generated_role_26 isa SchemaResource,
+put $generated_role_30 isa SchemaResource,
   has docKey "https://github.com/vibe-machine/ontology-vibemachine#containsItem:item",
   has iri "https://github.com/vibe-machine/ontology-vibemachine#containsItem:item",
   has typeLabel "containsItem:item",
@@ -2063,7 +2131,7 @@ match
 insert
   (resource: $schema_resource, module: $schema_module) isa inModule;
 
-put $generated_role_27 isa SchemaResource,
+put $generated_role_31 isa SchemaResource,
   has docKey "https://github.com/vibe-machine/ontology-vibemachine#controlBoothHasCollaborator:collaborator",
   has iri "https://github.com/vibe-machine/ontology-vibemachine#controlBoothHasCollaborator:collaborator",
   has typeLabel "controlBoothHasCollaborator:collaborator",
@@ -2080,7 +2148,7 @@ match
 insert
   (resource: $schema_resource, module: $schema_module) isa inModule;
 
-put $generated_role_28 isa SchemaResource,
+put $generated_role_32 isa SchemaResource,
   has docKey "https://github.com/vibe-machine/ontology-vibemachine#controlBoothHasCollaborator:controlBooth",
   has iri "https://github.com/vibe-machine/ontology-vibemachine#controlBoothHasCollaborator:controlBooth",
   has typeLabel "controlBoothHasCollaborator:controlBooth",
@@ -2097,7 +2165,7 @@ match
 insert
   (resource: $schema_resource, module: $schema_module) isa inModule;
 
-put $generated_role_29 isa SchemaResource,
+put $generated_role_33 isa SchemaResource,
   has docKey "https://github.com/vibe-machine/ontology-vibemachine#controlBoothIncludes:controlBooth",
   has iri "https://github.com/vibe-machine/ontology-vibemachine#controlBoothIncludes:controlBooth",
   has typeLabel "controlBoothIncludes:controlBooth",
@@ -2114,7 +2182,7 @@ match
 insert
   (resource: $schema_resource, module: $schema_module) isa inModule;
 
-put $generated_role_30 isa SchemaResource,
+put $generated_role_34 isa SchemaResource,
   has docKey "https://github.com/vibe-machine/ontology-vibemachine#controlBoothIncludes:member",
   has iri "https://github.com/vibe-machine/ontology-vibemachine#controlBoothIncludes:member",
   has typeLabel "controlBoothIncludes:member",
@@ -2131,7 +2199,7 @@ match
 insert
   (resource: $schema_resource, module: $schema_module) isa inModule;
 
-put $generated_role_31 isa SchemaResource,
+put $generated_role_35 isa SchemaResource,
   has docKey "https://github.com/vibe-machine/ontology-vibemachine#controlBoothOwnedBy:controlBooth",
   has iri "https://github.com/vibe-machine/ontology-vibemachine#controlBoothOwnedBy:controlBooth",
   has typeLabel "controlBoothOwnedBy:controlBooth",
@@ -2148,7 +2216,7 @@ match
 insert
   (resource: $schema_resource, module: $schema_module) isa inModule;
 
-put $generated_role_32 isa SchemaResource,
+put $generated_role_36 isa SchemaResource,
   has docKey "https://github.com/vibe-machine/ontology-vibemachine#controlBoothOwnedBy:owner",
   has iri "https://github.com/vibe-machine/ontology-vibemachine#controlBoothOwnedBy:owner",
   has typeLabel "controlBoothOwnedBy:owner",
@@ -2165,7 +2233,7 @@ match
 insert
   (resource: $schema_resource, module: $schema_module) isa inModule;
 
-put $generated_role_33 isa SchemaResource,
+put $generated_role_37 isa SchemaResource,
   has docKey "https://github.com/vibe-machine/ontology-vibemachine#currentlyAtStage:stage",
   has iri "https://github.com/vibe-machine/ontology-vibemachine#currentlyAtStage:stage",
   has typeLabel "currentlyAtStage:stage",
@@ -2182,7 +2250,7 @@ match
 insert
   (resource: $schema_resource, module: $schema_module) isa inModule;
 
-put $generated_role_34 isa SchemaResource,
+put $generated_role_38 isa SchemaResource,
   has docKey "https://github.com/vibe-machine/ontology-vibemachine#currentlyAtStage:trackedEntity",
   has iri "https://github.com/vibe-machine/ontology-vibemachine#currentlyAtStage:trackedEntity",
   has typeLabel "currentlyAtStage:trackedEntity",
@@ -2199,7 +2267,7 @@ match
 insert
   (resource: $schema_resource, module: $schema_module) isa inModule;
 
-put $generated_role_35 isa SchemaResource,
+put $generated_role_39 isa SchemaResource,
   has docKey "https://github.com/vibe-machine/ontology-vibemachine#decomposesFeature:childFeature",
   has iri "https://github.com/vibe-machine/ontology-vibemachine#decomposesFeature:childFeature",
   has typeLabel "decomposesFeature:childFeature",
@@ -2216,7 +2284,7 @@ match
 insert
   (resource: $schema_resource, module: $schema_module) isa inModule;
 
-put $generated_role_36 isa SchemaResource,
+put $generated_role_40 isa SchemaResource,
   has docKey "https://github.com/vibe-machine/ontology-vibemachine#decomposesFeature:parentFeature",
   has iri "https://github.com/vibe-machine/ontology-vibemachine#decomposesFeature:parentFeature",
   has typeLabel "decomposesFeature:parentFeature",
@@ -2233,7 +2301,7 @@ match
 insert
   (resource: $schema_resource, module: $schema_module) isa inModule;
 
-put $generated_role_37 isa SchemaResource,
+put $generated_role_41 isa SchemaResource,
   has docKey "https://github.com/vibe-machine/ontology-vibemachine#duplicateOfIssue:canonicalIssue",
   has iri "https://github.com/vibe-machine/ontology-vibemachine#duplicateOfIssue:canonicalIssue",
   has typeLabel "duplicateOfIssue:canonicalIssue",
@@ -2250,7 +2318,7 @@ match
 insert
   (resource: $schema_resource, module: $schema_module) isa inModule;
 
-put $generated_role_38 isa SchemaResource,
+put $generated_role_42 isa SchemaResource,
   has docKey "https://github.com/vibe-machine/ontology-vibemachine#duplicateOfIssue:duplicateIssue",
   has iri "https://github.com/vibe-machine/ontology-vibemachine#duplicateOfIssue:duplicateIssue",
   has typeLabel "duplicateOfIssue:duplicateIssue",
@@ -2267,7 +2335,7 @@ match
 insert
   (resource: $schema_resource, module: $schema_module) isa inModule;
 
-put $generated_role_39 isa SchemaResource,
+put $generated_role_43 isa SchemaResource,
   has docKey "https://github.com/vibe-machine/ontology-vibemachine#featureOfProduct:featureSpec",
   has iri "https://github.com/vibe-machine/ontology-vibemachine#featureOfProduct:featureSpec",
   has typeLabel "featureOfProduct:featureSpec",
@@ -2284,7 +2352,7 @@ match
 insert
   (resource: $schema_resource, module: $schema_module) isa inModule;
 
-put $generated_role_40 isa SchemaResource,
+put $generated_role_44 isa SchemaResource,
   has docKey "https://github.com/vibe-machine/ontology-vibemachine#featureOfProduct:productSpec",
   has iri "https://github.com/vibe-machine/ontology-vibemachine#featureOfProduct:productSpec",
   has typeLabel "featureOfProduct:productSpec",
@@ -2301,7 +2369,7 @@ match
 insert
   (resource: $schema_resource, module: $schema_module) isa inModule;
 
-put $generated_role_41 isa SchemaResource,
+put $generated_role_45 isa SchemaResource,
   has docKey "https://github.com/vibe-machine/ontology-vibemachine#fulfillsRequirement:engineeringTask",
   has iri "https://github.com/vibe-machine/ontology-vibemachine#fulfillsRequirement:engineeringTask",
   has typeLabel "fulfillsRequirement:engineeringTask",
@@ -2318,7 +2386,7 @@ match
 insert
   (resource: $schema_resource, module: $schema_module) isa inModule;
 
-put $generated_role_42 isa SchemaResource,
+put $generated_role_46 isa SchemaResource,
   has docKey "https://github.com/vibe-machine/ontology-vibemachine#fulfillsRequirement:requirement",
   has iri "https://github.com/vibe-machine/ontology-vibemachine#fulfillsRequirement:requirement",
   has typeLabel "fulfillsRequirement:requirement",
@@ -2335,7 +2403,7 @@ match
 insert
   (resource: $schema_resource, module: $schema_module) isa inModule;
 
-put $generated_role_43 isa SchemaResource,
+put $generated_role_47 isa SchemaResource,
   has docKey "https://github.com/vibe-machine/ontology-vibemachine#gateAdvancesEntity:advancedEntity",
   has iri "https://github.com/vibe-machine/ontology-vibemachine#gateAdvancesEntity:advancedEntity",
   has typeLabel "gateAdvancesEntity:advancedEntity",
@@ -2352,7 +2420,7 @@ match
 insert
   (resource: $schema_resource, module: $schema_module) isa inModule;
 
-put $generated_role_44 isa SchemaResource,
+put $generated_role_48 isa SchemaResource,
   has docKey "https://github.com/vibe-machine/ontology-vibemachine#gateAdvancesEntity:gateDecision",
   has iri "https://github.com/vibe-machine/ontology-vibemachine#gateAdvancesEntity:gateDecision",
   has typeLabel "gateAdvancesEntity:gateDecision",
@@ -2369,7 +2437,7 @@ match
 insert
   (resource: $schema_resource, module: $schema_module) isa inModule;
 
-put $generated_role_45 isa SchemaResource,
+put $generated_role_49 isa SchemaResource,
   has docKey "https://github.com/vibe-machine/ontology-vibemachine#gateTransitionsToStage:gateDecision",
   has iri "https://github.com/vibe-machine/ontology-vibemachine#gateTransitionsToStage:gateDecision",
   has typeLabel "gateTransitionsToStage:gateDecision",
@@ -2386,7 +2454,7 @@ match
 insert
   (resource: $schema_resource, module: $schema_module) isa inModule;
 
-put $generated_role_46 isa SchemaResource,
+put $generated_role_50 isa SchemaResource,
   has docKey "https://github.com/vibe-machine/ontology-vibemachine#gateTransitionsToStage:targetStage",
   has iri "https://github.com/vibe-machine/ontology-vibemachine#gateTransitionsToStage:targetStage",
   has typeLabel "gateTransitionsToStage:targetStage",
@@ -2403,7 +2471,7 @@ match
 insert
   (resource: $schema_resource, module: $schema_module) isa inModule;
 
-put $generated_role_47 isa SchemaResource,
+put $generated_role_51 isa SchemaResource,
   has docKey "https://github.com/vibe-machine/ontology-vibemachine#gateWithinProcess:gateDecision",
   has iri "https://github.com/vibe-machine/ontology-vibemachine#gateWithinProcess:gateDecision",
   has typeLabel "gateWithinProcess:gateDecision",
@@ -2420,7 +2488,7 @@ match
 insert
   (resource: $schema_resource, module: $schema_module) isa inModule;
 
-put $generated_role_48 isa SchemaResource,
+put $generated_role_52 isa SchemaResource,
   has docKey "https://github.com/vibe-machine/ontology-vibemachine#gateWithinProcess:process",
   has iri "https://github.com/vibe-machine/ontology-vibemachine#gateWithinProcess:process",
   has typeLabel "gateWithinProcess:process",
@@ -2437,7 +2505,41 @@ match
 insert
   (resource: $schema_resource, module: $schema_module) isa inModule;
 
-put $generated_role_49 isa SchemaResource,
+put $generated_role_53 isa SchemaResource,
+  has docKey "https://github.com/vibe-machine/ontology-vibemachine#hasParticipant:hasParticipantObject",
+  has iri "https://github.com/vibe-machine/ontology-vibemachine#hasParticipant:hasParticipantObject",
+  has typeLabel "hasParticipant:hasParticipantObject",
+  has kind "role",
+  has roleName "hasParticipantObject",
+  has prefLabel "hasParticipantObject",
+  has definition "Role 'hasParticipantObject' in relation 'hasParticipant'.";
+match
+  $schema_module isa SchemaModule, has moduleKey "vibemachine";
+  $schema_resource isa SchemaResource, has docKey "https://github.com/vibe-machine/ontology-vibemachine#hasParticipant:hasParticipantObject";
+  not {
+    (resource: $schema_resource, module: $schema_module) isa inModule;
+  };
+insert
+  (resource: $schema_resource, module: $schema_module) isa inModule;
+
+put $generated_role_54 isa SchemaResource,
+  has docKey "https://github.com/vibe-machine/ontology-vibemachine#hasParticipant:hasParticipantSubject",
+  has iri "https://github.com/vibe-machine/ontology-vibemachine#hasParticipant:hasParticipantSubject",
+  has typeLabel "hasParticipant:hasParticipantSubject",
+  has kind "role",
+  has roleName "hasParticipantSubject",
+  has prefLabel "hasParticipantSubject",
+  has definition "Role 'hasParticipantSubject' in relation 'hasParticipant'.";
+match
+  $schema_module isa SchemaModule, has moduleKey "vibemachine";
+  $schema_resource isa SchemaResource, has docKey "https://github.com/vibe-machine/ontology-vibemachine#hasParticipant:hasParticipantSubject";
+  not {
+    (resource: $schema_resource, module: $schema_module) isa inModule;
+  };
+insert
+  (resource: $schema_resource, module: $schema_module) isa inModule;
+
+put $generated_role_55 isa SchemaResource,
   has docKey "https://github.com/vibe-machine/ontology-vibemachine#implementsFeature:featureSpec",
   has iri "https://github.com/vibe-machine/ontology-vibemachine#implementsFeature:featureSpec",
   has typeLabel "implementsFeature:featureSpec",
@@ -2454,7 +2556,7 @@ match
 insert
   (resource: $schema_resource, module: $schema_module) isa inModule;
 
-put $generated_role_50 isa SchemaResource,
+put $generated_role_56 isa SchemaResource,
   has docKey "https://github.com/vibe-machine/ontology-vibemachine#implementsFeature:implementationSpec",
   has iri "https://github.com/vibe-machine/ontology-vibemachine#implementsFeature:implementationSpec",
   has typeLabel "implementsFeature:implementationSpec",
@@ -2471,7 +2573,347 @@ match
 insert
   (resource: $schema_resource, module: $schema_module) isa inModule;
 
-put $generated_role_51 isa SchemaResource,
+put $generated_role_57 isa SchemaResource,
+  has docKey "https://github.com/vibe-machine/ontology-vibemachine#isAbout:isAboutObject",
+  has iri "https://github.com/vibe-machine/ontology-vibemachine#isAbout:isAboutObject",
+  has typeLabel "isAbout:isAboutObject",
+  has kind "role",
+  has roleName "isAboutObject",
+  has prefLabel "isAboutObject",
+  has definition "Role 'isAboutObject' in relation 'isAbout'.";
+match
+  $schema_module isa SchemaModule, has moduleKey "vibemachine";
+  $schema_resource isa SchemaResource, has docKey "https://github.com/vibe-machine/ontology-vibemachine#isAbout:isAboutObject";
+  not {
+    (resource: $schema_resource, module: $schema_module) isa inModule;
+  };
+insert
+  (resource: $schema_resource, module: $schema_module) isa inModule;
+
+put $generated_role_58 isa SchemaResource,
+  has docKey "https://github.com/vibe-machine/ontology-vibemachine#isAbout:isAboutSubject",
+  has iri "https://github.com/vibe-machine/ontology-vibemachine#isAbout:isAboutSubject",
+  has typeLabel "isAbout:isAboutSubject",
+  has kind "role",
+  has roleName "isAboutSubject",
+  has prefLabel "isAboutSubject",
+  has definition "Role 'isAboutSubject' in relation 'isAbout'.";
+match
+  $schema_module isa SchemaModule, has moduleKey "vibemachine";
+  $schema_resource isa SchemaResource, has docKey "https://github.com/vibe-machine/ontology-vibemachine#isAbout:isAboutSubject";
+  not {
+    (resource: $schema_resource, module: $schema_module) isa inModule;
+  };
+insert
+  (resource: $schema_resource, module: $schema_module) isa inModule;
+
+put $generated_role_59 isa SchemaResource,
+  has docKey "https://github.com/vibe-machine/ontology-vibemachine#isAllocatedBy:isAllocatedByObject",
+  has iri "https://github.com/vibe-machine/ontology-vibemachine#isAllocatedBy:isAllocatedByObject",
+  has typeLabel "isAllocatedBy:isAllocatedByObject",
+  has kind "role",
+  has roleName "isAllocatedByObject",
+  has prefLabel "isAllocatedByObject",
+  has definition "Role 'isAllocatedByObject' in relation 'isAllocatedBy'.";
+match
+  $schema_module isa SchemaModule, has moduleKey "vibemachine";
+  $schema_resource isa SchemaResource, has docKey "https://github.com/vibe-machine/ontology-vibemachine#isAllocatedBy:isAllocatedByObject";
+  not {
+    (resource: $schema_resource, module: $schema_module) isa inModule;
+  };
+insert
+  (resource: $schema_resource, module: $schema_module) isa inModule;
+
+put $generated_role_60 isa SchemaResource,
+  has docKey "https://github.com/vibe-machine/ontology-vibemachine#isAllocatedBy:isAllocatedBySubject",
+  has iri "https://github.com/vibe-machine/ontology-vibemachine#isAllocatedBy:isAllocatedBySubject",
+  has typeLabel "isAllocatedBy:isAllocatedBySubject",
+  has kind "role",
+  has roleName "isAllocatedBySubject",
+  has prefLabel "isAllocatedBySubject",
+  has definition "Role 'isAllocatedBySubject' in relation 'isAllocatedBy'.";
+match
+  $schema_module isa SchemaModule, has moduleKey "vibemachine";
+  $schema_resource isa SchemaResource, has docKey "https://github.com/vibe-machine/ontology-vibemachine#isAllocatedBy:isAllocatedBySubject";
+  not {
+    (resource: $schema_resource, module: $schema_module) isa inModule;
+  };
+insert
+  (resource: $schema_resource, module: $schema_module) isa inModule;
+
+put $generated_role_61 isa SchemaResource,
+  has docKey "https://github.com/vibe-machine/ontology-vibemachine#isAssignmentOf:isAssignmentOfObject",
+  has iri "https://github.com/vibe-machine/ontology-vibemachine#isAssignmentOf:isAssignmentOfObject",
+  has typeLabel "isAssignmentOf:isAssignmentOfObject",
+  has kind "role",
+  has roleName "isAssignmentOfObject",
+  has prefLabel "isAssignmentOfObject",
+  has definition "Role 'isAssignmentOfObject' in relation 'isAssignmentOf'.";
+match
+  $schema_module isa SchemaModule, has moduleKey "vibemachine";
+  $schema_resource isa SchemaResource, has docKey "https://github.com/vibe-machine/ontology-vibemachine#isAssignmentOf:isAssignmentOfObject";
+  not {
+    (resource: $schema_resource, module: $schema_module) isa inModule;
+  };
+insert
+  (resource: $schema_resource, module: $schema_module) isa inModule;
+
+put $generated_role_62 isa SchemaResource,
+  has docKey "https://github.com/vibe-machine/ontology-vibemachine#isAssignmentOf:isAssignmentOfSubject",
+  has iri "https://github.com/vibe-machine/ontology-vibemachine#isAssignmentOf:isAssignmentOfSubject",
+  has typeLabel "isAssignmentOf:isAssignmentOfSubject",
+  has kind "role",
+  has roleName "isAssignmentOfSubject",
+  has prefLabel "isAssignmentOfSubject",
+  has definition "Role 'isAssignmentOfSubject' in relation 'isAssignmentOf'.";
+match
+  $schema_module isa SchemaModule, has moduleKey "vibemachine";
+  $schema_resource isa SchemaResource, has docKey "https://github.com/vibe-machine/ontology-vibemachine#isAssignmentOf:isAssignmentOfSubject";
+  not {
+    (resource: $schema_resource, module: $schema_module) isa inModule;
+  };
+insert
+  (resource: $schema_resource, module: $schema_module) isa inModule;
+
+put $generated_role_63 isa SchemaResource,
+  has docKey "https://github.com/vibe-machine/ontology-vibemachine#isAssignmentTo:isAssignmentToObject",
+  has iri "https://github.com/vibe-machine/ontology-vibemachine#isAssignmentTo:isAssignmentToObject",
+  has typeLabel "isAssignmentTo:isAssignmentToObject",
+  has kind "role",
+  has roleName "isAssignmentToObject",
+  has prefLabel "isAssignmentToObject",
+  has definition "Role 'isAssignmentToObject' in relation 'isAssignmentTo'.";
+match
+  $schema_module isa SchemaModule, has moduleKey "vibemachine";
+  $schema_resource isa SchemaResource, has docKey "https://github.com/vibe-machine/ontology-vibemachine#isAssignmentTo:isAssignmentToObject";
+  not {
+    (resource: $schema_resource, module: $schema_module) isa inModule;
+  };
+insert
+  (resource: $schema_resource, module: $schema_module) isa inModule;
+
+put $generated_role_64 isa SchemaResource,
+  has docKey "https://github.com/vibe-machine/ontology-vibemachine#isAssignmentTo:isAssignmentToSubject",
+  has iri "https://github.com/vibe-machine/ontology-vibemachine#isAssignmentTo:isAssignmentToSubject",
+  has typeLabel "isAssignmentTo:isAssignmentToSubject",
+  has kind "role",
+  has roleName "isAssignmentToSubject",
+  has prefLabel "isAssignmentToSubject",
+  has definition "Role 'isAssignmentToSubject' in relation 'isAssignmentTo'.";
+match
+  $schema_module isa SchemaModule, has moduleKey "vibemachine";
+  $schema_resource isa SchemaResource, has docKey "https://github.com/vibe-machine/ontology-vibemachine#isAssignmentTo:isAssignmentToSubject";
+  not {
+    (resource: $schema_resource, module: $schema_module) isa inModule;
+  };
+insert
+  (resource: $schema_resource, module: $schema_module) isa inModule;
+
+put $generated_role_65 isa SchemaResource,
+  has docKey "https://github.com/vibe-machine/ontology-vibemachine#isBasedOn:isBasedOnObject",
+  has iri "https://github.com/vibe-machine/ontology-vibemachine#isBasedOn:isBasedOnObject",
+  has typeLabel "isBasedOn:isBasedOnObject",
+  has kind "role",
+  has roleName "isBasedOnObject",
+  has prefLabel "isBasedOnObject",
+  has definition "Role 'isBasedOnObject' in relation 'isBasedOn'.";
+match
+  $schema_module isa SchemaModule, has moduleKey "vibemachine";
+  $schema_resource isa SchemaResource, has docKey "https://github.com/vibe-machine/ontology-vibemachine#isBasedOn:isBasedOnObject";
+  not {
+    (resource: $schema_resource, module: $schema_module) isa inModule;
+  };
+insert
+  (resource: $schema_resource, module: $schema_module) isa inModule;
+
+put $generated_role_66 isa SchemaResource,
+  has docKey "https://github.com/vibe-machine/ontology-vibemachine#isBasedOn:isBasedOnSubject",
+  has iri "https://github.com/vibe-machine/ontology-vibemachine#isBasedOn:isBasedOnSubject",
+  has typeLabel "isBasedOn:isBasedOnSubject",
+  has kind "role",
+  has roleName "isBasedOnSubject",
+  has prefLabel "isBasedOnSubject",
+  has definition "Role 'isBasedOnSubject' in relation 'isBasedOn'.";
+match
+  $schema_module isa SchemaModule, has moduleKey "vibemachine";
+  $schema_resource isa SchemaResource, has docKey "https://github.com/vibe-machine/ontology-vibemachine#isBasedOn:isBasedOnSubject";
+  not {
+    (resource: $schema_resource, module: $schema_module) isa inModule;
+  };
+insert
+  (resource: $schema_resource, module: $schema_module) isa inModule;
+
+put $generated_role_67 isa SchemaResource,
+  has docKey "https://github.com/vibe-machine/ontology-vibemachine#isCategorizedBy:isCategorizedByObject",
+  has iri "https://github.com/vibe-machine/ontology-vibemachine#isCategorizedBy:isCategorizedByObject",
+  has typeLabel "isCategorizedBy:isCategorizedByObject",
+  has kind "role",
+  has roleName "isCategorizedByObject",
+  has prefLabel "isCategorizedByObject",
+  has definition "Role 'isCategorizedByObject' in relation 'isCategorizedBy'.";
+match
+  $schema_module isa SchemaModule, has moduleKey "vibemachine";
+  $schema_resource isa SchemaResource, has docKey "https://github.com/vibe-machine/ontology-vibemachine#isCategorizedBy:isCategorizedByObject";
+  not {
+    (resource: $schema_resource, module: $schema_module) isa inModule;
+  };
+insert
+  (resource: $schema_resource, module: $schema_module) isa inModule;
+
+put $generated_role_68 isa SchemaResource,
+  has docKey "https://github.com/vibe-machine/ontology-vibemachine#isCategorizedBy:isCategorizedBySubject",
+  has iri "https://github.com/vibe-machine/ontology-vibemachine#isCategorizedBy:isCategorizedBySubject",
+  has typeLabel "isCategorizedBy:isCategorizedBySubject",
+  has kind "role",
+  has roleName "isCategorizedBySubject",
+  has prefLabel "isCategorizedBySubject",
+  has definition "Role 'isCategorizedBySubject' in relation 'isCategorizedBy'.";
+match
+  $schema_module isa SchemaModule, has moduleKey "vibemachine";
+  $schema_resource isa SchemaResource, has docKey "https://github.com/vibe-machine/ontology-vibemachine#isCategorizedBy:isCategorizedBySubject";
+  not {
+    (resource: $schema_resource, module: $schema_module) isa inModule;
+  };
+insert
+  (resource: $schema_resource, module: $schema_module) isa inModule;
+
+put $generated_role_69 isa SchemaResource,
+  has docKey "https://github.com/vibe-machine/ontology-vibemachine#isDirectPartOf:isDirectPartOfObject",
+  has iri "https://github.com/vibe-machine/ontology-vibemachine#isDirectPartOf:isDirectPartOfObject",
+  has typeLabel "isDirectPartOf:isDirectPartOfObject",
+  has kind "role",
+  has roleName "isDirectPartOfObject",
+  has prefLabel "isDirectPartOfObject",
+  has definition "Role 'isDirectPartOfObject' in relation 'isDirectPartOf'.";
+match
+  $schema_module isa SchemaModule, has moduleKey "vibemachine";
+  $schema_resource isa SchemaResource, has docKey "https://github.com/vibe-machine/ontology-vibemachine#isDirectPartOf:isDirectPartOfObject";
+  not {
+    (resource: $schema_resource, module: $schema_module) isa inModule;
+  };
+insert
+  (resource: $schema_resource, module: $schema_module) isa inModule;
+
+put $generated_role_70 isa SchemaResource,
+  has docKey "https://github.com/vibe-machine/ontology-vibemachine#isDirectPartOf:isDirectPartOfSubject",
+  has iri "https://github.com/vibe-machine/ontology-vibemachine#isDirectPartOf:isDirectPartOfSubject",
+  has typeLabel "isDirectPartOf:isDirectPartOfSubject",
+  has kind "role",
+  has roleName "isDirectPartOfSubject",
+  has prefLabel "isDirectPartOfSubject",
+  has definition "Role 'isDirectPartOfSubject' in relation 'isDirectPartOf'.";
+match
+  $schema_module isa SchemaModule, has moduleKey "vibemachine";
+  $schema_resource isa SchemaResource, has docKey "https://github.com/vibe-machine/ontology-vibemachine#isDirectPartOf:isDirectPartOfSubject";
+  not {
+    (resource: $schema_resource, module: $schema_module) isa inModule;
+  };
+insert
+  (resource: $schema_resource, module: $schema_module) isa inModule;
+
+put $generated_role_71 isa SchemaResource,
+  has docKey "https://github.com/vibe-machine/ontology-vibemachine#isGovernedBy:isGovernedByObject",
+  has iri "https://github.com/vibe-machine/ontology-vibemachine#isGovernedBy:isGovernedByObject",
+  has typeLabel "isGovernedBy:isGovernedByObject",
+  has kind "role",
+  has roleName "isGovernedByObject",
+  has prefLabel "isGovernedByObject",
+  has definition "Role 'isGovernedByObject' in relation 'isGovernedBy'.";
+match
+  $schema_module isa SchemaModule, has moduleKey "vibemachine";
+  $schema_resource isa SchemaResource, has docKey "https://github.com/vibe-machine/ontology-vibemachine#isGovernedBy:isGovernedByObject";
+  not {
+    (resource: $schema_resource, module: $schema_module) isa inModule;
+  };
+insert
+  (resource: $schema_resource, module: $schema_module) isa inModule;
+
+put $generated_role_72 isa SchemaResource,
+  has docKey "https://github.com/vibe-machine/ontology-vibemachine#isGovernedBy:isGovernedBySubject",
+  has iri "https://github.com/vibe-machine/ontology-vibemachine#isGovernedBy:isGovernedBySubject",
+  has typeLabel "isGovernedBy:isGovernedBySubject",
+  has kind "role",
+  has roleName "isGovernedBySubject",
+  has prefLabel "isGovernedBySubject",
+  has definition "Role 'isGovernedBySubject' in relation 'isGovernedBy'.";
+match
+  $schema_module isa SchemaModule, has moduleKey "vibemachine";
+  $schema_resource isa SchemaResource, has docKey "https://github.com/vibe-machine/ontology-vibemachine#isGovernedBy:isGovernedBySubject";
+  not {
+    (resource: $schema_resource, module: $schema_module) isa inModule;
+  };
+insert
+  (resource: $schema_resource, module: $schema_module) isa inModule;
+
+put $generated_role_73 isa SchemaResource,
+  has docKey "https://github.com/vibe-machine/ontology-vibemachine#isMemberOf:isMemberOfObject",
+  has iri "https://github.com/vibe-machine/ontology-vibemachine#isMemberOf:isMemberOfObject",
+  has typeLabel "isMemberOf:isMemberOfObject",
+  has kind "role",
+  has roleName "isMemberOfObject",
+  has prefLabel "isMemberOfObject",
+  has definition "Role 'isMemberOfObject' in relation 'isMemberOf'.";
+match
+  $schema_module isa SchemaModule, has moduleKey "vibemachine";
+  $schema_resource isa SchemaResource, has docKey "https://github.com/vibe-machine/ontology-vibemachine#isMemberOf:isMemberOfObject";
+  not {
+    (resource: $schema_resource, module: $schema_module) isa inModule;
+  };
+insert
+  (resource: $schema_resource, module: $schema_module) isa inModule;
+
+put $generated_role_74 isa SchemaResource,
+  has docKey "https://github.com/vibe-machine/ontology-vibemachine#isMemberOf:isMemberOfSubject",
+  has iri "https://github.com/vibe-machine/ontology-vibemachine#isMemberOf:isMemberOfSubject",
+  has typeLabel "isMemberOf:isMemberOfSubject",
+  has kind "role",
+  has roleName "isMemberOfSubject",
+  has prefLabel "isMemberOfSubject",
+  has definition "Role 'isMemberOfSubject' in relation 'isMemberOf'.";
+match
+  $schema_module isa SchemaModule, has moduleKey "vibemachine";
+  $schema_resource isa SchemaResource, has docKey "https://github.com/vibe-machine/ontology-vibemachine#isMemberOf:isMemberOfSubject";
+  not {
+    (resource: $schema_resource, module: $schema_module) isa inModule;
+  };
+insert
+  (resource: $schema_resource, module: $schema_module) isa inModule;
+
+put $generated_role_75 isa SchemaResource,
+  has docKey "https://github.com/vibe-machine/ontology-vibemachine#isProducedBy:isProducedByObject",
+  has iri "https://github.com/vibe-machine/ontology-vibemachine#isProducedBy:isProducedByObject",
+  has typeLabel "isProducedBy:isProducedByObject",
+  has kind "role",
+  has roleName "isProducedByObject",
+  has prefLabel "isProducedByObject",
+  has definition "Role 'isProducedByObject' in relation 'isProducedBy'.";
+match
+  $schema_module isa SchemaModule, has moduleKey "vibemachine";
+  $schema_resource isa SchemaResource, has docKey "https://github.com/vibe-machine/ontology-vibemachine#isProducedBy:isProducedByObject";
+  not {
+    (resource: $schema_resource, module: $schema_module) isa inModule;
+  };
+insert
+  (resource: $schema_resource, module: $schema_module) isa inModule;
+
+put $generated_role_76 isa SchemaResource,
+  has docKey "https://github.com/vibe-machine/ontology-vibemachine#isProducedBy:isProducedBySubject",
+  has iri "https://github.com/vibe-machine/ontology-vibemachine#isProducedBy:isProducedBySubject",
+  has typeLabel "isProducedBy:isProducedBySubject",
+  has kind "role",
+  has roleName "isProducedBySubject",
+  has prefLabel "isProducedBySubject",
+  has definition "Role 'isProducedBySubject' in relation 'isProducedBy'.";
+match
+  $schema_module isa SchemaModule, has moduleKey "vibemachine";
+  $schema_resource isa SchemaResource, has docKey "https://github.com/vibe-machine/ontology-vibemachine#isProducedBy:isProducedBySubject";
+  not {
+    (resource: $schema_resource, module: $schema_module) isa inModule;
+  };
+insert
+  (resource: $schema_resource, module: $schema_module) isa inModule;
+
+put $generated_role_77 isa SchemaResource,
   has docKey "https://github.com/vibe-machine/ontology-vibemachine#issueAboutProject:issue",
   has iri "https://github.com/vibe-machine/ontology-vibemachine#issueAboutProject:issue",
   has typeLabel "issueAboutProject:issue",
@@ -2488,7 +2930,7 @@ match
 insert
   (resource: $schema_resource, module: $schema_module) isa inModule;
 
-put $generated_role_52 isa SchemaResource,
+put $generated_role_78 isa SchemaResource,
   has docKey "https://github.com/vibe-machine/ontology-vibemachine#issueAboutProject:project",
   has iri "https://github.com/vibe-machine/ontology-vibemachine#issueAboutProject:project",
   has typeLabel "issueAboutProject:project",
@@ -2505,7 +2947,7 @@ match
 insert
   (resource: $schema_resource, module: $schema_module) isa inModule;
 
-put $generated_role_53 isa SchemaResource,
+put $generated_role_79 isa SchemaResource,
   has docKey "https://github.com/vibe-machine/ontology-vibemachine#issueAboutRepository:issue",
   has iri "https://github.com/vibe-machine/ontology-vibemachine#issueAboutRepository:issue",
   has typeLabel "issueAboutRepository:issue",
@@ -2522,7 +2964,7 @@ match
 insert
   (resource: $schema_resource, module: $schema_module) isa inModule;
 
-put $generated_role_54 isa SchemaResource,
+put $generated_role_80 isa SchemaResource,
   has docKey "https://github.com/vibe-machine/ontology-vibemachine#issueAboutRepository:repository",
   has iri "https://github.com/vibe-machine/ontology-vibemachine#issueAboutRepository:repository",
   has typeLabel "issueAboutRepository:repository",
@@ -2539,7 +2981,7 @@ match
 insert
   (resource: $schema_resource, module: $schema_module) isa inModule;
 
-put $generated_role_55 isa SchemaResource,
+put $generated_role_81 isa SchemaResource,
   has docKey "https://github.com/vibe-machine/ontology-vibemachine#issueCommittedToRelease:issue",
   has iri "https://github.com/vibe-machine/ontology-vibemachine#issueCommittedToRelease:issue",
   has typeLabel "issueCommittedToRelease:issue",
@@ -2556,7 +2998,7 @@ match
 insert
   (resource: $schema_resource, module: $schema_module) isa inModule;
 
-put $generated_role_56 isa SchemaResource,
+put $generated_role_82 isa SchemaResource,
   has docKey "https://github.com/vibe-machine/ontology-vibemachine#issueCommittedToRelease:releasePlan",
   has iri "https://github.com/vibe-machine/ontology-vibemachine#issueCommittedToRelease:releasePlan",
   has typeLabel "issueCommittedToRelease:releasePlan",
@@ -2573,7 +3015,7 @@ match
 insert
   (resource: $schema_resource, module: $schema_module) isa inModule;
 
-put $generated_role_57 isa SchemaResource,
+put $generated_role_83 isa SchemaResource,
   has docKey "https://github.com/vibe-machine/ontology-vibemachine#issueDerivedFromSubmission:issue",
   has iri "https://github.com/vibe-machine/ontology-vibemachine#issueDerivedFromSubmission:issue",
   has typeLabel "issueDerivedFromSubmission:issue",
@@ -2590,7 +3032,7 @@ match
 insert
   (resource: $schema_resource, module: $schema_module) isa inModule;
 
-put $generated_role_58 isa SchemaResource,
+put $generated_role_84 isa SchemaResource,
   has docKey "https://github.com/vibe-machine/ontology-vibemachine#issueDerivedFromSubmission:submission",
   has iri "https://github.com/vibe-machine/ontology-vibemachine#issueDerivedFromSubmission:submission",
   has typeLabel "issueDerivedFromSubmission:submission",
@@ -2607,7 +3049,7 @@ match
 insert
   (resource: $schema_resource, module: $schema_module) isa inModule;
 
-put $generated_role_59 isa SchemaResource,
+put $generated_role_85 isa SchemaResource,
   has docKey "https://github.com/vibe-machine/ontology-vibemachine#issueProducedByTriage:issue",
   has iri "https://github.com/vibe-machine/ontology-vibemachine#issueProducedByTriage:issue",
   has typeLabel "issueProducedByTriage:issue",
@@ -2624,7 +3066,7 @@ match
 insert
   (resource: $schema_resource, module: $schema_module) isa inModule;
 
-put $generated_role_60 isa SchemaResource,
+put $generated_role_86 isa SchemaResource,
   has docKey "https://github.com/vibe-machine/ontology-vibemachine#issueProducedByTriage:triageDecision",
   has iri "https://github.com/vibe-machine/ontology-vibemachine#issueProducedByTriage:triageDecision",
   has typeLabel "issueProducedByTriage:triageDecision",
@@ -2641,7 +3083,7 @@ match
 insert
   (resource: $schema_resource, module: $schema_module) isa inModule;
 
-put $generated_role_61 isa SchemaResource,
+put $generated_role_87 isa SchemaResource,
   has docKey "https://github.com/vibe-machine/ontology-vibemachine#issueTargetsMilestone:issue",
   has iri "https://github.com/vibe-machine/ontology-vibemachine#issueTargetsMilestone:issue",
   has typeLabel "issueTargetsMilestone:issue",
@@ -2658,7 +3100,7 @@ match
 insert
   (resource: $schema_resource, module: $schema_module) isa inModule;
 
-put $generated_role_62 isa SchemaResource,
+put $generated_role_88 isa SchemaResource,
   has docKey "https://github.com/vibe-machine/ontology-vibemachine#issueTargetsMilestone:milestone",
   has iri "https://github.com/vibe-machine/ontology-vibemachine#issueTargetsMilestone:milestone",
   has typeLabel "issueTargetsMilestone:milestone",
@@ -2675,7 +3117,7 @@ match
 insert
   (resource: $schema_resource, module: $schema_module) isa inModule;
 
-put $generated_role_63 isa SchemaResource,
+put $generated_role_89 isa SchemaResource,
   has docKey "https://github.com/vibe-machine/ontology-vibemachine#milestoneInReleasePlan:milestone",
   has iri "https://github.com/vibe-machine/ontology-vibemachine#milestoneInReleasePlan:milestone",
   has typeLabel "milestoneInReleasePlan:milestone",
@@ -2692,7 +3134,7 @@ match
 insert
   (resource: $schema_resource, module: $schema_module) isa inModule;
 
-put $generated_role_64 isa SchemaResource,
+put $generated_role_90 isa SchemaResource,
   has docKey "https://github.com/vibe-machine/ontology-vibemachine#milestoneInReleasePlan:releasePlan",
   has iri "https://github.com/vibe-machine/ontology-vibemachine#milestoneInReleasePlan:releasePlan",
   has typeLabel "milestoneInReleasePlan:releasePlan",
@@ -2709,7 +3151,7 @@ match
 insert
   (resource: $schema_resource, module: $schema_module) isa inModule;
 
-put $generated_role_65 isa SchemaResource,
+put $generated_role_91 isa SchemaResource,
   has docKey "https://github.com/vibe-machine/ontology-vibemachine#motivatedBy:featureSpec",
   has iri "https://github.com/vibe-machine/ontology-vibemachine#motivatedBy:featureSpec",
   has typeLabel "motivatedBy:featureSpec",
@@ -2726,7 +3168,7 @@ match
 insert
   (resource: $schema_resource, module: $schema_module) isa inModule;
 
-put $generated_role_66 isa SchemaResource,
+put $generated_role_92 isa SchemaResource,
   has docKey "https://github.com/vibe-machine/ontology-vibemachine#motivatedBy:objective",
   has iri "https://github.com/vibe-machine/ontology-vibemachine#motivatedBy:objective",
   has typeLabel "motivatedBy:objective",
@@ -2743,7 +3185,7 @@ match
 insert
   (resource: $schema_resource, module: $schema_module) isa inModule;
 
-put $generated_role_67 isa SchemaResource,
+put $generated_role_93 isa SchemaResource,
   has docKey "https://github.com/vibe-machine/ontology-vibemachine#noteReferencesTodo:note",
   has iri "https://github.com/vibe-machine/ontology-vibemachine#noteReferencesTodo:note",
   has typeLabel "noteReferencesTodo:note",
@@ -2760,7 +3202,7 @@ match
 insert
   (resource: $schema_resource, module: $schema_module) isa inModule;
 
-put $generated_role_68 isa SchemaResource,
+put $generated_role_94 isa SchemaResource,
   has docKey "https://github.com/vibe-machine/ontology-vibemachine#noteReferencesTodo:todoItem",
   has iri "https://github.com/vibe-machine/ontology-vibemachine#noteReferencesTodo:todoItem",
   has typeLabel "noteReferencesTodo:todoItem",
@@ -2777,7 +3219,7 @@ match
 insert
   (resource: $schema_resource, module: $schema_module) isa inModule;
 
-put $generated_role_69 isa SchemaResource,
+put $generated_role_95 isa SchemaResource,
   has docKey "https://github.com/vibe-machine/ontology-vibemachine#planningDecisionAboutIssue:issue",
   has iri "https://github.com/vibe-machine/ontology-vibemachine#planningDecisionAboutIssue:issue",
   has typeLabel "planningDecisionAboutIssue:issue",
@@ -2794,7 +3236,7 @@ match
 insert
   (resource: $schema_resource, module: $schema_module) isa inModule;
 
-put $generated_role_70 isa SchemaResource,
+put $generated_role_96 isa SchemaResource,
   has docKey "https://github.com/vibe-machine/ontology-vibemachine#planningDecisionAboutIssue:planningDecision",
   has iri "https://github.com/vibe-machine/ontology-vibemachine#planningDecisionAboutIssue:planningDecision",
   has typeLabel "planningDecisionAboutIssue:planningDecision",
@@ -2811,7 +3253,7 @@ match
 insert
   (resource: $schema_resource, module: $schema_module) isa inModule;
 
-put $generated_role_71 isa SchemaResource,
+put $generated_role_97 isa SchemaResource,
   has docKey "https://github.com/vibe-machine/ontology-vibemachine#planningPerformedBy:planner",
   has iri "https://github.com/vibe-machine/ontology-vibemachine#planningPerformedBy:planner",
   has typeLabel "planningPerformedBy:planner",
@@ -2828,7 +3270,7 @@ match
 insert
   (resource: $schema_resource, module: $schema_module) isa inModule;
 
-put $generated_role_72 isa SchemaResource,
+put $generated_role_98 isa SchemaResource,
   has docKey "https://github.com/vibe-machine/ontology-vibemachine#planningPerformedBy:planningDecision",
   has iri "https://github.com/vibe-machine/ontology-vibemachine#planningPerformedBy:planningDecision",
   has typeLabel "planningPerformedBy:planningDecision",
@@ -2845,7 +3287,7 @@ match
 insert
   (resource: $schema_resource, module: $schema_module) isa inModule;
 
-put $generated_role_73 isa SchemaResource,
+put $generated_role_99 isa SchemaResource,
   has docKey "https://github.com/vibe-machine/ontology-vibemachine#processContainsStage:process",
   has iri "https://github.com/vibe-machine/ontology-vibemachine#processContainsStage:process",
   has typeLabel "processContainsStage:process",
@@ -2862,7 +3304,7 @@ match
 insert
   (resource: $schema_resource, module: $schema_module) isa inModule;
 
-put $generated_role_74 isa SchemaResource,
+put $generated_role_100 isa SchemaResource,
   has docKey "https://github.com/vibe-machine/ontology-vibemachine#processContainsStage:stage",
   has iri "https://github.com/vibe-machine/ontology-vibemachine#processContainsStage:stage",
   has typeLabel "processContainsStage:stage",
@@ -2879,7 +3321,7 @@ match
 insert
   (resource: $schema_resource, module: $schema_module) isa inModule;
 
-put $generated_role_75 isa SchemaResource,
+put $generated_role_101 isa SchemaResource,
   has docKey "https://github.com/vibe-machine/ontology-vibemachine#producesProduct:product",
   has iri "https://github.com/vibe-machine/ontology-vibemachine#producesProduct:product",
   has typeLabel "producesProduct:product",
@@ -2896,7 +3338,7 @@ match
 insert
   (resource: $schema_resource, module: $schema_module) isa inModule;
 
-put $generated_role_76 isa SchemaResource,
+put $generated_role_102 isa SchemaResource,
   has docKey "https://github.com/vibe-machine/ontology-vibemachine#producesProduct:project",
   has iri "https://github.com/vibe-machine/ontology-vibemachine#producesProduct:project",
   has typeLabel "producesProduct:project",
@@ -2913,7 +3355,7 @@ match
 insert
   (resource: $schema_resource, module: $schema_module) isa inModule;
 
-put $generated_role_77 isa SchemaResource,
+put $generated_role_103 isa SchemaResource,
   has docKey "https://github.com/vibe-machine/ontology-vibemachine#productConformsTo:product",
   has iri "https://github.com/vibe-machine/ontology-vibemachine#productConformsTo:product",
   has typeLabel "productConformsTo:product",
@@ -2930,7 +3372,7 @@ match
 insert
   (resource: $schema_resource, module: $schema_module) isa inModule;
 
-put $generated_role_78 isa SchemaResource,
+put $generated_role_104 isa SchemaResource,
   has docKey "https://github.com/vibe-machine/ontology-vibemachine#productConformsTo:productSpec",
   has iri "https://github.com/vibe-machine/ontology-vibemachine#productConformsTo:productSpec",
   has typeLabel "productConformsTo:productSpec",
@@ -2947,7 +3389,7 @@ match
 insert
   (resource: $schema_resource, module: $schema_module) isa inModule;
 
-put $generated_role_79 isa SchemaResource,
+put $generated_role_105 isa SchemaResource,
   has docKey "https://github.com/vibe-machine/ontology-vibemachine#resolutionDecisionAboutIssue:issue",
   has iri "https://github.com/vibe-machine/ontology-vibemachine#resolutionDecisionAboutIssue:issue",
   has typeLabel "resolutionDecisionAboutIssue:issue",
@@ -2964,7 +3406,7 @@ match
 insert
   (resource: $schema_resource, module: $schema_module) isa inModule;
 
-put $generated_role_80 isa SchemaResource,
+put $generated_role_106 isa SchemaResource,
   has docKey "https://github.com/vibe-machine/ontology-vibemachine#resolutionDecisionAboutIssue:resolutionDecision",
   has iri "https://github.com/vibe-machine/ontology-vibemachine#resolutionDecisionAboutIssue:resolutionDecision",
   has typeLabel "resolutionDecisionAboutIssue:resolutionDecision",
@@ -2981,7 +3423,7 @@ match
 insert
   (resource: $schema_resource, module: $schema_module) isa inModule;
 
-put $generated_role_81 isa SchemaResource,
+put $generated_role_107 isa SchemaResource,
   has docKey "https://github.com/vibe-machine/ontology-vibemachine#resolutionPerformedBy:resolutionDecision",
   has iri "https://github.com/vibe-machine/ontology-vibemachine#resolutionPerformedBy:resolutionDecision",
   has typeLabel "resolutionPerformedBy:resolutionDecision",
@@ -2998,7 +3440,7 @@ match
 insert
   (resource: $schema_resource, module: $schema_module) isa inModule;
 
-put $generated_role_82 isa SchemaResource,
+put $generated_role_108 isa SchemaResource,
   has docKey "https://github.com/vibe-machine/ontology-vibemachine#resolutionPerformedBy:resolver",
   has iri "https://github.com/vibe-machine/ontology-vibemachine#resolutionPerformedBy:resolver",
   has typeLabel "resolutionPerformedBy:resolver",
@@ -3015,7 +3457,7 @@ match
 insert
   (resource: $schema_resource, module: $schema_module) isa inModule;
 
-put $generated_role_83 isa SchemaResource,
+put $generated_role_109 isa SchemaResource,
   has docKey "https://github.com/vibe-machine/ontology-vibemachine#softwareSystemConformsToVersion:softwareSystem",
   has iri "https://github.com/vibe-machine/ontology-vibemachine#softwareSystemConformsToVersion:softwareSystem",
   has typeLabel "softwareSystemConformsToVersion:softwareSystem",
@@ -3032,7 +3474,7 @@ match
 insert
   (resource: $schema_resource, module: $schema_module) isa inModule;
 
-put $generated_role_84 isa SchemaResource,
+put $generated_role_110 isa SchemaResource,
   has docKey "https://github.com/vibe-machine/ontology-vibemachine#softwareSystemConformsToVersion:softwareVersion",
   has iri "https://github.com/vibe-machine/ontology-vibemachine#softwareSystemConformsToVersion:softwareVersion",
   has typeLabel "softwareSystemConformsToVersion:softwareVersion",
@@ -3049,7 +3491,7 @@ match
 insert
   (resource: $schema_resource, module: $schema_module) isa inModule;
 
-put $generated_role_85 isa SchemaResource,
+put $generated_role_111 isa SchemaResource,
   has docKey "https://github.com/vibe-machine/ontology-vibemachine#specifiesFeatureFor:featureSpec",
   has iri "https://github.com/vibe-machine/ontology-vibemachine#specifiesFeatureFor:featureSpec",
   has typeLabel "specifiesFeatureFor:featureSpec",
@@ -3066,7 +3508,7 @@ match
 insert
   (resource: $schema_resource, module: $schema_module) isa inModule;
 
-put $generated_role_86 isa SchemaResource,
+put $generated_role_112 isa SchemaResource,
   has docKey "https://github.com/vibe-machine/ontology-vibemachine#specifiesFeatureFor:project",
   has iri "https://github.com/vibe-machine/ontology-vibemachine#specifiesFeatureFor:project",
   has typeLabel "specifiesFeatureFor:project",
@@ -3083,7 +3525,7 @@ match
 insert
   (resource: $schema_resource, module: $schema_module) isa inModule;
 
-put $generated_role_87 isa SchemaResource,
+put $generated_role_113 isa SchemaResource,
   has docKey "https://github.com/vibe-machine/ontology-vibemachine#stageHasCriterion:criterion",
   has iri "https://github.com/vibe-machine/ontology-vibemachine#stageHasCriterion:criterion",
   has typeLabel "stageHasCriterion:criterion",
@@ -3100,7 +3542,7 @@ match
 insert
   (resource: $schema_resource, module: $schema_module) isa inModule;
 
-put $generated_role_88 isa SchemaResource,
+put $generated_role_114 isa SchemaResource,
   has docKey "https://github.com/vibe-machine/ontology-vibemachine#stageHasCriterion:stage",
   has iri "https://github.com/vibe-machine/ontology-vibemachine#stageHasCriterion:stage",
   has typeLabel "stageHasCriterion:stage",
@@ -3117,7 +3559,7 @@ match
 insert
   (resource: $schema_resource, module: $schema_module) isa inModule;
 
-put $generated_role_89 isa SchemaResource,
+put $generated_role_115 isa SchemaResource,
   has docKey "https://github.com/vibe-machine/ontology-vibemachine#submissionProvidedBy:submission",
   has iri "https://github.com/vibe-machine/ontology-vibemachine#submissionProvidedBy:submission",
   has typeLabel "submissionProvidedBy:submission",
@@ -3134,7 +3576,7 @@ match
 insert
   (resource: $schema_resource, module: $schema_module) isa inModule;
 
-put $generated_role_90 isa SchemaResource,
+put $generated_role_116 isa SchemaResource,
   has docKey "https://github.com/vibe-machine/ontology-vibemachine#submissionProvidedBy:submitter",
   has iri "https://github.com/vibe-machine/ontology-vibemachine#submissionProvidedBy:submitter",
   has typeLabel "submissionProvidedBy:submitter",
@@ -3151,7 +3593,7 @@ match
 insert
   (resource: $schema_resource, module: $schema_module) isa inModule;
 
-put $generated_role_91 isa SchemaResource,
+put $generated_role_117 isa SchemaResource,
   has docKey "https://github.com/vibe-machine/ontology-vibemachine#targetsRepository:engineeringTask",
   has iri "https://github.com/vibe-machine/ontology-vibemachine#targetsRepository:engineeringTask",
   has typeLabel "targetsRepository:engineeringTask",
@@ -3168,7 +3610,7 @@ match
 insert
   (resource: $schema_resource, module: $schema_module) isa inModule;
 
-put $generated_role_92 isa SchemaResource,
+put $generated_role_118 isa SchemaResource,
   has docKey "https://github.com/vibe-machine/ontology-vibemachine#targetsRepository:repository",
   has iri "https://github.com/vibe-machine/ontology-vibemachine#targetsRepository:repository",
   has typeLabel "targetsRepository:repository",
@@ -3185,7 +3627,7 @@ match
 insert
   (resource: $schema_resource, module: $schema_module) isa inModule;
 
-put $generated_role_93 isa SchemaResource,
+put $generated_role_119 isa SchemaResource,
   has docKey "https://github.com/vibe-machine/ontology-vibemachine#taskAddressesIssue:engineeringTask",
   has iri "https://github.com/vibe-machine/ontology-vibemachine#taskAddressesIssue:engineeringTask",
   has typeLabel "taskAddressesIssue:engineeringTask",
@@ -3202,7 +3644,7 @@ match
 insert
   (resource: $schema_resource, module: $schema_module) isa inModule;
 
-put $generated_role_94 isa SchemaResource,
+put $generated_role_120 isa SchemaResource,
   has docKey "https://github.com/vibe-machine/ontology-vibemachine#taskAddressesIssue:issue",
   has iri "https://github.com/vibe-machine/ontology-vibemachine#taskAddressesIssue:issue",
   has typeLabel "taskAddressesIssue:issue",
@@ -3219,7 +3661,7 @@ match
 insert
   (resource: $schema_resource, module: $schema_module) isa inModule;
 
-put $generated_role_95 isa SchemaResource,
+put $generated_role_121 isa SchemaResource,
   has docKey "https://github.com/vibe-machine/ontology-vibemachine#triageBasedOnSubmission:submission",
   has iri "https://github.com/vibe-machine/ontology-vibemachine#triageBasedOnSubmission:submission",
   has typeLabel "triageBasedOnSubmission:submission",
@@ -3236,7 +3678,7 @@ match
 insert
   (resource: $schema_resource, module: $schema_module) isa inModule;
 
-put $generated_role_96 isa SchemaResource,
+put $generated_role_122 isa SchemaResource,
   has docKey "https://github.com/vibe-machine/ontology-vibemachine#triageBasedOnSubmission:triageDecision",
   has iri "https://github.com/vibe-machine/ontology-vibemachine#triageBasedOnSubmission:triageDecision",
   has typeLabel "triageBasedOnSubmission:triageDecision",
@@ -3253,7 +3695,7 @@ match
 insert
   (resource: $schema_resource, module: $schema_module) isa inModule;
 
-put $generated_role_97 isa SchemaResource,
+put $generated_role_123 isa SchemaResource,
   has docKey "https://github.com/vibe-machine/ontology-vibemachine#triagePerformedBy:triageDecision",
   has iri "https://github.com/vibe-machine/ontology-vibemachine#triagePerformedBy:triageDecision",
   has typeLabel "triagePerformedBy:triageDecision",
@@ -3270,7 +3712,7 @@ match
 insert
   (resource: $schema_resource, module: $schema_module) isa inModule;
 
-put $generated_role_98 isa SchemaResource,
+put $generated_role_124 isa SchemaResource,
   has docKey "https://github.com/vibe-machine/ontology-vibemachine#triagePerformedBy:triager",
   has iri "https://github.com/vibe-machine/ontology-vibemachine#triagePerformedBy:triager",
   has typeLabel "triagePerformedBy:triager",
@@ -3287,7 +3729,7 @@ match
 insert
   (resource: $schema_resource, module: $schema_module) isa inModule;
 
-put $generated_role_99 isa SchemaResource,
+put $generated_role_125 isa SchemaResource,
   has docKey "https://github.com/vibe-machine/ontology-vibemachine#usesWorkspace:project",
   has iri "https://github.com/vibe-machine/ontology-vibemachine#usesWorkspace:project",
   has typeLabel "usesWorkspace:project",
@@ -3304,7 +3746,7 @@ match
 insert
   (resource: $schema_resource, module: $schema_module) isa inModule;
 
-put $generated_role_100 isa SchemaResource,
+put $generated_role_126 isa SchemaResource,
   has docKey "https://github.com/vibe-machine/ontology-vibemachine#usesWorkspace:workspace",
   has iri "https://github.com/vibe-machine/ontology-vibemachine#usesWorkspace:workspace",
   has typeLabel "usesWorkspace:workspace",
@@ -3321,7 +3763,7 @@ match
 insert
   (resource: $schema_resource, module: $schema_module) isa inModule;
 
-put $generated_role_101 isa SchemaResource,
+put $generated_role_127 isa SchemaResource,
   has docKey "https://github.com/vibe-machine/ontology-vibemachine#verificationPerformedBy:verificationDecision",
   has iri "https://github.com/vibe-machine/ontology-vibemachine#verificationPerformedBy:verificationDecision",
   has typeLabel "verificationPerformedBy:verificationDecision",
@@ -3338,7 +3780,7 @@ match
 insert
   (resource: $schema_resource, module: $schema_module) isa inModule;
 
-put $generated_role_102 isa SchemaResource,
+put $generated_role_128 isa SchemaResource,
   has docKey "https://github.com/vibe-machine/ontology-vibemachine#verificationPerformedBy:verifier",
   has iri "https://github.com/vibe-machine/ontology-vibemachine#verificationPerformedBy:verifier",
   has typeLabel "verificationPerformedBy:verifier",
@@ -3355,7 +3797,7 @@ match
 insert
   (resource: $schema_resource, module: $schema_module) isa inModule;
 
-put $generated_role_103 isa SchemaResource,
+put $generated_role_129 isa SchemaResource,
   has docKey "https://github.com/vibe-machine/ontology-vibemachine#workStartedPerformedBy:starter",
   has iri "https://github.com/vibe-machine/ontology-vibemachine#workStartedPerformedBy:starter",
   has typeLabel "workStartedPerformedBy:starter",
@@ -3372,7 +3814,7 @@ match
 insert
   (resource: $schema_resource, module: $schema_module) isa inModule;
 
-put $generated_role_104 isa SchemaResource,
+put $generated_role_130 isa SchemaResource,
   has docKey "https://github.com/vibe-machine/ontology-vibemachine#workStartedPerformedBy:workStartedDecision",
   has iri "https://github.com/vibe-machine/ontology-vibemachine#workStartedPerformedBy:workStartedDecision",
   has typeLabel "workStartedPerformedBy:workStartedDecision",
@@ -3679,8 +4121,44 @@ insert
   (subtypeResource: $struct_left, supertypeResource: $struct_right) isa schemaSubTypeOf;
 
 match
+  $struct_left isa SchemaResource, has typeLabel "agentProfileForVersion:agentProfile";
+  $struct_right isa SchemaResource, has typeLabel "isAbout:isAboutSubject";
+  not {
+    (subtypeResource: $struct_left, supertypeResource: $struct_right) isa schemaSubTypeOf;
+  };
+insert
+  (subtypeResource: $struct_left, supertypeResource: $struct_right) isa schemaSubTypeOf;
+
+match
+  $struct_left isa SchemaResource, has typeLabel "agentProfileForVersion:softwareVersion";
+  $struct_right isa SchemaResource, has typeLabel "isAbout:isAboutObject";
+  not {
+    (subtypeResource: $struct_left, supertypeResource: $struct_right) isa schemaSubTypeOf;
+  };
+insert
+  (subtypeResource: $struct_left, supertypeResource: $struct_right) isa schemaSubTypeOf;
+
+match
   $struct_left isa SchemaResource, has typeLabel "assignmentAllocatedBy";
   $struct_right isa SchemaResource, has typeLabel "isAllocatedBy";
+  not {
+    (subtypeResource: $struct_left, supertypeResource: $struct_right) isa schemaSubTypeOf;
+  };
+insert
+  (subtypeResource: $struct_left, supertypeResource: $struct_right) isa schemaSubTypeOf;
+
+match
+  $struct_left isa SchemaResource, has typeLabel "assignmentAllocatedBy:assigner";
+  $struct_right isa SchemaResource, has typeLabel "isAllocatedBy:isAllocatedByObject";
+  not {
+    (subtypeResource: $struct_left, supertypeResource: $struct_right) isa schemaSubTypeOf;
+  };
+insert
+  (subtypeResource: $struct_left, supertypeResource: $struct_right) isa schemaSubTypeOf;
+
+match
+  $struct_left isa SchemaResource, has typeLabel "assignmentAllocatedBy:assignment";
+  $struct_right isa SchemaResource, has typeLabel "isAllocatedBy:isAllocatedBySubject";
   not {
     (subtypeResource: $struct_left, supertypeResource: $struct_right) isa schemaSubTypeOf;
   };
@@ -3697,8 +4175,44 @@ insert
   (subtypeResource: $struct_left, supertypeResource: $struct_right) isa schemaSubTypeOf;
 
 match
+  $struct_left isa SchemaResource, has typeLabel "assignmentDecisionUsesProfile:agentProfile";
+  $struct_right isa SchemaResource, has typeLabel "isBasedOn:isBasedOnObject";
+  not {
+    (subtypeResource: $struct_left, supertypeResource: $struct_right) isa schemaSubTypeOf;
+  };
+insert
+  (subtypeResource: $struct_left, supertypeResource: $struct_right) isa schemaSubTypeOf;
+
+match
+  $struct_left isa SchemaResource, has typeLabel "assignmentDecisionUsesProfile:assignmentDecision";
+  $struct_right isa SchemaResource, has typeLabel "isBasedOn:isBasedOnSubject";
+  not {
+    (subtypeResource: $struct_left, supertypeResource: $struct_right) isa schemaSubTypeOf;
+  };
+insert
+  (subtypeResource: $struct_left, supertypeResource: $struct_right) isa schemaSubTypeOf;
+
+match
   $struct_left isa SchemaResource, has typeLabel "assignmentForTask";
   $struct_right isa SchemaResource, has typeLabel "isAssignmentTo";
+  not {
+    (subtypeResource: $struct_left, supertypeResource: $struct_right) isa schemaSubTypeOf;
+  };
+insert
+  (subtypeResource: $struct_left, supertypeResource: $struct_right) isa schemaSubTypeOf;
+
+match
+  $struct_left isa SchemaResource, has typeLabel "assignmentForTask:assignment";
+  $struct_right isa SchemaResource, has typeLabel "isAssignmentTo:isAssignmentToSubject";
+  not {
+    (subtypeResource: $struct_left, supertypeResource: $struct_right) isa schemaSubTypeOf;
+  };
+insert
+  (subtypeResource: $struct_left, supertypeResource: $struct_right) isa schemaSubTypeOf;
+
+match
+  $struct_left isa SchemaResource, has typeLabel "assignmentForTask:task";
+  $struct_right isa SchemaResource, has typeLabel "isAssignmentTo:isAssignmentToObject";
   not {
     (subtypeResource: $struct_left, supertypeResource: $struct_right) isa schemaSubTypeOf;
   };
@@ -3715,8 +4229,44 @@ insert
   (subtypeResource: $struct_left, supertypeResource: $struct_right) isa schemaSubTypeOf;
 
 match
+  $struct_left isa SchemaResource, has typeLabel "assignmentPerformedBy:assigner";
+  $struct_right isa SchemaResource, has typeLabel "hasParticipant:hasParticipantObject";
+  not {
+    (subtypeResource: $struct_left, supertypeResource: $struct_right) isa schemaSubTypeOf;
+  };
+insert
+  (subtypeResource: $struct_left, supertypeResource: $struct_right) isa schemaSubTypeOf;
+
+match
+  $struct_left isa SchemaResource, has typeLabel "assignmentPerformedBy:assignmentDecision";
+  $struct_right isa SchemaResource, has typeLabel "hasParticipant:hasParticipantSubject";
+  not {
+    (subtypeResource: $struct_left, supertypeResource: $struct_right) isa schemaSubTypeOf;
+  };
+insert
+  (subtypeResource: $struct_left, supertypeResource: $struct_right) isa schemaSubTypeOf;
+
+match
   $struct_left isa SchemaResource, has typeLabel "assignmentUsesProfile";
   $struct_right isa SchemaResource, has typeLabel "isBasedOn";
+  not {
+    (subtypeResource: $struct_left, supertypeResource: $struct_right) isa schemaSubTypeOf;
+  };
+insert
+  (subtypeResource: $struct_left, supertypeResource: $struct_right) isa schemaSubTypeOf;
+
+match
+  $struct_left isa SchemaResource, has typeLabel "assignmentUsesProfile:agentProfile";
+  $struct_right isa SchemaResource, has typeLabel "isBasedOn:isBasedOnObject";
+  not {
+    (subtypeResource: $struct_left, supertypeResource: $struct_right) isa schemaSubTypeOf;
+  };
+insert
+  (subtypeResource: $struct_left, supertypeResource: $struct_right) isa schemaSubTypeOf;
+
+match
+  $struct_left isa SchemaResource, has typeLabel "assignmentUsesProfile:assignment";
+  $struct_right isa SchemaResource, has typeLabel "isBasedOn:isBasedOnSubject";
   not {
     (subtypeResource: $struct_left, supertypeResource: $struct_right) isa schemaSubTypeOf;
   };
@@ -3733,8 +4283,44 @@ insert
   (subtypeResource: $struct_left, supertypeResource: $struct_right) isa schemaSubTypeOf;
 
 match
+  $struct_left isa SchemaResource, has typeLabel "assignsPerformer:assignment";
+  $struct_right isa SchemaResource, has typeLabel "isAssignmentOf:isAssignmentOfSubject";
+  not {
+    (subtypeResource: $struct_left, supertypeResource: $struct_right) isa schemaSubTypeOf;
+  };
+insert
+  (subtypeResource: $struct_left, supertypeResource: $struct_right) isa schemaSubTypeOf;
+
+match
+  $struct_left isa SchemaResource, has typeLabel "assignsPerformer:performer";
+  $struct_right isa SchemaResource, has typeLabel "isAssignmentOf:isAssignmentOfObject";
+  not {
+    (subtypeResource: $struct_left, supertypeResource: $struct_right) isa schemaSubTypeOf;
+  };
+insert
+  (subtypeResource: $struct_left, supertypeResource: $struct_right) isa schemaSubTypeOf;
+
+match
   $struct_left isa SchemaResource, has typeLabel "belongsToWorkspace";
   $struct_right isa SchemaResource, has typeLabel "isMemberOf";
+  not {
+    (subtypeResource: $struct_left, supertypeResource: $struct_right) isa schemaSubTypeOf;
+  };
+insert
+  (subtypeResource: $struct_left, supertypeResource: $struct_right) isa schemaSubTypeOf;
+
+match
+  $struct_left isa SchemaResource, has typeLabel "belongsToWorkspace:repository";
+  $struct_right isa SchemaResource, has typeLabel "isMemberOf:isMemberOfSubject";
+  not {
+    (subtypeResource: $struct_left, supertypeResource: $struct_right) isa schemaSubTypeOf;
+  };
+insert
+  (subtypeResource: $struct_left, supertypeResource: $struct_right) isa schemaSubTypeOf;
+
+match
+  $struct_left isa SchemaResource, has typeLabel "belongsToWorkspace:workspace";
+  $struct_right isa SchemaResource, has typeLabel "isMemberOf:isMemberOfObject";
   not {
     (subtypeResource: $struct_left, supertypeResource: $struct_right) isa schemaSubTypeOf;
   };
@@ -3751,8 +4337,44 @@ insert
   (subtypeResource: $struct_left, supertypeResource: $struct_right) isa schemaSubTypeOf;
 
 match
+  $struct_left isa SchemaResource, has typeLabel "blocksAppearanceForSpecification:appearance";
+  $struct_right isa SchemaResource, has typeLabel "isAbout:isAboutSubject";
+  not {
+    (subtypeResource: $struct_left, supertypeResource: $struct_right) isa schemaSubTypeOf;
+  };
+insert
+  (subtypeResource: $struct_left, supertypeResource: $struct_right) isa schemaSubTypeOf;
+
+match
+  $struct_left isa SchemaResource, has typeLabel "blocksAppearanceForSpecification:specification";
+  $struct_right isa SchemaResource, has typeLabel "isAbout:isAboutObject";
+  not {
+    (subtypeResource: $struct_left, supertypeResource: $struct_right) isa schemaSubTypeOf;
+  };
+insert
+  (subtypeResource: $struct_left, supertypeResource: $struct_right) isa schemaSubTypeOf;
+
+match
   $struct_left isa SchemaResource, has typeLabel "blocksDocumentStateForSpecification";
   $struct_right isa SchemaResource, has typeLabel "isAbout";
+  not {
+    (subtypeResource: $struct_left, supertypeResource: $struct_right) isa schemaSubTypeOf;
+  };
+insert
+  (subtypeResource: $struct_left, supertypeResource: $struct_right) isa schemaSubTypeOf;
+
+match
+  $struct_left isa SchemaResource, has typeLabel "blocksDocumentStateForSpecification:documentState";
+  $struct_right isa SchemaResource, has typeLabel "isAbout:isAboutSubject";
+  not {
+    (subtypeResource: $struct_left, supertypeResource: $struct_right) isa schemaSubTypeOf;
+  };
+insert
+  (subtypeResource: $struct_left, supertypeResource: $struct_right) isa schemaSubTypeOf;
+
+match
+  $struct_left isa SchemaResource, has typeLabel "blocksDocumentStateForSpecification:specification";
+  $struct_right isa SchemaResource, has typeLabel "isAbout:isAboutObject";
   not {
     (subtypeResource: $struct_left, supertypeResource: $struct_right) isa schemaSubTypeOf;
   };
@@ -3769,8 +4391,44 @@ insert
   (subtypeResource: $struct_left, supertypeResource: $struct_right) isa schemaSubTypeOf;
 
 match
+  $struct_left isa SchemaResource, has typeLabel "closureDecisionAboutIssue:closureDecision";
+  $struct_right isa SchemaResource, has typeLabel "isAbout:isAboutSubject";
+  not {
+    (subtypeResource: $struct_left, supertypeResource: $struct_right) isa schemaSubTypeOf;
+  };
+insert
+  (subtypeResource: $struct_left, supertypeResource: $struct_right) isa schemaSubTypeOf;
+
+match
+  $struct_left isa SchemaResource, has typeLabel "closureDecisionAboutIssue:issue";
+  $struct_right isa SchemaResource, has typeLabel "isAbout:isAboutObject";
+  not {
+    (subtypeResource: $struct_left, supertypeResource: $struct_right) isa schemaSubTypeOf;
+  };
+insert
+  (subtypeResource: $struct_left, supertypeResource: $struct_right) isa schemaSubTypeOf;
+
+match
   $struct_left isa SchemaResource, has typeLabel "closurePerformedBy";
   $struct_right isa SchemaResource, has typeLabel "hasParticipant";
+  not {
+    (subtypeResource: $struct_left, supertypeResource: $struct_right) isa schemaSubTypeOf;
+  };
+insert
+  (subtypeResource: $struct_left, supertypeResource: $struct_right) isa schemaSubTypeOf;
+
+match
+  $struct_left isa SchemaResource, has typeLabel "closurePerformedBy:closer";
+  $struct_right isa SchemaResource, has typeLabel "hasParticipant:hasParticipantObject";
+  not {
+    (subtypeResource: $struct_left, supertypeResource: $struct_right) isa schemaSubTypeOf;
+  };
+insert
+  (subtypeResource: $struct_left, supertypeResource: $struct_right) isa schemaSubTypeOf;
+
+match
+  $struct_left isa SchemaResource, has typeLabel "closurePerformedBy:closureDecision";
+  $struct_right isa SchemaResource, has typeLabel "hasParticipant:hasParticipantSubject";
   not {
     (subtypeResource: $struct_left, supertypeResource: $struct_right) isa schemaSubTypeOf;
   };
@@ -3787,8 +4445,44 @@ insert
   (subtypeResource: $struct_left, supertypeResource: $struct_right) isa schemaSubTypeOf;
 
 match
+  $struct_left isa SchemaResource, has typeLabel "controlBoothHasCollaborator:collaborator";
+  $struct_right isa SchemaResource, has typeLabel "hasParticipant:hasParticipantObject";
+  not {
+    (subtypeResource: $struct_left, supertypeResource: $struct_right) isa schemaSubTypeOf;
+  };
+insert
+  (subtypeResource: $struct_left, supertypeResource: $struct_right) isa schemaSubTypeOf;
+
+match
+  $struct_left isa SchemaResource, has typeLabel "controlBoothHasCollaborator:controlBooth";
+  $struct_right isa SchemaResource, has typeLabel "hasParticipant:hasParticipantSubject";
+  not {
+    (subtypeResource: $struct_left, supertypeResource: $struct_right) isa schemaSubTypeOf;
+  };
+insert
+  (subtypeResource: $struct_left, supertypeResource: $struct_right) isa schemaSubTypeOf;
+
+match
   $struct_left isa SchemaResource, has typeLabel "controlBoothIncludes";
   $struct_right isa SchemaResource, has typeLabel "isMemberOf";
+  not {
+    (subtypeResource: $struct_left, supertypeResource: $struct_right) isa schemaSubTypeOf;
+  };
+insert
+  (subtypeResource: $struct_left, supertypeResource: $struct_right) isa schemaSubTypeOf;
+
+match
+  $struct_left isa SchemaResource, has typeLabel "controlBoothIncludes:controlBooth";
+  $struct_right isa SchemaResource, has typeLabel "isMemberOf:isMemberOfObject";
+  not {
+    (subtypeResource: $struct_left, supertypeResource: $struct_right) isa schemaSubTypeOf;
+  };
+insert
+  (subtypeResource: $struct_left, supertypeResource: $struct_right) isa schemaSubTypeOf;
+
+match
+  $struct_left isa SchemaResource, has typeLabel "controlBoothIncludes:member";
+  $struct_right isa SchemaResource, has typeLabel "isMemberOf:isMemberOfSubject";
   not {
     (subtypeResource: $struct_left, supertypeResource: $struct_right) isa schemaSubTypeOf;
   };
@@ -3805,8 +4499,44 @@ insert
   (subtypeResource: $struct_left, supertypeResource: $struct_right) isa schemaSubTypeOf;
 
 match
+  $struct_left isa SchemaResource, has typeLabel "controlBoothOwnedBy:controlBooth";
+  $struct_right isa SchemaResource, has typeLabel "isGovernedBy:isGovernedBySubject";
+  not {
+    (subtypeResource: $struct_left, supertypeResource: $struct_right) isa schemaSubTypeOf;
+  };
+insert
+  (subtypeResource: $struct_left, supertypeResource: $struct_right) isa schemaSubTypeOf;
+
+match
+  $struct_left isa SchemaResource, has typeLabel "controlBoothOwnedBy:owner";
+  $struct_right isa SchemaResource, has typeLabel "isGovernedBy:isGovernedByObject";
+  not {
+    (subtypeResource: $struct_left, supertypeResource: $struct_right) isa schemaSubTypeOf;
+  };
+insert
+  (subtypeResource: $struct_left, supertypeResource: $struct_right) isa schemaSubTypeOf;
+
+match
   $struct_left isa SchemaResource, has typeLabel "currentlyAtStage";
   $struct_right isa SchemaResource, has typeLabel "isCategorizedBy";
+  not {
+    (subtypeResource: $struct_left, supertypeResource: $struct_right) isa schemaSubTypeOf;
+  };
+insert
+  (subtypeResource: $struct_left, supertypeResource: $struct_right) isa schemaSubTypeOf;
+
+match
+  $struct_left isa SchemaResource, has typeLabel "currentlyAtStage:stage";
+  $struct_right isa SchemaResource, has typeLabel "isCategorizedBy:isCategorizedByObject";
+  not {
+    (subtypeResource: $struct_left, supertypeResource: $struct_right) isa schemaSubTypeOf;
+  };
+insert
+  (subtypeResource: $struct_left, supertypeResource: $struct_right) isa schemaSubTypeOf;
+
+match
+  $struct_left isa SchemaResource, has typeLabel "currentlyAtStage:trackedEntity";
+  $struct_right isa SchemaResource, has typeLabel "isCategorizedBy:isCategorizedBySubject";
   not {
     (subtypeResource: $struct_left, supertypeResource: $struct_right) isa schemaSubTypeOf;
   };
@@ -3823,8 +4553,44 @@ insert
   (subtypeResource: $struct_left, supertypeResource: $struct_right) isa schemaSubTypeOf;
 
 match
+  $struct_left isa SchemaResource, has typeLabel "decomposesFeature:childFeature";
+  $struct_right isa SchemaResource, has typeLabel "isBasedOn:isBasedOnSubject";
+  not {
+    (subtypeResource: $struct_left, supertypeResource: $struct_right) isa schemaSubTypeOf;
+  };
+insert
+  (subtypeResource: $struct_left, supertypeResource: $struct_right) isa schemaSubTypeOf;
+
+match
+  $struct_left isa SchemaResource, has typeLabel "decomposesFeature:parentFeature";
+  $struct_right isa SchemaResource, has typeLabel "isBasedOn:isBasedOnObject";
+  not {
+    (subtypeResource: $struct_left, supertypeResource: $struct_right) isa schemaSubTypeOf;
+  };
+insert
+  (subtypeResource: $struct_left, supertypeResource: $struct_right) isa schemaSubTypeOf;
+
+match
   $struct_left isa SchemaResource, has typeLabel "featureOfProduct";
   $struct_right isa SchemaResource, has typeLabel "isDirectPartOf";
+  not {
+    (subtypeResource: $struct_left, supertypeResource: $struct_right) isa schemaSubTypeOf;
+  };
+insert
+  (subtypeResource: $struct_left, supertypeResource: $struct_right) isa schemaSubTypeOf;
+
+match
+  $struct_left isa SchemaResource, has typeLabel "featureOfProduct:featureSpec";
+  $struct_right isa SchemaResource, has typeLabel "isDirectPartOf:isDirectPartOfSubject";
+  not {
+    (subtypeResource: $struct_left, supertypeResource: $struct_right) isa schemaSubTypeOf;
+  };
+insert
+  (subtypeResource: $struct_left, supertypeResource: $struct_right) isa schemaSubTypeOf;
+
+match
+  $struct_left isa SchemaResource, has typeLabel "featureOfProduct:productSpec";
+  $struct_right isa SchemaResource, has typeLabel "isDirectPartOf:isDirectPartOfObject";
   not {
     (subtypeResource: $struct_left, supertypeResource: $struct_right) isa schemaSubTypeOf;
   };
@@ -3841,8 +4607,44 @@ insert
   (subtypeResource: $struct_left, supertypeResource: $struct_right) isa schemaSubTypeOf;
 
 match
+  $struct_left isa SchemaResource, has typeLabel "fulfillsRequirement:engineeringTask";
+  $struct_right isa SchemaResource, has typeLabel "isBasedOn:isBasedOnSubject";
+  not {
+    (subtypeResource: $struct_left, supertypeResource: $struct_right) isa schemaSubTypeOf;
+  };
+insert
+  (subtypeResource: $struct_left, supertypeResource: $struct_right) isa schemaSubTypeOf;
+
+match
+  $struct_left isa SchemaResource, has typeLabel "fulfillsRequirement:requirement";
+  $struct_right isa SchemaResource, has typeLabel "isBasedOn:isBasedOnObject";
+  not {
+    (subtypeResource: $struct_left, supertypeResource: $struct_right) isa schemaSubTypeOf;
+  };
+insert
+  (subtypeResource: $struct_left, supertypeResource: $struct_right) isa schemaSubTypeOf;
+
+match
   $struct_left isa SchemaResource, has typeLabel "gateAdvancesEntity";
   $struct_right isa SchemaResource, has typeLabel "isBasedOn";
+  not {
+    (subtypeResource: $struct_left, supertypeResource: $struct_right) isa schemaSubTypeOf;
+  };
+insert
+  (subtypeResource: $struct_left, supertypeResource: $struct_right) isa schemaSubTypeOf;
+
+match
+  $struct_left isa SchemaResource, has typeLabel "gateAdvancesEntity:advancedEntity";
+  $struct_right isa SchemaResource, has typeLabel "isBasedOn:isBasedOnObject";
+  not {
+    (subtypeResource: $struct_left, supertypeResource: $struct_right) isa schemaSubTypeOf;
+  };
+insert
+  (subtypeResource: $struct_left, supertypeResource: $struct_right) isa schemaSubTypeOf;
+
+match
+  $struct_left isa SchemaResource, has typeLabel "gateAdvancesEntity:gateDecision";
+  $struct_right isa SchemaResource, has typeLabel "isBasedOn:isBasedOnSubject";
   not {
     (subtypeResource: $struct_left, supertypeResource: $struct_right) isa schemaSubTypeOf;
   };
@@ -3859,8 +4661,44 @@ insert
   (subtypeResource: $struct_left, supertypeResource: $struct_right) isa schemaSubTypeOf;
 
 match
+  $struct_left isa SchemaResource, has typeLabel "gateTransitionsToStage:gateDecision";
+  $struct_right isa SchemaResource, has typeLabel "isAbout:isAboutSubject";
+  not {
+    (subtypeResource: $struct_left, supertypeResource: $struct_right) isa schemaSubTypeOf;
+  };
+insert
+  (subtypeResource: $struct_left, supertypeResource: $struct_right) isa schemaSubTypeOf;
+
+match
+  $struct_left isa SchemaResource, has typeLabel "gateTransitionsToStage:targetStage";
+  $struct_right isa SchemaResource, has typeLabel "isAbout:isAboutObject";
+  not {
+    (subtypeResource: $struct_left, supertypeResource: $struct_right) isa schemaSubTypeOf;
+  };
+insert
+  (subtypeResource: $struct_left, supertypeResource: $struct_right) isa schemaSubTypeOf;
+
+match
   $struct_left isa SchemaResource, has typeLabel "gateWithinProcess";
   $struct_right isa SchemaResource, has typeLabel "isAbout";
+  not {
+    (subtypeResource: $struct_left, supertypeResource: $struct_right) isa schemaSubTypeOf;
+  };
+insert
+  (subtypeResource: $struct_left, supertypeResource: $struct_right) isa schemaSubTypeOf;
+
+match
+  $struct_left isa SchemaResource, has typeLabel "gateWithinProcess:gateDecision";
+  $struct_right isa SchemaResource, has typeLabel "isAbout:isAboutSubject";
+  not {
+    (subtypeResource: $struct_left, supertypeResource: $struct_right) isa schemaSubTypeOf;
+  };
+insert
+  (subtypeResource: $struct_left, supertypeResource: $struct_right) isa schemaSubTypeOf;
+
+match
+  $struct_left isa SchemaResource, has typeLabel "gateWithinProcess:process";
+  $struct_right isa SchemaResource, has typeLabel "isAbout:isAboutObject";
   not {
     (subtypeResource: $struct_left, supertypeResource: $struct_right) isa schemaSubTypeOf;
   };
@@ -3877,8 +4715,44 @@ insert
   (subtypeResource: $struct_left, supertypeResource: $struct_right) isa schemaSubTypeOf;
 
 match
+  $struct_left isa SchemaResource, has typeLabel "implementsFeature:featureSpec";
+  $struct_right isa SchemaResource, has typeLabel "isBasedOn:isBasedOnObject";
+  not {
+    (subtypeResource: $struct_left, supertypeResource: $struct_right) isa schemaSubTypeOf;
+  };
+insert
+  (subtypeResource: $struct_left, supertypeResource: $struct_right) isa schemaSubTypeOf;
+
+match
+  $struct_left isa SchemaResource, has typeLabel "implementsFeature:implementationSpec";
+  $struct_right isa SchemaResource, has typeLabel "isBasedOn:isBasedOnSubject";
+  not {
+    (subtypeResource: $struct_left, supertypeResource: $struct_right) isa schemaSubTypeOf;
+  };
+insert
+  (subtypeResource: $struct_left, supertypeResource: $struct_right) isa schemaSubTypeOf;
+
+match
   $struct_left isa SchemaResource, has typeLabel "issueAboutProject";
   $struct_right isa SchemaResource, has typeLabel "isAbout";
+  not {
+    (subtypeResource: $struct_left, supertypeResource: $struct_right) isa schemaSubTypeOf;
+  };
+insert
+  (subtypeResource: $struct_left, supertypeResource: $struct_right) isa schemaSubTypeOf;
+
+match
+  $struct_left isa SchemaResource, has typeLabel "issueAboutProject:issue";
+  $struct_right isa SchemaResource, has typeLabel "isAbout:isAboutSubject";
+  not {
+    (subtypeResource: $struct_left, supertypeResource: $struct_right) isa schemaSubTypeOf;
+  };
+insert
+  (subtypeResource: $struct_left, supertypeResource: $struct_right) isa schemaSubTypeOf;
+
+match
+  $struct_left isa SchemaResource, has typeLabel "issueAboutProject:project";
+  $struct_right isa SchemaResource, has typeLabel "isAbout:isAboutObject";
   not {
     (subtypeResource: $struct_left, supertypeResource: $struct_right) isa schemaSubTypeOf;
   };
@@ -3895,8 +4769,44 @@ insert
   (subtypeResource: $struct_left, supertypeResource: $struct_right) isa schemaSubTypeOf;
 
 match
+  $struct_left isa SchemaResource, has typeLabel "issueAboutRepository:issue";
+  $struct_right isa SchemaResource, has typeLabel "isAbout:isAboutSubject";
+  not {
+    (subtypeResource: $struct_left, supertypeResource: $struct_right) isa schemaSubTypeOf;
+  };
+insert
+  (subtypeResource: $struct_left, supertypeResource: $struct_right) isa schemaSubTypeOf;
+
+match
+  $struct_left isa SchemaResource, has typeLabel "issueAboutRepository:repository";
+  $struct_right isa SchemaResource, has typeLabel "isAbout:isAboutObject";
+  not {
+    (subtypeResource: $struct_left, supertypeResource: $struct_right) isa schemaSubTypeOf;
+  };
+insert
+  (subtypeResource: $struct_left, supertypeResource: $struct_right) isa schemaSubTypeOf;
+
+match
   $struct_left isa SchemaResource, has typeLabel "issueDerivedFromSubmission";
   $struct_right isa SchemaResource, has typeLabel "isBasedOn";
+  not {
+    (subtypeResource: $struct_left, supertypeResource: $struct_right) isa schemaSubTypeOf;
+  };
+insert
+  (subtypeResource: $struct_left, supertypeResource: $struct_right) isa schemaSubTypeOf;
+
+match
+  $struct_left isa SchemaResource, has typeLabel "issueDerivedFromSubmission:issue";
+  $struct_right isa SchemaResource, has typeLabel "isBasedOn:isBasedOnSubject";
+  not {
+    (subtypeResource: $struct_left, supertypeResource: $struct_right) isa schemaSubTypeOf;
+  };
+insert
+  (subtypeResource: $struct_left, supertypeResource: $struct_right) isa schemaSubTypeOf;
+
+match
+  $struct_left isa SchemaResource, has typeLabel "issueDerivedFromSubmission:submission";
+  $struct_right isa SchemaResource, has typeLabel "isBasedOn:isBasedOnObject";
   not {
     (subtypeResource: $struct_left, supertypeResource: $struct_right) isa schemaSubTypeOf;
   };
@@ -3913,8 +4823,44 @@ insert
   (subtypeResource: $struct_left, supertypeResource: $struct_right) isa schemaSubTypeOf;
 
 match
+  $struct_left isa SchemaResource, has typeLabel "issueProducedByTriage:issue";
+  $struct_right isa SchemaResource, has typeLabel "isProducedBy:isProducedBySubject";
+  not {
+    (subtypeResource: $struct_left, supertypeResource: $struct_right) isa schemaSubTypeOf;
+  };
+insert
+  (subtypeResource: $struct_left, supertypeResource: $struct_right) isa schemaSubTypeOf;
+
+match
+  $struct_left isa SchemaResource, has typeLabel "issueProducedByTriage:triageDecision";
+  $struct_right isa SchemaResource, has typeLabel "isProducedBy:isProducedByObject";
+  not {
+    (subtypeResource: $struct_left, supertypeResource: $struct_right) isa schemaSubTypeOf;
+  };
+insert
+  (subtypeResource: $struct_left, supertypeResource: $struct_right) isa schemaSubTypeOf;
+
+match
   $struct_left isa SchemaResource, has typeLabel "milestoneInReleasePlan";
   $struct_right isa SchemaResource, has typeLabel "isDirectPartOf";
+  not {
+    (subtypeResource: $struct_left, supertypeResource: $struct_right) isa schemaSubTypeOf;
+  };
+insert
+  (subtypeResource: $struct_left, supertypeResource: $struct_right) isa schemaSubTypeOf;
+
+match
+  $struct_left isa SchemaResource, has typeLabel "milestoneInReleasePlan:milestone";
+  $struct_right isa SchemaResource, has typeLabel "isDirectPartOf:isDirectPartOfSubject";
+  not {
+    (subtypeResource: $struct_left, supertypeResource: $struct_right) isa schemaSubTypeOf;
+  };
+insert
+  (subtypeResource: $struct_left, supertypeResource: $struct_right) isa schemaSubTypeOf;
+
+match
+  $struct_left isa SchemaResource, has typeLabel "milestoneInReleasePlan:releasePlan";
+  $struct_right isa SchemaResource, has typeLabel "isDirectPartOf:isDirectPartOfObject";
   not {
     (subtypeResource: $struct_left, supertypeResource: $struct_right) isa schemaSubTypeOf;
   };
@@ -3931,8 +4877,44 @@ insert
   (subtypeResource: $struct_left, supertypeResource: $struct_right) isa schemaSubTypeOf;
 
 match
+  $struct_left isa SchemaResource, has typeLabel "motivatedBy:featureSpec";
+  $struct_right isa SchemaResource, has typeLabel "isBasedOn:isBasedOnSubject";
+  not {
+    (subtypeResource: $struct_left, supertypeResource: $struct_right) isa schemaSubTypeOf;
+  };
+insert
+  (subtypeResource: $struct_left, supertypeResource: $struct_right) isa schemaSubTypeOf;
+
+match
+  $struct_left isa SchemaResource, has typeLabel "motivatedBy:objective";
+  $struct_right isa SchemaResource, has typeLabel "isBasedOn:isBasedOnObject";
+  not {
+    (subtypeResource: $struct_left, supertypeResource: $struct_right) isa schemaSubTypeOf;
+  };
+insert
+  (subtypeResource: $struct_left, supertypeResource: $struct_right) isa schemaSubTypeOf;
+
+match
   $struct_left isa SchemaResource, has typeLabel "noteReferencesTodo";
   $struct_right isa SchemaResource, has typeLabel "isAbout";
+  not {
+    (subtypeResource: $struct_left, supertypeResource: $struct_right) isa schemaSubTypeOf;
+  };
+insert
+  (subtypeResource: $struct_left, supertypeResource: $struct_right) isa schemaSubTypeOf;
+
+match
+  $struct_left isa SchemaResource, has typeLabel "noteReferencesTodo:note";
+  $struct_right isa SchemaResource, has typeLabel "isAbout:isAboutSubject";
+  not {
+    (subtypeResource: $struct_left, supertypeResource: $struct_right) isa schemaSubTypeOf;
+  };
+insert
+  (subtypeResource: $struct_left, supertypeResource: $struct_right) isa schemaSubTypeOf;
+
+match
+  $struct_left isa SchemaResource, has typeLabel "noteReferencesTodo:todoItem";
+  $struct_right isa SchemaResource, has typeLabel "isAbout:isAboutObject";
   not {
     (subtypeResource: $struct_left, supertypeResource: $struct_right) isa schemaSubTypeOf;
   };
@@ -3949,8 +4931,44 @@ insert
   (subtypeResource: $struct_left, supertypeResource: $struct_right) isa schemaSubTypeOf;
 
 match
+  $struct_left isa SchemaResource, has typeLabel "planningDecisionAboutIssue:issue";
+  $struct_right isa SchemaResource, has typeLabel "isAbout:isAboutObject";
+  not {
+    (subtypeResource: $struct_left, supertypeResource: $struct_right) isa schemaSubTypeOf;
+  };
+insert
+  (subtypeResource: $struct_left, supertypeResource: $struct_right) isa schemaSubTypeOf;
+
+match
+  $struct_left isa SchemaResource, has typeLabel "planningDecisionAboutIssue:planningDecision";
+  $struct_right isa SchemaResource, has typeLabel "isAbout:isAboutSubject";
+  not {
+    (subtypeResource: $struct_left, supertypeResource: $struct_right) isa schemaSubTypeOf;
+  };
+insert
+  (subtypeResource: $struct_left, supertypeResource: $struct_right) isa schemaSubTypeOf;
+
+match
   $struct_left isa SchemaResource, has typeLabel "planningPerformedBy";
   $struct_right isa SchemaResource, has typeLabel "hasParticipant";
+  not {
+    (subtypeResource: $struct_left, supertypeResource: $struct_right) isa schemaSubTypeOf;
+  };
+insert
+  (subtypeResource: $struct_left, supertypeResource: $struct_right) isa schemaSubTypeOf;
+
+match
+  $struct_left isa SchemaResource, has typeLabel "planningPerformedBy:planner";
+  $struct_right isa SchemaResource, has typeLabel "hasParticipant:hasParticipantObject";
+  not {
+    (subtypeResource: $struct_left, supertypeResource: $struct_right) isa schemaSubTypeOf;
+  };
+insert
+  (subtypeResource: $struct_left, supertypeResource: $struct_right) isa schemaSubTypeOf;
+
+match
+  $struct_left isa SchemaResource, has typeLabel "planningPerformedBy:planningDecision";
+  $struct_right isa SchemaResource, has typeLabel "hasParticipant:hasParticipantSubject";
   not {
     (subtypeResource: $struct_left, supertypeResource: $struct_right) isa schemaSubTypeOf;
   };
@@ -3967,8 +4985,44 @@ insert
   (subtypeResource: $struct_left, supertypeResource: $struct_right) isa schemaSubTypeOf;
 
 match
+  $struct_left isa SchemaResource, has typeLabel "processContainsStage:process";
+  $struct_right isa SchemaResource, has typeLabel "isMemberOf:isMemberOfObject";
+  not {
+    (subtypeResource: $struct_left, supertypeResource: $struct_right) isa schemaSubTypeOf;
+  };
+insert
+  (subtypeResource: $struct_left, supertypeResource: $struct_right) isa schemaSubTypeOf;
+
+match
+  $struct_left isa SchemaResource, has typeLabel "processContainsStage:stage";
+  $struct_right isa SchemaResource, has typeLabel "isMemberOf:isMemberOfSubject";
+  not {
+    (subtypeResource: $struct_left, supertypeResource: $struct_right) isa schemaSubTypeOf;
+  };
+insert
+  (subtypeResource: $struct_left, supertypeResource: $struct_right) isa schemaSubTypeOf;
+
+match
   $struct_left isa SchemaResource, has typeLabel "producesProduct";
   $struct_right isa SchemaResource, has typeLabel "isProducedBy";
+  not {
+    (subtypeResource: $struct_left, supertypeResource: $struct_right) isa schemaSubTypeOf;
+  };
+insert
+  (subtypeResource: $struct_left, supertypeResource: $struct_right) isa schemaSubTypeOf;
+
+match
+  $struct_left isa SchemaResource, has typeLabel "producesProduct:product";
+  $struct_right isa SchemaResource, has typeLabel "isProducedBy:isProducedBySubject";
+  not {
+    (subtypeResource: $struct_left, supertypeResource: $struct_right) isa schemaSubTypeOf;
+  };
+insert
+  (subtypeResource: $struct_left, supertypeResource: $struct_right) isa schemaSubTypeOf;
+
+match
+  $struct_left isa SchemaResource, has typeLabel "producesProduct:project";
+  $struct_right isa SchemaResource, has typeLabel "isProducedBy:isProducedByObject";
   not {
     (subtypeResource: $struct_left, supertypeResource: $struct_right) isa schemaSubTypeOf;
   };
@@ -3985,8 +5039,44 @@ insert
   (subtypeResource: $struct_left, supertypeResource: $struct_right) isa schemaSubTypeOf;
 
 match
+  $struct_left isa SchemaResource, has typeLabel "productConformsTo:product";
+  $struct_right isa SchemaResource, has typeLabel "conformsTo:conformsToSubject";
+  not {
+    (subtypeResource: $struct_left, supertypeResource: $struct_right) isa schemaSubTypeOf;
+  };
+insert
+  (subtypeResource: $struct_left, supertypeResource: $struct_right) isa schemaSubTypeOf;
+
+match
+  $struct_left isa SchemaResource, has typeLabel "productConformsTo:productSpec";
+  $struct_right isa SchemaResource, has typeLabel "conformsTo:conformsToObject";
+  not {
+    (subtypeResource: $struct_left, supertypeResource: $struct_right) isa schemaSubTypeOf;
+  };
+insert
+  (subtypeResource: $struct_left, supertypeResource: $struct_right) isa schemaSubTypeOf;
+
+match
   $struct_left isa SchemaResource, has typeLabel "resolutionDecisionAboutIssue";
   $struct_right isa SchemaResource, has typeLabel "isAbout";
+  not {
+    (subtypeResource: $struct_left, supertypeResource: $struct_right) isa schemaSubTypeOf;
+  };
+insert
+  (subtypeResource: $struct_left, supertypeResource: $struct_right) isa schemaSubTypeOf;
+
+match
+  $struct_left isa SchemaResource, has typeLabel "resolutionDecisionAboutIssue:issue";
+  $struct_right isa SchemaResource, has typeLabel "isAbout:isAboutObject";
+  not {
+    (subtypeResource: $struct_left, supertypeResource: $struct_right) isa schemaSubTypeOf;
+  };
+insert
+  (subtypeResource: $struct_left, supertypeResource: $struct_right) isa schemaSubTypeOf;
+
+match
+  $struct_left isa SchemaResource, has typeLabel "resolutionDecisionAboutIssue:resolutionDecision";
+  $struct_right isa SchemaResource, has typeLabel "isAbout:isAboutSubject";
   not {
     (subtypeResource: $struct_left, supertypeResource: $struct_right) isa schemaSubTypeOf;
   };
@@ -4003,8 +5093,44 @@ insert
   (subtypeResource: $struct_left, supertypeResource: $struct_right) isa schemaSubTypeOf;
 
 match
+  $struct_left isa SchemaResource, has typeLabel "resolutionPerformedBy:resolutionDecision";
+  $struct_right isa SchemaResource, has typeLabel "hasParticipant:hasParticipantSubject";
+  not {
+    (subtypeResource: $struct_left, supertypeResource: $struct_right) isa schemaSubTypeOf;
+  };
+insert
+  (subtypeResource: $struct_left, supertypeResource: $struct_right) isa schemaSubTypeOf;
+
+match
+  $struct_left isa SchemaResource, has typeLabel "resolutionPerformedBy:resolver";
+  $struct_right isa SchemaResource, has typeLabel "hasParticipant:hasParticipantObject";
+  not {
+    (subtypeResource: $struct_left, supertypeResource: $struct_right) isa schemaSubTypeOf;
+  };
+insert
+  (subtypeResource: $struct_left, supertypeResource: $struct_right) isa schemaSubTypeOf;
+
+match
   $struct_left isa SchemaResource, has typeLabel "softwareSystemConformsToVersion";
   $struct_right isa SchemaResource, has typeLabel "conformsTo";
+  not {
+    (subtypeResource: $struct_left, supertypeResource: $struct_right) isa schemaSubTypeOf;
+  };
+insert
+  (subtypeResource: $struct_left, supertypeResource: $struct_right) isa schemaSubTypeOf;
+
+match
+  $struct_left isa SchemaResource, has typeLabel "softwareSystemConformsToVersion:softwareSystem";
+  $struct_right isa SchemaResource, has typeLabel "conformsTo:conformsToSubject";
+  not {
+    (subtypeResource: $struct_left, supertypeResource: $struct_right) isa schemaSubTypeOf;
+  };
+insert
+  (subtypeResource: $struct_left, supertypeResource: $struct_right) isa schemaSubTypeOf;
+
+match
+  $struct_left isa SchemaResource, has typeLabel "softwareSystemConformsToVersion:softwareVersion";
+  $struct_right isa SchemaResource, has typeLabel "conformsTo:conformsToObject";
   not {
     (subtypeResource: $struct_left, supertypeResource: $struct_right) isa schemaSubTypeOf;
   };
@@ -4021,8 +5147,44 @@ insert
   (subtypeResource: $struct_left, supertypeResource: $struct_right) isa schemaSubTypeOf;
 
 match
+  $struct_left isa SchemaResource, has typeLabel "specifiesFeatureFor:featureSpec";
+  $struct_right isa SchemaResource, has typeLabel "isAbout:isAboutSubject";
+  not {
+    (subtypeResource: $struct_left, supertypeResource: $struct_right) isa schemaSubTypeOf;
+  };
+insert
+  (subtypeResource: $struct_left, supertypeResource: $struct_right) isa schemaSubTypeOf;
+
+match
+  $struct_left isa SchemaResource, has typeLabel "specifiesFeatureFor:project";
+  $struct_right isa SchemaResource, has typeLabel "isAbout:isAboutObject";
+  not {
+    (subtypeResource: $struct_left, supertypeResource: $struct_right) isa schemaSubTypeOf;
+  };
+insert
+  (subtypeResource: $struct_left, supertypeResource: $struct_right) isa schemaSubTypeOf;
+
+match
   $struct_left isa SchemaResource, has typeLabel "stageHasCriterion";
   $struct_right isa SchemaResource, has typeLabel "conformsTo";
+  not {
+    (subtypeResource: $struct_left, supertypeResource: $struct_right) isa schemaSubTypeOf;
+  };
+insert
+  (subtypeResource: $struct_left, supertypeResource: $struct_right) isa schemaSubTypeOf;
+
+match
+  $struct_left isa SchemaResource, has typeLabel "stageHasCriterion:criterion";
+  $struct_right isa SchemaResource, has typeLabel "conformsTo:conformsToObject";
+  not {
+    (subtypeResource: $struct_left, supertypeResource: $struct_right) isa schemaSubTypeOf;
+  };
+insert
+  (subtypeResource: $struct_left, supertypeResource: $struct_right) isa schemaSubTypeOf;
+
+match
+  $struct_left isa SchemaResource, has typeLabel "stageHasCriterion:stage";
+  $struct_right isa SchemaResource, has typeLabel "conformsTo:conformsToSubject";
   not {
     (subtypeResource: $struct_left, supertypeResource: $struct_right) isa schemaSubTypeOf;
   };
@@ -4039,8 +5201,44 @@ insert
   (subtypeResource: $struct_left, supertypeResource: $struct_right) isa schemaSubTypeOf;
 
 match
+  $struct_left isa SchemaResource, has typeLabel "submissionProvidedBy:submission";
+  $struct_right isa SchemaResource, has typeLabel "comesFromAgent:comesFromAgentSubject";
+  not {
+    (subtypeResource: $struct_left, supertypeResource: $struct_right) isa schemaSubTypeOf;
+  };
+insert
+  (subtypeResource: $struct_left, supertypeResource: $struct_right) isa schemaSubTypeOf;
+
+match
+  $struct_left isa SchemaResource, has typeLabel "submissionProvidedBy:submitter";
+  $struct_right isa SchemaResource, has typeLabel "comesFromAgent:comesFromAgentObject";
+  not {
+    (subtypeResource: $struct_left, supertypeResource: $struct_right) isa schemaSubTypeOf;
+  };
+insert
+  (subtypeResource: $struct_left, supertypeResource: $struct_right) isa schemaSubTypeOf;
+
+match
   $struct_left isa SchemaResource, has typeLabel "targetsRepository";
   $struct_right isa SchemaResource, has typeLabel "isAbout";
+  not {
+    (subtypeResource: $struct_left, supertypeResource: $struct_right) isa schemaSubTypeOf;
+  };
+insert
+  (subtypeResource: $struct_left, supertypeResource: $struct_right) isa schemaSubTypeOf;
+
+match
+  $struct_left isa SchemaResource, has typeLabel "targetsRepository:engineeringTask";
+  $struct_right isa SchemaResource, has typeLabel "isAbout:isAboutSubject";
+  not {
+    (subtypeResource: $struct_left, supertypeResource: $struct_right) isa schemaSubTypeOf;
+  };
+insert
+  (subtypeResource: $struct_left, supertypeResource: $struct_right) isa schemaSubTypeOf;
+
+match
+  $struct_left isa SchemaResource, has typeLabel "targetsRepository:repository";
+  $struct_right isa SchemaResource, has typeLabel "isAbout:isAboutObject";
   not {
     (subtypeResource: $struct_left, supertypeResource: $struct_right) isa schemaSubTypeOf;
   };
@@ -4057,8 +5255,44 @@ insert
   (subtypeResource: $struct_left, supertypeResource: $struct_right) isa schemaSubTypeOf;
 
 match
+  $struct_left isa SchemaResource, has typeLabel "taskAddressesIssue:engineeringTask";
+  $struct_right isa SchemaResource, has typeLabel "isAbout:isAboutSubject";
+  not {
+    (subtypeResource: $struct_left, supertypeResource: $struct_right) isa schemaSubTypeOf;
+  };
+insert
+  (subtypeResource: $struct_left, supertypeResource: $struct_right) isa schemaSubTypeOf;
+
+match
+  $struct_left isa SchemaResource, has typeLabel "taskAddressesIssue:issue";
+  $struct_right isa SchemaResource, has typeLabel "isAbout:isAboutObject";
+  not {
+    (subtypeResource: $struct_left, supertypeResource: $struct_right) isa schemaSubTypeOf;
+  };
+insert
+  (subtypeResource: $struct_left, supertypeResource: $struct_right) isa schemaSubTypeOf;
+
+match
   $struct_left isa SchemaResource, has typeLabel "triageBasedOnSubmission";
   $struct_right isa SchemaResource, has typeLabel "isBasedOn";
+  not {
+    (subtypeResource: $struct_left, supertypeResource: $struct_right) isa schemaSubTypeOf;
+  };
+insert
+  (subtypeResource: $struct_left, supertypeResource: $struct_right) isa schemaSubTypeOf;
+
+match
+  $struct_left isa SchemaResource, has typeLabel "triageBasedOnSubmission:submission";
+  $struct_right isa SchemaResource, has typeLabel "isBasedOn:isBasedOnObject";
+  not {
+    (subtypeResource: $struct_left, supertypeResource: $struct_right) isa schemaSubTypeOf;
+  };
+insert
+  (subtypeResource: $struct_left, supertypeResource: $struct_right) isa schemaSubTypeOf;
+
+match
+  $struct_left isa SchemaResource, has typeLabel "triageBasedOnSubmission:triageDecision";
+  $struct_right isa SchemaResource, has typeLabel "isBasedOn:isBasedOnSubject";
   not {
     (subtypeResource: $struct_left, supertypeResource: $struct_right) isa schemaSubTypeOf;
   };
@@ -4075,8 +5309,44 @@ insert
   (subtypeResource: $struct_left, supertypeResource: $struct_right) isa schemaSubTypeOf;
 
 match
+  $struct_left isa SchemaResource, has typeLabel "triagePerformedBy:triageDecision";
+  $struct_right isa SchemaResource, has typeLabel "hasParticipant:hasParticipantSubject";
+  not {
+    (subtypeResource: $struct_left, supertypeResource: $struct_right) isa schemaSubTypeOf;
+  };
+insert
+  (subtypeResource: $struct_left, supertypeResource: $struct_right) isa schemaSubTypeOf;
+
+match
+  $struct_left isa SchemaResource, has typeLabel "triagePerformedBy:triager";
+  $struct_right isa SchemaResource, has typeLabel "hasParticipant:hasParticipantObject";
+  not {
+    (subtypeResource: $struct_left, supertypeResource: $struct_right) isa schemaSubTypeOf;
+  };
+insert
+  (subtypeResource: $struct_left, supertypeResource: $struct_right) isa schemaSubTypeOf;
+
+match
   $struct_left isa SchemaResource, has typeLabel "verificationPerformedBy";
   $struct_right isa SchemaResource, has typeLabel "hasParticipant";
+  not {
+    (subtypeResource: $struct_left, supertypeResource: $struct_right) isa schemaSubTypeOf;
+  };
+insert
+  (subtypeResource: $struct_left, supertypeResource: $struct_right) isa schemaSubTypeOf;
+
+match
+  $struct_left isa SchemaResource, has typeLabel "verificationPerformedBy:verificationDecision";
+  $struct_right isa SchemaResource, has typeLabel "hasParticipant:hasParticipantSubject";
+  not {
+    (subtypeResource: $struct_left, supertypeResource: $struct_right) isa schemaSubTypeOf;
+  };
+insert
+  (subtypeResource: $struct_left, supertypeResource: $struct_right) isa schemaSubTypeOf;
+
+match
+  $struct_left isa SchemaResource, has typeLabel "verificationPerformedBy:verifier";
+  $struct_right isa SchemaResource, has typeLabel "hasParticipant:hasParticipantObject";
   not {
     (subtypeResource: $struct_left, supertypeResource: $struct_right) isa schemaSubTypeOf;
   };
@@ -4563,6 +5833,24 @@ insert
 match
   $struct_left isa SchemaResource, has typeLabel "workStartedPerformedBy";
   $struct_right isa SchemaResource, has typeLabel "hasParticipant";
+  not {
+    (subtypeResource: $struct_left, supertypeResource: $struct_right) isa schemaSubTypeOf;
+  };
+insert
+  (subtypeResource: $struct_left, supertypeResource: $struct_right) isa schemaSubTypeOf;
+
+match
+  $struct_left isa SchemaResource, has typeLabel "workStartedPerformedBy:starter";
+  $struct_right isa SchemaResource, has typeLabel "hasParticipant:hasParticipantObject";
+  not {
+    (subtypeResource: $struct_left, supertypeResource: $struct_right) isa schemaSubTypeOf;
+  };
+insert
+  (subtypeResource: $struct_left, supertypeResource: $struct_right) isa schemaSubTypeOf;
+
+match
+  $struct_left isa SchemaResource, has typeLabel "workStartedPerformedBy:workStartedDecision";
+  $struct_right isa SchemaResource, has typeLabel "hasParticipant:hasParticipantSubject";
   not {
     (subtypeResource: $struct_left, supertypeResource: $struct_right) isa schemaSubTypeOf;
   };
@@ -7441,6 +8729,42 @@ insert
   (relationResource: $struct_left, roleResource: $struct_right) isa schemaRelates;
 
 match
+  $struct_left isa SchemaResource, has typeLabel "comesFromAgent";
+  $struct_right isa SchemaResource, has typeLabel "comesFromAgent:comesFromAgentObject";
+  not {
+    (relationResource: $struct_left, roleResource: $struct_right) isa schemaRelates;
+  };
+insert
+  (relationResource: $struct_left, roleResource: $struct_right) isa schemaRelates;
+
+match
+  $struct_left isa SchemaResource, has typeLabel "comesFromAgent";
+  $struct_right isa SchemaResource, has typeLabel "comesFromAgent:comesFromAgentSubject";
+  not {
+    (relationResource: $struct_left, roleResource: $struct_right) isa schemaRelates;
+  };
+insert
+  (relationResource: $struct_left, roleResource: $struct_right) isa schemaRelates;
+
+match
+  $struct_left isa SchemaResource, has typeLabel "conformsTo";
+  $struct_right isa SchemaResource, has typeLabel "conformsTo:conformsToObject";
+  not {
+    (relationResource: $struct_left, roleResource: $struct_right) isa schemaRelates;
+  };
+insert
+  (relationResource: $struct_left, roleResource: $struct_right) isa schemaRelates;
+
+match
+  $struct_left isa SchemaResource, has typeLabel "conformsTo";
+  $struct_right isa SchemaResource, has typeLabel "conformsTo:conformsToSubject";
+  not {
+    (relationResource: $struct_left, roleResource: $struct_right) isa schemaRelates;
+  };
+insert
+  (relationResource: $struct_left, roleResource: $struct_right) isa schemaRelates;
+
+match
   $struct_left isa SchemaResource, has typeLabel "containsItem";
   $struct_right isa SchemaResource, has typeLabel "containsItem:container";
   not {
@@ -7657,6 +8981,24 @@ insert
   (relationResource: $struct_left, roleResource: $struct_right) isa schemaRelates;
 
 match
+  $struct_left isa SchemaResource, has typeLabel "hasParticipant";
+  $struct_right isa SchemaResource, has typeLabel "hasParticipant:hasParticipantObject";
+  not {
+    (relationResource: $struct_left, roleResource: $struct_right) isa schemaRelates;
+  };
+insert
+  (relationResource: $struct_left, roleResource: $struct_right) isa schemaRelates;
+
+match
+  $struct_left isa SchemaResource, has typeLabel "hasParticipant";
+  $struct_right isa SchemaResource, has typeLabel "hasParticipant:hasParticipantSubject";
+  not {
+    (relationResource: $struct_left, roleResource: $struct_right) isa schemaRelates;
+  };
+insert
+  (relationResource: $struct_left, roleResource: $struct_right) isa schemaRelates;
+
+match
   $struct_left isa SchemaResource, has typeLabel "implementsFeature";
   $struct_right isa SchemaResource, has typeLabel "implementsFeature:featureSpec";
   not {
@@ -7668,6 +9010,186 @@ insert
 match
   $struct_left isa SchemaResource, has typeLabel "implementsFeature";
   $struct_right isa SchemaResource, has typeLabel "implementsFeature:implementationSpec";
+  not {
+    (relationResource: $struct_left, roleResource: $struct_right) isa schemaRelates;
+  };
+insert
+  (relationResource: $struct_left, roleResource: $struct_right) isa schemaRelates;
+
+match
+  $struct_left isa SchemaResource, has typeLabel "isAbout";
+  $struct_right isa SchemaResource, has typeLabel "isAbout:isAboutObject";
+  not {
+    (relationResource: $struct_left, roleResource: $struct_right) isa schemaRelates;
+  };
+insert
+  (relationResource: $struct_left, roleResource: $struct_right) isa schemaRelates;
+
+match
+  $struct_left isa SchemaResource, has typeLabel "isAbout";
+  $struct_right isa SchemaResource, has typeLabel "isAbout:isAboutSubject";
+  not {
+    (relationResource: $struct_left, roleResource: $struct_right) isa schemaRelates;
+  };
+insert
+  (relationResource: $struct_left, roleResource: $struct_right) isa schemaRelates;
+
+match
+  $struct_left isa SchemaResource, has typeLabel "isAllocatedBy";
+  $struct_right isa SchemaResource, has typeLabel "isAllocatedBy:isAllocatedByObject";
+  not {
+    (relationResource: $struct_left, roleResource: $struct_right) isa schemaRelates;
+  };
+insert
+  (relationResource: $struct_left, roleResource: $struct_right) isa schemaRelates;
+
+match
+  $struct_left isa SchemaResource, has typeLabel "isAllocatedBy";
+  $struct_right isa SchemaResource, has typeLabel "isAllocatedBy:isAllocatedBySubject";
+  not {
+    (relationResource: $struct_left, roleResource: $struct_right) isa schemaRelates;
+  };
+insert
+  (relationResource: $struct_left, roleResource: $struct_right) isa schemaRelates;
+
+match
+  $struct_left isa SchemaResource, has typeLabel "isAssignmentOf";
+  $struct_right isa SchemaResource, has typeLabel "isAssignmentOf:isAssignmentOfObject";
+  not {
+    (relationResource: $struct_left, roleResource: $struct_right) isa schemaRelates;
+  };
+insert
+  (relationResource: $struct_left, roleResource: $struct_right) isa schemaRelates;
+
+match
+  $struct_left isa SchemaResource, has typeLabel "isAssignmentOf";
+  $struct_right isa SchemaResource, has typeLabel "isAssignmentOf:isAssignmentOfSubject";
+  not {
+    (relationResource: $struct_left, roleResource: $struct_right) isa schemaRelates;
+  };
+insert
+  (relationResource: $struct_left, roleResource: $struct_right) isa schemaRelates;
+
+match
+  $struct_left isa SchemaResource, has typeLabel "isAssignmentTo";
+  $struct_right isa SchemaResource, has typeLabel "isAssignmentTo:isAssignmentToObject";
+  not {
+    (relationResource: $struct_left, roleResource: $struct_right) isa schemaRelates;
+  };
+insert
+  (relationResource: $struct_left, roleResource: $struct_right) isa schemaRelates;
+
+match
+  $struct_left isa SchemaResource, has typeLabel "isAssignmentTo";
+  $struct_right isa SchemaResource, has typeLabel "isAssignmentTo:isAssignmentToSubject";
+  not {
+    (relationResource: $struct_left, roleResource: $struct_right) isa schemaRelates;
+  };
+insert
+  (relationResource: $struct_left, roleResource: $struct_right) isa schemaRelates;
+
+match
+  $struct_left isa SchemaResource, has typeLabel "isBasedOn";
+  $struct_right isa SchemaResource, has typeLabel "isBasedOn:isBasedOnObject";
+  not {
+    (relationResource: $struct_left, roleResource: $struct_right) isa schemaRelates;
+  };
+insert
+  (relationResource: $struct_left, roleResource: $struct_right) isa schemaRelates;
+
+match
+  $struct_left isa SchemaResource, has typeLabel "isBasedOn";
+  $struct_right isa SchemaResource, has typeLabel "isBasedOn:isBasedOnSubject";
+  not {
+    (relationResource: $struct_left, roleResource: $struct_right) isa schemaRelates;
+  };
+insert
+  (relationResource: $struct_left, roleResource: $struct_right) isa schemaRelates;
+
+match
+  $struct_left isa SchemaResource, has typeLabel "isCategorizedBy";
+  $struct_right isa SchemaResource, has typeLabel "isCategorizedBy:isCategorizedByObject";
+  not {
+    (relationResource: $struct_left, roleResource: $struct_right) isa schemaRelates;
+  };
+insert
+  (relationResource: $struct_left, roleResource: $struct_right) isa schemaRelates;
+
+match
+  $struct_left isa SchemaResource, has typeLabel "isCategorizedBy";
+  $struct_right isa SchemaResource, has typeLabel "isCategorizedBy:isCategorizedBySubject";
+  not {
+    (relationResource: $struct_left, roleResource: $struct_right) isa schemaRelates;
+  };
+insert
+  (relationResource: $struct_left, roleResource: $struct_right) isa schemaRelates;
+
+match
+  $struct_left isa SchemaResource, has typeLabel "isDirectPartOf";
+  $struct_right isa SchemaResource, has typeLabel "isDirectPartOf:isDirectPartOfObject";
+  not {
+    (relationResource: $struct_left, roleResource: $struct_right) isa schemaRelates;
+  };
+insert
+  (relationResource: $struct_left, roleResource: $struct_right) isa schemaRelates;
+
+match
+  $struct_left isa SchemaResource, has typeLabel "isDirectPartOf";
+  $struct_right isa SchemaResource, has typeLabel "isDirectPartOf:isDirectPartOfSubject";
+  not {
+    (relationResource: $struct_left, roleResource: $struct_right) isa schemaRelates;
+  };
+insert
+  (relationResource: $struct_left, roleResource: $struct_right) isa schemaRelates;
+
+match
+  $struct_left isa SchemaResource, has typeLabel "isGovernedBy";
+  $struct_right isa SchemaResource, has typeLabel "isGovernedBy:isGovernedByObject";
+  not {
+    (relationResource: $struct_left, roleResource: $struct_right) isa schemaRelates;
+  };
+insert
+  (relationResource: $struct_left, roleResource: $struct_right) isa schemaRelates;
+
+match
+  $struct_left isa SchemaResource, has typeLabel "isGovernedBy";
+  $struct_right isa SchemaResource, has typeLabel "isGovernedBy:isGovernedBySubject";
+  not {
+    (relationResource: $struct_left, roleResource: $struct_right) isa schemaRelates;
+  };
+insert
+  (relationResource: $struct_left, roleResource: $struct_right) isa schemaRelates;
+
+match
+  $struct_left isa SchemaResource, has typeLabel "isMemberOf";
+  $struct_right isa SchemaResource, has typeLabel "isMemberOf:isMemberOfObject";
+  not {
+    (relationResource: $struct_left, roleResource: $struct_right) isa schemaRelates;
+  };
+insert
+  (relationResource: $struct_left, roleResource: $struct_right) isa schemaRelates;
+
+match
+  $struct_left isa SchemaResource, has typeLabel "isMemberOf";
+  $struct_right isa SchemaResource, has typeLabel "isMemberOf:isMemberOfSubject";
+  not {
+    (relationResource: $struct_left, roleResource: $struct_right) isa schemaRelates;
+  };
+insert
+  (relationResource: $struct_left, roleResource: $struct_right) isa schemaRelates;
+
+match
+  $struct_left isa SchemaResource, has typeLabel "isProducedBy";
+  $struct_right isa SchemaResource, has typeLabel "isProducedBy:isProducedByObject";
+  not {
+    (relationResource: $struct_left, roleResource: $struct_right) isa schemaRelates;
+  };
+insert
+  (relationResource: $struct_left, roleResource: $struct_right) isa schemaRelates;
+
+match
+  $struct_left isa SchemaResource, has typeLabel "isProducedBy";
+  $struct_right isa SchemaResource, has typeLabel "isProducedBy:isProducedBySubject";
   not {
     (relationResource: $struct_left, roleResource: $struct_right) isa schemaRelates;
   };
