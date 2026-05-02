@@ -1,0 +1,9 @@
+# Migration: vibemachine v2.0.0 to v2.0.2
+# No data rewrite is needed. The 2.0.2 package bootstrap writes target provenance.
+match
+  $module isa OntologyModule,
+    has moduleRepoUrl "https://github.com/vibe-machine/ontology-vibemachine";
+  $version isa OntologyModuleVersion,
+    has moduleVersion "2.0.0";
+  (version: $version, module: $module) isa ontologyModuleVersionOf;
+limit 1;

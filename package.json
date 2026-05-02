@@ -1,7 +1,7 @@
 {
   "name": "vibemachine",
   "displayName": "vibemachine",
-  "version": "2.0.1",
+  "version": "2.0.2",
   "description": "Workspace and product modeling package for Vibe Machine planning and delivery.",
   "author": "Vibe Machine",
   "license": "Apache-2.0",
@@ -81,7 +81,7 @@
     "release:check": "../ontology-tooling/bin/ontology-release --repo . --validate-only"
   },
   "manifests": [
-    "manifests/vibemachine-v2.0.1.package-manifest.json"
+    "manifests/vibemachine-v2.0.2.package-manifest.json"
   ],
   "assembly": {
     "loadOrder": [
@@ -125,11 +125,11 @@
       "data/vibemachine-schema-docs.tql",
       "data/vibemachine-provenance.tql",
       "manifests/package-manifest.schema.json",
-      "manifests/vibemachine-v2.0.1.package-manifest.json"
+      "manifests/vibemachine-v2.0.2.package-manifest.json"
     ]
   },
   "provenance": {
-    "manifest": "manifests/vibemachine-v2.0.1.package-manifest.json",
+    "manifest": "manifests/vibemachine-v2.0.2.package-manifest.json",
     "status": "bootstrap"
   },
   "migration": {
@@ -140,13 +140,13 @@
     ],
     "plans": [
       {
-        "id": "vibemachine-1.3.6-to-2.0.1",
+        "id": "vibemachine-1.3.6-to-2.0.2",
         "from": "1.3.6",
-        "to": "2.0.1",
+        "to": "2.0.2",
         "mode": "compatible",
         "snapshot": {
           "required": true,
-          "label": "pre-vibemachine-2.0.1-migration"
+          "label": "pre-vibemachine-2.0.2-migration"
         },
         "phases": [
           {
@@ -162,8 +162,8 @@
             "id": "migrate",
             "units": [
               {
-                "kind": "write",
-                "path": "migrations/v1.3.6-to-v2.0.1.tql"
+                "kind": "assert-data",
+                "path": "migrations/v1.3.6-to-v2.0.2.tql"
               }
             ]
           },
@@ -179,13 +179,13 @@
         ]
       },
       {
-        "id": "vibemachine-2.0.0-to-2.0.1",
+        "id": "vibemachine-2.0.0-to-2.0.2",
         "from": "2.0.0",
-        "to": "2.0.1",
+        "to": "2.0.2",
         "mode": "compatible",
         "snapshot": {
           "required": true,
-          "label": "pre-vibemachine-2.0.1-migration"
+          "label": "pre-vibemachine-2.0.2-migration"
         },
         "phases": [
           {
@@ -201,8 +201,8 @@
             "id": "migrate",
             "units": [
               {
-                "kind": "write",
-                "path": "migrations/v2.0.0-to-v2.0.1.tql"
+                "kind": "assert-data",
+                "path": "migrations/v2.0.0-to-v2.0.2.tql"
               }
             ]
           },
@@ -212,6 +212,45 @@
               {
                 "kind": "assert-data",
                 "path": "migrations/preflight/assert-v2.0.0-module-version.tql"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "vibemachine-2.0.1-to-2.0.2",
+        "from": "2.0.1",
+        "to": "2.0.2",
+        "mode": "compatible",
+        "snapshot": {
+          "required": true,
+          "label": "pre-vibemachine-2.0.2-migration"
+        },
+        "phases": [
+          {
+            "id": "preflight",
+            "units": [
+              {
+                "kind": "assert-data",
+                "path": "migrations/preflight/assert-v2.0.1-module-version.tql"
+              }
+            ]
+          },
+          {
+            "id": "migrate",
+            "units": [
+              {
+                "kind": "assert-data",
+                "path": "migrations/v2.0.1-to-v2.0.2.tql"
+              }
+            ]
+          },
+          {
+            "id": "verify",
+            "units": [
+              {
+                "kind": "assert-data",
+                "path": "migrations/preflight/assert-v2.0.1-module-version.tql"
               }
             ]
           }
