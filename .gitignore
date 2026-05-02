@@ -1,2 +1,6 @@
 .DS_Store
 scratch-domain-groups.md
+mise.local.toml
+mise.*.local.toml
+.mise.local.toml
+.mise.*.local.toml
