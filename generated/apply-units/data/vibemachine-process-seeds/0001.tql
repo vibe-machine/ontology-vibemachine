@@ -38,11 +38,11 @@ put (stage: $s_spec, process: $df) isa processContainsStage;
 
 put (stage: $s_impl, process: $df) isa processContainsStage;
 
-put (precedesDirectlySubject: $s_vision, precedesDirectlyObject: $s_arch) isa precedesDirectly;
+put (predecessor: $s_vision, successor: $s_arch) isa precedesDirectly;
 
-put (precedesDirectlySubject: $s_arch, precedesDirectlyObject: $s_spec) isa precedesDirectly;
+put (predecessor: $s_arch, successor: $s_spec) isa precedesDirectly;
 
-put (precedesDirectlySubject: $s_spec, precedesDirectlyObject: $s_impl) isa precedesDirectly;
+put (predecessor: $s_spec, successor: $s_impl) isa precedesDirectly;
 
 put $gc1 isa VibeGateCriterion,
   has criteria_id "df-gc-concept-experience",
@@ -196,19 +196,19 @@ put (stage: $bt_verified, process: $bt) isa processContainsStage;
 
 put (stage: $bt_closed, process: $bt) isa processContainsStage;
 
-put (precedesDirectlySubject: $bt_submitted, precedesDirectlyObject: $bt_triaged) isa precedesDirectly;
+put (predecessor: $bt_submitted, successor: $bt_triaged) isa precedesDirectly;
 
-put (precedesDirectlySubject: $bt_triaged, precedesDirectlyObject: $bt_planned) isa precedesDirectly;
+put (predecessor: $bt_triaged, successor: $bt_planned) isa precedesDirectly;
 
-put (precedesDirectlySubject: $bt_planned, precedesDirectlyObject: $bt_assigned) isa precedesDirectly;
+put (predecessor: $bt_planned, successor: $bt_assigned) isa precedesDirectly;
 
-put (precedesDirectlySubject: $bt_assigned, precedesDirectlyObject: $bt_inprogress) isa precedesDirectly;
+put (predecessor: $bt_assigned, successor: $bt_inprogress) isa precedesDirectly;
 
-put (precedesDirectlySubject: $bt_inprogress, precedesDirectlyObject: $bt_resolved) isa precedesDirectly;
+put (predecessor: $bt_inprogress, successor: $bt_resolved) isa precedesDirectly;
 
-put (precedesDirectlySubject: $bt_resolved, precedesDirectlyObject: $bt_verified) isa precedesDirectly;
+put (predecessor: $bt_resolved, successor: $bt_verified) isa precedesDirectly;
 
-put (precedesDirectlySubject: $bt_verified, precedesDirectlyObject: $bt_closed) isa precedesDirectly;
+put (predecessor: $bt_verified, successor: $bt_closed) isa precedesDirectly;
 
 put $btc1 isa VibeGateCriterion,
   has criteria_id "bt-gc-triage-normalized",

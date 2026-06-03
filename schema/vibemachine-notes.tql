@@ -25,22 +25,22 @@ attribute todo_id, value string;
 
 # "this note references this todo item"
 relation noteReferencesTodo sub isAbout,
-  relates note as isAboutSubject,
-  relates todoItem as isAboutObject;
+  relates note as content,
+  relates todoItem as subjectMatter;
 
 # ── Categories ──────────────────────────────────────────
 
 entity VibeTodoStatus sub Category,
   owns name @key,
-  plays isCategorizedBy:isCategorizedByObject;
+  plays isCategorizedBy:category;
 
 entity VibeTodoPriority sub Category,
   owns name @key,
-  plays isCategorizedBy:isCategorizedByObject;
+  plays isCategorizedBy:category;
 
 entity VibeTag sub Category,
   owns name @key,
-  plays isCategorizedBy:isCategorizedByObject;
+  plays isCategorizedBy:category;
 
 # ── Note ────────────────────────────────────────────────
 # A rich-text document authored in the block editor.
@@ -66,4 +66,4 @@ entity VibeTodoItem sub Intention,
   owns url,
   owns priority_level,
   plays noteReferencesTodo:todoItem,
-  plays isCategorizedBy:isCategorizedBySubject;
+  plays isCategorizedBy:categorizedThing;

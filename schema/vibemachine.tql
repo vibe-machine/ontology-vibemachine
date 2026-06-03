@@ -50,240 +50,240 @@ attribute externalTaskRef, value string;
 
 # "this feature is motivated by this business objective"
 relation motivatedBy sub isBasedOn,
-  relates featureSpec as isBasedOnSubject,
-  relates objective as isBasedOnObject;
+  relates featureSpec as derivedThing,
+  relates objective as basis;
 
 # "this implementation spec implements this feature spec"
 relation implementsFeature sub isBasedOn,
-  relates implementationSpec as isBasedOnSubject,
-  relates featureSpec as isBasedOnObject;
+  relates implementationSpec as derivedThing,
+  relates featureSpec as basis;
 
 # "this engineering task fulfills this requirement"
 relation fulfillsRequirement sub isBasedOn,
-  relates engineeringTask as isBasedOnSubject,
-  relates requirement as isBasedOnObject;
+  relates engineeringTask as derivedThing,
+  relates requirement as basis;
 
 # "this feature spec is for this project"
 relation specifiesFeatureFor sub isAbout,
-  relates featureSpec as isAboutSubject,
-  relates project as isAboutObject;
+  relates featureSpec as content,
+  relates project as subjectMatter;
 
 # "this engineering task targets this repository"
 relation targetsRepository sub isAbout,
-  relates engineeringTask as isAboutSubject,
-  relates repository as isAboutObject;
+  relates engineeringTask as content,
+  relates repository as subjectMatter;
 
 # "this feature is part of this product specification"
 relation featureOfProduct sub isDirectPartOf,
-  relates featureSpec as isDirectPartOfSubject,
-  relates productSpec as isDirectPartOfObject;
+  relates featureSpec as part,
+  relates productSpec as whole;
 
 # "this product is produced by this project"
 relation producesProduct sub isProducedBy,
-  relates product as isProducedBySubject,
-  relates project as isProducedByObject;
+  relates producedProduct as product,
+  relates project as producer;
 
 # "this product conforms to this product specification"
 relation productConformsTo sub conformsTo,
-  relates product as conformsToSubject,
-  relates productSpec as conformsToObject;
+  relates product as conformingThing,
+  relates productSpec as standard;
 
 # "this software system conforms to this released version"
 relation softwareSystemConformsToVersion sub conformsTo,
-  relates softwareSystem as conformsToSubject,
-  relates softwareVersion as conformsToObject;
+  relates softwareSystem as conformingThing,
+  relates softwareVersion as standard;
 
 # "this repository belongs to this workspace"
 relation belongsToWorkspace sub isMemberOf,
-  relates repository as isMemberOfSubject,
-  relates workspace as isMemberOfObject;
+  relates repository as member,
+  relates workspace as collection;
 
 # "this control booth includes this member"
 relation controlBoothIncludes sub isMemberOf,
-  relates member as isMemberOfSubject,
-  relates controlBooth as isMemberOfObject;
+  relates includedMember as member,
+  relates controlBooth as collection;
 
 # "this agent profile is for this released software version"
 relation agentProfileForVersion sub isAbout,
-  relates agentProfile as isAboutSubject,
-  relates softwareVersion as isAboutObject;
+  relates agentProfile as content,
+  relates softwareVersion as subjectMatter;
 
 # "this assignment assigns this performer"
 relation assignsPerformer sub isAssignmentOf,
-  relates assignment as isAssignmentOfSubject,
-  relates performer as isAssignmentOfObject;
+  relates performerAssignment as assignment,
+  relates performer as assignedResource;
 
 # "this assignment is to this task"
 relation assignmentForTask sub isAssignmentTo,
-  relates assignment as isAssignmentToSubject,
-  relates task as isAssignmentToObject;
+  relates taskAssignment as assignment,
+  relates task as assignmentTarget;
 
 # "this assignment uses this agent profile"
 relation assignmentUsesProfile sub isBasedOn,
-  relates assignment as isBasedOnSubject,
-  relates agentProfile as isBasedOnObject;
+  relates assignment as derivedThing,
+  relates agentProfile as basis;
 
 # "this assignment was allocated by this assigner"
 relation assignmentAllocatedBy sub isAllocatedBy,
-  relates assignment as isAllocatedBySubject,
-  relates assigner as isAllocatedByObject;
+  relates assignment as allocatedThing,
+  relates assigner as allocator;
 
 # "this issue is derived from this submission"
 relation issueDerivedFromSubmission sub isBasedOn,
-  relates issue as isBasedOnSubject,
-  relates submission as isBasedOnObject;
+  relates issue as derivedThing,
+  relates submission as basis;
 
 # "this triage decision is based on this submission"
 relation triageBasedOnSubmission sub isBasedOn,
-  relates triageDecision as isBasedOnSubject,
-  relates submission as isBasedOnObject;
+  relates triageDecision as derivedThing,
+  relates submission as basis;
 
 # "this issue was produced by this triage decision"
 relation issueProducedByTriage sub isProducedBy,
-  relates issue as isProducedBySubject,
-  relates triageDecision as isProducedByObject;
+  relates issue as product,
+  relates triageDecision as producer;
 
 # "this engineering task addresses this issue"
 relation taskAddressesIssue sub isAbout,
-  relates engineeringTask as isAboutSubject,
-  relates issue as isAboutObject;
+  relates engineeringTask as content,
+  relates issue as subjectMatter;
 
 # "this issue is about this project"
 relation issueAboutProject sub isAbout,
-  relates issue as isAboutSubject,
-  relates project as isAboutObject;
+  relates issue as content,
+  relates project as subjectMatter;
 
 # "this issue is about this repository"
 relation issueAboutRepository sub isAbout,
-  relates issue as isAboutSubject,
-  relates repository as isAboutObject;
+  relates issue as content,
+  relates repository as subjectMatter;
 
 # "this milestone is in this release plan"
 relation milestoneInReleasePlan sub isDirectPartOf,
-  relates milestone as isDirectPartOfSubject,
-  relates releasePlan as isDirectPartOfObject;
+  relates milestone as part,
+  relates releasePlan as whole;
 
 # "this issue is committed to this release plan"
-relation issueCommittedToRelease,
-  relates issue,
-  relates releasePlan;
+relation issueCommittedToRelease sub isMemberOf,
+  relates issue as member,
+  relates releasePlan as collection;
 
 # "this issue targets this milestone"
-relation issueTargetsMilestone,
-  relates issue,
-  relates milestone;
+relation issueTargetsMilestone sub isAbout,
+  relates issue as content,
+  relates milestone as subjectMatter;
 
 # "this issue is a duplicate of this canonical issue"
-relation duplicateOfIssue,
-  relates duplicateIssue,
-  relates canonicalIssue;
+relation duplicateOfIssue sub refersTo,
+  relates duplicateIssue as referringThing,
+  relates canonicalIssue as referent;
 
 # "this planning decision is about this issue"
 relation planningDecisionAboutIssue sub isAbout,
-  relates planningDecision as isAboutSubject,
-  relates issue as isAboutObject;
+  relates planningDecision as content,
+  relates issue as subjectMatter;
 
 # "this resolution decision is about this issue"
 relation resolutionDecisionAboutIssue sub isAbout,
-  relates resolutionDecision as isAboutSubject,
-  relates issue as isAboutObject;
+  relates resolutionDecision as content,
+  relates issue as subjectMatter;
 
 # "this closure decision is about this issue"
 relation closureDecisionAboutIssue sub isAbout,
-  relates closureDecision as isAboutSubject,
-  relates issue as isAboutObject;
+  relates closureDecision as content,
+  relates issue as subjectMatter;
 
 # "this submission comes from this submitter"
 relation submissionProvidedBy sub comesFromAgent,
-  relates submission as comesFromAgentSubject,
-  relates submitter as comesFromAgentObject;
+  relates submission as transfer,
+  relates submitter as originatingAgent;
 
 # "this triage decision was performed by this triager"
 relation triagePerformedBy sub hasParticipant,
-  relates triageDecision as hasParticipantSubject,
-  relates triager as hasParticipantObject;
+  relates triageDecision as participationContext,
+  relates triager as participant;
 
 # "this planning decision was performed by this planner"
 relation planningPerformedBy sub hasParticipant,
-  relates planningDecision as hasParticipantSubject,
-  relates planner as hasParticipantObject;
+  relates planningDecision as participationContext,
+  relates planner as participant;
 
 # "this resolution decision was performed by this resolver"
 relation resolutionPerformedBy sub hasParticipant,
-  relates resolutionDecision as hasParticipantSubject,
-  relates resolver as hasParticipantObject;
+  relates resolutionDecision as participationContext,
+  relates resolver as participant;
 
 # "this closure decision was performed by this closer"
 relation closurePerformedBy sub hasParticipant,
-  relates closureDecision as hasParticipantSubject,
-  relates closer as hasParticipantObject;
+  relates closureDecision as participationContext,
+  relates closer as participant;
 
 # "this control booth is governed by this owner"
 relation controlBoothOwnedBy sub isGovernedBy,
-  relates controlBooth as isGovernedBySubject,
-  relates owner as isGovernedByObject;
+  relates controlBooth as governedThing,
+  relates owner as governingAuthority;
 
 # "this control booth has this collaborator"
 relation controlBoothHasCollaborator sub hasParticipant,
-  relates controlBooth as hasParticipantSubject,
-  relates collaborator as hasParticipantObject;
+  relates controlBooth as participationContext,
+  relates collaborator as participant;
 
 # ── Original Relations ──────────────────────────────────
 
 # "this project uses this workspace"
-relation usesWorkspace,
-  relates project,
-  relates workspace;
+relation usesWorkspace sub requires,
+  relates project as requiringThing,
+  relates workspace as requirement;
 
 # "this specification document contains this content item"
-relation containsItem,
-  relates container,
-  relates item;
+relation containsItem sub isDirectPartOf,
+  relates item as part,
+  relates container as whole;
 
 # Broad supertypes allowed as direct control booth members.
-Collection plays controlBoothIncludes:member;
-Component plays controlBoothIncludes:member;
-Task plays controlBoothIncludes:member;
-Intention plays controlBoothIncludes:member;
-ContentExpression plays controlBoothIncludes:member;
-ScheduledEvent plays controlBoothIncludes:member;
+Collection plays controlBoothIncludes:includedMember;
+Component plays controlBoothIncludes:includedMember;
+Task plays controlBoothIncludes:includedMember;
+Intention plays controlBoothIncludes:includedMember;
+ContentExpression plays controlBoothIncludes:includedMember;
+ScheduledEvent plays controlBoothIncludes:includedMember;
 
 # ── Categories ──────────────────────────────────────────
 
 entity VibeSpecificationStatus sub Category,
   owns status_label @key,
   owns name,
-  plays isCategorizedBy:isCategorizedByObject;
+  plays isCategorizedBy:category;
 
 entity VibeRepositoryHostingPlatform sub Category,
   owns name @key,
-  plays isCategorizedBy:isCategorizedByObject;
+  plays isCategorizedBy:category;
 
 entity VibeTaskManagementSystem sub Category,
   owns name @key,
-  plays isCategorizedBy:isCategorizedByObject;
+  plays isCategorizedBy:category;
 
 entity VibeIssueKind sub Category,
   owns name @key,
-  plays isCategorizedBy:isCategorizedByObject;
+  plays isCategorizedBy:category;
 
 # DEPRECATED: replaced by currentlyAtStage process stages in v1.1.0.
 # Retained for backward compatibility during migration.
 entity VibeIssueStatus sub Category,
   owns name @key,
-  plays isCategorizedBy:isCategorizedByObject;
+  plays isCategorizedBy:category;
 
 entity VibeIssuePriority sub Category,
   owns name @key,
-  plays isCategorizedBy:isCategorizedByObject;
+  plays isCategorizedBy:category;
 
 entity VibeIssueSeverity sub Category,
   owns name @key,
-  plays isCategorizedBy:isCategorizedByObject;
+  plays isCategorizedBy:category;
 
 entity VibeIssueResolution sub Category,
   owns name @key,
-  plays isCategorizedBy:isCategorizedByObject;
+  plays isCategorizedBy:category;
 
 # ── Business Intent ─────────────────────────────────────
 # Why: the aspiration that drives product work.
@@ -333,7 +333,7 @@ entity VibeSoftwareSystemVersion sub Specification,
 
 entity VibeProduct sub VibeSoftwareSystem,
   owns productName,
-  plays producesProduct:product,
+  plays producesProduct:producedProduct,
   plays productConformsTo:product;
 
 entity VibeAgent sub VibeSoftwareSystem,
@@ -355,8 +355,8 @@ entity VibeAgentProfile sub Specification,
 
 entity VibeTaskAssignment sub Assignment,
   owns description,
-  plays assignsPerformer:assignment,
-  plays assignmentForTask:assignment,
+  plays assignsPerformer:performerAssignment,
+  plays assignmentForTask:taskAssignment,
   plays assignmentUsesProfile:assignment,
   plays assignmentAllocatedBy:assignment;
 
@@ -369,13 +369,13 @@ entity VibeRepository sub Component,
   owns repositoryName,
   owns description,
   plays belongsToWorkspace:repository,
-  plays contributesTo:contributesToSubject;
+  plays contributesTo:contributorPart;
 
 entity VibeGitRepository sub VibeRepository,
   owns remoteUrl @key,
   owns defaultBranch,
   plays targetsRepository:repository,
-  plays isCategorizedBy:isCategorizedBySubject;
+  plays isCategorizedBy:categorizedThing;
 
 entity VibeSubmission sub Message,
   owns name,
@@ -467,7 +467,7 @@ entity VibeRequirement sub Requirement,
   owns document_id,
   owns priority_level,
   plays containsItem:item,
-  plays isCategorizedBy:isCategorizedBySubject,
+  plays isCategorizedBy:categorizedThing,
   plays fulfillsRequirement:requirement;
 
 entity VibeDecision sub Determination,
@@ -476,7 +476,7 @@ entity VibeDecision sub Determination,
   owns item_id @key,
   owns document_id,
   plays containsItem:item,
-  plays isCategorizedBy:isCategorizedBySubject;
+  plays isCategorizedBy:categorizedThing;
 
 entity VibeConstraint sub Restriction,
   owns name,
@@ -484,7 +484,7 @@ entity VibeConstraint sub Restriction,
   owns item_id @key,
   owns document_id,
   plays containsItem:item,
-  plays isCategorizedBy:isCategorizedBySubject;
+  plays isCategorizedBy:categorizedThing;
 
 entity VibeQuestion sub Intention,
   owns name,
@@ -492,7 +492,7 @@ entity VibeQuestion sub Intention,
   owns item_id @key,
   owns document_id,
   plays containsItem:item,
-  plays isCategorizedBy:isCategorizedBySubject;
+  plays isCategorizedBy:categorizedThing;
 
 # ── Implementation Specification ────────────────────────
 # How: engineering-level, how do we build it?
@@ -513,7 +513,7 @@ entity VibeEngineeringTask sub Task,
   owns externalTaskRef,
   plays containsItem:item,
   plays assignmentForTask:task,
-  plays isCategorizedBy:isCategorizedBySubject,
+  plays isCategorizedBy:categorizedThing,
   plays fulfillsRequirement:engineeringTask,
   plays targetsRepository:engineeringTask,
   plays taskAddressesIssue:engineeringTask;
@@ -524,7 +524,7 @@ entity VibeVerification sub Specification,
   owns item_id @key,
   owns document_id,
   plays containsItem:item,
-  plays isCategorizedBy:isCategorizedBySubject;
+  plays isCategorizedBy:categorizedThing;
 
 entity VibeEval sub Specification,
   owns name,
@@ -532,7 +532,7 @@ entity VibeEval sub Specification,
   owns item_id @key,
   owns document_id,
   plays containsItem:item,
-  plays isCategorizedBy:isCategorizedBySubject;
+  plays isCategorizedBy:categorizedThing;
 
 entity VibeDependency sub Intention,
   owns name,
@@ -540,7 +540,7 @@ entity VibeDependency sub Intention,
   owns item_id @key,
   owns document_id,
   plays containsItem:item,
-  plays isCategorizedBy:isCategorizedBySubject;
+  plays isCategorizedBy:categorizedThing;
 
 # ── External Actor Extensions ───────────────────────────
 # Allow human and organizational performers/assigners to participate

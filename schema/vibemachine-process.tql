@@ -34,33 +34,33 @@ attribute verification_decision_id, value string;
 
 # "this process contains this stage"
 relation processContainsStage sub isMemberOf,
-  relates stage as isMemberOfSubject,
-  relates process as isMemberOfObject;
+  relates stage as member,
+  relates process as collection;
 
 # "this stage has this gate criterion"
-relation stageHasCriterion sub conformsTo,
-  relates criterion as conformsToObject,
-  relates stage as conformsToSubject;
+relation stageHasCriterion sub isDirectPartOf,
+  relates criterion as part,
+  relates stage as whole;
 
 # "this gate decision advances this entity through a process"
-relation gateAdvancesEntity sub isBasedOn,
-  relates gateDecision as isBasedOnSubject,
-  relates advancedEntity as isBasedOnObject;
+relation gateAdvancesEntity sub isAffectedBy,
+  relates advancedEntity as affectedThing,
+  relates gateDecision as effectSource;
 
 # "this gate decision is for this stage transition"
 relation gateTransitionsToStage sub isAbout,
-  relates gateDecision as isAboutSubject,
-  relates targetStage as isAboutObject;
+  relates gateDecision as content,
+  relates targetStage as subjectMatter;
 
 # "this gate decision is within this process"
 relation gateWithinProcess sub isAbout,
-  relates gateDecision as isAboutSubject,
-  relates process as isAboutObject;
+  relates gateDecision as content,
+  relates process as subjectMatter;
 
 # "this entity is currently at this stage"
 relation currentlyAtStage sub isCategorizedBy,
-  relates trackedEntity as isCategorizedBySubject,
-  relates stage as isCategorizedByObject;
+  relates trackedEntity as categorizedThing,
+  relates stage as category;
 
 # ── General Process Entities ───────────────────────────
 
@@ -82,8 +82,8 @@ entity VibeProcessStage sub Category,
   plays stageHasCriterion:stage,
   plays currentlyAtStage:stage,
   plays gateTransitionsToStage:targetStage,
-  plays precedesDirectly:precedesDirectlySubject,
-  plays precedesDirectly:precedesDirectlyObject;
+  plays precedes:predecessor,
+  plays precedes:successor;
 
 # A criterion that must be satisfied to pass through a gate.
 entity VibeGateCriterion sub Specification,
@@ -138,8 +138,8 @@ VibeSubmission
 # A TLF decomposes into sub-TLFs at the architecture gate.
 
 relation decomposesFeature sub isBasedOn,
-  relates childFeature as isBasedOnSubject,
-  relates parentFeature as isBasedOnObject;
+  relates childFeature as derivedThing,
+  relates parentFeature as basis;
 
 VibeFeatureSpecification
   plays decomposesFeature:childFeature,
@@ -148,7 +148,7 @@ VibeFeatureSpecification
 # Scope category: distinguishes TLF from sub-TLF.
 entity VibeSpecificationScope sub Category,
   owns name @key,
-  plays isCategorizedBy:isCategorizedByObject;
+  plays isCategorizedBy:category;
 
 
 # ══════════════════════════════════════════════════════════
@@ -171,18 +171,18 @@ entity VibeSpecificationScope sub Category,
 
 # "this assignment decision was performed by this assigner"
 relation assignmentPerformedBy sub hasParticipant,
-  relates assignmentDecision as hasParticipantSubject,
-  relates assigner as hasParticipantObject;
+  relates assignmentDecision as participationContext,
+  relates assigner as participant;
 
 # "this work-started decision was performed by this starter"
 relation workStartedPerformedBy sub hasParticipant,
-  relates workStartedDecision as hasParticipantSubject,
-  relates starter as hasParticipantObject;
+  relates workStartedDecision as participationContext,
+  relates starter as participant;
 
 # "this verification decision was performed by this verifier"
 relation verificationPerformedBy sub hasParticipant,
-  relates verificationDecision as hasParticipantSubject,
-  relates verifier as hasParticipantObject;
+  relates verificationDecision as participationContext,
+  relates verifier as participant;
 
 # The decision to assign an agent or engineer to an issue.
 entity VibeIssueAssignmentDecision sub VibeGateDecision,
@@ -191,8 +191,8 @@ entity VibeIssueAssignmentDecision sub VibeGateDecision,
 
 # "this assignment decision uses this agent profile"
 relation assignmentDecisionUsesProfile sub isBasedOn,
-  relates assignmentDecision as isBasedOnSubject,
-  relates agentProfile as isBasedOnObject;
+  relates assignmentDecision as derivedThing,
+  relates agentProfile as basis;
 
 VibeIssueAssignmentDecision
   plays assignmentDecisionUsesProfile:assignmentDecision;

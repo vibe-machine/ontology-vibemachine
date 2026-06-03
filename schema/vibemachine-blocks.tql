@@ -19,13 +19,13 @@ attribute yjs_state, value string;
 
 # "this appearance specification is for this specification"
 relation blocksAppearanceForSpecification sub isAbout,
-  relates appearance as isAboutSubject,
-  relates specification as isAboutObject;
+  relates appearance as content,
+  relates specification as subjectMatter;
 
 # "this document state is for this specification"
 relation blocksDocumentStateForSpecification sub isAbout,
-  relates documentState as isAboutSubject,
-  relates specification as isAboutObject;
+  relates documentState as content,
+  relates specification as subjectMatter;
 
 # ── Blocks Entities ────────────────────────────────────
 

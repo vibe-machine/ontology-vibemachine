@@ -1,4 +1,5 @@
 import fs from "node:fs/promises";
+import { existsSync } from "node:fs";
 import os from "node:os";
 import path from "node:path";
 import net from "node:net";
@@ -10,11 +11,13 @@ const __dirname = path.dirname(__filename);
 const root = path.resolve(__dirname, "../..");
 const workspaceRoot = path.resolve(root, "..");
 
-const TYPEDB_IMAGE = process.env.TYPEDB_IMAGE ?? "typedb/typedb:3.8.0";
+const HOMEBREW_TYPEDB_BIN = "/opt/homebrew/bin/typedb";
+const TYPEDB_IMAGE = process.env.TYPEDB_IMAGE ?? "typedb/typedb:3.11.5";
 const CONTAINER_BIN = process.env.CONTAINER_BIN ?? "container";
 const CONTAINER_GRPC_PORT = 41729;
 const CONTAINER_HTTP_PORT = 48000;
-const TYPEDB_CONSOLE = process.env.TYPEDB_BIN ?? path.join(os.homedir(), ".typedb", "typedb");
+const TYPEDB_CONSOLE = process.env.TYPEDB_BIN
+  ?? (existsSync(HOMEBREW_TYPEDB_BIN) ? HOMEBREW_TYPEDB_BIN : path.join(os.homedir(), ".typedb", "typedb"));
 
 function assertCondition(condition, message) {
   if (!condition) throw new Error(message);
