@@ -1,0 +1,85 @@
+# Generated executable apply unit from data/vibemachine-schema-docs.tql
+# manifest: manifests/vibemachine-v2.0.3.package-manifest.json
+
+match
+  $struct_left isa SchemaResource, has typeLabel "agentProfileForVersion";
+  $struct_right isa SchemaResource, has typeLabel "isAbout";
+  not {
+    (subtypeResource: $struct_left, supertypeResource: $struct_right) isa schemaSubTypeOf;
+  };
+insert
+  (subtypeResource: $struct_left, supertypeResource: $struct_right) isa schemaSubTypeOf;
+
+match
+  $struct_left isa SchemaResource, has typeLabel "triagePerformedBy";
+  $struct_right isa SchemaResource, has typeLabel "triagePerformedBy:triageDecision";
+  not {
+    (relationResource: $struct_left, roleResource: $struct_right) isa schemaRelates;
+  };
+insert
+  (relationResource: $struct_left, roleResource: $struct_right) isa schemaRelates;
+
+match
+  $struct_left isa SchemaResource, has typeLabel "triagePerformedBy";
+  $struct_right isa SchemaResource, has typeLabel "triagePerformedBy:triager";
+  not {
+    (relationResource: $struct_left, roleResource: $struct_right) isa schemaRelates;
+  };
+insert
+  (relationResource: $struct_left, roleResource: $struct_right) isa schemaRelates;
+
+match
+  $struct_left isa SchemaResource, has typeLabel "usesWorkspace";
+  $struct_right isa SchemaResource, has typeLabel "usesWorkspace:project";
+  not {
+    (relationResource: $struct_left, roleResource: $struct_right) isa schemaRelates;
+  };
+insert
+  (relationResource: $struct_left, roleResource: $struct_right) isa schemaRelates;
+
+match
+  $struct_left isa SchemaResource, has typeLabel "usesWorkspace";
+  $struct_right isa SchemaResource, has typeLabel "usesWorkspace:workspace";
+  not {
+    (relationResource: $struct_left, roleResource: $struct_right) isa schemaRelates;
+  };
+insert
+  (relationResource: $struct_left, roleResource: $struct_right) isa schemaRelates;
+
+match
+  $struct_left isa SchemaResource, has typeLabel "verificationPerformedBy";
+  $struct_right isa SchemaResource, has typeLabel "verificationPerformedBy:verificationDecision";
+  not {
+    (relationResource: $struct_left, roleResource: $struct_right) isa schemaRelates;
+  };
+insert
+  (relationResource: $struct_left, roleResource: $struct_right) isa schemaRelates;
+
+match
+  $struct_left isa SchemaResource, has typeLabel "verificationPerformedBy";
+  $struct_right isa SchemaResource, has typeLabel "verificationPerformedBy:verifier";
+  not {
+    (relationResource: $struct_left, roleResource: $struct_right) isa schemaRelates;
+  };
+insert
+  (relationResource: $struct_left, roleResource: $struct_right) isa schemaRelates;
+
+match
+  $struct_left isa SchemaResource, has typeLabel "workStartedPerformedBy";
+  $struct_right isa SchemaResource, has typeLabel "workStartedPerformedBy:starter";
+  not {
+    (relationResource: $struct_left, roleResource: $struct_right) isa schemaRelates;
+  };
+insert
+  (relationResource: $struct_left, roleResource: $struct_right) isa schemaRelates;
+
+match
+  $struct_left isa SchemaResource, has typeLabel "workStartedPerformedBy";
+  $struct_right isa SchemaResource, has typeLabel "workStartedPerformedBy:workStartedDecision";
+  not {
+    (relationResource: $struct_left, roleResource: $struct_right) isa schemaRelates;
+  };
+insert
+  (relationResource: $struct_left, roleResource: $struct_right) isa schemaRelates;
+
+# -- END GENERATED STRUCTURAL METADATA --

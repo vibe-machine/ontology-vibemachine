@@ -1,0 +1,452 @@
+# Generated executable apply unit from data/vibemachine-schema-docs.tql
+# manifest: manifests/vibemachine-v2.0.3.package-manifest.json
+
+match
+  $struct_left isa SchemaResource, has typeLabel "agentProfileForVersion";
+  $struct_right isa SchemaResource, has typeLabel "isAbout";
+  not {
+    (subtypeResource: $struct_left, supertypeResource: $struct_right) isa schemaSubTypeOf;
+  };
+insert
+  (subtypeResource: $struct_left, supertypeResource: $struct_right) isa schemaSubTypeOf;
+
+match
+  $struct_left isa SchemaResource, has typeLabel "issueAboutProject";
+  $struct_right isa SchemaResource, has typeLabel "issueAboutProject:project";
+  not {
+    (relationResource: $struct_left, roleResource: $struct_right) isa schemaRelates;
+  };
+insert
+  (relationResource: $struct_left, roleResource: $struct_right) isa schemaRelates;
+
+match
+  $struct_left isa SchemaResource, has typeLabel "issueAboutRepository";
+  $struct_right isa SchemaResource, has typeLabel "issueAboutRepository:issue";
+  not {
+    (relationResource: $struct_left, roleResource: $struct_right) isa schemaRelates;
+  };
+insert
+  (relationResource: $struct_left, roleResource: $struct_right) isa schemaRelates;
+
+match
+  $struct_left isa SchemaResource, has typeLabel "issueAboutRepository";
+  $struct_right isa SchemaResource, has typeLabel "issueAboutRepository:repository";
+  not {
+    (relationResource: $struct_left, roleResource: $struct_right) isa schemaRelates;
+  };
+insert
+  (relationResource: $struct_left, roleResource: $struct_right) isa schemaRelates;
+
+match
+  $struct_left isa SchemaResource, has typeLabel "issueCommittedToRelease";
+  $struct_right isa SchemaResource, has typeLabel "issueCommittedToRelease:issue";
+  not {
+    (relationResource: $struct_left, roleResource: $struct_right) isa schemaRelates;
+  };
+insert
+  (relationResource: $struct_left, roleResource: $struct_right) isa schemaRelates;
+
+match
+  $struct_left isa SchemaResource, has typeLabel "issueCommittedToRelease";
+  $struct_right isa SchemaResource, has typeLabel "issueCommittedToRelease:releasePlan";
+  not {
+    (relationResource: $struct_left, roleResource: $struct_right) isa schemaRelates;
+  };
+insert
+  (relationResource: $struct_left, roleResource: $struct_right) isa schemaRelates;
+
+match
+  $struct_left isa SchemaResource, has typeLabel "issueDerivedFromSubmission";
+  $struct_right isa SchemaResource, has typeLabel "issueDerivedFromSubmission:issue";
+  not {
+    (relationResource: $struct_left, roleResource: $struct_right) isa schemaRelates;
+  };
+insert
+  (relationResource: $struct_left, roleResource: $struct_right) isa schemaRelates;
+
+match
+  $struct_left isa SchemaResource, has typeLabel "issueDerivedFromSubmission";
+  $struct_right isa SchemaResource, has typeLabel "issueDerivedFromSubmission:submission";
+  not {
+    (relationResource: $struct_left, roleResource: $struct_right) isa schemaRelates;
+  };
+insert
+  (relationResource: $struct_left, roleResource: $struct_right) isa schemaRelates;
+
+match
+  $struct_left isa SchemaResource, has typeLabel "issueProducedByTriage";
+  $struct_right isa SchemaResource, has typeLabel "issueProducedByTriage:issue";
+  not {
+    (relationResource: $struct_left, roleResource: $struct_right) isa schemaRelates;
+  };
+insert
+  (relationResource: $struct_left, roleResource: $struct_right) isa schemaRelates;
+
+match
+  $struct_left isa SchemaResource, has typeLabel "issueProducedByTriage";
+  $struct_right isa SchemaResource, has typeLabel "issueProducedByTriage:triageDecision";
+  not {
+    (relationResource: $struct_left, roleResource: $struct_right) isa schemaRelates;
+  };
+insert
+  (relationResource: $struct_left, roleResource: $struct_right) isa schemaRelates;
+
+match
+  $struct_left isa SchemaResource, has typeLabel "issueTargetsMilestone";
+  $struct_right isa SchemaResource, has typeLabel "issueTargetsMilestone:issue";
+  not {
+    (relationResource: $struct_left, roleResource: $struct_right) isa schemaRelates;
+  };
+insert
+  (relationResource: $struct_left, roleResource: $struct_right) isa schemaRelates;
+
+match
+  $struct_left isa SchemaResource, has typeLabel "issueTargetsMilestone";
+  $struct_right isa SchemaResource, has typeLabel "issueTargetsMilestone:milestone";
+  not {
+    (relationResource: $struct_left, roleResource: $struct_right) isa schemaRelates;
+  };
+insert
+  (relationResource: $struct_left, roleResource: $struct_right) isa schemaRelates;
+
+match
+  $struct_left isa SchemaResource, has typeLabel "milestoneInReleasePlan";
+  $struct_right isa SchemaResource, has typeLabel "milestoneInReleasePlan:milestone";
+  not {
+    (relationResource: $struct_left, roleResource: $struct_right) isa schemaRelates;
+  };
+insert
+  (relationResource: $struct_left, roleResource: $struct_right) isa schemaRelates;
+
+match
+  $struct_left isa SchemaResource, has typeLabel "milestoneInReleasePlan";
+  $struct_right isa SchemaResource, has typeLabel "milestoneInReleasePlan:releasePlan";
+  not {
+    (relationResource: $struct_left, roleResource: $struct_right) isa schemaRelates;
+  };
+insert
+  (relationResource: $struct_left, roleResource: $struct_right) isa schemaRelates;
+
+match
+  $struct_left isa SchemaResource, has typeLabel "motivatedBy";
+  $struct_right isa SchemaResource, has typeLabel "motivatedBy:featureSpec";
+  not {
+    (relationResource: $struct_left, roleResource: $struct_right) isa schemaRelates;
+  };
+insert
+  (relationResource: $struct_left, roleResource: $struct_right) isa schemaRelates;
+
+match
+  $struct_left isa SchemaResource, has typeLabel "motivatedBy";
+  $struct_right isa SchemaResource, has typeLabel "motivatedBy:objective";
+  not {
+    (relationResource: $struct_left, roleResource: $struct_right) isa schemaRelates;
+  };
+insert
+  (relationResource: $struct_left, roleResource: $struct_right) isa schemaRelates;
+
+match
+  $struct_left isa SchemaResource, has typeLabel "noteReferencesTodo";
+  $struct_right isa SchemaResource, has typeLabel "noteReferencesTodo:note";
+  not {
+    (relationResource: $struct_left, roleResource: $struct_right) isa schemaRelates;
+  };
+insert
+  (relationResource: $struct_left, roleResource: $struct_right) isa schemaRelates;
+
+match
+  $struct_left isa SchemaResource, has typeLabel "noteReferencesTodo";
+  $struct_right isa SchemaResource, has typeLabel "noteReferencesTodo:todoItem";
+  not {
+    (relationResource: $struct_left, roleResource: $struct_right) isa schemaRelates;
+  };
+insert
+  (relationResource: $struct_left, roleResource: $struct_right) isa schemaRelates;
+
+match
+  $struct_left isa SchemaResource, has typeLabel "planningDecisionAboutIssue";
+  $struct_right isa SchemaResource, has typeLabel "planningDecisionAboutIssue:issue";
+  not {
+    (relationResource: $struct_left, roleResource: $struct_right) isa schemaRelates;
+  };
+insert
+  (relationResource: $struct_left, roleResource: $struct_right) isa schemaRelates;
+
+match
+  $struct_left isa SchemaResource, has typeLabel "planningDecisionAboutIssue";
+  $struct_right isa SchemaResource, has typeLabel "planningDecisionAboutIssue:planningDecision";
+  not {
+    (relationResource: $struct_left, roleResource: $struct_right) isa schemaRelates;
+  };
+insert
+  (relationResource: $struct_left, roleResource: $struct_right) isa schemaRelates;
+
+match
+  $struct_left isa SchemaResource, has typeLabel "planningPerformedBy";
+  $struct_right isa SchemaResource, has typeLabel "planningPerformedBy:planner";
+  not {
+    (relationResource: $struct_left, roleResource: $struct_right) isa schemaRelates;
+  };
+insert
+  (relationResource: $struct_left, roleResource: $struct_right) isa schemaRelates;
+
+match
+  $struct_left isa SchemaResource, has typeLabel "planningPerformedBy";
+  $struct_right isa SchemaResource, has typeLabel "planningPerformedBy:planningDecision";
+  not {
+    (relationResource: $struct_left, roleResource: $struct_right) isa schemaRelates;
+  };
+insert
+  (relationResource: $struct_left, roleResource: $struct_right) isa schemaRelates;
+
+match
+  $struct_left isa SchemaResource, has typeLabel "processContainsStage";
+  $struct_right isa SchemaResource, has typeLabel "processContainsStage:process";
+  not {
+    (relationResource: $struct_left, roleResource: $struct_right) isa schemaRelates;
+  };
+insert
+  (relationResource: $struct_left, roleResource: $struct_right) isa schemaRelates;
+
+match
+  $struct_left isa SchemaResource, has typeLabel "processContainsStage";
+  $struct_right isa SchemaResource, has typeLabel "processContainsStage:stage";
+  not {
+    (relationResource: $struct_left, roleResource: $struct_right) isa schemaRelates;
+  };
+insert
+  (relationResource: $struct_left, roleResource: $struct_right) isa schemaRelates;
+
+match
+  $struct_left isa SchemaResource, has typeLabel "producesProduct";
+  $struct_right isa SchemaResource, has typeLabel "producesProduct:producedProduct";
+  not {
+    (relationResource: $struct_left, roleResource: $struct_right) isa schemaRelates;
+  };
+insert
+  (relationResource: $struct_left, roleResource: $struct_right) isa schemaRelates;
+
+match
+  $struct_left isa SchemaResource, has typeLabel "producesProduct";
+  $struct_right isa SchemaResource, has typeLabel "producesProduct:project";
+  not {
+    (relationResource: $struct_left, roleResource: $struct_right) isa schemaRelates;
+  };
+insert
+  (relationResource: $struct_left, roleResource: $struct_right) isa schemaRelates;
+
+match
+  $struct_left isa SchemaResource, has typeLabel "productConformsTo";
+  $struct_right isa SchemaResource, has typeLabel "productConformsTo:product";
+  not {
+    (relationResource: $struct_left, roleResource: $struct_right) isa schemaRelates;
+  };
+insert
+  (relationResource: $struct_left, roleResource: $struct_right) isa schemaRelates;
+
+match
+  $struct_left isa SchemaResource, has typeLabel "productConformsTo";
+  $struct_right isa SchemaResource, has typeLabel "productConformsTo:productSpec";
+  not {
+    (relationResource: $struct_left, roleResource: $struct_right) isa schemaRelates;
+  };
+insert
+  (relationResource: $struct_left, roleResource: $struct_right) isa schemaRelates;
+
+match
+  $struct_left isa SchemaResource, has typeLabel "refersTo";
+  $struct_right isa SchemaResource, has typeLabel "refersTo:referent";
+  not {
+    (relationResource: $struct_left, roleResource: $struct_right) isa schemaRelates;
+  };
+insert
+  (relationResource: $struct_left, roleResource: $struct_right) isa schemaRelates;
+
+match
+  $struct_left isa SchemaResource, has typeLabel "refersTo";
+  $struct_right isa SchemaResource, has typeLabel "refersTo:referringThing";
+  not {
+    (relationResource: $struct_left, roleResource: $struct_right) isa schemaRelates;
+  };
+insert
+  (relationResource: $struct_left, roleResource: $struct_right) isa schemaRelates;
+
+match
+  $struct_left isa SchemaResource, has typeLabel "requires";
+  $struct_right isa SchemaResource, has typeLabel "requires:requirement";
+  not {
+    (relationResource: $struct_left, roleResource: $struct_right) isa schemaRelates;
+  };
+insert
+  (relationResource: $struct_left, roleResource: $struct_right) isa schemaRelates;
+
+match
+  $struct_left isa SchemaResource, has typeLabel "requires";
+  $struct_right isa SchemaResource, has typeLabel "requires:requiringThing";
+  not {
+    (relationResource: $struct_left, roleResource: $struct_right) isa schemaRelates;
+  };
+insert
+  (relationResource: $struct_left, roleResource: $struct_right) isa schemaRelates;
+
+match
+  $struct_left isa SchemaResource, has typeLabel "resolutionDecisionAboutIssue";
+  $struct_right isa SchemaResource, has typeLabel "resolutionDecisionAboutIssue:issue";
+  not {
+    (relationResource: $struct_left, roleResource: $struct_right) isa schemaRelates;
+  };
+insert
+  (relationResource: $struct_left, roleResource: $struct_right) isa schemaRelates;
+
+match
+  $struct_left isa SchemaResource, has typeLabel "resolutionDecisionAboutIssue";
+  $struct_right isa SchemaResource, has typeLabel "resolutionDecisionAboutIssue:resolutionDecision";
+  not {
+    (relationResource: $struct_left, roleResource: $struct_right) isa schemaRelates;
+  };
+insert
+  (relationResource: $struct_left, roleResource: $struct_right) isa schemaRelates;
+
+match
+  $struct_left isa SchemaResource, has typeLabel "resolutionPerformedBy";
+  $struct_right isa SchemaResource, has typeLabel "resolutionPerformedBy:resolutionDecision";
+  not {
+    (relationResource: $struct_left, roleResource: $struct_right) isa schemaRelates;
+  };
+insert
+  (relationResource: $struct_left, roleResource: $struct_right) isa schemaRelates;
+
+match
+  $struct_left isa SchemaResource, has typeLabel "resolutionPerformedBy";
+  $struct_right isa SchemaResource, has typeLabel "resolutionPerformedBy:resolver";
+  not {
+    (relationResource: $struct_left, roleResource: $struct_right) isa schemaRelates;
+  };
+insert
+  (relationResource: $struct_left, roleResource: $struct_right) isa schemaRelates;
+
+match
+  $struct_left isa SchemaResource, has typeLabel "softwareSystemConformsToVersion";
+  $struct_right isa SchemaResource, has typeLabel "softwareSystemConformsToVersion:softwareSystem";
+  not {
+    (relationResource: $struct_left, roleResource: $struct_right) isa schemaRelates;
+  };
+insert
+  (relationResource: $struct_left, roleResource: $struct_right) isa schemaRelates;
+
+match
+  $struct_left isa SchemaResource, has typeLabel "softwareSystemConformsToVersion";
+  $struct_right isa SchemaResource, has typeLabel "softwareSystemConformsToVersion:softwareVersion";
+  not {
+    (relationResource: $struct_left, roleResource: $struct_right) isa schemaRelates;
+  };
+insert
+  (relationResource: $struct_left, roleResource: $struct_right) isa schemaRelates;
+
+match
+  $struct_left isa SchemaResource, has typeLabel "specifiesFeatureFor";
+  $struct_right isa SchemaResource, has typeLabel "specifiesFeatureFor:featureSpec";
+  not {
+    (relationResource: $struct_left, roleResource: $struct_right) isa schemaRelates;
+  };
+insert
+  (relationResource: $struct_left, roleResource: $struct_right) isa schemaRelates;
+
+match
+  $struct_left isa SchemaResource, has typeLabel "specifiesFeatureFor";
+  $struct_right isa SchemaResource, has typeLabel "specifiesFeatureFor:project";
+  not {
+    (relationResource: $struct_left, roleResource: $struct_right) isa schemaRelates;
+  };
+insert
+  (relationResource: $struct_left, roleResource: $struct_right) isa schemaRelates;
+
+match
+  $struct_left isa SchemaResource, has typeLabel "stageHasCriterion";
+  $struct_right isa SchemaResource, has typeLabel "stageHasCriterion:criterion";
+  not {
+    (relationResource: $struct_left, roleResource: $struct_right) isa schemaRelates;
+  };
+insert
+  (relationResource: $struct_left, roleResource: $struct_right) isa schemaRelates;
+
+match
+  $struct_left isa SchemaResource, has typeLabel "stageHasCriterion";
+  $struct_right isa SchemaResource, has typeLabel "stageHasCriterion:stage";
+  not {
+    (relationResource: $struct_left, roleResource: $struct_right) isa schemaRelates;
+  };
+insert
+  (relationResource: $struct_left, roleResource: $struct_right) isa schemaRelates;
+
+match
+  $struct_left isa SchemaResource, has typeLabel "submissionProvidedBy";
+  $struct_right isa SchemaResource, has typeLabel "submissionProvidedBy:submission";
+  not {
+    (relationResource: $struct_left, roleResource: $struct_right) isa schemaRelates;
+  };
+insert
+  (relationResource: $struct_left, roleResource: $struct_right) isa schemaRelates;
+
+match
+  $struct_left isa SchemaResource, has typeLabel "submissionProvidedBy";
+  $struct_right isa SchemaResource, has typeLabel "submissionProvidedBy:submitter";
+  not {
+    (relationResource: $struct_left, roleResource: $struct_right) isa schemaRelates;
+  };
+insert
+  (relationResource: $struct_left, roleResource: $struct_right) isa schemaRelates;
+
+match
+  $struct_left isa SchemaResource, has typeLabel "targetsRepository";
+  $struct_right isa SchemaResource, has typeLabel "targetsRepository:engineeringTask";
+  not {
+    (relationResource: $struct_left, roleResource: $struct_right) isa schemaRelates;
+  };
+insert
+  (relationResource: $struct_left, roleResource: $struct_right) isa schemaRelates;
+
+match
+  $struct_left isa SchemaResource, has typeLabel "targetsRepository";
+  $struct_right isa SchemaResource, has typeLabel "targetsRepository:repository";
+  not {
+    (relationResource: $struct_left, roleResource: $struct_right) isa schemaRelates;
+  };
+insert
+  (relationResource: $struct_left, roleResource: $struct_right) isa schemaRelates;
+
+match
+  $struct_left isa SchemaResource, has typeLabel "taskAddressesIssue";
+  $struct_right isa SchemaResource, has typeLabel "taskAddressesIssue:engineeringTask";
+  not {
+    (relationResource: $struct_left, roleResource: $struct_right) isa schemaRelates;
+  };
+insert
+  (relationResource: $struct_left, roleResource: $struct_right) isa schemaRelates;
+
+match
+  $struct_left isa SchemaResource, has typeLabel "taskAddressesIssue";
+  $struct_right isa SchemaResource, has typeLabel "taskAddressesIssue:issue";
+  not {
+    (relationResource: $struct_left, roleResource: $struct_right) isa schemaRelates;
+  };
+insert
+  (relationResource: $struct_left, roleResource: $struct_right) isa schemaRelates;
+
+match
+  $struct_left isa SchemaResource, has typeLabel "triageBasedOnSubmission";
+  $struct_right isa SchemaResource, has typeLabel "triageBasedOnSubmission:submission";
+  not {
+    (relationResource: $struct_left, roleResource: $struct_right) isa schemaRelates;
+  };
+insert
+  (relationResource: $struct_left, roleResource: $struct_right) isa schemaRelates;
+
+match
+  $struct_left isa SchemaResource, has typeLabel "triageBasedOnSubmission";
+  $struct_right isa SchemaResource, has typeLabel "triageBasedOnSubmission:triageDecision";
+  not {
+    (relationResource: $struct_left, roleResource: $struct_right) isa schemaRelates;
+  };
+insert
+  (relationResource: $struct_left, roleResource: $struct_right) isa schemaRelates;

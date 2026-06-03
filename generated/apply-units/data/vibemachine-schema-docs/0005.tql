@@ -1,0 +1,852 @@
+# Generated executable apply unit from data/vibemachine-schema-docs.tql
+# manifest: manifests/vibemachine-v2.0.3.package-manifest.json
+
+put $generated_role_1 isa SchemaResource,
+  has docKey "https://github.com/vibe-machine/ontology-vibemachine#agentProfileForVersion:agentProfile",
+  has iri "https://github.com/vibe-machine/ontology-vibemachine#agentProfileForVersion:agentProfile",
+  has typeLabel "agentProfileForVersion:agentProfile",
+  has kind "role",
+  has roleName "agentProfile",
+  has prefLabel "agentProfile",
+  has definition "Role 'agentProfile' in relation 'agentProfileForVersion'.";
+match
+  $schema_module isa SchemaModule, has moduleKey "vibemachine";
+  $schema_resource isa SchemaResource, has docKey "https://github.com/vibe-machine/ontology-vibemachine#agentProfileForVersion:agentProfile";
+  not {
+    (resource: $schema_resource, module: $schema_module) isa inModule;
+  };
+insert
+  (resource: $schema_resource, module: $schema_module) isa inModule;
+
+put $generated_role_20 isa SchemaResource,
+  has docKey "https://github.com/vibe-machine/ontology-vibemachine#blocksDocumentStateForSpecification:specification",
+  has iri "https://github.com/vibe-machine/ontology-vibemachine#blocksDocumentStateForSpecification:specification",
+  has typeLabel "blocksDocumentStateForSpecification:specification",
+  has kind "role",
+  has roleName "specification",
+  has prefLabel "specification",
+  has definition "Role 'specification' in relation 'blocksDocumentStateForSpecification'.";
+match
+  $schema_module isa SchemaModule, has moduleKey "vibemachine";
+  $schema_resource isa SchemaResource, has docKey "https://github.com/vibe-machine/ontology-vibemachine#blocksDocumentStateForSpecification:specification";
+  not {
+    (resource: $schema_resource, module: $schema_module) isa inModule;
+  };
+insert
+  (resource: $schema_resource, module: $schema_module) isa inModule;
+
+put $generated_role_21 isa SchemaResource,
+  has docKey "https://github.com/vibe-machine/ontology-vibemachine#closureDecisionAboutIssue:closureDecision",
+  has iri "https://github.com/vibe-machine/ontology-vibemachine#closureDecisionAboutIssue:closureDecision",
+  has typeLabel "closureDecisionAboutIssue:closureDecision",
+  has kind "role",
+  has roleName "closureDecision",
+  has prefLabel "closureDecision",
+  has definition "Role 'closureDecision' in relation 'closureDecisionAboutIssue'.";
+match
+  $schema_module isa SchemaModule, has moduleKey "vibemachine";
+  $schema_resource isa SchemaResource, has docKey "https://github.com/vibe-machine/ontology-vibemachine#closureDecisionAboutIssue:closureDecision";
+  not {
+    (resource: $schema_resource, module: $schema_module) isa inModule;
+  };
+insert
+  (resource: $schema_resource, module: $schema_module) isa inModule;
+
+put $generated_role_22 isa SchemaResource,
+  has docKey "https://github.com/vibe-machine/ontology-vibemachine#closureDecisionAboutIssue:issue",
+  has iri "https://github.com/vibe-machine/ontology-vibemachine#closureDecisionAboutIssue:issue",
+  has typeLabel "closureDecisionAboutIssue:issue",
+  has kind "role",
+  has roleName "issue",
+  has prefLabel "issue",
+  has definition "Role 'issue' in relation 'closureDecisionAboutIssue'.";
+match
+  $schema_module isa SchemaModule, has moduleKey "vibemachine";
+  $schema_resource isa SchemaResource, has docKey "https://github.com/vibe-machine/ontology-vibemachine#closureDecisionAboutIssue:issue";
+  not {
+    (resource: $schema_resource, module: $schema_module) isa inModule;
+  };
+insert
+  (resource: $schema_resource, module: $schema_module) isa inModule;
+
+put $generated_role_23 isa SchemaResource,
+  has docKey "https://github.com/vibe-machine/ontology-vibemachine#closurePerformedBy:closer",
+  has iri "https://github.com/vibe-machine/ontology-vibemachine#closurePerformedBy:closer",
+  has typeLabel "closurePerformedBy:closer",
+  has kind "role",
+  has roleName "closer",
+  has prefLabel "closer",
+  has definition "Role 'closer' in relation 'closurePerformedBy'.";
+match
+  $schema_module isa SchemaModule, has moduleKey "vibemachine";
+  $schema_resource isa SchemaResource, has docKey "https://github.com/vibe-machine/ontology-vibemachine#closurePerformedBy:closer";
+  not {
+    (resource: $schema_resource, module: $schema_module) isa inModule;
+  };
+insert
+  (resource: $schema_resource, module: $schema_module) isa inModule;
+
+put $generated_role_24 isa SchemaResource,
+  has docKey "https://github.com/vibe-machine/ontology-vibemachine#closurePerformedBy:closureDecision",
+  has iri "https://github.com/vibe-machine/ontology-vibemachine#closurePerformedBy:closureDecision",
+  has typeLabel "closurePerformedBy:closureDecision",
+  has kind "role",
+  has roleName "closureDecision",
+  has prefLabel "closureDecision",
+  has definition "Role 'closureDecision' in relation 'closurePerformedBy'.";
+match
+  $schema_module isa SchemaModule, has moduleKey "vibemachine";
+  $schema_resource isa SchemaResource, has docKey "https://github.com/vibe-machine/ontology-vibemachine#closurePerformedBy:closureDecision";
+  not {
+    (resource: $schema_resource, module: $schema_module) isa inModule;
+  };
+insert
+  (resource: $schema_resource, module: $schema_module) isa inModule;
+
+put $generated_role_25 isa SchemaResource,
+  has docKey "https://github.com/vibe-machine/ontology-vibemachine#comesFromAgent:originatingAgent",
+  has iri "https://github.com/vibe-machine/ontology-vibemachine#comesFromAgent:originatingAgent",
+  has typeLabel "comesFromAgent:originatingAgent",
+  has kind "role",
+  has roleName "originatingAgent",
+  has prefLabel "originatingAgent",
+  has definition "Role 'originatingAgent' in relation 'comesFromAgent'.";
+match
+  $schema_module isa SchemaModule, has moduleKey "vibemachine";
+  $schema_resource isa SchemaResource, has docKey "https://github.com/vibe-machine/ontology-vibemachine#comesFromAgent:originatingAgent";
+  not {
+    (resource: $schema_resource, module: $schema_module) isa inModule;
+  };
+insert
+  (resource: $schema_resource, module: $schema_module) isa inModule;
+
+put $generated_role_26 isa SchemaResource,
+  has docKey "https://github.com/vibe-machine/ontology-vibemachine#comesFromAgent:transfer",
+  has iri "https://github.com/vibe-machine/ontology-vibemachine#comesFromAgent:transfer",
+  has typeLabel "comesFromAgent:transfer",
+  has kind "role",
+  has roleName "transfer",
+  has prefLabel "transfer",
+  has definition "Role 'transfer' in relation 'comesFromAgent'.";
+match
+  $schema_module isa SchemaModule, has moduleKey "vibemachine";
+  $schema_resource isa SchemaResource, has docKey "https://github.com/vibe-machine/ontology-vibemachine#comesFromAgent:transfer";
+  not {
+    (resource: $schema_resource, module: $schema_module) isa inModule;
+  };
+insert
+  (resource: $schema_resource, module: $schema_module) isa inModule;
+
+put $generated_role_27 isa SchemaResource,
+  has docKey "https://github.com/vibe-machine/ontology-vibemachine#conformsTo:conformingThing",
+  has iri "https://github.com/vibe-machine/ontology-vibemachine#conformsTo:conformingThing",
+  has typeLabel "conformsTo:conformingThing",
+  has kind "role",
+  has roleName "conformingThing",
+  has prefLabel "conformingThing",
+  has definition "Role 'conformingThing' in relation 'conformsTo'.";
+match
+  $schema_module isa SchemaModule, has moduleKey "vibemachine";
+  $schema_resource isa SchemaResource, has docKey "https://github.com/vibe-machine/ontology-vibemachine#conformsTo:conformingThing";
+  not {
+    (resource: $schema_resource, module: $schema_module) isa inModule;
+  };
+insert
+  (resource: $schema_resource, module: $schema_module) isa inModule;
+
+put $generated_role_28 isa SchemaResource,
+  has docKey "https://github.com/vibe-machine/ontology-vibemachine#conformsTo:standard",
+  has iri "https://github.com/vibe-machine/ontology-vibemachine#conformsTo:standard",
+  has typeLabel "conformsTo:standard",
+  has kind "role",
+  has roleName "standard",
+  has prefLabel "standard",
+  has definition "Role 'standard' in relation 'conformsTo'.";
+match
+  $schema_module isa SchemaModule, has moduleKey "vibemachine";
+  $schema_resource isa SchemaResource, has docKey "https://github.com/vibe-machine/ontology-vibemachine#conformsTo:standard";
+  not {
+    (resource: $schema_resource, module: $schema_module) isa inModule;
+  };
+insert
+  (resource: $schema_resource, module: $schema_module) isa inModule;
+
+put $generated_role_29 isa SchemaResource,
+  has docKey "https://github.com/vibe-machine/ontology-vibemachine#containsItem:container",
+  has iri "https://github.com/vibe-machine/ontology-vibemachine#containsItem:container",
+  has typeLabel "containsItem:container",
+  has kind "role",
+  has roleName "container",
+  has prefLabel "container",
+  has definition "Role 'container' in relation 'containsItem'.";
+match
+  $schema_module isa SchemaModule, has moduleKey "vibemachine";
+  $schema_resource isa SchemaResource, has docKey "https://github.com/vibe-machine/ontology-vibemachine#containsItem:container";
+  not {
+    (resource: $schema_resource, module: $schema_module) isa inModule;
+  };
+insert
+  (resource: $schema_resource, module: $schema_module) isa inModule;
+
+put $generated_role_30 isa SchemaResource,
+  has docKey "https://github.com/vibe-machine/ontology-vibemachine#containsItem:item",
+  has iri "https://github.com/vibe-machine/ontology-vibemachine#containsItem:item",
+  has typeLabel "containsItem:item",
+  has kind "role",
+  has roleName "item",
+  has prefLabel "item",
+  has definition "Role 'item' in relation 'containsItem'.";
+match
+  $schema_module isa SchemaModule, has moduleKey "vibemachine";
+  $schema_resource isa SchemaResource, has docKey "https://github.com/vibe-machine/ontology-vibemachine#containsItem:item";
+  not {
+    (resource: $schema_resource, module: $schema_module) isa inModule;
+  };
+insert
+  (resource: $schema_resource, module: $schema_module) isa inModule;
+
+put $generated_role_31 isa SchemaResource,
+  has docKey "https://github.com/vibe-machine/ontology-vibemachine#controlBoothHasCollaborator:collaborator",
+  has iri "https://github.com/vibe-machine/ontology-vibemachine#controlBoothHasCollaborator:collaborator",
+  has typeLabel "controlBoothHasCollaborator:collaborator",
+  has kind "role",
+  has roleName "collaborator",
+  has prefLabel "collaborator",
+  has definition "Role 'collaborator' in relation 'controlBoothHasCollaborator'.";
+match
+  $schema_module isa SchemaModule, has moduleKey "vibemachine";
+  $schema_resource isa SchemaResource, has docKey "https://github.com/vibe-machine/ontology-vibemachine#controlBoothHasCollaborator:collaborator";
+  not {
+    (resource: $schema_resource, module: $schema_module) isa inModule;
+  };
+insert
+  (resource: $schema_resource, module: $schema_module) isa inModule;
+
+put $generated_role_32 isa SchemaResource,
+  has docKey "https://github.com/vibe-machine/ontology-vibemachine#controlBoothHasCollaborator:controlBooth",
+  has iri "https://github.com/vibe-machine/ontology-vibemachine#controlBoothHasCollaborator:controlBooth",
+  has typeLabel "controlBoothHasCollaborator:controlBooth",
+  has kind "role",
+  has roleName "controlBooth",
+  has prefLabel "controlBooth",
+  has definition "Role 'controlBooth' in relation 'controlBoothHasCollaborator'.";
+match
+  $schema_module isa SchemaModule, has moduleKey "vibemachine";
+  $schema_resource isa SchemaResource, has docKey "https://github.com/vibe-machine/ontology-vibemachine#controlBoothHasCollaborator:controlBooth";
+  not {
+    (resource: $schema_resource, module: $schema_module) isa inModule;
+  };
+insert
+  (resource: $schema_resource, module: $schema_module) isa inModule;
+
+put $generated_role_33 isa SchemaResource,
+  has docKey "https://github.com/vibe-machine/ontology-vibemachine#controlBoothIncludes:controlBooth",
+  has iri "https://github.com/vibe-machine/ontology-vibemachine#controlBoothIncludes:controlBooth",
+  has typeLabel "controlBoothIncludes:controlBooth",
+  has kind "role",
+  has roleName "controlBooth",
+  has prefLabel "controlBooth",
+  has definition "Role 'controlBooth' in relation 'controlBoothIncludes'.";
+match
+  $schema_module isa SchemaModule, has moduleKey "vibemachine";
+  $schema_resource isa SchemaResource, has docKey "https://github.com/vibe-machine/ontology-vibemachine#controlBoothIncludes:controlBooth";
+  not {
+    (resource: $schema_resource, module: $schema_module) isa inModule;
+  };
+insert
+  (resource: $schema_resource, module: $schema_module) isa inModule;
+
+put $generated_role_34 isa SchemaResource,
+  has docKey "https://github.com/vibe-machine/ontology-vibemachine#controlBoothIncludes:includedMember",
+  has iri "https://github.com/vibe-machine/ontology-vibemachine#controlBoothIncludes:includedMember",
+  has typeLabel "controlBoothIncludes:includedMember",
+  has kind "role",
+  has roleName "includedMember",
+  has prefLabel "includedMember",
+  has definition "Role 'includedMember' in relation 'controlBoothIncludes'.";
+match
+  $schema_module isa SchemaModule, has moduleKey "vibemachine";
+  $schema_resource isa SchemaResource, has docKey "https://github.com/vibe-machine/ontology-vibemachine#controlBoothIncludes:includedMember";
+  not {
+    (resource: $schema_resource, module: $schema_module) isa inModule;
+  };
+insert
+  (resource: $schema_resource, module: $schema_module) isa inModule;
+
+put $generated_role_35 isa SchemaResource,
+  has docKey "https://github.com/vibe-machine/ontology-vibemachine#controlBoothOwnedBy:controlBooth",
+  has iri "https://github.com/vibe-machine/ontology-vibemachine#controlBoothOwnedBy:controlBooth",
+  has typeLabel "controlBoothOwnedBy:controlBooth",
+  has kind "role",
+  has roleName "controlBooth",
+  has prefLabel "controlBooth",
+  has definition "Role 'controlBooth' in relation 'controlBoothOwnedBy'.";
+match
+  $schema_module isa SchemaModule, has moduleKey "vibemachine";
+  $schema_resource isa SchemaResource, has docKey "https://github.com/vibe-machine/ontology-vibemachine#controlBoothOwnedBy:controlBooth";
+  not {
+    (resource: $schema_resource, module: $schema_module) isa inModule;
+  };
+insert
+  (resource: $schema_resource, module: $schema_module) isa inModule;
+
+put $generated_role_36 isa SchemaResource,
+  has docKey "https://github.com/vibe-machine/ontology-vibemachine#controlBoothOwnedBy:owner",
+  has iri "https://github.com/vibe-machine/ontology-vibemachine#controlBoothOwnedBy:owner",
+  has typeLabel "controlBoothOwnedBy:owner",
+  has kind "role",
+  has roleName "owner",
+  has prefLabel "owner",
+  has definition "Role 'owner' in relation 'controlBoothOwnedBy'.";
+match
+  $schema_module isa SchemaModule, has moduleKey "vibemachine";
+  $schema_resource isa SchemaResource, has docKey "https://github.com/vibe-machine/ontology-vibemachine#controlBoothOwnedBy:owner";
+  not {
+    (resource: $schema_resource, module: $schema_module) isa inModule;
+  };
+insert
+  (resource: $schema_resource, module: $schema_module) isa inModule;
+
+put $generated_role_37 isa SchemaResource,
+  has docKey "https://github.com/vibe-machine/ontology-vibemachine#currentlyAtStage:stage",
+  has iri "https://github.com/vibe-machine/ontology-vibemachine#currentlyAtStage:stage",
+  has typeLabel "currentlyAtStage:stage",
+  has kind "role",
+  has roleName "stage",
+  has prefLabel "stage",
+  has definition "Role 'stage' in relation 'currentlyAtStage'.";
+match
+  $schema_module isa SchemaModule, has moduleKey "vibemachine";
+  $schema_resource isa SchemaResource, has docKey "https://github.com/vibe-machine/ontology-vibemachine#currentlyAtStage:stage";
+  not {
+    (resource: $schema_resource, module: $schema_module) isa inModule;
+  };
+insert
+  (resource: $schema_resource, module: $schema_module) isa inModule;
+
+put $generated_role_38 isa SchemaResource,
+  has docKey "https://github.com/vibe-machine/ontology-vibemachine#currentlyAtStage:trackedEntity",
+  has iri "https://github.com/vibe-machine/ontology-vibemachine#currentlyAtStage:trackedEntity",
+  has typeLabel "currentlyAtStage:trackedEntity",
+  has kind "role",
+  has roleName "trackedEntity",
+  has prefLabel "trackedEntity",
+  has definition "Role 'trackedEntity' in relation 'currentlyAtStage'.";
+match
+  $schema_module isa SchemaModule, has moduleKey "vibemachine";
+  $schema_resource isa SchemaResource, has docKey "https://github.com/vibe-machine/ontology-vibemachine#currentlyAtStage:trackedEntity";
+  not {
+    (resource: $schema_resource, module: $schema_module) isa inModule;
+  };
+insert
+  (resource: $schema_resource, module: $schema_module) isa inModule;
+
+put $generated_role_39 isa SchemaResource,
+  has docKey "https://github.com/vibe-machine/ontology-vibemachine#decomposesFeature:childFeature",
+  has iri "https://github.com/vibe-machine/ontology-vibemachine#decomposesFeature:childFeature",
+  has typeLabel "decomposesFeature:childFeature",
+  has kind "role",
+  has roleName "childFeature",
+  has prefLabel "childFeature",
+  has definition "Role 'childFeature' in relation 'decomposesFeature'.";
+match
+  $schema_module isa SchemaModule, has moduleKey "vibemachine";
+  $schema_resource isa SchemaResource, has docKey "https://github.com/vibe-machine/ontology-vibemachine#decomposesFeature:childFeature";
+  not {
+    (resource: $schema_resource, module: $schema_module) isa inModule;
+  };
+insert
+  (resource: $schema_resource, module: $schema_module) isa inModule;
+
+put $generated_role_40 isa SchemaResource,
+  has docKey "https://github.com/vibe-machine/ontology-vibemachine#decomposesFeature:parentFeature",
+  has iri "https://github.com/vibe-machine/ontology-vibemachine#decomposesFeature:parentFeature",
+  has typeLabel "decomposesFeature:parentFeature",
+  has kind "role",
+  has roleName "parentFeature",
+  has prefLabel "parentFeature",
+  has definition "Role 'parentFeature' in relation 'decomposesFeature'.";
+match
+  $schema_module isa SchemaModule, has moduleKey "vibemachine";
+  $schema_resource isa SchemaResource, has docKey "https://github.com/vibe-machine/ontology-vibemachine#decomposesFeature:parentFeature";
+  not {
+    (resource: $schema_resource, module: $schema_module) isa inModule;
+  };
+insert
+  (resource: $schema_resource, module: $schema_module) isa inModule;
+
+put $generated_role_41 isa SchemaResource,
+  has docKey "https://github.com/vibe-machine/ontology-vibemachine#duplicateOfIssue:canonicalIssue",
+  has iri "https://github.com/vibe-machine/ontology-vibemachine#duplicateOfIssue:canonicalIssue",
+  has typeLabel "duplicateOfIssue:canonicalIssue",
+  has kind "role",
+  has roleName "canonicalIssue",
+  has prefLabel "canonicalIssue",
+  has definition "Role 'canonicalIssue' in relation 'duplicateOfIssue'.";
+match
+  $schema_module isa SchemaModule, has moduleKey "vibemachine";
+  $schema_resource isa SchemaResource, has docKey "https://github.com/vibe-machine/ontology-vibemachine#duplicateOfIssue:canonicalIssue";
+  not {
+    (resource: $schema_resource, module: $schema_module) isa inModule;
+  };
+insert
+  (resource: $schema_resource, module: $schema_module) isa inModule;
+
+put $generated_role_42 isa SchemaResource,
+  has docKey "https://github.com/vibe-machine/ontology-vibemachine#duplicateOfIssue:duplicateIssue",
+  has iri "https://github.com/vibe-machine/ontology-vibemachine#duplicateOfIssue:duplicateIssue",
+  has typeLabel "duplicateOfIssue:duplicateIssue",
+  has kind "role",
+  has roleName "duplicateIssue",
+  has prefLabel "duplicateIssue",
+  has definition "Role 'duplicateIssue' in relation 'duplicateOfIssue'.";
+match
+  $schema_module isa SchemaModule, has moduleKey "vibemachine";
+  $schema_resource isa SchemaResource, has docKey "https://github.com/vibe-machine/ontology-vibemachine#duplicateOfIssue:duplicateIssue";
+  not {
+    (resource: $schema_resource, module: $schema_module) isa inModule;
+  };
+insert
+  (resource: $schema_resource, module: $schema_module) isa inModule;
+
+put $generated_role_43 isa SchemaResource,
+  has docKey "https://github.com/vibe-machine/ontology-vibemachine#featureOfProduct:featureSpec",
+  has iri "https://github.com/vibe-machine/ontology-vibemachine#featureOfProduct:featureSpec",
+  has typeLabel "featureOfProduct:featureSpec",
+  has kind "role",
+  has roleName "featureSpec",
+  has prefLabel "featureSpec",
+  has definition "Role 'featureSpec' in relation 'featureOfProduct'.";
+match
+  $schema_module isa SchemaModule, has moduleKey "vibemachine";
+  $schema_resource isa SchemaResource, has docKey "https://github.com/vibe-machine/ontology-vibemachine#featureOfProduct:featureSpec";
+  not {
+    (resource: $schema_resource, module: $schema_module) isa inModule;
+  };
+insert
+  (resource: $schema_resource, module: $schema_module) isa inModule;
+
+put $generated_role_44 isa SchemaResource,
+  has docKey "https://github.com/vibe-machine/ontology-vibemachine#featureOfProduct:productSpec",
+  has iri "https://github.com/vibe-machine/ontology-vibemachine#featureOfProduct:productSpec",
+  has typeLabel "featureOfProduct:productSpec",
+  has kind "role",
+  has roleName "productSpec",
+  has prefLabel "productSpec",
+  has definition "Role 'productSpec' in relation 'featureOfProduct'.";
+match
+  $schema_module isa SchemaModule, has moduleKey "vibemachine";
+  $schema_resource isa SchemaResource, has docKey "https://github.com/vibe-machine/ontology-vibemachine#featureOfProduct:productSpec";
+  not {
+    (resource: $schema_resource, module: $schema_module) isa inModule;
+  };
+insert
+  (resource: $schema_resource, module: $schema_module) isa inModule;
+
+put $generated_role_45 isa SchemaResource,
+  has docKey "https://github.com/vibe-machine/ontology-vibemachine#fulfillsRequirement:engineeringTask",
+  has iri "https://github.com/vibe-machine/ontology-vibemachine#fulfillsRequirement:engineeringTask",
+  has typeLabel "fulfillsRequirement:engineeringTask",
+  has kind "role",
+  has roleName "engineeringTask",
+  has prefLabel "engineeringTask",
+  has definition "Role 'engineeringTask' in relation 'fulfillsRequirement'.";
+match
+  $schema_module isa SchemaModule, has moduleKey "vibemachine";
+  $schema_resource isa SchemaResource, has docKey "https://github.com/vibe-machine/ontology-vibemachine#fulfillsRequirement:engineeringTask";
+  not {
+    (resource: $schema_resource, module: $schema_module) isa inModule;
+  };
+insert
+  (resource: $schema_resource, module: $schema_module) isa inModule;
+
+put $generated_role_46 isa SchemaResource,
+  has docKey "https://github.com/vibe-machine/ontology-vibemachine#fulfillsRequirement:requirement",
+  has iri "https://github.com/vibe-machine/ontology-vibemachine#fulfillsRequirement:requirement",
+  has typeLabel "fulfillsRequirement:requirement",
+  has kind "role",
+  has roleName "requirement",
+  has prefLabel "requirement",
+  has definition "Role 'requirement' in relation 'fulfillsRequirement'.";
+match
+  $schema_module isa SchemaModule, has moduleKey "vibemachine";
+  $schema_resource isa SchemaResource, has docKey "https://github.com/vibe-machine/ontology-vibemachine#fulfillsRequirement:requirement";
+  not {
+    (resource: $schema_resource, module: $schema_module) isa inModule;
+  };
+insert
+  (resource: $schema_resource, module: $schema_module) isa inModule;
+
+put $generated_role_47 isa SchemaResource,
+  has docKey "https://github.com/vibe-machine/ontology-vibemachine#gateAdvancesEntity:advancedEntity",
+  has iri "https://github.com/vibe-machine/ontology-vibemachine#gateAdvancesEntity:advancedEntity",
+  has typeLabel "gateAdvancesEntity:advancedEntity",
+  has kind "role",
+  has roleName "advancedEntity",
+  has prefLabel "advancedEntity",
+  has definition "Role 'advancedEntity' in relation 'gateAdvancesEntity'.";
+match
+  $schema_module isa SchemaModule, has moduleKey "vibemachine";
+  $schema_resource isa SchemaResource, has docKey "https://github.com/vibe-machine/ontology-vibemachine#gateAdvancesEntity:advancedEntity";
+  not {
+    (resource: $schema_resource, module: $schema_module) isa inModule;
+  };
+insert
+  (resource: $schema_resource, module: $schema_module) isa inModule;
+
+put $generated_role_48 isa SchemaResource,
+  has docKey "https://github.com/vibe-machine/ontology-vibemachine#gateAdvancesEntity:gateDecision",
+  has iri "https://github.com/vibe-machine/ontology-vibemachine#gateAdvancesEntity:gateDecision",
+  has typeLabel "gateAdvancesEntity:gateDecision",
+  has kind "role",
+  has roleName "gateDecision",
+  has prefLabel "gateDecision",
+  has definition "Role 'gateDecision' in relation 'gateAdvancesEntity'.";
+match
+  $schema_module isa SchemaModule, has moduleKey "vibemachine";
+  $schema_resource isa SchemaResource, has docKey "https://github.com/vibe-machine/ontology-vibemachine#gateAdvancesEntity:gateDecision";
+  not {
+    (resource: $schema_resource, module: $schema_module) isa inModule;
+  };
+insert
+  (resource: $schema_resource, module: $schema_module) isa inModule;
+
+put $generated_role_49 isa SchemaResource,
+  has docKey "https://github.com/vibe-machine/ontology-vibemachine#gateTransitionsToStage:gateDecision",
+  has iri "https://github.com/vibe-machine/ontology-vibemachine#gateTransitionsToStage:gateDecision",
+  has typeLabel "gateTransitionsToStage:gateDecision",
+  has kind "role",
+  has roleName "gateDecision",
+  has prefLabel "gateDecision",
+  has definition "Role 'gateDecision' in relation 'gateTransitionsToStage'.";
+match
+  $schema_module isa SchemaModule, has moduleKey "vibemachine";
+  $schema_resource isa SchemaResource, has docKey "https://github.com/vibe-machine/ontology-vibemachine#gateTransitionsToStage:gateDecision";
+  not {
+    (resource: $schema_resource, module: $schema_module) isa inModule;
+  };
+insert
+  (resource: $schema_resource, module: $schema_module) isa inModule;
+
+put $generated_role_50 isa SchemaResource,
+  has docKey "https://github.com/vibe-machine/ontology-vibemachine#gateTransitionsToStage:targetStage",
+  has iri "https://github.com/vibe-machine/ontology-vibemachine#gateTransitionsToStage:targetStage",
+  has typeLabel "gateTransitionsToStage:targetStage",
+  has kind "role",
+  has roleName "targetStage",
+  has prefLabel "targetStage",
+  has definition "Role 'targetStage' in relation 'gateTransitionsToStage'.";
+match
+  $schema_module isa SchemaModule, has moduleKey "vibemachine";
+  $schema_resource isa SchemaResource, has docKey "https://github.com/vibe-machine/ontology-vibemachine#gateTransitionsToStage:targetStage";
+  not {
+    (resource: $schema_resource, module: $schema_module) isa inModule;
+  };
+insert
+  (resource: $schema_resource, module: $schema_module) isa inModule;
+
+put $generated_role_51 isa SchemaResource,
+  has docKey "https://github.com/vibe-machine/ontology-vibemachine#gateWithinProcess:gateDecision",
+  has iri "https://github.com/vibe-machine/ontology-vibemachine#gateWithinProcess:gateDecision",
+  has typeLabel "gateWithinProcess:gateDecision",
+  has kind "role",
+  has roleName "gateDecision",
+  has prefLabel "gateDecision",
+  has definition "Role 'gateDecision' in relation 'gateWithinProcess'.";
+match
+  $schema_module isa SchemaModule, has moduleKey "vibemachine";
+  $schema_resource isa SchemaResource, has docKey "https://github.com/vibe-machine/ontology-vibemachine#gateWithinProcess:gateDecision";
+  not {
+    (resource: $schema_resource, module: $schema_module) isa inModule;
+  };
+insert
+  (resource: $schema_resource, module: $schema_module) isa inModule;
+
+put $generated_role_52 isa SchemaResource,
+  has docKey "https://github.com/vibe-machine/ontology-vibemachine#gateWithinProcess:process",
+  has iri "https://github.com/vibe-machine/ontology-vibemachine#gateWithinProcess:process",
+  has typeLabel "gateWithinProcess:process",
+  has kind "role",
+  has roleName "process",
+  has prefLabel "process",
+  has definition "Role 'process' in relation 'gateWithinProcess'.";
+match
+  $schema_module isa SchemaModule, has moduleKey "vibemachine";
+  $schema_resource isa SchemaResource, has docKey "https://github.com/vibe-machine/ontology-vibemachine#gateWithinProcess:process";
+  not {
+    (resource: $schema_resource, module: $schema_module) isa inModule;
+  };
+insert
+  (resource: $schema_resource, module: $schema_module) isa inModule;
+
+put $generated_role_53 isa SchemaResource,
+  has docKey "https://github.com/vibe-machine/ontology-vibemachine#hasParticipant:participant",
+  has iri "https://github.com/vibe-machine/ontology-vibemachine#hasParticipant:participant",
+  has typeLabel "hasParticipant:participant",
+  has kind "role",
+  has roleName "participant",
+  has prefLabel "participant",
+  has definition "Role 'participant' in relation 'hasParticipant'.";
+match
+  $schema_module isa SchemaModule, has moduleKey "vibemachine";
+  $schema_resource isa SchemaResource, has docKey "https://github.com/vibe-machine/ontology-vibemachine#hasParticipant:participant";
+  not {
+    (resource: $schema_resource, module: $schema_module) isa inModule;
+  };
+insert
+  (resource: $schema_resource, module: $schema_module) isa inModule;
+
+put $generated_role_54 isa SchemaResource,
+  has docKey "https://github.com/vibe-machine/ontology-vibemachine#hasParticipant:participationContext",
+  has iri "https://github.com/vibe-machine/ontology-vibemachine#hasParticipant:participationContext",
+  has typeLabel "hasParticipant:participationContext",
+  has kind "role",
+  has roleName "participationContext",
+  has prefLabel "participationContext",
+  has definition "Role 'participationContext' in relation 'hasParticipant'.";
+match
+  $schema_module isa SchemaModule, has moduleKey "vibemachine";
+  $schema_resource isa SchemaResource, has docKey "https://github.com/vibe-machine/ontology-vibemachine#hasParticipant:participationContext";
+  not {
+    (resource: $schema_resource, module: $schema_module) isa inModule;
+  };
+insert
+  (resource: $schema_resource, module: $schema_module) isa inModule;
+
+put $generated_role_55 isa SchemaResource,
+  has docKey "https://github.com/vibe-machine/ontology-vibemachine#implementsFeature:featureSpec",
+  has iri "https://github.com/vibe-machine/ontology-vibemachine#implementsFeature:featureSpec",
+  has typeLabel "implementsFeature:featureSpec",
+  has kind "role",
+  has roleName "featureSpec",
+  has prefLabel "featureSpec",
+  has definition "Role 'featureSpec' in relation 'implementsFeature'.";
+match
+  $schema_module isa SchemaModule, has moduleKey "vibemachine";
+  $schema_resource isa SchemaResource, has docKey "https://github.com/vibe-machine/ontology-vibemachine#implementsFeature:featureSpec";
+  not {
+    (resource: $schema_resource, module: $schema_module) isa inModule;
+  };
+insert
+  (resource: $schema_resource, module: $schema_module) isa inModule;
+
+put $generated_role_56 isa SchemaResource,
+  has docKey "https://github.com/vibe-machine/ontology-vibemachine#implementsFeature:implementationSpec",
+  has iri "https://github.com/vibe-machine/ontology-vibemachine#implementsFeature:implementationSpec",
+  has typeLabel "implementsFeature:implementationSpec",
+  has kind "role",
+  has roleName "implementationSpec",
+  has prefLabel "implementationSpec",
+  has definition "Role 'implementationSpec' in relation 'implementsFeature'.";
+match
+  $schema_module isa SchemaModule, has moduleKey "vibemachine";
+  $schema_resource isa SchemaResource, has docKey "https://github.com/vibe-machine/ontology-vibemachine#implementsFeature:implementationSpec";
+  not {
+    (resource: $schema_resource, module: $schema_module) isa inModule;
+  };
+insert
+  (resource: $schema_resource, module: $schema_module) isa inModule;
+
+put $generated_role_57 isa SchemaResource,
+  has docKey "https://github.com/vibe-machine/ontology-vibemachine#isAbout:content",
+  has iri "https://github.com/vibe-machine/ontology-vibemachine#isAbout:content",
+  has typeLabel "isAbout:content",
+  has kind "role",
+  has roleName "content",
+  has prefLabel "content",
+  has definition "Role 'content' in relation 'isAbout'.";
+match
+  $schema_module isa SchemaModule, has moduleKey "vibemachine";
+  $schema_resource isa SchemaResource, has docKey "https://github.com/vibe-machine/ontology-vibemachine#isAbout:content";
+  not {
+    (resource: $schema_resource, module: $schema_module) isa inModule;
+  };
+insert
+  (resource: $schema_resource, module: $schema_module) isa inModule;
+
+put $generated_role_58 isa SchemaResource,
+  has docKey "https://github.com/vibe-machine/ontology-vibemachine#isAbout:subjectMatter",
+  has iri "https://github.com/vibe-machine/ontology-vibemachine#isAbout:subjectMatter",
+  has typeLabel "isAbout:subjectMatter",
+  has kind "role",
+  has roleName "subjectMatter",
+  has prefLabel "subjectMatter",
+  has definition "Role 'subjectMatter' in relation 'isAbout'.";
+match
+  $schema_module isa SchemaModule, has moduleKey "vibemachine";
+  $schema_resource isa SchemaResource, has docKey "https://github.com/vibe-machine/ontology-vibemachine#isAbout:subjectMatter";
+  not {
+    (resource: $schema_resource, module: $schema_module) isa inModule;
+  };
+insert
+  (resource: $schema_resource, module: $schema_module) isa inModule;
+
+put $generated_role_59 isa SchemaResource,
+  has docKey "https://github.com/vibe-machine/ontology-vibemachine#isAffectedBy:affectedThing",
+  has iri "https://github.com/vibe-machine/ontology-vibemachine#isAffectedBy:affectedThing",
+  has typeLabel "isAffectedBy:affectedThing",
+  has kind "role",
+  has roleName "affectedThing",
+  has prefLabel "affectedThing",
+  has definition "Role 'affectedThing' in relation 'isAffectedBy'.";
+match
+  $schema_module isa SchemaModule, has moduleKey "vibemachine";
+  $schema_resource isa SchemaResource, has docKey "https://github.com/vibe-machine/ontology-vibemachine#isAffectedBy:affectedThing";
+  not {
+    (resource: $schema_resource, module: $schema_module) isa inModule;
+  };
+insert
+  (resource: $schema_resource, module: $schema_module) isa inModule;
+
+put $generated_role_60 isa SchemaResource,
+  has docKey "https://github.com/vibe-machine/ontology-vibemachine#isAffectedBy:effectSource",
+  has iri "https://github.com/vibe-machine/ontology-vibemachine#isAffectedBy:effectSource",
+  has typeLabel "isAffectedBy:effectSource",
+  has kind "role",
+  has roleName "effectSource",
+  has prefLabel "effectSource",
+  has definition "Role 'effectSource' in relation 'isAffectedBy'.";
+match
+  $schema_module isa SchemaModule, has moduleKey "vibemachine";
+  $schema_resource isa SchemaResource, has docKey "https://github.com/vibe-machine/ontology-vibemachine#isAffectedBy:effectSource";
+  not {
+    (resource: $schema_resource, module: $schema_module) isa inModule;
+  };
+insert
+  (resource: $schema_resource, module: $schema_module) isa inModule;
+
+put $generated_role_61 isa SchemaResource,
+  has docKey "https://github.com/vibe-machine/ontology-vibemachine#isAllocatedBy:allocatedThing",
+  has iri "https://github.com/vibe-machine/ontology-vibemachine#isAllocatedBy:allocatedThing",
+  has typeLabel "isAllocatedBy:allocatedThing",
+  has kind "role",
+  has roleName "allocatedThing",
+  has prefLabel "allocatedThing",
+  has definition "Role 'allocatedThing' in relation 'isAllocatedBy'.";
+match
+  $schema_module isa SchemaModule, has moduleKey "vibemachine";
+  $schema_resource isa SchemaResource, has docKey "https://github.com/vibe-machine/ontology-vibemachine#isAllocatedBy:allocatedThing";
+  not {
+    (resource: $schema_resource, module: $schema_module) isa inModule;
+  };
+insert
+  (resource: $schema_resource, module: $schema_module) isa inModule;
+
+put $generated_role_62 isa SchemaResource,
+  has docKey "https://github.com/vibe-machine/ontology-vibemachine#isAllocatedBy:allocator",
+  has iri "https://github.com/vibe-machine/ontology-vibemachine#isAllocatedBy:allocator",
+  has typeLabel "isAllocatedBy:allocator",
+  has kind "role",
+  has roleName "allocator",
+  has prefLabel "allocator",
+  has definition "Role 'allocator' in relation 'isAllocatedBy'.";
+match
+  $schema_module isa SchemaModule, has moduleKey "vibemachine";
+  $schema_resource isa SchemaResource, has docKey "https://github.com/vibe-machine/ontology-vibemachine#isAllocatedBy:allocator";
+  not {
+    (resource: $schema_resource, module: $schema_module) isa inModule;
+  };
+insert
+  (resource: $schema_resource, module: $schema_module) isa inModule;
+
+put $generated_role_63 isa SchemaResource,
+  has docKey "https://github.com/vibe-machine/ontology-vibemachine#isAssignmentOf:assignedResource",
+  has iri "https://github.com/vibe-machine/ontology-vibemachine#isAssignmentOf:assignedResource",
+  has typeLabel "isAssignmentOf:assignedResource",
+  has kind "role",
+  has roleName "assignedResource",
+  has prefLabel "assignedResource",
+  has definition "Role 'assignedResource' in relation 'isAssignmentOf'.";
+match
+  $schema_module isa SchemaModule, has moduleKey "vibemachine";
+  $schema_resource isa SchemaResource, has docKey "https://github.com/vibe-machine/ontology-vibemachine#isAssignmentOf:assignedResource";
+  not {
+    (resource: $schema_resource, module: $schema_module) isa inModule;
+  };
+insert
+  (resource: $schema_resource, module: $schema_module) isa inModule;
+
+put $generated_role_64 isa SchemaResource,
+  has docKey "https://github.com/vibe-machine/ontology-vibemachine#isAssignmentOf:assignment",
+  has iri "https://github.com/vibe-machine/ontology-vibemachine#isAssignmentOf:assignment",
+  has typeLabel "isAssignmentOf:assignment",
+  has kind "role",
+  has roleName "assignment",
+  has prefLabel "assignment",
+  has definition "Role 'assignment' in relation 'isAssignmentOf'.";
+match
+  $schema_module isa SchemaModule, has moduleKey "vibemachine";
+  $schema_resource isa SchemaResource, has docKey "https://github.com/vibe-machine/ontology-vibemachine#isAssignmentOf:assignment";
+  not {
+    (resource: $schema_resource, module: $schema_module) isa inModule;
+  };
+insert
+  (resource: $schema_resource, module: $schema_module) isa inModule;
+
+put $generated_role_65 isa SchemaResource,
+  has docKey "https://github.com/vibe-machine/ontology-vibemachine#isAssignmentTo:assignment",
+  has iri "https://github.com/vibe-machine/ontology-vibemachine#isAssignmentTo:assignment",
+  has typeLabel "isAssignmentTo:assignment",
+  has kind "role",
+  has roleName "assignment",
+  has prefLabel "assignment",
+  has definition "Role 'assignment' in relation 'isAssignmentTo'.";
+match
+  $schema_module isa SchemaModule, has moduleKey "vibemachine";
+  $schema_resource isa SchemaResource, has docKey "https://github.com/vibe-machine/ontology-vibemachine#isAssignmentTo:assignment";
+  not {
+    (resource: $schema_resource, module: $schema_module) isa inModule;
+  };
+insert
+  (resource: $schema_resource, module: $schema_module) isa inModule;
+
+put $generated_role_66 isa SchemaResource,
+  has docKey "https://github.com/vibe-machine/ontology-vibemachine#isAssignmentTo:assignmentTarget",
+  has iri "https://github.com/vibe-machine/ontology-vibemachine#isAssignmentTo:assignmentTarget",
+  has typeLabel "isAssignmentTo:assignmentTarget",
+  has kind "role",
+  has roleName "assignmentTarget",
+  has prefLabel "assignmentTarget",
+  has definition "Role 'assignmentTarget' in relation 'isAssignmentTo'.";
+match
+  $schema_module isa SchemaModule, has moduleKey "vibemachine";
+  $schema_resource isa SchemaResource, has docKey "https://github.com/vibe-machine/ontology-vibemachine#isAssignmentTo:assignmentTarget";
+  not {
+    (resource: $schema_resource, module: $schema_module) isa inModule;
+  };
+insert
+  (resource: $schema_resource, module: $schema_module) isa inModule;
+
+put $generated_role_67 isa SchemaResource,
+  has docKey "https://github.com/vibe-machine/ontology-vibemachine#isBasedOn:basis",
+  has iri "https://github.com/vibe-machine/ontology-vibemachine#isBasedOn:basis",
+  has typeLabel "isBasedOn:basis",
+  has kind "role",
+  has roleName "basis",
+  has prefLabel "basis",
+  has definition "Role 'basis' in relation 'isBasedOn'.";
+match
+  $schema_module isa SchemaModule, has moduleKey "vibemachine";
+  $schema_resource isa SchemaResource, has docKey "https://github.com/vibe-machine/ontology-vibemachine#isBasedOn:basis";
+  not {
+    (resource: $schema_resource, module: $schema_module) isa inModule;
+  };
+insert
+  (resource: $schema_resource, module: $schema_module) isa inModule;
+
+put $generated_role_68 isa SchemaResource,
+  has docKey "https://github.com/vibe-machine/ontology-vibemachine#isBasedOn:derivedThing",
+  has iri "https://github.com/vibe-machine/ontology-vibemachine#isBasedOn:derivedThing",
+  has typeLabel "isBasedOn:derivedThing",
+  has kind "role",
+  has roleName "derivedThing",
+  has prefLabel "derivedThing",
+  has definition "Role 'derivedThing' in relation 'isBasedOn'.";
+match
+  $schema_module isa SchemaModule, has moduleKey "vibemachine";
+  $schema_resource isa SchemaResource, has docKey "https://github.com/vibe-machine/ontology-vibemachine#isBasedOn:derivedThing";
+  not {
+    (resource: $schema_resource, module: $schema_module) isa inModule;
+  };
+insert
+  (resource: $schema_resource, module: $schema_module) isa inModule;

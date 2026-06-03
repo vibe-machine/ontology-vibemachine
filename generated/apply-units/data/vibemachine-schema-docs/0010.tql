@@ -1,0 +1,452 @@
+# Generated executable apply unit from data/vibemachine-schema-docs.tql
+# manifest: manifests/vibemachine-v2.0.3.package-manifest.json
+
+match
+  $struct_left isa SchemaResource, has typeLabel "agentProfileForVersion";
+  $struct_right isa SchemaResource, has typeLabel "isAbout";
+  not {
+    (subtypeResource: $struct_left, supertypeResource: $struct_right) isa schemaSubTypeOf;
+  };
+insert
+  (subtypeResource: $struct_left, supertypeResource: $struct_right) isa schemaSubTypeOf;
+
+match
+  $struct_left isa SchemaResource, has typeLabel "milestoneInReleasePlan";
+  $struct_right isa SchemaResource, has typeLabel "isDirectPartOf";
+  not {
+    (subtypeResource: $struct_left, supertypeResource: $struct_right) isa schemaSubTypeOf;
+  };
+insert
+  (subtypeResource: $struct_left, supertypeResource: $struct_right) isa schemaSubTypeOf;
+
+match
+  $struct_left isa SchemaResource, has typeLabel "milestoneInReleasePlan:milestone";
+  $struct_right isa SchemaResource, has typeLabel "isDirectPartOf:part";
+  not {
+    (subtypeResource: $struct_left, supertypeResource: $struct_right) isa schemaSubTypeOf;
+  };
+insert
+  (subtypeResource: $struct_left, supertypeResource: $struct_right) isa schemaSubTypeOf;
+
+match
+  $struct_left isa SchemaResource, has typeLabel "milestoneInReleasePlan:releasePlan";
+  $struct_right isa SchemaResource, has typeLabel "isDirectPartOf:whole";
+  not {
+    (subtypeResource: $struct_left, supertypeResource: $struct_right) isa schemaSubTypeOf;
+  };
+insert
+  (subtypeResource: $struct_left, supertypeResource: $struct_right) isa schemaSubTypeOf;
+
+match
+  $struct_left isa SchemaResource, has typeLabel "motivatedBy";
+  $struct_right isa SchemaResource, has typeLabel "isBasedOn";
+  not {
+    (subtypeResource: $struct_left, supertypeResource: $struct_right) isa schemaSubTypeOf;
+  };
+insert
+  (subtypeResource: $struct_left, supertypeResource: $struct_right) isa schemaSubTypeOf;
+
+match
+  $struct_left isa SchemaResource, has typeLabel "motivatedBy:featureSpec";
+  $struct_right isa SchemaResource, has typeLabel "isBasedOn:derivedThing";
+  not {
+    (subtypeResource: $struct_left, supertypeResource: $struct_right) isa schemaSubTypeOf;
+  };
+insert
+  (subtypeResource: $struct_left, supertypeResource: $struct_right) isa schemaSubTypeOf;
+
+match
+  $struct_left isa SchemaResource, has typeLabel "motivatedBy:objective";
+  $struct_right isa SchemaResource, has typeLabel "isBasedOn:basis";
+  not {
+    (subtypeResource: $struct_left, supertypeResource: $struct_right) isa schemaSubTypeOf;
+  };
+insert
+  (subtypeResource: $struct_left, supertypeResource: $struct_right) isa schemaSubTypeOf;
+
+match
+  $struct_left isa SchemaResource, has typeLabel "noteReferencesTodo";
+  $struct_right isa SchemaResource, has typeLabel "isAbout";
+  not {
+    (subtypeResource: $struct_left, supertypeResource: $struct_right) isa schemaSubTypeOf;
+  };
+insert
+  (subtypeResource: $struct_left, supertypeResource: $struct_right) isa schemaSubTypeOf;
+
+match
+  $struct_left isa SchemaResource, has typeLabel "noteReferencesTodo:note";
+  $struct_right isa SchemaResource, has typeLabel "isAbout:content";
+  not {
+    (subtypeResource: $struct_left, supertypeResource: $struct_right) isa schemaSubTypeOf;
+  };
+insert
+  (subtypeResource: $struct_left, supertypeResource: $struct_right) isa schemaSubTypeOf;
+
+match
+  $struct_left isa SchemaResource, has typeLabel "noteReferencesTodo:todoItem";
+  $struct_right isa SchemaResource, has typeLabel "isAbout:subjectMatter";
+  not {
+    (subtypeResource: $struct_left, supertypeResource: $struct_right) isa schemaSubTypeOf;
+  };
+insert
+  (subtypeResource: $struct_left, supertypeResource: $struct_right) isa schemaSubTypeOf;
+
+match
+  $struct_left isa SchemaResource, has typeLabel "planningDecisionAboutIssue";
+  $struct_right isa SchemaResource, has typeLabel "isAbout";
+  not {
+    (subtypeResource: $struct_left, supertypeResource: $struct_right) isa schemaSubTypeOf;
+  };
+insert
+  (subtypeResource: $struct_left, supertypeResource: $struct_right) isa schemaSubTypeOf;
+
+match
+  $struct_left isa SchemaResource, has typeLabel "planningDecisionAboutIssue:issue";
+  $struct_right isa SchemaResource, has typeLabel "isAbout:subjectMatter";
+  not {
+    (subtypeResource: $struct_left, supertypeResource: $struct_right) isa schemaSubTypeOf;
+  };
+insert
+  (subtypeResource: $struct_left, supertypeResource: $struct_right) isa schemaSubTypeOf;
+
+match
+  $struct_left isa SchemaResource, has typeLabel "planningDecisionAboutIssue:planningDecision";
+  $struct_right isa SchemaResource, has typeLabel "isAbout:content";
+  not {
+    (subtypeResource: $struct_left, supertypeResource: $struct_right) isa schemaSubTypeOf;
+  };
+insert
+  (subtypeResource: $struct_left, supertypeResource: $struct_right) isa schemaSubTypeOf;
+
+match
+  $struct_left isa SchemaResource, has typeLabel "planningPerformedBy";
+  $struct_right isa SchemaResource, has typeLabel "hasParticipant";
+  not {
+    (subtypeResource: $struct_left, supertypeResource: $struct_right) isa schemaSubTypeOf;
+  };
+insert
+  (subtypeResource: $struct_left, supertypeResource: $struct_right) isa schemaSubTypeOf;
+
+match
+  $struct_left isa SchemaResource, has typeLabel "planningPerformedBy:planner";
+  $struct_right isa SchemaResource, has typeLabel "hasParticipant:participant";
+  not {
+    (subtypeResource: $struct_left, supertypeResource: $struct_right) isa schemaSubTypeOf;
+  };
+insert
+  (subtypeResource: $struct_left, supertypeResource: $struct_right) isa schemaSubTypeOf;
+
+match
+  $struct_left isa SchemaResource, has typeLabel "planningPerformedBy:planningDecision";
+  $struct_right isa SchemaResource, has typeLabel "hasParticipant:participationContext";
+  not {
+    (subtypeResource: $struct_left, supertypeResource: $struct_right) isa schemaSubTypeOf;
+  };
+insert
+  (subtypeResource: $struct_left, supertypeResource: $struct_right) isa schemaSubTypeOf;
+
+match
+  $struct_left isa SchemaResource, has typeLabel "processContainsStage";
+  $struct_right isa SchemaResource, has typeLabel "isMemberOf";
+  not {
+    (subtypeResource: $struct_left, supertypeResource: $struct_right) isa schemaSubTypeOf;
+  };
+insert
+  (subtypeResource: $struct_left, supertypeResource: $struct_right) isa schemaSubTypeOf;
+
+match
+  $struct_left isa SchemaResource, has typeLabel "processContainsStage:process";
+  $struct_right isa SchemaResource, has typeLabel "isMemberOf:collection";
+  not {
+    (subtypeResource: $struct_left, supertypeResource: $struct_right) isa schemaSubTypeOf;
+  };
+insert
+  (subtypeResource: $struct_left, supertypeResource: $struct_right) isa schemaSubTypeOf;
+
+match
+  $struct_left isa SchemaResource, has typeLabel "processContainsStage:stage";
+  $struct_right isa SchemaResource, has typeLabel "isMemberOf:member";
+  not {
+    (subtypeResource: $struct_left, supertypeResource: $struct_right) isa schemaSubTypeOf;
+  };
+insert
+  (subtypeResource: $struct_left, supertypeResource: $struct_right) isa schemaSubTypeOf;
+
+match
+  $struct_left isa SchemaResource, has typeLabel "producesProduct";
+  $struct_right isa SchemaResource, has typeLabel "isProducedBy";
+  not {
+    (subtypeResource: $struct_left, supertypeResource: $struct_right) isa schemaSubTypeOf;
+  };
+insert
+  (subtypeResource: $struct_left, supertypeResource: $struct_right) isa schemaSubTypeOf;
+
+match
+  $struct_left isa SchemaResource, has typeLabel "producesProduct:producedProduct";
+  $struct_right isa SchemaResource, has typeLabel "isProducedBy:product";
+  not {
+    (subtypeResource: $struct_left, supertypeResource: $struct_right) isa schemaSubTypeOf;
+  };
+insert
+  (subtypeResource: $struct_left, supertypeResource: $struct_right) isa schemaSubTypeOf;
+
+match
+  $struct_left isa SchemaResource, has typeLabel "producesProduct:project";
+  $struct_right isa SchemaResource, has typeLabel "isProducedBy:producer";
+  not {
+    (subtypeResource: $struct_left, supertypeResource: $struct_right) isa schemaSubTypeOf;
+  };
+insert
+  (subtypeResource: $struct_left, supertypeResource: $struct_right) isa schemaSubTypeOf;
+
+match
+  $struct_left isa SchemaResource, has typeLabel "productConformsTo";
+  $struct_right isa SchemaResource, has typeLabel "conformsTo";
+  not {
+    (subtypeResource: $struct_left, supertypeResource: $struct_right) isa schemaSubTypeOf;
+  };
+insert
+  (subtypeResource: $struct_left, supertypeResource: $struct_right) isa schemaSubTypeOf;
+
+match
+  $struct_left isa SchemaResource, has typeLabel "productConformsTo:product";
+  $struct_right isa SchemaResource, has typeLabel "conformsTo:conformingThing";
+  not {
+    (subtypeResource: $struct_left, supertypeResource: $struct_right) isa schemaSubTypeOf;
+  };
+insert
+  (subtypeResource: $struct_left, supertypeResource: $struct_right) isa schemaSubTypeOf;
+
+match
+  $struct_left isa SchemaResource, has typeLabel "productConformsTo:productSpec";
+  $struct_right isa SchemaResource, has typeLabel "conformsTo:standard";
+  not {
+    (subtypeResource: $struct_left, supertypeResource: $struct_right) isa schemaSubTypeOf;
+  };
+insert
+  (subtypeResource: $struct_left, supertypeResource: $struct_right) isa schemaSubTypeOf;
+
+match
+  $struct_left isa SchemaResource, has typeLabel "resolutionDecisionAboutIssue";
+  $struct_right isa SchemaResource, has typeLabel "isAbout";
+  not {
+    (subtypeResource: $struct_left, supertypeResource: $struct_right) isa schemaSubTypeOf;
+  };
+insert
+  (subtypeResource: $struct_left, supertypeResource: $struct_right) isa schemaSubTypeOf;
+
+match
+  $struct_left isa SchemaResource, has typeLabel "resolutionDecisionAboutIssue:issue";
+  $struct_right isa SchemaResource, has typeLabel "isAbout:subjectMatter";
+  not {
+    (subtypeResource: $struct_left, supertypeResource: $struct_right) isa schemaSubTypeOf;
+  };
+insert
+  (subtypeResource: $struct_left, supertypeResource: $struct_right) isa schemaSubTypeOf;
+
+match
+  $struct_left isa SchemaResource, has typeLabel "resolutionDecisionAboutIssue:resolutionDecision";
+  $struct_right isa SchemaResource, has typeLabel "isAbout:content";
+  not {
+    (subtypeResource: $struct_left, supertypeResource: $struct_right) isa schemaSubTypeOf;
+  };
+insert
+  (subtypeResource: $struct_left, supertypeResource: $struct_right) isa schemaSubTypeOf;
+
+match
+  $struct_left isa SchemaResource, has typeLabel "resolutionPerformedBy";
+  $struct_right isa SchemaResource, has typeLabel "hasParticipant";
+  not {
+    (subtypeResource: $struct_left, supertypeResource: $struct_right) isa schemaSubTypeOf;
+  };
+insert
+  (subtypeResource: $struct_left, supertypeResource: $struct_right) isa schemaSubTypeOf;
+
+match
+  $struct_left isa SchemaResource, has typeLabel "resolutionPerformedBy:resolutionDecision";
+  $struct_right isa SchemaResource, has typeLabel "hasParticipant:participationContext";
+  not {
+    (subtypeResource: $struct_left, supertypeResource: $struct_right) isa schemaSubTypeOf;
+  };
+insert
+  (subtypeResource: $struct_left, supertypeResource: $struct_right) isa schemaSubTypeOf;
+
+match
+  $struct_left isa SchemaResource, has typeLabel "resolutionPerformedBy:resolver";
+  $struct_right isa SchemaResource, has typeLabel "hasParticipant:participant";
+  not {
+    (subtypeResource: $struct_left, supertypeResource: $struct_right) isa schemaSubTypeOf;
+  };
+insert
+  (subtypeResource: $struct_left, supertypeResource: $struct_right) isa schemaSubTypeOf;
+
+match
+  $struct_left isa SchemaResource, has typeLabel "softwareSystemConformsToVersion";
+  $struct_right isa SchemaResource, has typeLabel "conformsTo";
+  not {
+    (subtypeResource: $struct_left, supertypeResource: $struct_right) isa schemaSubTypeOf;
+  };
+insert
+  (subtypeResource: $struct_left, supertypeResource: $struct_right) isa schemaSubTypeOf;
+
+match
+  $struct_left isa SchemaResource, has typeLabel "softwareSystemConformsToVersion:softwareSystem";
+  $struct_right isa SchemaResource, has typeLabel "conformsTo:conformingThing";
+  not {
+    (subtypeResource: $struct_left, supertypeResource: $struct_right) isa schemaSubTypeOf;
+  };
+insert
+  (subtypeResource: $struct_left, supertypeResource: $struct_right) isa schemaSubTypeOf;
+
+match
+  $struct_left isa SchemaResource, has typeLabel "softwareSystemConformsToVersion:softwareVersion";
+  $struct_right isa SchemaResource, has typeLabel "conformsTo:standard";
+  not {
+    (subtypeResource: $struct_left, supertypeResource: $struct_right) isa schemaSubTypeOf;
+  };
+insert
+  (subtypeResource: $struct_left, supertypeResource: $struct_right) isa schemaSubTypeOf;
+
+match
+  $struct_left isa SchemaResource, has typeLabel "specifiesFeatureFor";
+  $struct_right isa SchemaResource, has typeLabel "isAbout";
+  not {
+    (subtypeResource: $struct_left, supertypeResource: $struct_right) isa schemaSubTypeOf;
+  };
+insert
+  (subtypeResource: $struct_left, supertypeResource: $struct_right) isa schemaSubTypeOf;
+
+match
+  $struct_left isa SchemaResource, has typeLabel "specifiesFeatureFor:featureSpec";
+  $struct_right isa SchemaResource, has typeLabel "isAbout:content";
+  not {
+    (subtypeResource: $struct_left, supertypeResource: $struct_right) isa schemaSubTypeOf;
+  };
+insert
+  (subtypeResource: $struct_left, supertypeResource: $struct_right) isa schemaSubTypeOf;
+
+match
+  $struct_left isa SchemaResource, has typeLabel "specifiesFeatureFor:project";
+  $struct_right isa SchemaResource, has typeLabel "isAbout:subjectMatter";
+  not {
+    (subtypeResource: $struct_left, supertypeResource: $struct_right) isa schemaSubTypeOf;
+  };
+insert
+  (subtypeResource: $struct_left, supertypeResource: $struct_right) isa schemaSubTypeOf;
+
+match
+  $struct_left isa SchemaResource, has typeLabel "stageHasCriterion";
+  $struct_right isa SchemaResource, has typeLabel "isDirectPartOf";
+  not {
+    (subtypeResource: $struct_left, supertypeResource: $struct_right) isa schemaSubTypeOf;
+  };
+insert
+  (subtypeResource: $struct_left, supertypeResource: $struct_right) isa schemaSubTypeOf;
+
+match
+  $struct_left isa SchemaResource, has typeLabel "stageHasCriterion:criterion";
+  $struct_right isa SchemaResource, has typeLabel "isDirectPartOf:part";
+  not {
+    (subtypeResource: $struct_left, supertypeResource: $struct_right) isa schemaSubTypeOf;
+  };
+insert
+  (subtypeResource: $struct_left, supertypeResource: $struct_right) isa schemaSubTypeOf;
+
+match
+  $struct_left isa SchemaResource, has typeLabel "stageHasCriterion:stage";
+  $struct_right isa SchemaResource, has typeLabel "isDirectPartOf:whole";
+  not {
+    (subtypeResource: $struct_left, supertypeResource: $struct_right) isa schemaSubTypeOf;
+  };
+insert
+  (subtypeResource: $struct_left, supertypeResource: $struct_right) isa schemaSubTypeOf;
+
+match
+  $struct_left isa SchemaResource, has typeLabel "submissionProvidedBy";
+  $struct_right isa SchemaResource, has typeLabel "comesFromAgent";
+  not {
+    (subtypeResource: $struct_left, supertypeResource: $struct_right) isa schemaSubTypeOf;
+  };
+insert
+  (subtypeResource: $struct_left, supertypeResource: $struct_right) isa schemaSubTypeOf;
+
+match
+  $struct_left isa SchemaResource, has typeLabel "submissionProvidedBy:submission";
+  $struct_right isa SchemaResource, has typeLabel "comesFromAgent:transfer";
+  not {
+    (subtypeResource: $struct_left, supertypeResource: $struct_right) isa schemaSubTypeOf;
+  };
+insert
+  (subtypeResource: $struct_left, supertypeResource: $struct_right) isa schemaSubTypeOf;
+
+match
+  $struct_left isa SchemaResource, has typeLabel "submissionProvidedBy:submitter";
+  $struct_right isa SchemaResource, has typeLabel "comesFromAgent:originatingAgent";
+  not {
+    (subtypeResource: $struct_left, supertypeResource: $struct_right) isa schemaSubTypeOf;
+  };
+insert
+  (subtypeResource: $struct_left, supertypeResource: $struct_right) isa schemaSubTypeOf;
+
+match
+  $struct_left isa SchemaResource, has typeLabel "targetsRepository";
+  $struct_right isa SchemaResource, has typeLabel "isAbout";
+  not {
+    (subtypeResource: $struct_left, supertypeResource: $struct_right) isa schemaSubTypeOf;
+  };
+insert
+  (subtypeResource: $struct_left, supertypeResource: $struct_right) isa schemaSubTypeOf;
+
+match
+  $struct_left isa SchemaResource, has typeLabel "targetsRepository:engineeringTask";
+  $struct_right isa SchemaResource, has typeLabel "isAbout:content";
+  not {
+    (subtypeResource: $struct_left, supertypeResource: $struct_right) isa schemaSubTypeOf;
+  };
+insert
+  (subtypeResource: $struct_left, supertypeResource: $struct_right) isa schemaSubTypeOf;
+
+match
+  $struct_left isa SchemaResource, has typeLabel "targetsRepository:repository";
+  $struct_right isa SchemaResource, has typeLabel "isAbout:subjectMatter";
+  not {
+    (subtypeResource: $struct_left, supertypeResource: $struct_right) isa schemaSubTypeOf;
+  };
+insert
+  (subtypeResource: $struct_left, supertypeResource: $struct_right) isa schemaSubTypeOf;
+
+match
+  $struct_left isa SchemaResource, has typeLabel "taskAddressesIssue";
+  $struct_right isa SchemaResource, has typeLabel "isAbout";
+  not {
+    (subtypeResource: $struct_left, supertypeResource: $struct_right) isa schemaSubTypeOf;
+  };
+insert
+  (subtypeResource: $struct_left, supertypeResource: $struct_right) isa schemaSubTypeOf;
+
+match
+  $struct_left isa SchemaResource, has typeLabel "taskAddressesIssue:engineeringTask";
+  $struct_right isa SchemaResource, has typeLabel "isAbout:content";
+  not {
+    (subtypeResource: $struct_left, supertypeResource: $struct_right) isa schemaSubTypeOf;
+  };
+insert
+  (subtypeResource: $struct_left, supertypeResource: $struct_right) isa schemaSubTypeOf;
+
+match
+  $struct_left isa SchemaResource, has typeLabel "taskAddressesIssue:issue";
+  $struct_right isa SchemaResource, has typeLabel "isAbout:subjectMatter";
+  not {
+    (subtypeResource: $struct_left, supertypeResource: $struct_right) isa schemaSubTypeOf;
+  };
+insert
+  (subtypeResource: $struct_left, supertypeResource: $struct_right) isa schemaSubTypeOf;
+
+match
+  $struct_left isa SchemaResource, has typeLabel "triageBasedOnSubmission";
+  $struct_right isa SchemaResource, has typeLabel "isBasedOn";
+  not {
+    (subtypeResource: $struct_left, supertypeResource: $struct_right) isa schemaSubTypeOf;
+  };
+insert
+  (subtypeResource: $struct_left, supertypeResource: $struct_right) isa schemaSubTypeOf;

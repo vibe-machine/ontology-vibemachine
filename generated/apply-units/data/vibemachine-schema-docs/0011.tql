@@ -1,0 +1,452 @@
+# Generated executable apply unit from data/vibemachine-schema-docs.tql
+# manifest: manifests/vibemachine-v2.0.3.package-manifest.json
+
+match
+  $struct_left isa SchemaResource, has typeLabel "agentProfileForVersion";
+  $struct_right isa SchemaResource, has typeLabel "isAbout";
+  not {
+    (subtypeResource: $struct_left, supertypeResource: $struct_right) isa schemaSubTypeOf;
+  };
+insert
+  (subtypeResource: $struct_left, supertypeResource: $struct_right) isa schemaSubTypeOf;
+
+match
+  $struct_left isa SchemaResource, has typeLabel "triageBasedOnSubmission:submission";
+  $struct_right isa SchemaResource, has typeLabel "isBasedOn:basis";
+  not {
+    (subtypeResource: $struct_left, supertypeResource: $struct_right) isa schemaSubTypeOf;
+  };
+insert
+  (subtypeResource: $struct_left, supertypeResource: $struct_right) isa schemaSubTypeOf;
+
+match
+  $struct_left isa SchemaResource, has typeLabel "triageBasedOnSubmission:triageDecision";
+  $struct_right isa SchemaResource, has typeLabel "isBasedOn:derivedThing";
+  not {
+    (subtypeResource: $struct_left, supertypeResource: $struct_right) isa schemaSubTypeOf;
+  };
+insert
+  (subtypeResource: $struct_left, supertypeResource: $struct_right) isa schemaSubTypeOf;
+
+match
+  $struct_left isa SchemaResource, has typeLabel "triagePerformedBy";
+  $struct_right isa SchemaResource, has typeLabel "hasParticipant";
+  not {
+    (subtypeResource: $struct_left, supertypeResource: $struct_right) isa schemaSubTypeOf;
+  };
+insert
+  (subtypeResource: $struct_left, supertypeResource: $struct_right) isa schemaSubTypeOf;
+
+match
+  $struct_left isa SchemaResource, has typeLabel "triagePerformedBy:triageDecision";
+  $struct_right isa SchemaResource, has typeLabel "hasParticipant:participationContext";
+  not {
+    (subtypeResource: $struct_left, supertypeResource: $struct_right) isa schemaSubTypeOf;
+  };
+insert
+  (subtypeResource: $struct_left, supertypeResource: $struct_right) isa schemaSubTypeOf;
+
+match
+  $struct_left isa SchemaResource, has typeLabel "triagePerformedBy:triager";
+  $struct_right isa SchemaResource, has typeLabel "hasParticipant:participant";
+  not {
+    (subtypeResource: $struct_left, supertypeResource: $struct_right) isa schemaSubTypeOf;
+  };
+insert
+  (subtypeResource: $struct_left, supertypeResource: $struct_right) isa schemaSubTypeOf;
+
+match
+  $struct_left isa SchemaResource, has typeLabel "usesWorkspace";
+  $struct_right isa SchemaResource, has typeLabel "requires";
+  not {
+    (subtypeResource: $struct_left, supertypeResource: $struct_right) isa schemaSubTypeOf;
+  };
+insert
+  (subtypeResource: $struct_left, supertypeResource: $struct_right) isa schemaSubTypeOf;
+
+match
+  $struct_left isa SchemaResource, has typeLabel "usesWorkspace:project";
+  $struct_right isa SchemaResource, has typeLabel "requires:requiringThing";
+  not {
+    (subtypeResource: $struct_left, supertypeResource: $struct_right) isa schemaSubTypeOf;
+  };
+insert
+  (subtypeResource: $struct_left, supertypeResource: $struct_right) isa schemaSubTypeOf;
+
+match
+  $struct_left isa SchemaResource, has typeLabel "usesWorkspace:workspace";
+  $struct_right isa SchemaResource, has typeLabel "requires:requirement";
+  not {
+    (subtypeResource: $struct_left, supertypeResource: $struct_right) isa schemaSubTypeOf;
+  };
+insert
+  (subtypeResource: $struct_left, supertypeResource: $struct_right) isa schemaSubTypeOf;
+
+match
+  $struct_left isa SchemaResource, has typeLabel "verificationPerformedBy";
+  $struct_right isa SchemaResource, has typeLabel "hasParticipant";
+  not {
+    (subtypeResource: $struct_left, supertypeResource: $struct_right) isa schemaSubTypeOf;
+  };
+insert
+  (subtypeResource: $struct_left, supertypeResource: $struct_right) isa schemaSubTypeOf;
+
+match
+  $struct_left isa SchemaResource, has typeLabel "verificationPerformedBy:verificationDecision";
+  $struct_right isa SchemaResource, has typeLabel "hasParticipant:participationContext";
+  not {
+    (subtypeResource: $struct_left, supertypeResource: $struct_right) isa schemaSubTypeOf;
+  };
+insert
+  (subtypeResource: $struct_left, supertypeResource: $struct_right) isa schemaSubTypeOf;
+
+match
+  $struct_left isa SchemaResource, has typeLabel "verificationPerformedBy:verifier";
+  $struct_right isa SchemaResource, has typeLabel "hasParticipant:participant";
+  not {
+    (subtypeResource: $struct_left, supertypeResource: $struct_right) isa schemaSubTypeOf;
+  };
+insert
+  (subtypeResource: $struct_left, supertypeResource: $struct_right) isa schemaSubTypeOf;
+
+match
+  $struct_left isa SchemaResource, has typeLabel "VibeAgent";
+  $struct_right isa SchemaResource, has typeLabel "VibeSoftwareSystem";
+  not {
+    (subtypeResource: $struct_left, supertypeResource: $struct_right) isa schemaSubTypeOf;
+  };
+insert
+  (subtypeResource: $struct_left, supertypeResource: $struct_right) isa schemaSubTypeOf;
+
+match
+  $struct_left isa SchemaResource, has typeLabel "VibeAgentProfile";
+  $struct_right isa SchemaResource, has typeLabel "Specification";
+  not {
+    (subtypeResource: $struct_left, supertypeResource: $struct_right) isa schemaSubTypeOf;
+  };
+insert
+  (subtypeResource: $struct_left, supertypeResource: $struct_right) isa schemaSubTypeOf;
+
+match
+  $struct_left isa SchemaResource, has typeLabel "VibeBlocksAppearanceSpecification";
+  $struct_right isa SchemaResource, has typeLabel "Specification";
+  not {
+    (subtypeResource: $struct_left, supertypeResource: $struct_right) isa schemaSubTypeOf;
+  };
+insert
+  (subtypeResource: $struct_left, supertypeResource: $struct_right) isa schemaSubTypeOf;
+
+match
+  $struct_left isa SchemaResource, has typeLabel "VibeBusinessObjective";
+  $struct_right isa SchemaResource, has typeLabel "Intention";
+  not {
+    (subtypeResource: $struct_left, supertypeResource: $struct_right) isa schemaSubTypeOf;
+  };
+insert
+  (subtypeResource: $struct_left, supertypeResource: $struct_right) isa schemaSubTypeOf;
+
+match
+  $struct_left isa SchemaResource, has typeLabel "VibeConstraint";
+  $struct_right isa SchemaResource, has typeLabel "Restriction";
+  not {
+    (subtypeResource: $struct_left, supertypeResource: $struct_right) isa schemaSubTypeOf;
+  };
+insert
+  (subtypeResource: $struct_left, supertypeResource: $struct_right) isa schemaSubTypeOf;
+
+match
+  $struct_left isa SchemaResource, has typeLabel "VibeControlBooth";
+  $struct_right isa SchemaResource, has typeLabel "Collection";
+  not {
+    (subtypeResource: $struct_left, supertypeResource: $struct_right) isa schemaSubTypeOf;
+  };
+insert
+  (subtypeResource: $struct_left, supertypeResource: $struct_right) isa schemaSubTypeOf;
+
+match
+  $struct_left isa SchemaResource, has typeLabel "VibeDecision";
+  $struct_right isa SchemaResource, has typeLabel "Determination";
+  not {
+    (subtypeResource: $struct_left, supertypeResource: $struct_right) isa schemaSubTypeOf;
+  };
+insert
+  (subtypeResource: $struct_left, supertypeResource: $struct_right) isa schemaSubTypeOf;
+
+match
+  $struct_left isa SchemaResource, has typeLabel "VibeDependency";
+  $struct_right isa SchemaResource, has typeLabel "Intention";
+  not {
+    (subtypeResource: $struct_left, supertypeResource: $struct_right) isa schemaSubTypeOf;
+  };
+insert
+  (subtypeResource: $struct_left, supertypeResource: $struct_right) isa schemaSubTypeOf;
+
+match
+  $struct_left isa SchemaResource, has typeLabel "VibeEngineeringTask";
+  $struct_right isa SchemaResource, has typeLabel "Task";
+  not {
+    (subtypeResource: $struct_left, supertypeResource: $struct_right) isa schemaSubTypeOf;
+  };
+insert
+  (subtypeResource: $struct_left, supertypeResource: $struct_right) isa schemaSubTypeOf;
+
+match
+  $struct_left isa SchemaResource, has typeLabel "VibeEval";
+  $struct_right isa SchemaResource, has typeLabel "Specification";
+  not {
+    (subtypeResource: $struct_left, supertypeResource: $struct_right) isa schemaSubTypeOf;
+  };
+insert
+  (subtypeResource: $struct_left, supertypeResource: $struct_right) isa schemaSubTypeOf;
+
+match
+  $struct_left isa SchemaResource, has typeLabel "VibeFeatureSpecification";
+  $struct_right isa SchemaResource, has typeLabel "FormattedContent";
+  not {
+    (subtypeResource: $struct_left, supertypeResource: $struct_right) isa schemaSubTypeOf;
+  };
+insert
+  (subtypeResource: $struct_left, supertypeResource: $struct_right) isa schemaSubTypeOf;
+
+match
+  $struct_left isa SchemaResource, has typeLabel "VibeGateCriterion";
+  $struct_right isa SchemaResource, has typeLabel "Specification";
+  not {
+    (subtypeResource: $struct_left, supertypeResource: $struct_right) isa schemaSubTypeOf;
+  };
+insert
+  (subtypeResource: $struct_left, supertypeResource: $struct_right) isa schemaSubTypeOf;
+
+match
+  $struct_left isa SchemaResource, has typeLabel "VibeGateDecision";
+  $struct_right isa SchemaResource, has typeLabel "Determination";
+  not {
+    (subtypeResource: $struct_left, supertypeResource: $struct_right) isa schemaSubTypeOf;
+  };
+insert
+  (subtypeResource: $struct_left, supertypeResource: $struct_right) isa schemaSubTypeOf;
+
+match
+  $struct_left isa SchemaResource, has typeLabel "VibeGitRepository";
+  $struct_right isa SchemaResource, has typeLabel "VibeRepository";
+  not {
+    (subtypeResource: $struct_left, supertypeResource: $struct_right) isa schemaSubTypeOf;
+  };
+insert
+  (subtypeResource: $struct_left, supertypeResource: $struct_right) isa schemaSubTypeOf;
+
+match
+  $struct_left isa SchemaResource, has typeLabel "VibeImplementationSpecification";
+  $struct_right isa SchemaResource, has typeLabel "FormattedContent";
+  not {
+    (subtypeResource: $struct_left, supertypeResource: $struct_right) isa schemaSubTypeOf;
+  };
+insert
+  (subtypeResource: $struct_left, supertypeResource: $struct_right) isa schemaSubTypeOf;
+
+match
+  $struct_left isa SchemaResource, has typeLabel "VibeIssue";
+  $struct_right isa SchemaResource, has typeLabel "ContentExpression";
+  not {
+    (subtypeResource: $struct_left, supertypeResource: $struct_right) isa schemaSubTypeOf;
+  };
+insert
+  (subtypeResource: $struct_left, supertypeResource: $struct_right) isa schemaSubTypeOf;
+
+match
+  $struct_left isa SchemaResource, has typeLabel "VibeIssueAssignmentDecision";
+  $struct_right isa SchemaResource, has typeLabel "VibeGateDecision";
+  not {
+    (subtypeResource: $struct_left, supertypeResource: $struct_right) isa schemaSubTypeOf;
+  };
+insert
+  (subtypeResource: $struct_left, supertypeResource: $struct_right) isa schemaSubTypeOf;
+
+match
+  $struct_left isa SchemaResource, has typeLabel "VibeIssueClosureDecision";
+  $struct_right isa SchemaResource, has typeLabel "VibeGateDecision";
+  not {
+    (subtypeResource: $struct_left, supertypeResource: $struct_right) isa schemaSubTypeOf;
+  };
+insert
+  (subtypeResource: $struct_left, supertypeResource: $struct_right) isa schemaSubTypeOf;
+
+match
+  $struct_left isa SchemaResource, has typeLabel "VibeIssueKind";
+  $struct_right isa SchemaResource, has typeLabel "Category";
+  not {
+    (subtypeResource: $struct_left, supertypeResource: $struct_right) isa schemaSubTypeOf;
+  };
+insert
+  (subtypeResource: $struct_left, supertypeResource: $struct_right) isa schemaSubTypeOf;
+
+match
+  $struct_left isa SchemaResource, has typeLabel "VibeIssuePlanningDecision";
+  $struct_right isa SchemaResource, has typeLabel "VibeGateDecision";
+  not {
+    (subtypeResource: $struct_left, supertypeResource: $struct_right) isa schemaSubTypeOf;
+  };
+insert
+  (subtypeResource: $struct_left, supertypeResource: $struct_right) isa schemaSubTypeOf;
+
+match
+  $struct_left isa SchemaResource, has typeLabel "VibeIssuePriority";
+  $struct_right isa SchemaResource, has typeLabel "Category";
+  not {
+    (subtypeResource: $struct_left, supertypeResource: $struct_right) isa schemaSubTypeOf;
+  };
+insert
+  (subtypeResource: $struct_left, supertypeResource: $struct_right) isa schemaSubTypeOf;
+
+match
+  $struct_left isa SchemaResource, has typeLabel "VibeIssueResolution";
+  $struct_right isa SchemaResource, has typeLabel "Category";
+  not {
+    (subtypeResource: $struct_left, supertypeResource: $struct_right) isa schemaSubTypeOf;
+  };
+insert
+  (subtypeResource: $struct_left, supertypeResource: $struct_right) isa schemaSubTypeOf;
+
+match
+  $struct_left isa SchemaResource, has typeLabel "VibeIssueResolutionDecision";
+  $struct_right isa SchemaResource, has typeLabel "VibeGateDecision";
+  not {
+    (subtypeResource: $struct_left, supertypeResource: $struct_right) isa schemaSubTypeOf;
+  };
+insert
+  (subtypeResource: $struct_left, supertypeResource: $struct_right) isa schemaSubTypeOf;
+
+match
+  $struct_left isa SchemaResource, has typeLabel "VibeIssueSeverity";
+  $struct_right isa SchemaResource, has typeLabel "Category";
+  not {
+    (subtypeResource: $struct_left, supertypeResource: $struct_right) isa schemaSubTypeOf;
+  };
+insert
+  (subtypeResource: $struct_left, supertypeResource: $struct_right) isa schemaSubTypeOf;
+
+match
+  $struct_left isa SchemaResource, has typeLabel "VibeIssueStatus";
+  $struct_right isa SchemaResource, has typeLabel "Category";
+  not {
+    (subtypeResource: $struct_left, supertypeResource: $struct_right) isa schemaSubTypeOf;
+  };
+insert
+  (subtypeResource: $struct_left, supertypeResource: $struct_right) isa schemaSubTypeOf;
+
+match
+  $struct_left isa SchemaResource, has typeLabel "VibeIssueTriageDecision";
+  $struct_right isa SchemaResource, has typeLabel "VibeGateDecision";
+  not {
+    (subtypeResource: $struct_left, supertypeResource: $struct_right) isa schemaSubTypeOf;
+  };
+insert
+  (subtypeResource: $struct_left, supertypeResource: $struct_right) isa schemaSubTypeOf;
+
+match
+  $struct_left isa SchemaResource, has typeLabel "VibeIssueVerificationDecision";
+  $struct_right isa SchemaResource, has typeLabel "VibeGateDecision";
+  not {
+    (subtypeResource: $struct_left, supertypeResource: $struct_right) isa schemaSubTypeOf;
+  };
+insert
+  (subtypeResource: $struct_left, supertypeResource: $struct_right) isa schemaSubTypeOf;
+
+match
+  $struct_left isa SchemaResource, has typeLabel "VibeIssueWorkStartedDecision";
+  $struct_right isa SchemaResource, has typeLabel "VibeGateDecision";
+  not {
+    (subtypeResource: $struct_left, supertypeResource: $struct_right) isa schemaSubTypeOf;
+  };
+insert
+  (subtypeResource: $struct_left, supertypeResource: $struct_right) isa schemaSubTypeOf;
+
+match
+  $struct_left isa SchemaResource, has typeLabel "VibeMilestone";
+  $struct_right isa SchemaResource, has typeLabel "ScheduledEvent";
+  not {
+    (subtypeResource: $struct_left, supertypeResource: $struct_right) isa schemaSubTypeOf;
+  };
+insert
+  (subtypeResource: $struct_left, supertypeResource: $struct_right) isa schemaSubTypeOf;
+
+match
+  $struct_left isa SchemaResource, has typeLabel "VibeNote";
+  $struct_right isa SchemaResource, has typeLabel "FormattedContent";
+  not {
+    (subtypeResource: $struct_left, supertypeResource: $struct_right) isa schemaSubTypeOf;
+  };
+insert
+  (subtypeResource: $struct_left, supertypeResource: $struct_right) isa schemaSubTypeOf;
+
+match
+  $struct_left isa SchemaResource, has typeLabel "VibeProcess";
+  $struct_right isa SchemaResource, has typeLabel "TaskTemplate";
+  not {
+    (subtypeResource: $struct_left, supertypeResource: $struct_right) isa schemaSubTypeOf;
+  };
+insert
+  (subtypeResource: $struct_left, supertypeResource: $struct_right) isa schemaSubTypeOf;
+
+match
+  $struct_left isa SchemaResource, has typeLabel "VibeProcessStage";
+  $struct_right isa SchemaResource, has typeLabel "Category";
+  not {
+    (subtypeResource: $struct_left, supertypeResource: $struct_right) isa schemaSubTypeOf;
+  };
+insert
+  (subtypeResource: $struct_left, supertypeResource: $struct_right) isa schemaSubTypeOf;
+
+match
+  $struct_left isa SchemaResource, has typeLabel "VibeProduct";
+  $struct_right isa SchemaResource, has typeLabel "VibeSoftwareSystem";
+  not {
+    (subtypeResource: $struct_left, supertypeResource: $struct_right) isa schemaSubTypeOf;
+  };
+insert
+  (subtypeResource: $struct_left, supertypeResource: $struct_right) isa schemaSubTypeOf;
+
+match
+  $struct_left isa SchemaResource, has typeLabel "VibeProductSpecification";
+  $struct_right isa SchemaResource, has typeLabel "ProductSpecification";
+  not {
+    (subtypeResource: $struct_left, supertypeResource: $struct_right) isa schemaSubTypeOf;
+  };
+insert
+  (subtypeResource: $struct_left, supertypeResource: $struct_right) isa schemaSubTypeOf;
+
+match
+  $struct_left isa SchemaResource, has typeLabel "VibeProject";
+  $struct_right isa SchemaResource, has typeLabel "Project";
+  not {
+    (subtypeResource: $struct_left, supertypeResource: $struct_right) isa schemaSubTypeOf;
+  };
+insert
+  (subtypeResource: $struct_left, supertypeResource: $struct_right) isa schemaSubTypeOf;
+
+match
+  $struct_left isa SchemaResource, has typeLabel "VibeQuestion";
+  $struct_right isa SchemaResource, has typeLabel "Intention";
+  not {
+    (subtypeResource: $struct_left, supertypeResource: $struct_right) isa schemaSubTypeOf;
+  };
+insert
+  (subtypeResource: $struct_left, supertypeResource: $struct_right) isa schemaSubTypeOf;
+
+match
+  $struct_left isa SchemaResource, has typeLabel "VibeReleasePlan";
+  $struct_right isa SchemaResource, has typeLabel "ScheduledEvent";
+  not {
+    (subtypeResource: $struct_left, supertypeResource: $struct_right) isa schemaSubTypeOf;
+  };
+insert
+  (subtypeResource: $struct_left, supertypeResource: $struct_right) isa schemaSubTypeOf;
+
+match
+  $struct_left isa SchemaResource, has typeLabel "VibeRepository";
+  $struct_right isa SchemaResource, has typeLabel "Component";
+  not {
+    (subtypeResource: $struct_left, supertypeResource: $struct_right) isa schemaSubTypeOf;
+  };
+insert
+  (subtypeResource: $struct_left, supertypeResource: $struct_right) isa schemaSubTypeOf;

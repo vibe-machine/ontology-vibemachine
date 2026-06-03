@@ -1,7 +1,7 @@
 {
   "name": "vibemachine",
   "displayName": "vibemachine",
-  "version": "2.0.2",
+  "version": "2.0.3",
   "description": "Workspace and product modeling package for Vibe Machine planning and delivery.",
   "author": "Vibe Machine",
   "license": "Apache-2.0",
@@ -43,7 +43,27 @@
     "generated/apply-units/data/vibemachine-process-seeds/0002.tql",
     "data/vibemachine-notes-seeds.tql",
     "data/vibemachine-provenance.tql",
-    "data/vibemachine-schema-docs.tql"
+    "generated/apply-units/data/vibemachine-schema-docs/0001.tql",
+    "generated/apply-units/data/vibemachine-schema-docs/0002.tql",
+    "generated/apply-units/data/vibemachine-schema-docs/0003.tql",
+    "generated/apply-units/data/vibemachine-schema-docs/0004.tql",
+    "generated/apply-units/data/vibemachine-schema-docs/0005.tql",
+    "generated/apply-units/data/vibemachine-schema-docs/0006.tql",
+    "generated/apply-units/data/vibemachine-schema-docs/0007.tql",
+    "generated/apply-units/data/vibemachine-schema-docs/0008.tql",
+    "generated/apply-units/data/vibemachine-schema-docs/0009.tql",
+    "generated/apply-units/data/vibemachine-schema-docs/0010.tql",
+    "generated/apply-units/data/vibemachine-schema-docs/0011.tql",
+    "generated/apply-units/data/vibemachine-schema-docs/0012.tql",
+    "generated/apply-units/data/vibemachine-schema-docs/0013.tql",
+    "generated/apply-units/data/vibemachine-schema-docs/0014.tql",
+    "generated/apply-units/data/vibemachine-schema-docs/0015.tql",
+    "generated/apply-units/data/vibemachine-schema-docs/0016.tql",
+    "generated/apply-units/data/vibemachine-schema-docs/0017.tql",
+    "generated/apply-units/data/vibemachine-schema-docs/0018.tql",
+    "generated/apply-units/data/vibemachine-schema-docs/0019.tql",
+    "generated/apply-units/data/vibemachine-schema-docs/0020.tql",
+    "generated/apply-units/data/vibemachine-schema-docs/0021.tql"
   ],
   "dependencies": [
     {
@@ -55,14 +75,13 @@
     "refresh:package-contract": "node ../ontology-gist/tools/package_contract/bootstrap_hand_authored_package.mjs .",
     "validate:bootstrap": "node tools/package_contract/validate_bootstrap.mjs",
     "test:typedb-bootstrap": "node tools/package_contract/validate_typedb_bootstrap.mjs",
-    "test:typedb-migration": "node tools/package_contract/validate_typedb_migration.mjs",
     "test:control-booth": "node tools/package_contract/validate_control_booth.mjs",
     "test": "npm run validate:bootstrap && npm run test:typedb-bootstrap",
     "release": "../ontology-tooling/bin/ontology-release --repo .",
     "release:check": "../ontology-tooling/bin/ontology-release --repo . --validate-only"
   },
   "manifests": [
-    "manifests/vibemachine-v2.0.2.package-manifest.json"
+    "manifests/vibemachine-v2.0.3.package-manifest.json"
   ],
   "assembly": {
     "loadOrder": [
@@ -78,7 +97,27 @@
       "generated/apply-units/data/vibemachine-process-seeds/0002.tql",
       "data/vibemachine-notes-seeds.tql",
       "data/vibemachine-provenance.tql",
-      "data/vibemachine-schema-docs.tql"
+      "generated/apply-units/data/vibemachine-schema-docs/0001.tql",
+      "generated/apply-units/data/vibemachine-schema-docs/0002.tql",
+      "generated/apply-units/data/vibemachine-schema-docs/0003.tql",
+      "generated/apply-units/data/vibemachine-schema-docs/0004.tql",
+      "generated/apply-units/data/vibemachine-schema-docs/0005.tql",
+      "generated/apply-units/data/vibemachine-schema-docs/0006.tql",
+      "generated/apply-units/data/vibemachine-schema-docs/0007.tql",
+      "generated/apply-units/data/vibemachine-schema-docs/0008.tql",
+      "generated/apply-units/data/vibemachine-schema-docs/0009.tql",
+      "generated/apply-units/data/vibemachine-schema-docs/0010.tql",
+      "generated/apply-units/data/vibemachine-schema-docs/0011.tql",
+      "generated/apply-units/data/vibemachine-schema-docs/0012.tql",
+      "generated/apply-units/data/vibemachine-schema-docs/0013.tql",
+      "generated/apply-units/data/vibemachine-schema-docs/0014.tql",
+      "generated/apply-units/data/vibemachine-schema-docs/0015.tql",
+      "generated/apply-units/data/vibemachine-schema-docs/0016.tql",
+      "generated/apply-units/data/vibemachine-schema-docs/0017.tql",
+      "generated/apply-units/data/vibemachine-schema-docs/0018.tql",
+      "generated/apply-units/data/vibemachine-schema-docs/0019.tql",
+      "generated/apply-units/data/vibemachine-schema-docs/0020.tql",
+      "generated/apply-units/data/vibemachine-schema-docs/0021.tql"
     ],
     "generatedArtifacts": [
       "schema/self-describing-schema.tql",
@@ -87,138 +126,33 @@
       "data/vibemachine-schema-docs.tql",
       "data/vibemachine-provenance.tql",
       "manifests/package-manifest.schema.json",
-      "manifests/vibemachine-v2.0.2.package-manifest.json"
+      "manifests/vibemachine-v2.0.3.package-manifest.json",
+      "generated/apply-units/data/vibemachine-schema-docs/0001.tql",
+      "generated/apply-units/data/vibemachine-schema-docs/0002.tql",
+      "generated/apply-units/data/vibemachine-schema-docs/0003.tql",
+      "generated/apply-units/data/vibemachine-schema-docs/0004.tql",
+      "generated/apply-units/data/vibemachine-schema-docs/0005.tql",
+      "generated/apply-units/data/vibemachine-schema-docs/0006.tql",
+      "generated/apply-units/data/vibemachine-schema-docs/0007.tql",
+      "generated/apply-units/data/vibemachine-schema-docs/0008.tql",
+      "generated/apply-units/data/vibemachine-schema-docs/0009.tql",
+      "generated/apply-units/data/vibemachine-schema-docs/0010.tql",
+      "generated/apply-units/data/vibemachine-schema-docs/0011.tql",
+      "generated/apply-units/data/vibemachine-schema-docs/0012.tql",
+      "generated/apply-units/data/vibemachine-schema-docs/0013.tql",
+      "generated/apply-units/data/vibemachine-schema-docs/0014.tql",
+      "generated/apply-units/data/vibemachine-schema-docs/0015.tql",
+      "generated/apply-units/data/vibemachine-schema-docs/0016.tql",
+      "generated/apply-units/data/vibemachine-schema-docs/0017.tql",
+      "generated/apply-units/data/vibemachine-schema-docs/0018.tql",
+      "generated/apply-units/data/vibemachine-schema-docs/0019.tql",
+      "generated/apply-units/data/vibemachine-schema-docs/0020.tql",
+      "generated/apply-units/data/vibemachine-schema-docs/0021.tql"
     ]
   },
   "provenance": {
-    "manifest": "manifests/vibemachine-v2.0.2.package-manifest.json",
+    "manifest": "manifests/vibemachine-v2.0.3.package-manifest.json",
     "status": "bootstrap"
-  },
-  "migration": {
-    "format": 1,
-    "supportsUpgradeFrom": [
-      "1.3.x",
-      "2.0.x"
-    ],
-    "plans": [
-      {
-        "id": "vibemachine-1.3.6-to-2.0.2",
-        "from": "1.3.6",
-        "to": "2.0.2",
-        "mode": "compatible",
-        "snapshot": {
-          "required": true,
-          "label": "pre-vibemachine-2.0.2-migration"
-        },
-        "phases": [
-          {
-            "id": "preflight",
-            "units": [
-              {
-                "kind": "assert-data",
-                "path": "migrations/preflight/assert-v1.3.6-module-version.tql"
-              }
-            ]
-          },
-          {
-            "id": "migrate",
-            "units": [
-              {
-                "kind": "assert-data",
-                "path": "migrations/v1.3.6-to-v2.0.2.tql"
-              }
-            ]
-          },
-          {
-            "id": "verify",
-            "units": [
-              {
-                "kind": "assert-data",
-                "path": "migrations/preflight/assert-v1.3.6-module-version.tql"
-              }
-            ]
-          }
-        ]
-      },
-      {
-        "id": "vibemachine-2.0.0-to-2.0.2",
-        "from": "2.0.0",
-        "to": "2.0.2",
-        "mode": "compatible",
-        "snapshot": {
-          "required": true,
-          "label": "pre-vibemachine-2.0.2-migration"
-        },
-        "phases": [
-          {
-            "id": "preflight",
-            "units": [
-              {
-                "kind": "assert-data",
-                "path": "migrations/preflight/assert-v2.0.0-module-version.tql"
-              }
-            ]
-          },
-          {
-            "id": "migrate",
-            "units": [
-              {
-                "kind": "assert-data",
-                "path": "migrations/v2.0.0-to-v2.0.2.tql"
-              }
-            ]
-          },
-          {
-            "id": "verify",
-            "units": [
-              {
-                "kind": "assert-data",
-                "path": "migrations/preflight/assert-v2.0.0-module-version.tql"
-              }
-            ]
-          }
-        ]
-      },
-      {
-        "id": "vibemachine-2.0.1-to-2.0.2",
-        "from": "2.0.1",
-        "to": "2.0.2",
-        "mode": "compatible",
-        "snapshot": {
-          "required": true,
-          "label": "pre-vibemachine-2.0.2-migration"
-        },
-        "phases": [
-          {
-            "id": "preflight",
-            "units": [
-              {
-                "kind": "assert-data",
-                "path": "migrations/preflight/assert-v2.0.1-module-version.tql"
-              }
-            ]
-          },
-          {
-            "id": "migrate",
-            "units": [
-              {
-                "kind": "assert-data",
-                "path": "migrations/v2.0.1-to-v2.0.2.tql"
-              }
-            ]
-          },
-          {
-            "id": "verify",
-            "units": [
-              {
-                "kind": "assert-data",
-                "path": "migrations/preflight/assert-v2.0.1-module-version.tql"
-              }
-            ]
-          }
-        ]
-      }
-    ]
   },
   "legacyDocumentation": {
     "deprecatedFiles": [
