@@ -1,7 +1,7 @@
 # Provenance bootstrap
 # upstream-repo: https://github.com/vibe-machine/ontology-vibemachine
-# upstream-tag: v2.0.3
-# upstream-commit: 52db72a349e5264c5ce50506f275839a4dae2a62
+# upstream-tag: v3.0.0
+# upstream-commit: 1d9d7fdfaf8385ff03cba8b3b7f1682d2b217f68
 # source-artifacts:
 # - package.json
 # - schema/vibemachine.tql
@@ -12,7 +12,28 @@
 # - generated/apply-units/data/vibemachine-process-seeds/0001.tql
 # - generated/apply-units/data/vibemachine-process-seeds/0002.tql
 # - data/vibemachine-notes-seeds.tql
-# manifest: manifests/vibemachine-v2.0.3.package-manifest.json
+# - generated/apply-units/data/vibemachine-schema-docs/0001.tql
+# - generated/apply-units/data/vibemachine-schema-docs/0002.tql
+# - generated/apply-units/data/vibemachine-schema-docs/0003.tql
+# - generated/apply-units/data/vibemachine-schema-docs/0004.tql
+# - generated/apply-units/data/vibemachine-schema-docs/0005.tql
+# - generated/apply-units/data/vibemachine-schema-docs/0006.tql
+# - generated/apply-units/data/vibemachine-schema-docs/0007.tql
+# - generated/apply-units/data/vibemachine-schema-docs/0008.tql
+# - generated/apply-units/data/vibemachine-schema-docs/0009.tql
+# - generated/apply-units/data/vibemachine-schema-docs/0010.tql
+# - generated/apply-units/data/vibemachine-schema-docs/0011.tql
+# - generated/apply-units/data/vibemachine-schema-docs/0012.tql
+# - generated/apply-units/data/vibemachine-schema-docs/0013.tql
+# - generated/apply-units/data/vibemachine-schema-docs/0014.tql
+# - generated/apply-units/data/vibemachine-schema-docs/0015.tql
+# - generated/apply-units/data/vibemachine-schema-docs/0016.tql
+# - generated/apply-units/data/vibemachine-schema-docs/0017.tql
+# - generated/apply-units/data/vibemachine-schema-docs/0018.tql
+# - generated/apply-units/data/vibemachine-schema-docs/0019.tql
+# - generated/apply-units/data/vibemachine-schema-docs/0020.tql
+# - generated/apply-units/data/vibemachine-schema-docs/0021.tql
+# manifest: manifests/vibemachine-v3.0.0.package-manifest.json
 # generator: hand-authored-package-bootstrap/0.1.0
 put $module isa SchemaModule,
   has moduleKey "vibemachine",
