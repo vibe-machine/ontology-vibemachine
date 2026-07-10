@@ -77,8 +77,8 @@
     "test:typedb-bootstrap": "node tools/package_contract/validate_typedb_bootstrap.mjs",
     "test:control-booth": "node tools/package_contract/validate_control_booth.mjs",
     "test": "npm run validate:bootstrap && npm run test:typedb-bootstrap",
-    "release": "../ontology-tooling/bin/ontology-release --repo .",
-    "release:check": "../ontology-tooling/bin/ontology-release --repo . --validate-only"
+    "release": "../ontology-tooling/bin/ont release --repo .",
+    "release:check": "../ontology-tooling/bin/ont release --repo . --validate-only"
   },
   "manifests": [
     "manifests/vibemachine-v3.0.0.package-manifest.json"
