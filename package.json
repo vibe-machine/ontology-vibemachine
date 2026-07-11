@@ -133,6 +133,71 @@
     "manifest": "manifests/vibemachine-v3.0.0.package-manifest.json",
     "status": "bootstrap"
   },
+  "migration": {
+    "format": 1,
+    "supportsUpgradeFrom": [
+      ">=2.0.0 <2.0.3"
+    ],
+    "plans": [
+      {
+        "id": "vibemachine-2.0.x-to-3.0.0",
+        "from": ">=2.0.0 <2.0.3",
+        "to": "3.0.0",
+        "mode": "compatible",
+        "snapshot": {
+          "required": true,
+          "label": "pre-vibemachine-3.0.0-migration"
+        },
+        "phases": [
+          {
+            "id": "before-dependencies-schema",
+            "units": [
+              {
+                "kind": "schema",
+                "path": "migrations/v2.0.x-to-v3.0.0-before-dependencies-schema.tql"
+              }
+            ]
+          },
+          {
+            "id": "before-dependencies-data",
+            "units": [
+              {
+                "kind": "write",
+                "path": "migrations/v2.0.x-to-v3.0.0-before-dependencies-data.tql"
+              }
+            ]
+          },
+          {
+            "id": "after-dependencies-schema",
+            "units": [
+              {
+                "kind": "schema",
+                "path": "migrations/v2.0.x-to-v3.0.0-after-dependencies-schema.tql"
+              }
+            ]
+          },
+          {
+            "id": "after-dependencies-data",
+            "units": [
+              {
+                "kind": "write",
+                "path": "migrations/v2.0.x-to-v3.0.0-after-dependencies-data.tql"
+              }
+            ]
+          },
+          {
+            "id": "after-dependencies-cleanup",
+            "units": [
+              {
+                "kind": "schema",
+                "path": "migrations/v2.0.x-to-v3.0.0-cleanup-schema.tql"
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  },
   "legacyDocumentation": {
     "deprecatedFiles": [
       "data/vibemachine-typedoc.tql",

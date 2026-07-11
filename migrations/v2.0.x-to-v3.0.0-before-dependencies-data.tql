@@ -1,0 +1,8 @@
+match
+  $old isa stageHasCriterion,
+    links (criterion: $criterion, stage: $stage);
+delete
+  $old;
+insert
+  (migrationCriterion: $criterion, migrationStage: $stage)
+    isa VibeMigrationStageHasCriterion;

@@ -1,0 +1,320 @@
+# Retarget the prepared VibeMachine roles to the semantic GIST 5 roles after
+# the GIST dependency upgrade has installed them.
+
+redefine motivatedBy relates featureSpec as derivedThing;
+
+redefine motivatedBy relates objective as basis;
+
+redefine implementsFeature relates implementationSpec as derivedThing;
+
+redefine implementsFeature relates featureSpec as basis;
+
+redefine fulfillsRequirement relates engineeringTask as derivedThing;
+
+redefine fulfillsRequirement relates requirement as basis;
+
+redefine specifiesFeatureFor relates featureSpec as content;
+
+redefine specifiesFeatureFor relates project as subjectMatter;
+
+redefine targetsRepository relates engineeringTask as content;
+
+redefine targetsRepository relates repository as subjectMatter;
+
+redefine featureOfProduct relates featureSpec as part;
+
+redefine featureOfProduct relates productSpec as whole;
+
+redefine producesProduct relates project as producer;
+
+redefine productConformsTo relates product as conformingThing;
+
+redefine productConformsTo relates productSpec as standard;
+
+redefine softwareSystemConformsToVersion relates softwareSystem as conformingThing;
+
+redefine softwareSystemConformsToVersion relates softwareVersion as standard;
+
+redefine belongsToWorkspace relates repository as member;
+
+redefine belongsToWorkspace relates workspace as collection;
+
+redefine controlBoothIncludes relates includedMember as member;
+
+redefine controlBoothIncludes relates controlBooth as collection;
+
+redefine agentProfileForVersion relates agentProfile as content;
+
+redefine agentProfileForVersion relates softwareVersion as subjectMatter;
+
+redefine producesProduct relates producedProduct as product;
+
+redefine assignsPerformer relates performerAssignment as assignment;
+
+redefine assignsPerformer relates performer as assignedResource;
+
+redefine assignmentForTask relates taskAssignment as assignment;
+
+redefine assignmentForTask relates task as assignmentTarget;
+
+redefine assignmentUsesProfile relates assignment as derivedThing;
+
+redefine assignmentUsesProfile relates agentProfile as basis;
+
+redefine assignmentAllocatedBy relates assignment as allocatedThing;
+
+redefine assignmentAllocatedBy relates assigner as allocator;
+
+redefine issueDerivedFromSubmission relates issue as derivedThing;
+
+redefine issueDerivedFromSubmission relates submission as basis;
+
+redefine triageBasedOnSubmission relates triageDecision as derivedThing;
+
+redefine triageBasedOnSubmission relates submission as basis;
+
+redefine issueProducedByTriage relates issue as product;
+
+redefine issueProducedByTriage relates triageDecision as producer;
+
+redefine taskAddressesIssue relates engineeringTask as content;
+
+redefine taskAddressesIssue relates issue as subjectMatter;
+
+redefine issueAboutProject relates issue as content;
+
+redefine issueAboutProject relates project as subjectMatter;
+
+redefine issueAboutRepository relates issue as content;
+
+redefine issueAboutRepository relates repository as subjectMatter;
+
+redefine milestoneInReleasePlan relates milestone as part;
+
+redefine milestoneInReleasePlan relates releasePlan as whole;
+
+define issueCommittedToRelease sub isMemberOf;
+
+undefine
+  plays issueCommittedToRelease:issue from VibeIssue;
+  plays issueCommittedToRelease:releasePlan from VibeReleasePlan;
+
+undefine
+  relates issue from issueCommittedToRelease;
+  relates releasePlan from issueCommittedToRelease;
+
+define
+  issueCommittedToRelease relates issue as member;
+  issueCommittedToRelease relates releasePlan as collection;
+  VibeIssue plays issueCommittedToRelease:issue;
+  VibeReleasePlan plays issueCommittedToRelease:releasePlan;
+
+define issueTargetsMilestone sub isAbout;
+
+undefine
+  plays issueTargetsMilestone:issue from VibeIssue;
+  plays issueTargetsMilestone:milestone from VibeMilestone;
+
+undefine
+  relates issue from issueTargetsMilestone;
+  relates milestone from issueTargetsMilestone;
+
+define
+  issueTargetsMilestone relates issue as content;
+  issueTargetsMilestone relates milestone as subjectMatter;
+  VibeIssue plays issueTargetsMilestone:issue;
+  VibeMilestone plays issueTargetsMilestone:milestone;
+
+define duplicateOfIssue sub refersTo;
+
+undefine
+  plays duplicateOfIssue:duplicateIssue from VibeIssue;
+  plays duplicateOfIssue:canonicalIssue from VibeIssue;
+
+undefine
+  relates duplicateIssue from duplicateOfIssue;
+  relates canonicalIssue from duplicateOfIssue;
+
+define
+  duplicateOfIssue relates duplicateIssue as referringThing;
+  duplicateOfIssue relates canonicalIssue as referent;
+  VibeIssue plays duplicateOfIssue:duplicateIssue;
+  VibeIssue plays duplicateOfIssue:canonicalIssue;
+
+redefine planningDecisionAboutIssue relates planningDecision as content;
+
+redefine planningDecisionAboutIssue relates issue as subjectMatter;
+
+redefine resolutionDecisionAboutIssue relates resolutionDecision as content;
+
+redefine resolutionDecisionAboutIssue relates issue as subjectMatter;
+
+redefine closureDecisionAboutIssue relates closureDecision as content;
+
+redefine closureDecisionAboutIssue relates issue as subjectMatter;
+
+redefine submissionProvidedBy relates submission as transfer;
+
+redefine submissionProvidedBy relates submitter as originatingAgent;
+
+redefine triagePerformedBy relates triageDecision as participationContext;
+
+redefine triagePerformedBy relates triager as participant;
+
+redefine planningPerformedBy relates planningDecision as participationContext;
+
+redefine planningPerformedBy relates planner as participant;
+
+redefine resolutionPerformedBy relates resolutionDecision as participationContext;
+
+redefine resolutionPerformedBy relates resolver as participant;
+
+redefine closurePerformedBy relates closureDecision as participationContext;
+
+redefine closurePerformedBy relates closer as participant;
+
+redefine controlBoothOwnedBy relates controlBooth as governedThing;
+
+redefine controlBoothOwnedBy relates owner as governingAuthority;
+
+redefine controlBoothHasCollaborator relates controlBooth as participationContext;
+
+redefine controlBoothHasCollaborator relates collaborator as participant;
+
+define usesWorkspace sub requires;
+
+undefine
+  plays usesWorkspace:project from VibeProject;
+  plays usesWorkspace:workspace from VibeWorkspace;
+
+undefine
+  relates project from usesWorkspace;
+  relates workspace from usesWorkspace;
+
+define
+  usesWorkspace relates project as requiringThing;
+  usesWorkspace relates workspace as requirement;
+  VibeProject plays usesWorkspace:project;
+  VibeWorkspace plays usesWorkspace:workspace;
+
+define containsItem sub isDirectPartOf;
+
+undefine
+  plays containsItem:container from VibeFeatureSpecification;
+  plays containsItem:container from VibeImplementationSpecification;
+  plays containsItem:item from VibeRequirement;
+  plays containsItem:item from VibeDecision;
+  plays containsItem:item from VibeConstraint;
+  plays containsItem:item from VibeQuestion;
+  plays containsItem:item from VibeEngineeringTask;
+  plays containsItem:item from VibeVerification;
+  plays containsItem:item from VibeEval;
+  plays containsItem:item from VibeDependency;
+
+undefine
+  relates item from containsItem;
+  relates container from containsItem;
+
+define
+  containsItem relates item as part;
+  containsItem relates container as whole;
+  VibeFeatureSpecification plays containsItem:container;
+  VibeImplementationSpecification plays containsItem:container;
+  VibeRequirement plays containsItem:item;
+  VibeDecision plays containsItem:item;
+  VibeConstraint plays containsItem:item;
+  VibeQuestion plays containsItem:item;
+  VibeEngineeringTask plays containsItem:item;
+  VibeVerification plays containsItem:item;
+  VibeEval plays containsItem:item;
+  VibeDependency plays containsItem:item;
+
+# Process schema role and supertype changes.
+
+redefine processContainsStage relates stage as member;
+
+redefine processContainsStage relates process as collection;
+
+undefine
+  plays stageHasCriterion:stage from VibeProcessStage;
+  plays stageHasCriterion:criterion from VibeGateCriterion;
+
+undefine
+  relates criterion from stageHasCriterion;
+  relates stage from stageHasCriterion;
+
+redefine stageHasCriterion sub isDirectPartOf;
+
+define
+  stageHasCriterion relates criterion as part;
+  stageHasCriterion relates stage as whole;
+  VibeProcessStage plays stageHasCriterion:stage;
+  VibeGateCriterion plays stageHasCriterion:criterion;
+
+undefine
+  plays gateAdvancesEntity:gateDecision from VibeGateDecision;
+  plays gateAdvancesEntity:advancedEntity from VibeFeatureSpecification;
+  plays gateAdvancesEntity:advancedEntity from VibeProductSpecification;
+  plays gateAdvancesEntity:advancedEntity from VibeIssue;
+  plays gateAdvancesEntity:advancedEntity from VibeSubmission;
+
+undefine
+  relates gateDecision from gateAdvancesEntity;
+  relates advancedEntity from gateAdvancesEntity;
+
+redefine gateAdvancesEntity sub isAffectedBy;
+
+define
+  gateAdvancesEntity relates advancedEntity as affectedThing;
+  gateAdvancesEntity relates gateDecision as effectSource;
+  VibeGateDecision plays gateAdvancesEntity:gateDecision;
+  VibeFeatureSpecification plays gateAdvancesEntity:advancedEntity;
+  VibeProductSpecification plays gateAdvancesEntity:advancedEntity;
+  VibeIssue plays gateAdvancesEntity:advancedEntity;
+  VibeSubmission plays gateAdvancesEntity:advancedEntity;
+
+redefine gateTransitionsToStage relates gateDecision as content;
+
+redefine gateTransitionsToStage relates targetStage as subjectMatter;
+
+redefine gateWithinProcess relates gateDecision as content;
+
+redefine gateWithinProcess relates process as subjectMatter;
+
+redefine currentlyAtStage relates trackedEntity as categorizedThing;
+
+redefine currentlyAtStage relates stage as category;
+
+redefine decomposesFeature relates childFeature as derivedThing;
+
+redefine decomposesFeature relates parentFeature as basis;
+
+redefine assignmentPerformedBy relates assignmentDecision as participationContext;
+
+redefine assignmentPerformedBy relates assigner as participant;
+
+redefine workStartedPerformedBy relates workStartedDecision as participationContext;
+
+redefine workStartedPerformedBy relates starter as participant;
+
+redefine verificationPerformedBy relates verificationDecision as participationContext;
+
+redefine verificationPerformedBy relates verifier as participant;
+
+redefine assignmentDecisionUsesProfile relates assignmentDecision as derivedThing;
+
+redefine assignmentDecisionUsesProfile relates agentProfile as basis;
+
+# Blocks and notes schemas.
+
+redefine blocksAppearanceForSpecification relates appearance as content;
+
+redefine blocksAppearanceForSpecification relates specification as subjectMatter;
+
+redefine blocksDocumentStateForSpecification relates documentState as content;
+
+redefine blocksDocumentStateForSpecification relates specification as subjectMatter;
+
+redefine noteReferencesTodo relates note as content;
+
+redefine noteReferencesTodo relates todoItem as subjectMatter;

@@ -1,0 +1,49 @@
+# Prepare VibeMachine 2.0.x role overrides before GIST 5 adds semantic roles.
+#
+# GIST 3 used generic role labels such as isMemberOfSubject. VibeMachine 2
+# specialized those roles with labels such as member and assignment. Those
+# labels collide with the semantic roles introduced by GIST 5. Move the four
+# colliding VibeMachine roles to their durable labels while they still
+# specialize the GIST 3 roles. The after-dependencies phase retargets these
+# same roles to their GIST 5 semantic parents.
+
+undefine
+  plays controlBoothIncludes:member from Collection;
+  plays controlBoothIncludes:member from Component;
+  plays controlBoothIncludes:member from Task;
+  plays controlBoothIncludes:member from Intention;
+  plays controlBoothIncludes:member from ContentExpression;
+  plays controlBoothIncludes:member from ScheduledEvent;
+  plays producesProduct:product from VibeProduct;
+  plays assignsPerformer:assignment from VibeTaskAssignment;
+  plays assignmentForTask:assignment from VibeTaskAssignment;
+
+undefine
+  relates member from controlBoothIncludes;
+  relates product from producesProduct;
+  relates assignment from assignsPerformer;
+  relates assignment from assignmentForTask;
+
+define
+  controlBoothIncludes relates includedMember as isMemberOfSubject;
+  producesProduct relates producedProduct as isProducedBySubject;
+  assignsPerformer relates performerAssignment as isAssignmentOfSubject;
+  assignmentForTask relates taskAssignment as isAssignmentToSubject;
+
+  Collection plays controlBoothIncludes:includedMember;
+  Component plays controlBoothIncludes:includedMember;
+  Task plays controlBoothIncludes:includedMember;
+  Intention plays controlBoothIncludes:includedMember;
+  ContentExpression plays controlBoothIncludes:includedMember;
+  ScheduledEvent plays controlBoothIncludes:includedMember;
+  VibeProduct plays producesProduct:producedProduct;
+  VibeTaskAssignment plays assignsPerformer:performerAssignment;
+  VibeTaskAssignment plays assignmentForTask:taskAssignment;
+
+# Preserve stage/criterion edges while the relation changes from conformsTo
+# to isDirectPartOf in the after-dependencies phase.
+  relation VibeMigrationStageHasCriterion,
+    relates migrationCriterion,
+    relates migrationStage;
+  VibeGateCriterion plays VibeMigrationStageHasCriterion:migrationCriterion;
+  VibeProcessStage plays VibeMigrationStageHasCriterion:migrationStage;

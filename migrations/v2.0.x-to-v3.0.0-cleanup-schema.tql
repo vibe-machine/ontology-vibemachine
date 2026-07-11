@@ -1,0 +1,4 @@
+undefine
+  plays VibeMigrationStageHasCriterion:migrationCriterion from VibeGateCriterion;
+  plays VibeMigrationStageHasCriterion:migrationStage from VibeProcessStage;
+  VibeMigrationStageHasCriterion;
