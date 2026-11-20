@@ -251,6 +251,28 @@ async function getFreePort() {
   });
 }
 
+async function waitForTcpPort(port, host = "127.0.0.1", timeoutMs = 15000) {
+  const deadline = Date.now() + timeoutMs;
+  for (;;) {
+    const connected = await new Promise((resolve) => {
+      const socket = net.connect({ port, host });
+      socket.once("connect", () => {
+        socket.destroy();
+        resolve(true);
+      });
+      socket.once("error", () => {
+        socket.destroy();
+        resolve(false);
+      });
+    });
+    if (connected) return;
+    if (Date.now() >= deadline) {
+      throw new Error(`TypeDB printed "Ready!" but ${host}:${port} did not accept connections within ${timeoutMs} ms.`);
+    }
+    await new Promise((resolve) => setTimeout(resolve, 100));
+  }
+}
+
 async function startTypedbServer(tempRoot) {
   const hostGrpcPort = await getFreePort();
   const httpPort = await getFreePort();
@@ -284,6 +306,13 @@ async function startTypedbServer(tempRoot) {
     });
     child.on("error", reject);
   });
+
+  try {
+    await waitForTcpPort(hostGrpcPort);
+  } catch (error) {
+    child.kill("SIGKILL");
+    throw error;
+  }
 
   console.log(`Local TypeDB server ready (port: ${hostGrpcPort})`);
   return { child, hostGrpcPort };

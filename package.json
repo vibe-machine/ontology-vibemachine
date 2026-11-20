@@ -1,7 +1,7 @@
 {
   "name": "vibemachine",
   "displayName": "vibemachine",
-  "version": "3.0.0",
+  "version": "3.0.1",
   "description": "Workspace and product modeling package for Vibe Machine planning and delivery.",
   "author": "Vibe Machine",
   "license": "Apache-2.0",
@@ -68,7 +68,7 @@
   "dependencies": [
     {
       "name": "gist",
-      "version": "5.0.0"
+      "version": ">=5.0.0"
     }
   ],
   "scripts": {
@@ -76,12 +76,13 @@
     "validate:bootstrap": "node tools/package_contract/validate_bootstrap.mjs",
     "test:typedb-bootstrap": "node tools/package_contract/validate_typedb_bootstrap.mjs",
     "test:control-booth": "node tools/package_contract/validate_control_booth.mjs",
-    "test": "npm run validate:bootstrap && npm run test:typedb-bootstrap",
+    "test:typedb-migration": "../ontology-tooling/bin/ont validate-migration --repo .",
+    "test": "npm run validate:bootstrap && npm run test:typedb-bootstrap && npm run test:typedb-migration",
     "release": "../ontology-tooling/bin/ont release --repo .",
     "release:check": "../ontology-tooling/bin/ont release --repo . --validate-only"
   },
   "manifests": [
-    "manifests/vibemachine-v3.0.0.package-manifest.json"
+    "manifests/vibemachine-v3.0.1.package-manifest.json"
   ],
   "assembly": {
     "loadOrder": [
@@ -126,23 +127,24 @@
       "data/vibemachine-schema-docs.tql",
       "data/vibemachine-provenance.tql",
       "manifests/package-manifest.schema.json",
-      "manifests/vibemachine-v3.0.0.package-manifest.json"
+      "manifests/vibemachine-v3.0.1.package-manifest.json"
     ]
   },
   "provenance": {
-    "manifest": "manifests/vibemachine-v3.0.0.package-manifest.json",
+    "manifest": "manifests/vibemachine-v3.0.1.package-manifest.json",
     "status": "bootstrap"
   },
   "migration": {
     "format": 1,
     "supportsUpgradeFrom": [
-      ">=2.0.0 <2.0.3"
+      ">=2.0.0 <2.0.3",
+      "3.0.0"
     ],
     "plans": [
       {
         "id": "vibemachine-2.0.x-to-3.0.0",
         "from": ">=2.0.0 <2.0.3",
-        "to": "3.0.0",
+        "to": "3.0.1",
         "mode": "compatible",
         "snapshot": {
           "required": true,
@@ -191,6 +193,27 @@
               {
                 "kind": "schema",
                 "path": "migrations/v2.0.x-to-v3.0.0-cleanup-schema.tql"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "vibemachine-3.0.0-to-3.0.1",
+        "from": "3.0.0",
+        "to": "3.0.1",
+        "mode": "compatible",
+        "snapshot": {
+          "required": false,
+          "label": "pre-vibemachine-3.0.1-migration"
+        },
+        "phases": [
+          {
+            "id": "upgrade",
+            "units": [
+              {
+                "kind": "write",
+                "path": "data/vibemachine-provenance.tql"
               }
             ]
           }
