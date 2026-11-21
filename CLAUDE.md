@@ -2,6 +2,8 @@
 
 This file provides guidance to Claude Code (claude.ai/code) when working with code in this repository.
 
+Before changing or releasing this package, follow the `ontology-extend` skill (installed through `apm.yml`; refresh with `apm install`, never edit `.claude/skills/` by hand).
+
 ## What This Is
 
 A TypeDB ontology package (`vibemachine`) that models workspace, product, and software delivery concepts. The schema is written in TypeQL and layers on top of the `gist` upper ontology (>=1.1.0). This is a schema-only package — no application code to execute.
